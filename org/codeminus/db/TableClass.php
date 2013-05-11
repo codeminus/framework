@@ -25,7 +25,7 @@ class TableClass {
         $this->tableColumns = self::getTableColumns($dbConn, $tableName);
         $this->setTableName($tableName);
         $this->setNamespace($namespace);
-    }    
+    }
 
     /**
      * Database table name
@@ -118,7 +118,7 @@ class TableClass {
     public function create(){
         
         //namespace
-        (isset($this->namespace)) ? $namespace = 'namespace '.$this->getNamespace().';' : $namespace = '';
+        (isset($this->namespace) && $this->namespace != "") ? $namespace = 'namespace '.$this->getNamespace().';' : $namespace = '';
         
         //class name
         $className = ucfirst($this->getTableName());
