@@ -1,0 +1,110 @@
+<?php
+require_once '../main/installer.php';
+use \org\codeminus\main as main;
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="../css/codeminus.css" />
+    </head>
+    <body>
+        <div class="header clearFix">
+            <header class="">
+                <img src="../img/cmf-medium.png" class="floatLeft"/>
+                <div class="floatRight bold">main\Installer v1.0</div>
+            </header>
+        </div>
+        <div class="root">
+            <section><h2>Application initial configuration</h2></section>
+            <?php if (!isset($_POST['cmd'])) { ?>
+                <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
+                    <section class="default-container">
+                        <header>
+                            General environment settings
+                        </header>
+                        <section>
+                            <label for="DEFAULT_TIMEZONE">Default time zone:</label>
+                            <input type="text" name="DEFAULT_TIMEZONE" value="<?php echo date_default_timezone_get() ?>" id="DEFAULT_TIMEZONE" class="medium" />
+                            Take a look at <a href="http://www.php.net/manual/en/timezones.php" target="_blank">http://www.php.net/manual/en/timezones.php</a>
+                            for a list of supported time zones
+                        </section>
+                    </section>
+                    <section class="default-container">
+                        <header>
+                            Development environment
+                        </header>
+                        <section>
+                            <label for="DEV_ENVIRONMENT">Environment directory:</label>
+                            <input type="text" disabled value="<?php echo main\Installer::getInvironment() ?>" id="DEV_ENVIRONMENT" class="medium" />
+                            The development environment directory is on the same level of the framework package.                            
+                        </section>
+                        <section>
+                            <h4>Database settings</h4>
+
+                            <label for="DEV_DB_HOST">Database host:</label>
+                            <input type="text" name="DEV_DB_HOST" value="localhost" id="DEV_DB_HOST" class="medium" />
+                            <label for="DEV_DB_USER">Database user:</label>
+                            <input type="text" name="DEV_DB_USER" value="root" id="DEV_DB_USER" class="medium" />
+                            <label for="DEV_DB_PASS">Database password:</label>
+                            <input type="text" name="DEV_DB_PASS" value="" id="DEV_DB_PASS" class="medium" />
+                            <label for="DEV_DB_NAME">Database name:</label>
+                            <input type="text" name="DEV_DB_NAME" value="" id="DEV_DB_NAME" class="medium" />
+                        </section>
+                    </section>
+                    <section class="default-container">
+                        <header>
+                            Production environment
+                        </header>
+                        <section>
+                            <label for="PRO_ENVIRONMENT">Environment directory:</label>
+                            <input type="text" name="PRO_ENVIRONMENT" value="" id="PRO_ENVIRONMENT" class="medium" />
+                        </section>
+                        <section>
+                            <h4>Database settings</h4>
+
+                            <label for="PRO_DB_HOST">Database host:</label>
+                            <input type="text" name="DEV_DB_HOST" value="" id="PRO_DB_HOST" class="medium" />
+                            <label for="PRO_DB_USER">Database user:</label>
+                            <input type="text" name="DEV_DB_USER" value="" id="PRO_DB_USER" class="medium" />
+                            <label for="PRO_DB_PASS">Database password:</label>
+                            <input type="text" name="DEV_DB_PASS" value="" id="PRO_DB_PASS" class="medium" />
+                            <label for="PRO_DB_NAME">Database name:</label>
+                            <input type="text" name="PRO_DB_NAME" value="" id="PRO_DB_NAME" class="medium" />
+                        </section>
+                    </section>
+                    <section class="default-container">
+                        <header>
+                            Almost there!
+                        </header>
+                        <section>
+                            Clicking on install will create your app's default configurations, folders and files:
+                            <input type="submit" name="cmd" value="install" class="btn btn-blue" />
+                            <br/>Note that no existing files will be replaced, so, if you wish to recreate any default
+                        </section>
+                    </section>
+                </form>
+
+            <?php } else { ?>
+
+                <section class="default-container">
+                    <header>Output</header>
+                    <section>
+                        <?php
+                        $i = new main\Installer();
+                        $i->createAppFiles();
+                        ?>
+                    </section>
+                    <section>
+                        <a href="<?php echo $_SERVER['PHP_SELF'] ?>" class="btn btn-blue">go back</a>
+                        <a href="<?php echo main\Installer::APP_ROOT?>" class="btn btn-blue">Test Installation</a>
+                    </section>
+                </section>
+
+            <?php } ?>
+
+        </div>
+    </body>
+</html>
