@@ -1,0 +1,45 @@
+.tab-hgroup, .tab-vgroup{
+    border-bottom: solid 1px #ddd;
+}
+
+.tab-hgroup{
+    margin: 10px;
+}
+.tab-hgroup > .tab, .tab-hgroup > .tab:visited, .tab-vgroup > .tab, .tab-vgroup > .tab:visited{
+    padding: 10px 13px;
+    color: inherit;
+}
+
+.tab-hgroup > .tab, .tab-hgroup > .tab:visited{
+    display: inline-block;
+}
+
+.tab-hgroup > .tab.selected, .tab-vgroup > .tab.selected{
+    border: solid 1px #ddd;
+    color: #333;
+}
+
+
+.tab-hgroup > .tab.selected{
+    
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: solid 1px #fff;
+    margin-bottom: -1px;
+}
+
+.tab-vgroup{
+    display: inline-block;
+    margin: 10px;
+}
+
+.tab-vgroup > .tab, .tab-vgroup > .tab:visited{
+    display: block;
+}
+
+.tab-vgroup > .tab.selected{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: solid 1px #fff;
+    margin-right: -1px;
+}

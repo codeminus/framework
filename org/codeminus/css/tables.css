@@ -1,0 +1,284 @@
+
+
+/********* .table-list *********/
+
+
+.table-list{
+    border-collapse: collapse;
+    width: 98%;
+    margin: 10px;
+}
+
+.table-list caption{
+    text-align: left;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.table-list th, .table-list td{
+    padding: 4px;
+}
+
+.table-list thead th{
+    vertical-align: bottom;
+    text-align: left;
+    font-size: 1.1em;
+    padding-top: 10px;
+}
+
+/********* .table-line *********/
+
+.table-line thead tr:last-child{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.table-line tbody tr{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #999;
+}
+
+.table-line tbody tr:last-child{
+    border-bottom: none;
+}
+
+.table-line tfoot tr{
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+/********* .table-dash *********/
+.table-dash{
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+.table-dash thead th{
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+.table-dash tbody td{
+    text-align: center;
+    padding: 0px;
+}
+
+.table-dash tfoot td{
+    border-top-style: solid;
+    border-top-width: 2px;
+}
+
+
+/*######################## gray #####################################*/
+
+
+/********* .table-gray *********/
+.table-gray caption, .table-gray thead th, .table-gray tfoot td{
+    color: #222;
+}
+
+.table-gray thead tr{
+    border-bottom-color: #666;
+}
+
+.table-gray tbody tr{
+    border-bottom-color: #DDD !important;
+}
+
+
+.table-gray tbody td{
+    color: #777;
+}
+
+.table-gray tfoot tr{
+    border-top-color: #666;
+}
+
+/********* .table-fill-gray *********/
+.table-fill-gray tbody tr {    
+    background-color: #F9F9F9;
+}
+
+/********* .table-zebra-gray *********/
+.table-zebra-gray tbody tr:nth-child(odd) {    
+    background-color: #F3F3F3;
+}
+
+/********* .table-czebra-gray *********/
+.table-czebra-gray tbody tr td:nth-child(odd) {    
+    background-color: #F3F3F3;
+}
+
+/********* .table-hover-gray *********/
+.table-hover-gray tbody tr:hover{
+    background-color: #E8E8E8;
+}
+
+
+/*######################## green #####################################*/
+
+
+/********* .table-green *********/
+
+
+.table-green caption, .table-green thead th, .table-green tfoot td{
+    color: darkgreen;
+}
+
+.table-green thead tr{
+    border-bottom-color: darkgreen;
+}
+
+.table-green tbody tr{
+    border-bottom-color: #C7E1BA;
+}
+
+.table-green tbody td{
+    color: #7eae66;
+}
+
+.table-green tfoot tr{
+    border-top-color: darkgreen;
+}
+
+
+/********* .table-fill-green *********/
+
+
+.table-fill-green tbody tr {    
+    background-color: #fffed3;
+}
+
+/********* .table-zebra-green *********/
+.table-zebra-green tbody tr:nth-child(odd) {    
+    background-color: #fbf9e7;
+}
+
+/********* .table-czebra-green *********/
+.table-czebra-green tbody tr td:nth-child(odd) {    
+    background-color: #fbf9e7;
+}
+
+
+/********* .table-hover-green *********/
+
+
+.table-hover-green tbody tr:hover{
+    background-color: #ddff9f;
+}
+
+
+/*######################## negative #####################################*/
+
+
+/********* .table-negative *********/
+
+
+.table-negative caption, .table-negative thead th, .table-negative tfoot td{
+    color: #666;
+}
+
+.table-negative thead tr{
+    border-bottom-color: #111;
+}
+
+.table-negative tbody tr {
+    border-bottom-color: #222;
+}
+
+.table-negative tbody td{
+    color: #AAA;
+}
+
+.table-negative tfoot tr{
+    border-top-color: #111;
+}
+
+
+/********* .table-fill-negative *********/
+
+
+.table-fill-negative tbody tr {    
+    background-color: #333;
+}
+
+/********* .table-zebra-negative *********/
+.table-zebra-negative tbody tr:nth-child(odd) {    
+    background-color: #444;
+}
+
+/********* .table-czebra-negative *********/
+.table-czebra-negative tbody tr td:nth-child(odd) {    
+    background-color: #444;
+}
+
+/********* .table-hover-negative *********/
+
+
+.table-hover-negative tbody tr:hover{
+    background-color: #555;
+}
+
+
+/*######################## orchid #####################################*/
+
+
+/********* .table-orchid *********/
+
+
+.table-orchid caption, .table-orchid thead th, .table-orchid tfoot td{
+    color: #200772;
+}
+
+.table-orchid thead tr{
+    border-bottom-color: cadetblue;
+}
+
+.table-orchid tbody tr {
+    border-bottom-color: lightblue;
+}
+
+.table-orchid tbody td{
+    color: #876ED7;
+}
+
+.table-orchid tfoot tr{
+    border-top-color: cadetblue;
+}
+
+
+/********* .table-fill-orchid *********/
+
+
+.table-fill-orchid tbody tr {    
+    background-color: azure;
+}
+
+
+/********* .table-zebra-orchid *********/
+.table-zebra-orchid tbody tr:nth-child(odd) {    
+    background-color: #ccffff;
+}
+
+/********* .table-czebra-negative *********/
+.table-czebra-orchid tbody tr td:nth-child(odd) {    
+    background-color: #ccffff;
+}
+
+
+/********* .table-hover-orchid *********/
+
+
+.table-hover-orchid tbody tr:hover{
+    background-color: #99ffff;
+}
+
+
+/********* .table-compact *********/
+
+
+.table-compact th, .table-compact td{
+    padding: 0px;
+}

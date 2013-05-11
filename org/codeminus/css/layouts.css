@@ -1,0 +1,55 @@
+.layout-fluid{
+    height: 1%; overflow: hidden; /* floating div fix*/
+    min-width: 924px;
+    padding: 2px;
+}
+
+.layout-fluid .row{
+    clear:both;
+}
+
+.layout-fluid .span1,
+.layout-fluid .span2,
+.layout-fluid .span3,
+.layout-fluid .span4,
+.layout-fluid .span5,
+.layout-fluid .span6,
+.layout-fluid .span7,
+.layout-fluid .span8,
+.layout-fluid .span9,
+.layout-fluid .span10{
+    float: left;
+    background-color: #C7E1BA;
+}
+
+.layout-fluid .span1{
+    float: left;
+    width: 10%;
+}
+.layout-fluid .span2{
+    width: 20%;
+}
+.layout-fluid .span3{
+    width: 30%;
+}
+.layout-fluid .span4{
+    width: 40%;
+}
+.layout-fluid .span5{
+    width: 50%;
+}
+.layout-fluid .span6{
+    width: 60%;
+}
+.layout-fluid .span7{
+    width: 70%;
+}
+.layout-fluid .span8{
+    width: 80%;
+}
+.layout-fluid .span9{
+    width: 90%;
+}
+.layout-fluid .span10{
+    width: 100%;
+}

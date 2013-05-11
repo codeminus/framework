@@ -1,0 +1,50 @@
+body > section{
+    margin: 5px;
+}
+
+.header{
+    background: #FFFFFF; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f9f9f9, #f3f3f3); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f3f3f3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,#f9f9f9,#f3f3f3); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f9f9f9,#f3f3f3); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f9f9f9,#f3f3f3); /* IE10+ */
+    background: linear-gradient(top,  #f9f9f9,#f3f3f3); /* W3C */
+    
+    text-shadow: 0 1px 0 #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 5px;
+}
+.default-container{
+    margin-bottom: 20px;
+}
+
+.default-container > header, .default-container > section{
+    border: solid 1px #ddd;
+    padding: 10px;
+}
+
+.default-container > header{
+    background-color: #f7f7f7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #333;
+    font-weight: bold;
+}
+
+.default-container > section{
+    border-top: none;
+}
+
+
+.default-container > section:last-of-type{
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.default-container .separator{
+    display: block;
+    height: 2px;
+    border-bottom: 1px solid #e5e5e5;
+    margin: 10px 0px; 
+}
