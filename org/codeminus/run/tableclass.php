@@ -24,7 +24,7 @@ if (isset($_POST['cmd'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Table class generator</title>
         <link rel="stylesheet" href="../css/codeminus.css" />
     </head>
     <body>
@@ -36,7 +36,7 @@ if (isset($_POST['cmd'])) {
         </div>
         <div class="root">
             <section><h2>Table class generator</h2></section>
-            <div class="floatLeft">
+            <div class="floatLeft" >
                 <form name="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                     <section class="default-container">
                         <header>Database connection parameters</header>
@@ -58,8 +58,8 @@ if (isset($_POST['cmd'])) {
                         <header>Class properties</header>
                         <section>
                             <label for="class_namespace">Namespace:</label>
-                            <input type="text" name="class_namespace" id="class_namespace" value="<?php echo $class_namespace ?>"" class="medium"/>
-                        </section>    
+                            app\models\ <input type="text" name="class_namespace" id="class_namespace" value="<?php echo $class_namespace ?>" class=""/>
+                        </section>
                     </section>
                     <input type="submit" name="cmd" value="generate" class="btn btn-blue"/>
                 </form>
@@ -67,17 +67,20 @@ if (isset($_POST['cmd'])) {
             <div class="floatRight" style="width: 630px;">
                 <section class="default-container">
                     <header>Output</header>
-                    <section style="height: 445px; overflow-y: auto;">
-                        
+                    <section style="height: 492px; overflow-y: auto;">
+
                         <?php
                         if (isset($_POST['cmd'])) {
                             $dbconn = new db\Connection($_POST['db_host'], $_POST['db_user'], $_POST['db_pass'], $_POST['db_name']);
-                            $tc = new db\TableClass($dbconn, $_POST['db_table'], $_POST['class_namespace']);
-                        ?>
-                        <pre style="font-family: Courier; font-size: 0.9em"><?php echo $tc->create();?></pre>
-                        <?php }?>    
+                            $namespace = trim($_POST['class_namespace']);
+                            ($namespace != null) ? $namespace = 'app\models\\' . $namespace : $namespace = 'app\models';
+                            $tc = new db\TableClass($dbconn, $_POST['db_table'], $namespace);
+                            $tc->create();
+                            ?>
+                            <pre style="font-family: Courier; font-size: 0.9em"><?php echo $tc->getCode(); ?></pre>
+                        <?php } ?>    
                     </section>    
                 </section>
-                
+
             </div>
         </div>
