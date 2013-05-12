@@ -124,6 +124,8 @@ FILE;
         
         $this->createDir(self::APP_ROOT . 'app/views/templates');
         
+        $this->createDir(self::APP_ROOT . 'app/views/shared');
+        
         $headerContent = <<<FILE
 <?php
 use \org\codeminus\main as main;
@@ -138,14 +140,14 @@ use \org\codeminus\main as main;
     <body>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/templates/header.php', $headerContent);
+        $this->createFile(self::APP_ROOT . 'app/views/shared/header.php', $headerContent);
 
         $footerContent = <<<FILE
     </body>
 </html>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/templates/footer.php', $footerContent);
+        $this->createFile(self::APP_ROOT . 'app/views/shared/footer.php', $footerContent);
 
         $this->createDir(self::APP_ROOT . 'assets/css');
         $this->createDir(self::APP_ROOT . 'assets/js');
