@@ -70,11 +70,11 @@ use \org\codeminus\main as main;
                             <h4>Database settings</h4>
 
                             <label for="PRO_DB_HOST">Database host:</label>
-                            <input type="text" name="DEV_DB_HOST" value="" id="PRO_DB_HOST" class="medium" />
+                            <input type="text" name="PRO_DB_HOST" value="" id="PRO_DB_HOST" class="medium" />
                             <label for="PRO_DB_USER">Database user:</label>
-                            <input type="text" name="DEV_DB_USER" value="" id="PRO_DB_USER" class="medium" />
+                            <input type="text" name="PRO_DB_USER" value="" id="PRO_DB_USER" class="medium" />
                             <label for="PRO_DB_PASS">Database password:</label>
-                            <input type="text" name="DEV_DB_PASS" value="" id="PRO_DB_PASS" class="medium" />
+                            <input type="text" name="PRO_DB_PASS" value="" id="PRO_DB_PASS" class="medium" />
                             <label for="PRO_DB_NAME">Database name:</label>
                             <input type="text" name="PRO_DB_NAME" value="" id="PRO_DB_NAME" class="medium" />
                         </section>
