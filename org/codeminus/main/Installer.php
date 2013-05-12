@@ -3,8 +3,7 @@
 namespace org\codeminus\main;
 
 /**
- * Description of Installer
- *
+ * Framework Installer
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
  */
@@ -12,19 +11,26 @@ class Installer {
 
     const APP_ROOT = '../../../';
 
+    /**
+     * @return Installer
+     */
     public function __construct() {
         
     }
 
+    /**
+     * Create application's default files and folders
+     * @return void
+     */
     public function createAppFiles() {
 
         $configFolder = self::APP_ROOT . 'app/configs';
-        $this->createDir($configFolder);
+        $this->createDir($configFolder, 0755);
 
         $initFilePath = $configFolder . '/init.php';
         $this->createFile($initFilePath, $this->getInitContent());
 
-        $this->createDir(self::APP_ROOT . 'app/controllers');
+        $this->createDir(self::APP_ROOT . 'app/controllers', 0755);
         
         $indexControllerContent = <<<FILE
 <?php
@@ -74,9 +80,9 @@ FILE;
         
         $this->createFile(self::APP_ROOT.'app/controllers/Error.php', $errorControllerContent);
         
-        $this->createDir(self::APP_ROOT . 'app/models');
-        $this->createDir(self::APP_ROOT . 'app/views');
-        $this->createDir(self::APP_ROOT . 'app/views/index');
+        $this->createDir(self::APP_ROOT . 'app/models', 0755);
+        $this->createDir(self::APP_ROOT . 'app/views', 0755);
+        $this->createDir(self::APP_ROOT . 'app/views/index', 0755);
 
         $indexViewContent = <<<FILE
 <?php
@@ -106,7 +112,7 @@ FILE;
         
         $this->createFile(self::APP_ROOT.'app/views/index/index.php', $indexViewContent);
         
-        $this->createDir(self::APP_ROOT . 'app/views/error');
+        $this->createDir(self::APP_ROOT . 'app/views/error', 0755);
 
         $errorViewContent = <<<FILE
 <?php
@@ -122,9 +128,9 @@ FILE;
         
         $this->createFile(self::APP_ROOT.'app/views/error/pageNotFound.php', $errorViewContent);
         
-        $this->createDir(self::APP_ROOT . 'app/views/templates');
+        $this->createDir(self::APP_ROOT . 'app/views/templates', 0755);
         
-        $this->createDir(self::APP_ROOT . 'app/views/shared');
+        $this->createDir(self::APP_ROOT . 'app/views/shared', 0755);
         
         $headerContent = <<<FILE
 <?php
@@ -169,7 +175,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
-#RewriteRule ^(.+)$ index.php/$1 [QSA,L]
 RewriteRule ^(.+)$ index.php?qs=$1 [QSA,L]
 
 Options -Indexes
@@ -178,9 +183,15 @@ FILE;
         $this->createFile(self::APP_ROOT . '.htaccess', $htaccessContent);
     }
 
-    private function createDir($dir) {
+    /**
+     * Creates a directory
+     * @param string $dir path and name
+     * @param octal $mode according to the access level defined by chmod
+     * @return void;
+     */
+    private function createDir($dir, $mode = 0777) {
         if (!file_exists($dir)) {
-            if (!mkdir($dir, 0777, true)) {
+            if (!mkdir($dir, $mode, true)) {
                 exit('<p class="warning">Unable to create ' . $dir . '</p>');
             } else {
                 echo '<p class="info">' . $dir . ' created.</p>';
@@ -190,6 +201,12 @@ FILE;
         }
     }
 
+    /**
+     * Creates a file
+     * @param string $fileName complete file path
+     * @param string $fileContent Content to be put inside the file
+     * @return void
+     */
     private function createFile($fileName, $fileContent) {
         if (!file_exists($fileName)) {
             if (!file_put_contents($fileName, $fileContent)) {
@@ -202,10 +219,19 @@ FILE;
         }
     }
 
+    /**
+     * Returns the Application's environment assuming that the framework package
+     * has the same root folder has app
+     * @return string
+     */
     public static function getInvironment() {
         return str_replace('/org/codeminus/run/installer.php', '', $_SERVER['SCRIPT_NAME']);
     }
 
+    /**
+     * Generates the content to the app/configs/init.php main configuration file
+     * @return string
+     */
     public function getInitContent() {
 
         $DEV_ENVIRONMENT = (isset($_POST['DEV_ENVIRONMENT'])) ? $_POST['DEV_ENVIRONMENT'] : '';
