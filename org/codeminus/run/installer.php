@@ -6,7 +6,11 @@ use \org\codeminus\main as main;
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <?php if (!isset($_POST['cmd'])) { ?>
+            <title>App configuration</title>
+        <?php }else{?>
+            <title>App configuration - output</title>
+        <?php }?>
         <link rel="stylesheet" href="../css/codeminus.css" />
     </head>
     <body>
@@ -82,7 +86,7 @@ use \org\codeminus\main as main;
                         <section>
                             Clicking on install will create your app's default configurations, folders and files:
                             <input type="submit" name="cmd" value="install" class="btn btn-blue" />
-                            <br/>Note that no existing files will be replaced, so, if you wish to recreate any default
+                            <br/>Note that no existing files will be replaced, so, if you wish to recreate any specific file, delete it first.
                         </section>
                     </section>
                 </form>
@@ -98,7 +102,7 @@ use \org\codeminus\main as main;
                         ?>
                     </section>
                     <section>
-                        <a href="<?php echo $_SERVER['PHP_SELF'] ?>" class="btn btn-blue">go back</a>
+                        <a href="javascript:history.back()" class="btn btn-blue">go back</a>
                         <a href="<?php echo main\Installer::APP_ROOT?>" class="btn btn-blue">Test Installation</a>
                     </section>
                 </section>
