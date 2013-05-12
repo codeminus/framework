@@ -269,13 +269,13 @@ const VIEW_DEFAULT_TITLE = '$VIEW_DEFAULT_TITLE';
  * File to be included before the view file. When requested
  * @var string path relative to VIEW_DIR
  */
-const VIEW_DEFAULT_HEADER = '/templates/header.php';
+const VIEW_DEFAULT_HEADER = '/shared/header.php';
 
 /**
  * File to be included after the view file. When requested
  * @var string path relative to VIEW_DIR
  */
-const VIEW_DEFAULT_FOOTER = '/templates/footer.php';
+const VIEW_DEFAULT_FOOTER = '/shared/footer.php';
 
 /**
  * The default controller to load when no controller is defined
