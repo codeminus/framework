@@ -1,1 +1,5 @@
 nbproject/
+app/
+assets/
+index.php
+.htaccess
