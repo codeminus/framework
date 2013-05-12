@@ -223,6 +223,7 @@ FILE;
      * Returns the Application's environment assuming that the framework package
      * has the same root folder has app
      * @return string
+     * @todo implement a more dynamic solution
      */
     public static function getInvironment() {
         return str_replace('/org/codeminus/run/installer.php', '', $_SERVER['SCRIPT_NAME']);
