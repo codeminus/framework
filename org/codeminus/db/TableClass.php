@@ -1,4 +1,5 @@
 <?php
+
 namespace org\codeminus\db;
 
 /**
@@ -7,18 +8,19 @@ namespace org\codeminus\db;
  * @version 1.1
  */
 class TableClass {
-    
+
     private $tableName;
     private $tableColumns;
     private $namespace;
-    
+    private $code;
+
     /**
      * Generates a class definition for an existing database table.
      * The class will always inherit the abstract class \org\codeminus\db\Table.
      * Review all generated code as it only does basic assumptions
-     * @param \org\codeminus\db\Connection $dbConn
-     * @param string $tableName
-     * @param string $namespace
+     * @param \org\codeminus\db\Connection $dbConn an instance of a database connection
+     * @param string $tableName the database table you want to implement a class from
+     * @param string $namespace the class package
      * @return TableClass
      */
     public function __construct(Connection $dbConn, $tableName, $namespace = null) {
@@ -43,7 +45,7 @@ class TableClass {
     public function setTableName($tableName) {
         $this->tableName = $tableName;
     }
-    
+
     /**
      * Class namespace
      * @return string
@@ -60,7 +62,7 @@ class TableClass {
     public function setNamespace($namespace) {
         $this->namespace = $namespace;
     }
-    
+
     /**
      * 
      * @param \org\codeminus\db\Connection $dbConn
@@ -75,26 +77,26 @@ class TableClass {
      * $columns[0]['extra']
      * @throws main\ExtException
      */
-    public static function getTableColumns(Connection $dbConn, $tableName){
+    public static function getTableColumns(Connection $dbConn, $tableName) {
         $result = $dbConn->query("DESCRIBE " . $tableName);
-        
-        if(!$result){
+
+        if (!$result) {
             throw new main\ExtException($dbConn->error);
         }
-        
+
         $tableColumnsArray = array();
-        
-        while($row = $result->fetch_assoc()){
-            
+
+        while ($row = $result->fetch_assoc()) {
+
             $typeArray = explode(' ', $row['Type']);
-            
+
             $typeAndSize = explode('(', $typeArray[0]);
             $type = $typeAndSize[0];
-            
-            (count($typeAndSize) > 1)? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
-            
-            ($row['Null'] == 'YES')? $null = true : $null = false;
-            
+
+            (count($typeAndSize) > 1) ? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
+
+            ($row['Null'] == 'YES') ? $null = true : $null = false;
+
             $tableColumn['name'] = $row['Field'];
             $tableColumn['type'] = trim($type);
             $tableColumn['size'] = $size;
@@ -102,70 +104,68 @@ class TableClass {
             $tableColumn['key'] = $row['Key'];
             $tableColumn['default'] = $row['Default'];
             $tableColumn['extra'] = $row['Extra'];
-            
+
             array_push($tableColumnsArray, $tableColumn);
-            
         }
-        
+
         return $tableColumnsArray;
-        
     }
-    
+
     /**
-     * Creates the table classe
-     * @return string
+     * Creates the table classe and stores it into $this->code. use $this->getCode() to get its content
+     * @return void
      */
-    public function create(){
-        
+    public function create() {
+
         //namespace
-        (isset($this->namespace) && $this->namespace != "") ? $namespace = 'namespace '.$this->getNamespace().';' : $namespace = '';
-        
+        (isset($this->namespace) && $this->namespace != "") ? $namespace = 'namespace ' . $this->getNamespace() . ';' : $namespace = '';
+
         //class name
         $className = ucfirst($this->getTableName());
-        
+
         //attributes declaration
         $attrDeclaration = '';
         $methodDeclaration = '';
-        
-        foreach ($this->tableColumns as $column){
+
+        foreach ($this->tableColumns as $column) {
             $attrDeclaration .= '
-    protected $'.$column['name'].';';
-            
-            $getMethod = 'get'.ucfirst($column['name']).'()';
-            $setMethod = 'set'.ucfirst($column['name']).'($'.$column['name'].')';
-            
+    protected $' . $column['name'] . ';';
+
+            $getMethod = 'get' . ucfirst($column['name']) . '()';
+            $setMethod = 'set' . ucfirst($column['name']) . '($' . $column['name'] . ')';
+
             $columnPhrase = strtolower(preg_replace('/([A-Z])/', ' $1', $column['name']));
-            
+
             //getters and setters
             $methodDeclaration .= '
     /**
-     * '.$className.' '.$columnPhrase.'
-     * @return '.$column['type'].'
+     * ' . $className . ' ' . $columnPhrase . '
+     * @return ' . $column['type'] . '
      */
-    public function '.$getMethod.' {
-        return $this->'.$column['name'].';
+    public function ' . $getMethod . ' {
+        return $this->' . $column['name'] . ';
     }
     
     /**
-     * '.$className.' '.$columnPhrase.'
-     * @param '.$column['type'].' $'.$column['name'].'
+     * ' . $className . ' ' . $columnPhrase . '
+     * @param ' . $column['type'] . ' $' . $column['name'] . '
      * @return void
      */
-    public function '.$setMethod.' {
-        $this->'.$column['name'].' = $'.$column['name'].';
+    public function ' . $setMethod . ' {
+        $this->' . $column['name'] . ' = $' . $column['name'] . ';
     }
 ';
         }
-        
+
         //insert method
         $methodDeclaration .= '
     public function insert() {
 ';
-        
-        foreach ($this->tableColumns as $column){
-            
-            if($column['extra'] == ""){
-                $methodDeclaration .='        $this->addInsertField(\''.$column['name'].'\', $this->get'.ucfirst($column['name']).'());
+
+        foreach ($this->tableColumns as $column) {
+
+            if ($column['extra'] == "") {
+                $methodDeclaration .='        $this->addInsertField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
             }
         }
@@ -173,62 +173,87 @@ class TableClass {
         $this->createInsertStatement();
         return $this->executeQuery();
     }';
-        
+
         //update method
         $methodDeclaration .= '
 
     public function update($whereClause = null) {
 ';
-        
-        foreach ($this->tableColumns as $column){
-            
-            if($column['extra'] == ""){
-                $methodDeclaration .='        $this->addUpdateField(\''.$column['name'].'\', $this->get'.ucfirst($column['name']).'());
+
+        foreach ($this->tableColumns as $column) {
+
+            if ($column['extra'] == "") {
+                $methodDeclaration .='        $this->addUpdateField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
             }
         }
-        
+
         //setting default update where clause
-        foreach ($this->tableColumns as $column){
-            if($column['key'] == "PRI"){
+        foreach ($this->tableColumns as $column) {
+            if ($column['key'] == "PRI") {
                 $methodDeclaration .='
-        ($whereClause == null) ? $whereClause = \'where '.$column['name'].'=\' . $this->get'.ucfirst($column['name']).'() : null;';
+        ($whereClause == null) ? $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '() : null;';
                 break;
             }
         }
-        
+
         $methodDeclaration .='
 
         $this->createUpdateStatement($whereClause);
         return $this->executeQuery();
     }';
-        
+
         //classFile
         $cf = '&lt;?php
-'.$namespace.'
+' . $namespace . '
 
 use \org\codeminus\db as db;
 
 /**
- * Description of '.$className.'
+ * Description of ' . $className . '
  * @author 
  */
-class '.$className.' extends db\Table { 
-'.$attrDeclaration.'  
+class ' . $className . ' extends db\Table { 
+' . $attrDeclaration . '  
 
     /**
      * 
-     * @return '.$className.'
+     * @return ' . $className . '
      */
     public function __construct() {
-        parent::__construct(\''.$this->getTableName().'\');
+        parent::__construct(\'' . $this->getTableName() . '\');
     }   
-'.$methodDeclaration.'
+' . $methodDeclaration . '
 
 }
 ';
-        
-        return $cf;
+
+        $this->setCode($cf);
     }
-    
+
+    public function getCode() {
+        return $this->code;
+    }
+
+    public function setCode($code) {
+        $this->code = $code;
+    }
+
+    /*
+    public function save($filepath, $overwriteExistent = false) {
+
+        $className = ucfirst($this->getTableName());
+        
+        $filepath = $filePath . '/' . $className . '.php';
+        //if the file doesnt exists or $overwriteExistent == true
+        if (!file_exists($filepath) || $overwriteExistent) {
+            //if file created if with success
+            if (file_put_contents($filePath, $this->getCode())) {
+                echo '<p class="info">' . $filePath . ' file created. </p>';
+            }
+        } else {
+            echo '<p class="warning">' . $filePath . ' file NOT created. File already exists </p>';
+        }
+    }*/
+
 }
