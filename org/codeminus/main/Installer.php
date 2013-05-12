@@ -94,9 +94,9 @@ FILE;
         <section>
             <p>Remember to review your environment configurations inside <b>/app/configs/init.php</b>.</p>
             <p>
-                Go to <a href="https://github.com/codeminus/framework">https://github.com/codeminus/framework</a>
+                Go to <a href="https://github.com/codeminus/framework" target="_blank">https://github.com/codeminus/framework</a>
                 to keep updated about the framework.<br/>
-                Feel free to contact <a href="https://github.com/codeminus">codeminus</a>
+                Feel free to contact <a href="https://github.com/codeminus" target="_blank">codeminus</a>
                 should you have any questions or comments.
             </p>
         </section>
@@ -122,6 +122,8 @@ FILE;
         
         $this->createFile(self::APP_ROOT.'app/views/error/pageNotFound.php', $errorViewContent);
         
+        $this->createDir(self::APP_ROOT . 'app/views/templates');
+        
         $headerContent = <<<FILE
 <?php
 use \org\codeminus\main as main;
@@ -136,14 +138,14 @@ use \org\codeminus\main as main;
     <body>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/header.php', $headerContent);
+        $this->createFile(self::APP_ROOT . 'app/views/templates/header.php', $headerContent);
 
         $footerContent = <<<FILE
     </body>
 </html>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/footer.php', $footerContent);
+        $this->createFile(self::APP_ROOT . 'app/views/templates/footer.php', $footerContent);
 
         $this->createDir(self::APP_ROOT . 'assets/css');
         $this->createDir(self::APP_ROOT . 'assets/js');
@@ -265,13 +267,13 @@ const VIEW_DEFAULT_TITLE = '$VIEW_DEFAULT_TITLE';
  * File to be included before the view file. When requested
  * @var string path relative to VIEW_DIR
  */
-const VIEW_DEFAULT_HEADER = '/header.php';
+const VIEW_DEFAULT_HEADER = '/templates/header.php';
 
 /**
  * File to be included after the view file. When requested
  * @var string path relative to VIEW_DIR
  */
-const VIEW_DEFAULT_FOOTER = '/footer.php';
+const VIEW_DEFAULT_FOOTER = '/templates/footer.php';
 
 /**
  * The default controller to load when no controller is defined
