@@ -312,7 +312,8 @@ abstract class Table {
   /**
    * Required fields for a given database operation
    * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
-   * @param string $fields if there's more than one field, separate it with ,(comma)
+   * @param string $fields if there's more than one field, separate it 
+   * with ,(comma)
    * @return void
    * @throws ExtException
    */
@@ -402,7 +403,8 @@ abstract class Table {
   /**
    * SQL statement
    * @param string $sqlStatement
-   * @param int $operation[optional] e.g.: self::INSERT, self::UPDATE, self::DELETE
+   * @param int $operation[optional] e.g.: self::INSERT, self::UPDATE,
+   * self::DELETE
    * @return void
    */
   final public function setSqlStatement($sqlStatement, $operation = null) {
@@ -667,7 +669,8 @@ abstract class Table {
   /**
    * Current Date and time
    * @param boolean $timestamp[optional]
-   * @return datetime sql type format if $timestamp is set to false and int otherwise
+   * @return datetime sql type format if $timestamp is set to false and int 
+   * otherwise
    */
   final protected function getCurrentDate($timestamp = false) {
 
@@ -685,7 +688,8 @@ abstract class Table {
    * @param string $fields[optional] Especify the fields that will be selected.
    * Use ,(comma) to distinguish them
    * Default: *(all)
-   * @param string $whereClause[optional] Use this parameter for additional clauses like WHERE, AND, ORDER BY, LIMIT, ETC...
+   * @param string $whereClause[optional] Use this parameter for additional 
+   * clauses like WHERE, AND, ORDER BY, LIMIT, ETC...
    * @return boolean
    */
   public function select($fields = '*', $whereClause = null) {
@@ -701,10 +705,13 @@ abstract class Table {
 
   /**
    * Create RecordList object
-   * @param string $fields[optional] separeted by ,(comma). If null is given $field will be set to '*'
-   * @param string $whereClause[optional] use this parameter for JOIN, WHERE, AND, LIKE clauses (Parameters that filter the query result).
+   * @param string $fields[optional] separeted by ,(comma). If null is given 
+   * $field will be set to '*'
+   * @param string $whereClause[optional] use this parameter for JOIN, WHERE,
+   * AND, LIKE clauses (Parameters that filter the query result).
    * @param int $currentPage[optional] page to be presented.
-   * @param int $recordsPerPage[optional] if null is given the result object will contain all records and $currentPage value will be ignored
+   * @param int $recordsPerPage[optional] if null is given the result object
+   * will contain all records and $currentPage value will be ignored
    * @return RecordList
    */
   public function createRecordList($fields = '*', $whereClause = null, $currentPage = 1, $recordsPerPage = DEFAULT_RPP) {
@@ -731,9 +738,12 @@ abstract class Table {
 
   /**
    * DELETE operation
-   * @param string $whereClause[optional] Use this parameter for additional clauses like WHERE, AND, LIMIT, ETC...
-   * By default, the defination of $whereClause is required, as a security measure. 
-   * To change it, use setStrictDelete(false) where false deactivates  and true activates it.
+   * @param string $whereClause[optional] Use this parameter for additional
+   * clauses like WHERE, AND, LIMIT, ETC...
+   * By default, the defination of $whereClause is required, as a security
+   * measure. 
+   * To change it, use setStrictDelete(false) where false deactivates and true
+   * activates it.
    * @return boolean
    */
   public function delete($whereClause = null) {
@@ -761,9 +771,12 @@ abstract class Table {
 
   /**
    * UPDATE operation
-   * @param string $whereClause[optional] Use this parameter for additional clauses like WHERE, AND, LIMIT, ETC...
-   * By default, the defination of $whereClause is required, as a security measure. 
-   * To change it, use setStrictUpdate(false) where false deactivates  and true activates it.
+   * @param string $whereClause[optional] Use this parameter for additional
+   * clauses like WHERE, AND, LIMIT, ETC...
+   * By default, the defination of $whereClause is required, as a security
+   * measure. 
+   * To change it, use setStrictUpdate(false) where false deactivates  and true
+   * activates it.
    * @return boolean
    */
   abstract public function update($whereClause = null);
@@ -772,7 +785,8 @@ abstract class Table {
    * Populates class properties with results from the current result row and
    * moves resultset pointer to next row.
    * The class properties that represent a table column MUST be able to
-   * be accessed by Table (its super class). Define them with, at least, PROTECTED access level
+   * be accessed by Table (its super class). Define them with, at least,
+   * PROTECTED access level
    * @return boolean true if there's a next row and false if there isn't
    */
   public function nextRow() {
@@ -790,6 +804,8 @@ abstract class Table {
         if (isset($row[$tableColumn])) {
           //populates class properties with correspondent table columnn values
           $this->$tableColumn = $row[$tableColumn];
+        }else{
+          $this->$tableColumn = null;
         }
       }
 
