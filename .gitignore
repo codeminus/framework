@@ -1,5 +1,6 @@
 nbproject/
 app/
 assets/
+org/codeminus/db/pdo/
 index.php
 .htaccess
