@@ -27,7 +27,7 @@ abstract class Controller {
      * @param string $url
      * @return void
      */
-    public function redirectTo($url){
+    public static function redirectTo($url){
         header('Location: '.APP_HTTP_PATH.'/'.$url);
         exit;
     }
