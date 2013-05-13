@@ -1,4 +1,5 @@
 <?php
+
 namespace org\codeminus\db;
 
 use org\codeminus\main as main;
@@ -10,10 +11,9 @@ use org\codeminus\main as main;
  * @version 1.0
  */
 abstract class Table {
-    
+
     //Database connection object
     private $dbConn;
-    
     //Database properties
     private $tableName;
     private $tableColumns = array();
@@ -30,11 +30,12 @@ abstract class Table {
     private $strictUpdate = true;
     private $strictDelete = true;
     private $recordList = null;
-    
+
     //Common properties
+
     const INACTIVE = 0;
     const ACTIVE = 1;
-    
+
     //Database table column informations
     const COLUMN_TYPE = 'type';
     const COLUMN_SIZE = 'size';
@@ -42,12 +43,12 @@ abstract class Table {
     const COLUMN_KEY = 'key';
     const COLUMN_DEFAULT = 'default';
     const COLUMN_EXTRA = 'extra';
-    
+
     //Database operations
     const INSERT = 0;
     const UPDATE = 1;
     const DELETE = 2;
-    
+
     //Error messages    
     const ERR_NOSQLSTMT = '<b>Error:</b> SQL statement not defined';
     const ERR_INVALIDSQL = '<b>Error:</b> Invalid SQL statement';
@@ -55,19 +56,18 @@ abstract class Table {
     const ERR_NOFIELDS = '<b>Error:</b> No table fields defined';
     const ERR_INVALIDOP = '<b>Error:</b> Invalid database operation';
     const ERR_STRICTOP = '<b>Error:</b> Strict database operation. Where clause not set';
-    
+
     /**
      * Database Table abstract model
      * @param string $tableName Database table name
      * @return Table
      */
     public function __construct($tableName) {
-        
+
         $this->setDbConn(Connection::getInstance());
         $this->setTableName($tableName);
-        
     }
-    
+
     /**
      * Database connection link
      * @return Connection
@@ -89,10 +89,10 @@ abstract class Table {
      * Database connection error message
      * @return string
      */
-    final public function getDbConnError(){
+    final public function getDbConnError() {
         return $this->dbConn->error;
     }
-        
+
     /**
      * Database table name
      * @return string
@@ -107,61 +107,58 @@ abstract class Table {
      * @return void
      */
     final protected function setTableName($tableName) {
-        
+
         $this->tableName = $tableName;
-        
-        try{
+
+        try {
             $this->setTableColumns();
-        }  catch (main\ExtException $e){            
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
     }
-    
+
     /**
      * Database table columns informations
      * @return void
      * @throws ExtException
      */
     private function setTableColumns() {
-        
+
         $result = $this->dbConn->query("DESCRIBE " . $this->getTableName());
-        
-        if(!$result){
+
+        if (!$result) {
             throw new main\ExtException($this->dbConn->error);
         }
-        
-        while($row = $result->fetch_assoc()){
-            
+
+        while ($row = $result->fetch_assoc()) {
+
             array_push($this->tableColumns, $row['Field']);
-            
+
             $typeAndSize = explode('(', $row['Type']);
             $type = $typeAndSize[0];
-            
-            (count($typeAndSize) > 1)? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
-            
-            ($row['Null'] == 'YES')? $null = true : $null = false;
-                
+
+            (count($typeAndSize) > 1) ? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
+
+            ($row['Null'] == 'YES') ? $null = true : $null = false;
+
             $this->tableColumnsInfo[$row['Field']]['type'] = trim($type);
             $this->tableColumnsInfo[$row['Field']]['size'] = $size;
             $this->tableColumnsInfo[$row['Field']]['null'] = $null;
             $this->tableColumnsInfo[$row['Field']]['key'] = $row['Key'];
             $this->tableColumnsInfo[$row['Field']]['default'] = $row['Default'];
             $this->tableColumnsInfo[$row['Field']]['extra'] = $row['Extra'];
-            
         }
-        
     }
-        
+
     /**
      * Database table columns
      * @return array containing all field names
      */
-    final public function getTableColumns(){        
-        return $this->tableColumns;        
+    final public function getTableColumns() {
+        return $this->tableColumns;
     }
-    
+
     /**
      * Database table columns information
      * @return array associative multi-dimentional with all table columns and
@@ -184,29 +181,27 @@ abstract class Table {
      * @return mixed depending on the $info requested
      * if $info is not given and array with all informations of the column is returned
      */
-    final public function getColumnInfo($column, $info = null){
-        
-        if(!isset($info)){
+    final public function getColumnInfo($column, $info = null) {
+
+        if (!isset($info)) {
             return $this->tableColumnsInfo[$column];
-        }else{
+        } else {
             return $this->tableColumnsInfo[$column][$info];
         }
-        
     }
-    
+
     /**
      * Table fields and values to INSERT
      * @return array
      * @throws ExtException
      */
     final public function getInsertFields() {
-        
-        if(count($this->insertFields) == 0){
+
+        if (count($this->insertFields) == 0) {
             throw new main\ExtException(self::ERR_NOFIELDS);
-        }else{
+        } else {
             return $this->insertFields;
         }
-        
     }
 
     /**
@@ -229,31 +224,29 @@ abstract class Table {
      * INSERT statement.
      * @return void
      */
-    final protected function addInsertField($field, $value, $quoted = true){
-        
-        if($value !== null){            
-            if($quoted){
+    final protected function addInsertField($field, $value, $quoted = true) {
+
+        if ($value !== null) {
+            if ($quoted) {
                 $value = "'" . $value . "'";
             }
-            
+
             $this->insertFields[$field] = $value;
         }
-        
     }
-    
+
     /**
      * Table fields and values to UPDATE
      * @return array
      * @throws ExtException
      */
     final public function getUpdateFields() {
-        
-        if(count($this->updateFields) == 0){
+
+        if (count($this->updateFields) == 0) {
             throw new main\ExtException(self::ERR_NOFIELDS);
-        }else{
+        } else {
             return $this->updateFields;
         }
-        
     }
 
     /**
@@ -266,7 +259,7 @@ abstract class Table {
     final protected function setUpdateFields($updateFields) {
         $this->updateFields = $updateFields;
     }
-        
+
     /**
      * Adds a table field and its value to be used in the UPDATE statement
      * @param string $field database table field name
@@ -277,27 +270,26 @@ abstract class Table {
      * UPDATE statement.
      */
     final protected function addUpdateField($field, $value, $quoted = true) {
-        
-        if($value !== null){            
-            if($quoted){
+
+        if ($value !== null) {
+            if ($quoted) {
                 $value = "'" . $value . "'";
             }
-            
+
             $field = $field . "=" . $value;
-            
+
             array_push($this->updateFields, $field);
         }
-        
     }
-    
+
     /**
      * Required fields for a given database operation
      * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
      * @return array
      * @throws ExtException
      */
-    final public function getRequiredFields($operation){
-        
+    final public function getRequiredFields($operation) {
+
         switch ($operation) {
             case self::INSERT:
                 return $this->requiredInsertFields;
@@ -306,18 +298,17 @@ abstract class Table {
             case self::UPDATE:
                 return $this->requiredUpdateFields;
                 break;
-            
+
             case self::DELETE:
                 return $this->requiredDeleteFields;
                 break;
-            
+
             default:
                 throw new main\ExtException(self::ERR_INVALIDOP);
                 break;
         }
-        
     }
-    
+
     /**
      * Required fields for a given database operation
      * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
@@ -325,83 +316,80 @@ abstract class Table {
      * @return void
      * @throws ExtException
      */
-    final protected function setRequiredFields($operation, $fields){
-        
-        switch($operation){
+    final protected function setRequiredFields($operation, $fields) {
+
+        switch ($operation) {
             case self::INSERT:
                 $fieldArray = array();
-                foreach (explode(',', $fields) as $field){
+                foreach (explode(',', $fields) as $field) {
                     array_push($fieldArray, trim($field));
                 }
                 $this->requiredInsertFields = $fieldArray;
                 break;
-            
-            case self::UPDATE: 
+
+            case self::UPDATE:
                 $fieldArray = array();
-                foreach (explode(',', $fields) as $field){
+                foreach (explode(',', $fields) as $field) {
                     array_push($fieldArray, trim($field));
                 }
                 $this->requiredUpdateFields = $fieldArray;
                 break;
-            
+
             case self::DELETE:
                 $fieldArray = array();
-                foreach (explode(',', $fields) as $field){
+                foreach (explode(',', $fields) as $field) {
                     array_push($fieldArray, trim($field));
                 }
                 $this->requiredDeleteFields = $fieldArray;
                 break;
-            
+
             default:
                 throw new main\ExtException(self::ERR_INVALIDOP);
                 break;
         }
-        
     }
-    
+
     /**
      * Validate required fields
      * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
      * @return boolean
      * @throws ExtException
      */
-    final protected function validateRequiredFields($operation){
-        
-        switch($operation){            
-            case self::INSERT: 
-                foreach($this->requiredInsertFields as $field){
-                    if(!isset($this->$field)){
-                        throw new main\ExtException(self::ERR_NULLFIELD . ': ('.$field.')');
+    final protected function validateRequiredFields($operation) {
+
+        switch ($operation) {
+            case self::INSERT:
+                foreach ($this->requiredInsertFields as $field) {
+                    if (!isset($this->$field)) {
+                        throw new main\ExtException(self::ERR_NULLFIELD . ': (' . $field . ')');
                         return false;
                     }
                 }
                 break;
-            
-            case self::UPDATE: 
-                foreach($this->requiredUpdateFields as $field){
-                    if(!isset($this->$field)){
-                        throw new main\ExtException(self::ERR_NULLFIELD . ': ('.$field.')');
+
+            case self::UPDATE:
+                foreach ($this->requiredUpdateFields as $field) {
+                    if (!isset($this->$field)) {
+                        throw new main\ExtException(self::ERR_NULLFIELD . ': (' . $field . ')');
                         return false;
                     }
                 }
                 break;
-            
-            case self::DELETE: 
-                foreach($this->requiredDeleteFields as $field){
-                    if(!isset($this->$field)){
-                        throw new main\ExtException(self::ERR_NULLFIELD . ': ('.$field.')');
+
+            case self::DELETE:
+                foreach ($this->requiredDeleteFields as $field) {
+                    if (!isset($this->$field)) {
+                        throw new main\ExtException(self::ERR_NULLFIELD . ': (' . $field . ')');
                         return false;
                     }
                 }
                 break;
-            
+
             default:
                 throw new main\ExtException(self::ERR_INVALIDOP);
                 break;
         }
-        
     }
-
 
     /**
      * SQL statement
@@ -418,123 +406,120 @@ abstract class Table {
      * @return void
      */
     final public function setSqlStatement($sqlStatement, $operation = null) {
-        
-        if(isset($operation)){
+
+        if (isset($operation)) {
             $this->validateRequiredFields($operation);
         }
-        
+
         $this->sqlStatement = $sqlStatement;
-        
     }
 
     /**
      * Create SQL INSERT statement
      * @return boolean
      */
-    final public function createInsertStatement(){
-       
-        try{        
+    final public function createInsertStatement() {
+
+        try {
             $fieldCount = count($this->getInsertFields());
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
+
         $fieldsArray = array_keys($this->getInsertFields());
         $valuesArray = array_values($this->getInsertFields());
-        
-            
+
+
         $sql = "INSERT INTO " . $this->getTableName() . " ( ";
 
         $i = 0;
 
-        foreach($fieldsArray as $field){
+        foreach ($fieldsArray as $field) {
             $sql .= $field;
-            if($i+1 < $fieldCount){
+            if ($i + 1 < $fieldCount) {
                 $sql .= ", ";
-            }                
-            $i++;                
+            }
+            $i++;
         }
 
         $sql .= " ) VALUES ( ";
 
         $ii = 0;
 
-        foreach($valuesArray as $value){
+        foreach ($valuesArray as $value) {
             $sql .= $value;
-            if($ii+1 < $fieldCount){
+            if ($ii + 1 < $fieldCount) {
                 $sql .= ", ";
-            }                
-            $ii++;                
+            }
+            $ii++;
         }
 
         $sql .= " )";
 
-        try{
+        try {
             $this->setSqlStatement($sql, self::INSERT);
             return true;
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
     }
-    
+
     /**
      * Create SQL UPDATE statement
      * @param string $whereClause[optional] required if $strictUpdate is set true
      * @return boolean
      */
-    final public function createUpdateStatement($whereClause = null){
-        
-        try{        
+    final public function createUpdateStatement($whereClause = null) {
+
+        try {
             $fieldCount = count($this->getUpdateFields());
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
-        try{
+
+        try {
             $this->validateRestriction(self::UPDATE, $whereClause);
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
-        if(isset($whereClause) || !$this->getStrictUpdate()){
+
+        if (isset($whereClause) || !$this->getStrictUpdate()) {
 
             $sql = "UPDATE " . $this->getTableName() . " SET ";
 
             $counter = 0;
 
-            foreach($this->getUpdateFields() as $field){
+            foreach ($this->getUpdateFields() as $field) {
                 $sql .= $field;
-                if($counter+1 < $fieldCount){
+                if ($counter + 1 < $fieldCount) {
                     $sql .= ", ";
                 }
 
                 $counter++;
             }
 
-            if(isset($whereClause)){                
-                if(preg_match('/WHERE/i', $whereClause)){
+            if (isset($whereClause)) {
+                if (preg_match('/WHERE/i', $whereClause)) {
                     $sql .= " " . $whereClause;
-                }else{
+                } else {
                     $sql .= " WHERE " . $whereClause;
-                }                
-            }            
+                }
+            }
         }
 
-        try{
+        try {
             $this->setSqlStatement($sql, self::UPDATE);
             return true;
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
     }
-            
+
     /**
      * Result of SQL statement
      * @return mysqli_result
@@ -542,7 +527,7 @@ abstract class Table {
     final public function getSqlResult() {
         return $this->sqlResult;
     }
-    
+
     /**
      * Result of SQL statement
      * @param mysqli_result $sqlResult
@@ -551,19 +536,19 @@ abstract class Table {
     final public function setSqlResult($sqlResult) {
         $this->sqlResult = $sqlResult;
     }
-    
+
     /**
      * Executes the SQL statement
      * @return boolean
      * @throws ExtException
      */
     final protected function executeQuery() {
-        
-        if(!isset($this->sqlStatement)){
+
+        if (!isset($this->sqlStatement)) {
             throw new main\ExtException(self::ERR_NOSQLSTMT);
         }
-        
-        $result = $this->dbConn->query($this->getSqlStatement());        
+
+        $result = $this->dbConn->query($this->getSqlStatement());
         if ($result) {
             $this->setSqlResult($result);
             $this->setNumRows($this->dbConn->affected_rows);
@@ -572,9 +557,8 @@ abstract class Table {
             throw new main\ExtException($this->dbConn->error);
             return false;
         }
-        
     }
-    
+
     /**
      * Number of rows of the SQL result object
      * @param int $numRows
@@ -584,7 +568,6 @@ abstract class Table {
         $this->numRows = $numRows;
     }
 
-        
     /**
      * Number of rows of the SQL result object
      * @return int
@@ -592,15 +575,15 @@ abstract class Table {
     final public function getNumRows() {
         return $this->numRows;
     }
-    
+
     /**
      * Number of rows of the RecordList SQL result object
      * @return int
      */
-    final public function getNumRowsFromRecordList(){
+    final public function getNumRowsFromRecordList() {
         return $this->recordList->getTotalRows();
     }
-    
+
     /**
      * Current row from the SQL result object
      * @return int
@@ -616,7 +599,7 @@ abstract class Table {
     final public function incrementRow() {
         $this->currentRow++;
     }
-    
+
     /**
      * Strict update operations
      * @return boolean
@@ -633,7 +616,7 @@ abstract class Table {
     final public function setStrictUpdate($strictUpdate) {
         $this->strictUpdate = $strictUpdate;
     }
-        
+
     /**
      * Strict delete operations
      * @return boolean
@@ -658,20 +641,20 @@ abstract class Table {
      * @return boolean
      * @throws ExtException
      */
-    final protected function validateRestriction($operation, $whereClause = null){
-        
-        switch($operation){
+    final protected function validateRestriction($operation, $whereClause = null) {
+
+        switch ($operation) {
             case self::UPDATE:
-                if($this->getStrictUpdate() && trim($whereClause) == ''){
+                if ($this->getStrictUpdate() && trim($whereClause) == '') {
                     throw new main\ExtException(self::ERR_STRICTOP);
-                }else{
+                } else {
                     return true;
                 }
                 break;
             case self::DELETE:
-                if($this->getStrictDelete() && trim($whereClause) == ''){
+                if ($this->getStrictDelete() && trim($whereClause) == '') {
                     throw new main\ExtException(self::ERR_STRICTOP);
-                }else{
+                } else {
                     return true;
                 }
                 break;
@@ -679,26 +662,24 @@ abstract class Table {
                 throw new main\ExtException(self::ERR_INVALIDOP);
                 break;
         }
-        
     }
-    
+
     /**
      * Current Date and time
      * @param boolean $timestamp[optional]
      * @return datetime sql type format if $timestamp is set to false and int otherwise
      */
     final protected function getCurrentDate($timestamp = false) {
-        
+
         $currentDate = (time() - (date('I') * 3600));
-        
-        if($timestamp){
+
+        if ($timestamp) {
             return $currentDate;
-        }else{
+        } else {
             return date("Y-m-d H:i:s", $currentDate);
         }
-        
     }
-    
+
     /**
      * SELECT operation
      * @param string $fields[optional] Especify the fields that will be selected.
@@ -708,17 +689,16 @@ abstract class Table {
      * @return boolean
      */
     public function select($fields = '*', $whereClause = null) {
-        
-        try{
+
+        try {
             $this->setSqlStatement("SELECT " . $fields . " FROM " . $this->getTableName() . " " . $whereClause);
             return $this->executeQuery();
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
-        
     }
-    
+
     /**
      * Create RecordList object
      * @param string $fields[optional] separeted by ,(comma). If null is given $field will be set to '*'
@@ -727,20 +707,20 @@ abstract class Table {
      * @param int $recordsPerPage[optional] if null is given the result object will contain all records and $currentPage value will be ignored
      * @return RecordList
      */
-    public function createRecordList($fields = '*', $whereClause = null, $currentPage = 1, $recordsPerPage = DEFAULT_RPP){
-        
+    public function createRecordList($fields = '*', $whereClause = null, $currentPage = 1, $recordsPerPage = DEFAULT_RPP) {
+
         $sqlStmt = "SELECT " . $fields . " FROM " . $this->getTableName() . " " . $whereClause;
-        
+
         $this->recordList = new RecordList($this->dbConn, $sqlStmt, $currentPage, $recordsPerPage);
-        
+
         //Stores RecordList result set into Table own sqlResult so it can be handled directly.
-        $this->setSqlStatement($sqlStmt);        
+        $this->setSqlStatement($sqlStmt);
         $this->setSqlResult($this->recordList->getSqlResult());
         $this->setNumRows($this->dbConn->affected_rows);
-        
+
         return $this->recordList;
     }
-    
+
     /**
      * Last RecordList object created
      * @return RecordList or null if there's none
@@ -748,7 +728,7 @@ abstract class Table {
     public function getRecordList() {
         return $this->recordList;
     }
-        
+
     /**
      * DELETE operation
      * @param string $whereClause[optional] Use this parameter for additional clauses like WHERE, AND, LIMIT, ETC...
@@ -757,12 +737,17 @@ abstract class Table {
      * @return boolean
      */
     public function delete($whereClause = null) {
-            
-        try{
-            $this->validateRestriction(self::DELETE, $whereClause);            
+
+        try {
+            $this->validateRestriction(self::DELETE, $whereClause);
+
+            if (!preg_match('/WHERE/i', $whereClause)) {
+                $whereClause = " WHERE " . $whereClause;
+            }
+
             $this->setSqlStatement("DELETE FROM " . $this->getTableName() . " " . $whereClause, self::DELETE);
             return $this->executeQuery();
-        }catch(main\ExtException $e){
+        } catch (main\ExtException $e) {
             echo $e->getDetailedMessage();
             exit;
         }
@@ -782,7 +767,7 @@ abstract class Table {
      * @return boolean
      */
     abstract public function update($whereClause = null);
-    
+
     /**
      * Populates class properties with results from the current result row and
      * moves resultset pointer to next row.
@@ -790,34 +775,31 @@ abstract class Table {
      * be accessed by Table (its super class). Define them with, at least, PROTECTED access level
      * @return boolean true if there's a next row and false if there isn't
      */
-    public function nextRow(){
-        
+    public function nextRow() {
+
         //checks if it hasn't reach the and of the resultset
-        if($this->getCurrentRow() < $this->getNumRows()){
-            
+        if ($this->getCurrentRow() < $this->getNumRows()) {
+
             $this->sqlResult->data_seek($this->getCurrentRow());
             $row = $this->sqlResult->fetch_assoc();
-            
-            foreach($this->getTableColumns() as $tableColumn){
-                
+
+            foreach ($this->getTableColumns() as $tableColumn) {
+
                 //checks if the current table column exits as a class property 
                 #if(property_exists($this, $tableColumn) && isset($row[$tableColumn])){
-                if(isset($row[$tableColumn])){
+                if (isset($row[$tableColumn])) {
                     //populates class properties with correspondent table columnn values
                     $this->$tableColumn = $row[$tableColumn];
-                }                
+                }
             }
-            
+
             //moves pointer to next result row
             $this->incrementRow();
             return true;
-            
-        }else{
+        } else {
             //End of resultset reached
             return false;
-            
         }
-        
     }
-    
+
 }
