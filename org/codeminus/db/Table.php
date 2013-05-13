@@ -501,11 +501,7 @@ abstract class Table {
             exit;
         }
         
-        if(!isset($whereClause) && $this->getStrictUpdate()){
-
-            
-
-        }else{
+        if(isset($whereClause) || !$this->getStrictUpdate()){
 
             $sql = "UPDATE " . $this->getTableName() . " SET ";
 
@@ -666,14 +662,14 @@ abstract class Table {
         
         switch($operation){
             case self::UPDATE:
-                if($this->getStrictUpdate() && !isset($whereClause)){
+                if($this->getStrictUpdate() && trim($whereClause) == ''){
                     throw new main\ExtException(self::ERR_STRICTOP);
                 }else{
                     return true;
                 }
                 break;
             case self::DELETE:
-                if($this->getStrictDelete() && !isset($whereClause)){
+                if($this->getStrictDelete() && trim($whereClause) == ''){
                     throw new main\ExtException(self::ERR_STRICTOP);
                 }else{
                     return true;
