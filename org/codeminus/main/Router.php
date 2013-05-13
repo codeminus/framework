@@ -198,7 +198,8 @@ class Router {
       }
 
       //if no method was requested, calls the index method.
-      //the index method must be implemented on all controllers as determined by the abstract class org\codeminus\main\Controller 
+      //the index method must be implemented on all controllers as determined
+      //by the abstract class org\codeminus\main\Controller 
     } else {
       $ctrlInstance = $this->getControllerInstance();
       $ctrlInstance->index();

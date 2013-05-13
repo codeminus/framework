@@ -18,8 +18,10 @@ class TableClass {
    * Generates a class definition for an existing database table.
    * The class will always inherit the abstract class \org\codeminus\db\Table.
    * Review all generated code as it only does basic assumptions
-   * @param \org\codeminus\db\Connection $dbConn an instance of a database connection
-   * @param string $tableName the database table you want to implement a class from
+   * @param \org\codeminus\db\Connection $dbConn an instance of a database
+   * connection
+   * @param string $tableName the database table you want to implement a class
+   * from
    * @param string $namespace the class package
    * @return TableClass
    */
@@ -112,7 +114,8 @@ class TableClass {
   }
 
   /**
-   * Creates the table classe and stores it into $this->code. use $this->getCode() to get its content
+   * Creates the table classe and stores it into $this->code.
+   * Use $this->getCode() to get its content
    * @return void
    */
   public function create() {

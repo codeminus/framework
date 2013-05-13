@@ -59,12 +59,6 @@ class RecordListViewer {
    * @return string 
    */
   public function getLinkSource() {
-    //ATTENTION: the implementation below does not work with codeminus MVC framework
-    /*
-      if(!isset($this->linkSource)){
-      return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
-      } */
-
     return $this->linkSource;
   }
 
@@ -95,8 +89,8 @@ class RecordListViewer {
    * @param string $pageVarName
    * @return void
    * @example if you setPageVarName('page') the paging control buttons will
-   * be something similar to http://yourdomain.com/app/paging.php?ex=example&page=2
-   * 
+   * be something similar to 
+   * http://yourdomain.com/app/paging.php?ex=example&page=2
    */
   public function setPageVarName($pageVarName) {
     $this->pageVarName = $pageVarName;

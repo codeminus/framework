@@ -46,7 +46,8 @@ class Connection extends \mysqli {
 
   /**
    * Singleton implementation
-   * Use this method to avoid multiple unnecessary connections to the same database
+   * Use this method to avoid multiple unnecessary connections to the same 
+   * database
    * @return the last created instance of DBConnection
    */
   public static function getInstance() {

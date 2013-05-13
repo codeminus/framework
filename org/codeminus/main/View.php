@@ -35,7 +35,8 @@ class View {
   public static function getTitle() {
     if (self::$TITLE) {
       return self::$TITLE;
-      //if none is set it creates on based on controller name and controller called method name
+      //if none is set it creates on based on controller name and controller
+      //called method name
     } else {
       return Router::$CONTROLLER_NAME . ' :: ' . Router::$CONTROLLER_METHOD_NAME;
     }
@@ -72,7 +73,8 @@ class View {
   /**
    * Renders the view
    * @param string $view
-   * @param boolean $autoIncludes if set to false it wont require the DEFAULT_INCLUDE_HEADER and the DEFAULT_INCLUDE_FOOTER;
+   * @param boolean $autoIncludes if set to false it wont require the
+   * DEFAULT_INCLUDE_HEADER and the DEFAULT_INCLUDE_FOOTER;
    * @return void
    * @throws ExtException
    */

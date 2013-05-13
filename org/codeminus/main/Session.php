@@ -73,7 +73,8 @@ class Session {
 
   /**
    * Validates a session checking if there's a authenticated user on the session
-   * @param string $redirectURL to redirect the page to if there's no authenticated user
+   * @param string $redirectURL to redirect the page to if there's no 
+   * authenticated user
    * @return void
    */
   public function validate($redirectURL) {

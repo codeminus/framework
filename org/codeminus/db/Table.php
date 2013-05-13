@@ -8,7 +8,7 @@ use org\codeminus\main as main;
  * Database Table abstract model
  * Extend this class on all classes that represent a table on a database
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.0
+ * @version 1.1
  */
 abstract class Table {
 

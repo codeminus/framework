@@ -35,7 +35,8 @@ abstract class Controller {
 
   /**
    * Creates a link to the given $method inside this controller
-   * @param string $query you want to invoke. ex.: TestController/testMethod/arg1/arg2
+   * @param string $query you want to invoke.
+   * ex.: TestController/testMethod/arg1/arg2
    * @return string link
    */
   public static function linkTo($query) {

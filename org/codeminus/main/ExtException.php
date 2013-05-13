@@ -24,7 +24,8 @@ class ExtException extends \Exception {
 
   /**
    * Last exception thrown
-   * @return assocArray ['file'], ['line'], ['function'], ['class'], ['type'], ['args']
+   * @return assocArray ['file'], ['line'], ['function'], ['class'], ['type'],
+   * ['args']
    */
   public function getLastTrace() {
     $traces = $this->getTrace();

@@ -258,7 +258,8 @@ class RecordList {
       //A valid page was given
       $this->currentPage = (Integer) $currentPage;
     } elseif ($currentPage > $this->getTotalPages()) {
-      //Giving a page value greater than the total pages will set current page to last page
+      //Giving a page value greater than the total pages will set current page
+      //to last page
       $this->currentPage = $this->getTotalPages();
     } else {
       //Giving a page value smaller than 1 will set current page to first page
