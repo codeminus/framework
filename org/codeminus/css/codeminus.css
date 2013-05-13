@@ -12,180 +12,180 @@
 
 
 *{
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 13px;
-    color: #666;
-    outline: none;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 13px;
+  color: #666;
+  outline: none;
 }
 
 body{
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 a, a:visited{
-    text-decoration: none;
-    color: #4183C4;
+  text-decoration: none;
+  color: #4183C4;
 }
 
 a > img{
-    border: none;
-    margin-bottom: -2px;
+  border: none;
+  margin-bottom: -2px;
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: #495961;
-    margin: 10px 0px;
+  color: #495961;
+  margin: 10px 0px;
 }
 
 h1{
-    font-size: 2.5em;
+  font-size: 2.5em;
 }
 
 h2{
-    font-size: 2em;
+  font-size: 2em;
 }
 
 h3{
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 h4{
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 
 .root{
-    width: 930px;
-    margin: 0px auto;
+  width: 930px;
+  margin: 0px auto;
 }
 
 /* floating block fix*/
 .clearFix{
-    height: 1%; overflow: hidden; 
+  height: 1%; overflow: hidden; 
 }
 
 .block{
-    display: block;
+  display: block;
 }
 
 .inline{
-    display: inline;
+  display: inline;
 }
 
 .hide{
-    display: none;    
+  display: none;    
 }
 
 .invisible{
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .floatLeft{
-    float: left;
+  float: left;
 }
 
 .floatRight{
-    float: right;
+  float: right;
 }
 
 .bold{
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .hmenu, .vmenu, .foot-menu{
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 
 .hmenu li{
-    display: inline;
+  display: inline;
 
 }
 
 .vmenu{    
-    width: 220px;    
+  width: 220px;    
 }
 
 .vmenu li{
-    border-top: solid 1px white;
-    border-bottom: solid 1px #EEE;
-    background-color: #FAFAFB;
+  border-top: solid 1px white;
+  border-bottom: solid 1px #EEE;
+  background-color: #FAFAFB;
 }
 
 .vmenu li:hover{
-    background-color: #FEFEFE;
+  background-color: #FEFEFE;
 }
 
 .vmenu li a{
-    padding: 10px;
-    display: block;
+  padding: 10px;
+  display: block;
 
 }
 
 .vmenu a.selected{
-    background-color: white;
-    border-left: solid 2px #D26911;
-    padding-left: 8px;
+  background-color: white;
+  border-left: solid 2px #D26911;
+  padding-left: 8px;
 }
 
 .section{
-    background-color: white;
+  background-color: white;
 }
 
 .section-header{
-    background: #FFFFFF; /* Old browsers */
-    background: -moz-linear-gradient(top,  #FFFFFF, #EDEDED); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EDEDED)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,#FFFFFF,#EDEDED); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #FFFFFF,#EDEDED); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #FFFFFF,#EDEDED); /* IE10+ */
-    background: linear-gradient(top,  #FFFFFF,#EDEDED); /* W3C */
+  background: #FFFFFF; /* Old browsers */
+  background: -moz-linear-gradient(top,  #FFFFFF, #EDEDED); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EDEDED)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,#FFFFFF,#EDEDED); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #FFFFFF,#EDEDED); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #FFFFFF,#EDEDED); /* IE10+ */
+  background: linear-gradient(top,  #FFFFFF,#EDEDED); /* W3C */
 
-    padding: 10px;
-    color: #333;
-    font-weight: bold;
-    font-size: 14px;
-    border: none;
-    border-bottom: solid 1px #CACACA !important;
-    text-shadow: 0 1px 0 white;
-    
-    
+  padding: 10px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-bottom: solid 1px #CACACA !important;
+  text-shadow: 0 1px 0 white;
+
+
 }
 
 .section-content{
-    padding: 10px;
+  padding: 10px;
 }
 
 .upper-foot{
-    min-height: 80px;
-    background-color: #F8F8F8;
-    padding: 10px 0px;
-    border-top: solid 1px #e5e5e5;    
+  min-height: 80px;
+  background-color: #F8F8F8;
+  padding: 10px 0px;
+  border-top: solid 1px #e5e5e5;    
 }
 
 .upper-foot *{
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .lower-foot{
-    min-height: 40px;
-    padding: 20px 0px;
+  min-height: 40px;
+  padding: 20px 0px;
 }
 
 .foot-menu{
-    float: left;
-    width: 200px;
-    margin: 10px;
-    margin-bottom: 20px;    
+  float: left;
+  width: 200px;
+  margin: 10px;
+  margin-bottom: 20px;    
 }
 
 .foot-menu .header{
-    color: #666;
-    border-bottom: solid 1px #E1E1E1;
-    font-weight: bold;
-    padding-bottom: 5px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  color: #666;
+  border-bottom: solid 1px #E1E1E1;
+  font-weight: bold;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }

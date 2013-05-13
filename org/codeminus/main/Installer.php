@@ -9,30 +9,30 @@ namespace org\codeminus\main;
  */
 class Installer {
 
-    const APP_ROOT = '../../../';
+  const APP_ROOT = '../../../';
 
-    /**
-     * @return Installer
-     */
-    public function __construct() {
-        
-    }
+  /**
+   * @return Installer
+   */
+  public function __construct() {
+    
+  }
 
-    /**
-     * Create application's default files and folders
-     * @return void
-     */
-    public function createAppFiles() {
+  /**
+   * Create application's default files and folders
+   * @return void
+   */
+  public function createAppFiles() {
 
-        $configFolder = self::APP_ROOT . 'app/configs';
-        $this->createDir($configFolder, 0755);
+    $configFolder = self::APP_ROOT . 'app/configs';
+    $this->createDir($configFolder, 0755);
 
-        $initFilePath = $configFolder . '/init.php';
-        $this->createFile($initFilePath, $this->getInitContent());
+    $initFilePath = $configFolder . '/init.php';
+    $this->createFile($initFilePath, $this->getInitContent());
 
-        $this->createDir(self::APP_ROOT . 'app/controllers', 0755);
-        
-        $indexControllerContent = <<<FILE
+    $this->createDir(self::APP_ROOT . 'app/controllers', 0755);
+
+    $indexControllerContent = <<<FILE
 <?php
 use org\codeminus\main as main;
 
@@ -53,10 +53,10 @@ class Index extends main\Controller{
     
 }
 FILE;
-        
-        $this->createFile(self::APP_ROOT.'app/controllers/Index.php', $indexControllerContent);
-        
-        $errorControllerContent = <<<FILE
+
+    $this->createFile(self::APP_ROOT . 'app/controllers/Index.php', $indexControllerContent);
+
+    $errorControllerContent = <<<FILE
 <?php
 use org\codeminus\main as main;
 
@@ -77,14 +77,14 @@ class Error extends main\Controller{
 
 }
 FILE;
-        
-        $this->createFile(self::APP_ROOT.'app/controllers/Error.php', $errorControllerContent);
-        
-        $this->createDir(self::APP_ROOT . 'app/models', 0755);
-        $this->createDir(self::APP_ROOT . 'app/views', 0755);
-        $this->createDir(self::APP_ROOT . 'app/views/index', 0755);
 
-        $indexViewContent = <<<FILE
+    $this->createFile(self::APP_ROOT . 'app/controllers/Error.php', $errorControllerContent);
+
+    $this->createDir(self::APP_ROOT . 'app/models', 0755);
+    $this->createDir(self::APP_ROOT . 'app/views', 0755);
+    $this->createDir(self::APP_ROOT . 'app/views/index', 0755);
+
+    $indexViewContent = <<<FILE
 <?php
 ############################################
 # CHANGE THIS VIEW ACCORDING TO YOUR NEEDS #
@@ -109,12 +109,12 @@ FILE;
     </section>
 </div>
 FILE;
-        
-        $this->createFile(self::APP_ROOT.'app/views/index/index.php', $indexViewContent);
-        
-        $this->createDir(self::APP_ROOT . 'app/views/error', 0755);
 
-        $errorViewContent = <<<FILE
+    $this->createFile(self::APP_ROOT . 'app/views/index/index.php', $indexViewContent);
+
+    $this->createDir(self::APP_ROOT . 'app/views/error', 0755);
+
+    $errorViewContent = <<<FILE
 <?php
 ############################################
 # CHANGE THIS VIEW ACCORDING TO YOUR NEEDS #
@@ -125,14 +125,14 @@ FILE;
     Go to <a href="<?php echo APP_HTTP_PATH?>">main page</a>
 </p>
 FILE;
-        
-        $this->createFile(self::APP_ROOT.'app/views/error/pageNotFound.php', $errorViewContent);
-        
-        $this->createDir(self::APP_ROOT . 'app/views/templates', 0755);
-        
-        $this->createDir(self::APP_ROOT . 'app/views/shared', 0755);
-        
-        $headerContent = <<<FILE
+
+    $this->createFile(self::APP_ROOT . 'app/views/error/pageNotFound.php', $errorViewContent);
+
+    $this->createDir(self::APP_ROOT . 'app/views/templates', 0755);
+
+    $this->createDir(self::APP_ROOT . 'app/views/shared', 0755);
+
+    $headerContent = <<<FILE
 <?php
 use \org\codeminus\main as main;
 ?>
@@ -146,28 +146,28 @@ use \org\codeminus\main as main;
     <body>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/shared/header.php', $headerContent);
+    $this->createFile(self::APP_ROOT . 'app/views/shared/header.php', $headerContent);
 
-        $footerContent = <<<FILE
+    $footerContent = <<<FILE
     </body>
 </html>
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'app/views/shared/footer.php', $footerContent);
+    $this->createFile(self::APP_ROOT . 'app/views/shared/footer.php', $footerContent);
 
-        $this->createDir(self::APP_ROOT . 'assets/css');
-        $this->createDir(self::APP_ROOT . 'assets/js');
-        $this->createDir(self::APP_ROOT . 'assets/img');
+    $this->createDir(self::APP_ROOT . 'assets/css');
+    $this->createDir(self::APP_ROOT . 'assets/js');
+    $this->createDir(self::APP_ROOT . 'assets/img');
 
-        $indexPageContent = <<<FILE
+    $indexPageContent = <<<FILE
 <?php
 require_once ('app/configs/init.php');
 FILE;
 
-        $this->createFile(self::APP_ROOT . 'index.php', $indexPageContent);
+    $this->createFile(self::APP_ROOT . 'index.php', $indexPageContent);
 
 
-        $htaccessContent = <<<FILE
+    $htaccessContent = <<<FILE
 #version 1.1
 RewriteEngine On
 
@@ -180,78 +180,78 @@ RewriteRule ^(.+)$ index.php?qs=$1 [QSA,L]
 Options -Indexes
 FILE;
 
-        $this->createFile(self::APP_ROOT . '.htaccess', $htaccessContent);
+    $this->createFile(self::APP_ROOT . '.htaccess', $htaccessContent);
+  }
+
+  /**
+   * Creates a directory
+   * @param string $dir path and name
+   * @param octal $mode according to the access level defined by chmod
+   * @return void;
+   */
+  private function createDir($dir, $mode = 0777) {
+    if (!file_exists($dir)) {
+      if (!mkdir($dir, $mode, true)) {
+        exit('<p class="warning">Unable to create ' . $dir . '</p>');
+      } else {
+        echo '<p class="info">' . $dir . ' created.</p>';
+      }
+    } else {
+      echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
     }
+  }
 
-    /**
-     * Creates a directory
-     * @param string $dir path and name
-     * @param octal $mode according to the access level defined by chmod
-     * @return void;
-     */
-    private function createDir($dir, $mode = 0777) {
-        if (!file_exists($dir)) {
-            if (!mkdir($dir, $mode, true)) {
-                exit('<p class="warning">Unable to create ' . $dir . '</p>');
-            } else {
-                echo '<p class="info">' . $dir . ' created.</p>';
-            }
-        } else {
-            echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
-        }
+  /**
+   * Creates a file
+   * @param string $fileName complete file path
+   * @param string $fileContent Content to be put inside the file
+   * @return void
+   */
+  private function createFile($fileName, $fileContent) {
+    if (!file_exists($fileName)) {
+      if (!file_put_contents($fileName, $fileContent)) {
+        exit('<p>Unable to create ' . $fileName . '</p>');
+      } else {
+        echo '<p class="info">' . $fileName . ' created.</p>';
+      }
+    } else {
+      echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
     }
+  }
 
-    /**
-     * Creates a file
-     * @param string $fileName complete file path
-     * @param string $fileContent Content to be put inside the file
-     * @return void
-     */
-    private function createFile($fileName, $fileContent) {
-        if (!file_exists($fileName)) {
-            if (!file_put_contents($fileName, $fileContent)) {
-                exit('<p>Unable to create ' . $fileName . '</p>');
-            } else {
-                echo '<p class="info">' . $fileName . ' created.</p>';
-            }
-        } else {
-            echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
-        }
-    }
+  /**
+   * Returns the Application's environment assuming that the framework package
+   * has the same root folder has app
+   * @return string
+   * @todo implement a more dynamic solution
+   */
+  public static function getInvironment() {
+    return str_replace('/org/codeminus/run/installer.php', '', $_SERVER['SCRIPT_NAME']);
+  }
 
-    /**
-     * Returns the Application's environment assuming that the framework package
-     * has the same root folder has app
-     * @return string
-     * @todo implement a more dynamic solution
-     */
-    public static function getInvironment() {
-        return str_replace('/org/codeminus/run/installer.php', '', $_SERVER['SCRIPT_NAME']);
-    }
+  /**
+   * Generates the content to the app/configs/init.php main configuration file
+   * @return string
+   */
+  public function getInitContent() {
 
-    /**
-     * Generates the content to the app/configs/init.php main configuration file
-     * @return string
-     */
-    public function getInitContent() {
+    $DEV_ENVIRONMENT = (isset($_POST['DEV_ENVIRONMENT'])) ? $_POST['DEV_ENVIRONMENT'] : '';
+    $PRO_ENVIRONMENT = (isset($_POST['PRO_ENVIRONMENT'])) ? $_POST['PRO_ENVIRONMENT'] : '';
+    $VIEW_DEFAULT_TITLE = (isset($_POST['VIEW_DEFAULT_TITLE'])) ? $_POST['VIEW_DEFAULT_TITLE'] : '';
 
-        $DEV_ENVIRONMENT = (isset($_POST['DEV_ENVIRONMENT'])) ? $_POST['DEV_ENVIRONMENT'] : '';
-        $PRO_ENVIRONMENT = (isset($_POST['PRO_ENVIRONMENT'])) ? $_POST['PRO_ENVIRONMENT'] : '';
-        $VIEW_DEFAULT_TITLE = (isset($_POST['VIEW_DEFAULT_TITLE'])) ? $_POST['VIEW_DEFAULT_TITLE'] : '';
+    $DEV_DB_HOST = (isset($_POST['DEV_DB_HOST'])) ? $_POST['DEV_DB_HOST'] : '';
+    $DEV_DB_USER = (isset($_POST['DEV_DB_USER'])) ? $_POST['DEV_DB_USER'] : '';
+    $DEV_DB_PASS = (isset($_POST['DEV_DB_PASS'])) ? $_POST['DEV_DB_PASS'] : '';
+    $DEV_DB_NAME = (isset($_POST['DEV_DB_NAME'])) ? $_POST['DEV_DB_NAME'] : '';
 
-        $DEV_DB_HOST = (isset($_POST['DEV_DB_HOST'])) ? $_POST['DEV_DB_HOST'] : '';
-        $DEV_DB_USER = (isset($_POST['DEV_DB_USER'])) ? $_POST['DEV_DB_USER'] : '';
-        $DEV_DB_PASS = (isset($_POST['DEV_DB_PASS'])) ? $_POST['DEV_DB_PASS'] : '';
-        $DEV_DB_NAME = (isset($_POST['DEV_DB_NAME'])) ? $_POST['DEV_DB_NAME'] : '';
+    $PRO_DB_HOST = (isset($_POST['PRO_DB_HOST'])) ? $_POST['PRO_DB_HOST'] : '';
+    $PRO_DB_USER = (isset($_POST['PRO_DB_USER'])) ? $_POST['PRO_DB_USER'] : '';
+    $PRO_DB_PASS = (isset($_POST['PRO_DB_PASS'])) ? $_POST['PRO_DB_PASS'] : '';
+    $PRO_DB_NAME = (isset($_POST['PRO_DB_NAME'])) ? $_POST['PRO_DB_NAME'] : '';
 
-        $PRO_DB_HOST = (isset($_POST['PRO_DB_HOST'])) ? $_POST['PRO_DB_HOST'] : '';
-        $PRO_DB_USER = (isset($_POST['PRO_DB_USER'])) ? $_POST['PRO_DB_USER'] : '';
-        $PRO_DB_PASS = (isset($_POST['PRO_DB_PASS'])) ? $_POST['PRO_DB_PASS'] : '';
-        $PRO_DB_NAME = (isset($_POST['PRO_DB_NAME'])) ? $_POST['PRO_DB_NAME'] : '';
+    $DEFAULT_TIMEZONE = (isset($_POST['DEFAULT_TIMEZONE'])) ? $_POST['DEFAULT_TIMEZONE'] : '';
 
-        $DEFAULT_TIMEZONE = (isset($_POST['DEFAULT_TIMEZONE'])) ? $_POST['DEFAULT_TIMEZONE'] : '';
-
-        $initFile = <<<FILE
+    $initFile = <<<FILE
 <?php
 /**
  * Codeminus Framework Initializer
@@ -434,7 +434,7 @@ try{
 }
 FILE;
 
-        return $initFile;
-    }
+    return $initFile;
+  }
 
 }

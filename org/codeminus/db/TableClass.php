@@ -9,135 +9,135 @@ namespace org\codeminus\db;
  */
 class TableClass {
 
-    private $tableName;
-    private $tableColumns;
-    private $namespace;
-    private $code;
+  private $tableName;
+  private $tableColumns;
+  private $namespace;
+  private $code;
 
-    /**
-     * Generates a class definition for an existing database table.
-     * The class will always inherit the abstract class \org\codeminus\db\Table.
-     * Review all generated code as it only does basic assumptions
-     * @param \org\codeminus\db\Connection $dbConn an instance of a database connection
-     * @param string $tableName the database table you want to implement a class from
-     * @param string $namespace the class package
-     * @return TableClass
-     */
-    public function __construct(Connection $dbConn, $tableName, $namespace = null) {
-        $this->tableColumns = self::getTableColumns($dbConn, $tableName);
-        $this->setTableName($tableName);
-        $this->setNamespace($namespace);
+  /**
+   * Generates a class definition for an existing database table.
+   * The class will always inherit the abstract class \org\codeminus\db\Table.
+   * Review all generated code as it only does basic assumptions
+   * @param \org\codeminus\db\Connection $dbConn an instance of a database connection
+   * @param string $tableName the database table you want to implement a class from
+   * @param string $namespace the class package
+   * @return TableClass
+   */
+  public function __construct(Connection $dbConn, $tableName, $namespace = null) {
+    $this->tableColumns = self::getTableColumns($dbConn, $tableName);
+    $this->setTableName($tableName);
+    $this->setNamespace($namespace);
+  }
+
+  /**
+   * Database table name
+   * @return string
+   */
+  public function getTableName() {
+    return $this->tableName;
+  }
+
+  /**
+   * Database table name
+   * @param string $tableName
+   * @return void
+   */
+  public function setTableName($tableName) {
+    $this->tableName = $tableName;
+  }
+
+  /**
+   * Class namespace
+   * @return string
+   */
+  public function getNamespace() {
+    return $this->namespace;
+  }
+
+  /**
+   * Class namespace
+   * @param string $namespace
+   * @return void
+   */
+  public function setNamespace($namespace) {
+    $this->namespace = $namespace;
+  }
+
+  /**
+   * 
+   * @param \org\codeminus\db\Connection $dbConn
+   * @param string $tableName
+   * @return array with the following structure:
+   * $columns[0]['name'],
+   * $columns[0]['type'],
+   * $columns[0]['size'],
+   * $columns[0]['null'],
+   * $columns[0]['key'],
+   * $columns[0]['default'],
+   * $columns[0]['extra']
+   * @throws main\ExtException
+   */
+  public static function getTableColumns(Connection $dbConn, $tableName) {
+    $result = $dbConn->query("DESCRIBE " . $tableName);
+
+    if (!$result) {
+      throw new main\ExtException($dbConn->error);
     }
 
-    /**
-     * Database table name
-     * @return string
-     */
-    public function getTableName() {
-        return $this->tableName;
+    $tableColumnsArray = array();
+
+    while ($row = $result->fetch_assoc()) {
+
+      $typeArray = explode(' ', $row['Type']);
+
+      $typeAndSize = explode('(', $typeArray[0]);
+      $type = $typeAndSize[0];
+
+      (count($typeAndSize) > 1) ? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
+
+      ($row['Null'] == 'YES') ? $null = true : $null = false;
+
+      $tableColumn['name'] = $row['Field'];
+      $tableColumn['type'] = trim($type);
+      $tableColumn['size'] = $size;
+      $tableColumn['null'] = $null;
+      $tableColumn['key'] = $row['Key'];
+      $tableColumn['default'] = $row['Default'];
+      $tableColumn['extra'] = $row['Extra'];
+
+      array_push($tableColumnsArray, $tableColumn);
     }
 
-    /**
-     * Database table name
-     * @param string $tableName
-     * @return void
-     */
-    public function setTableName($tableName) {
-        $this->tableName = $tableName;
-    }
+    return $tableColumnsArray;
+  }
 
-    /**
-     * Class namespace
-     * @return string
-     */
-    public function getNamespace() {
-        return $this->namespace;
-    }
+  /**
+   * Creates the table classe and stores it into $this->code. use $this->getCode() to get its content
+   * @return void
+   */
+  public function create() {
 
-    /**
-     * Class namespace
-     * @param string $namespace
-     * @return void
-     */
-    public function setNamespace($namespace) {
-        $this->namespace = $namespace;
-    }
+    //namespace
+    (isset($this->namespace) && $this->namespace != "") ? $namespace = 'namespace ' . $this->getNamespace() . ';' : $namespace = '';
 
-    /**
-     * 
-     * @param \org\codeminus\db\Connection $dbConn
-     * @param string $tableName
-     * @return array with the following structure:
-     * $columns[0]['name'],
-     * $columns[0]['type'],
-     * $columns[0]['size'],
-     * $columns[0]['null'],
-     * $columns[0]['key'],
-     * $columns[0]['default'],
-     * $columns[0]['extra']
-     * @throws main\ExtException
-     */
-    public static function getTableColumns(Connection $dbConn, $tableName) {
-        $result = $dbConn->query("DESCRIBE " . $tableName);
+    //class name
+    $className = ucfirst($this->getTableName());
 
-        if (!$result) {
-            throw new main\ExtException($dbConn->error);
-        }
+    //attributes declaration
+    $attrDeclaration = '';
+    $methodDeclaration = '';
 
-        $tableColumnsArray = array();
-
-        while ($row = $result->fetch_assoc()) {
-
-            $typeArray = explode(' ', $row['Type']);
-
-            $typeAndSize = explode('(', $typeArray[0]);
-            $type = $typeAndSize[0];
-
-            (count($typeAndSize) > 1) ? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
-
-            ($row['Null'] == 'YES') ? $null = true : $null = false;
-
-            $tableColumn['name'] = $row['Field'];
-            $tableColumn['type'] = trim($type);
-            $tableColumn['size'] = $size;
-            $tableColumn['null'] = $null;
-            $tableColumn['key'] = $row['Key'];
-            $tableColumn['default'] = $row['Default'];
-            $tableColumn['extra'] = $row['Extra'];
-
-            array_push($tableColumnsArray, $tableColumn);
-        }
-
-        return $tableColumnsArray;
-    }
-
-    /**
-     * Creates the table classe and stores it into $this->code. use $this->getCode() to get its content
-     * @return void
-     */
-    public function create() {
-
-        //namespace
-        (isset($this->namespace) && $this->namespace != "") ? $namespace = 'namespace ' . $this->getNamespace() . ';' : $namespace = '';
-
-        //class name
-        $className = ucfirst($this->getTableName());
-
-        //attributes declaration
-        $attrDeclaration = '';
-        $methodDeclaration = '';
-
-        foreach ($this->tableColumns as $column) {
-            $attrDeclaration .= '
+    foreach ($this->tableColumns as $column) {
+      $attrDeclaration .= '
     protected $' . $column['name'] . ';';
 
-            $getMethod = 'get' . ucfirst($column['name']) . '()';
-            $setMethod = 'set' . ucfirst($column['name']) . '($' . $column['name'] . ')';
+      $getMethod = 'get' . ucfirst($column['name']) . '()';
+      $setMethod = 'set' . ucfirst($column['name']) . '($' . $column['name'] . ')';
 
-            $columnPhrase = strtolower(preg_replace('/([A-Z])/', ' $1', $column['name']));
+      $columnPhrase = strtolower(preg_replace('/([A-Z])/', ' $1', $column['name']));
 
-            //getters and setters
-            $methodDeclaration .= '
+      //getters and setters
+      $methodDeclaration .= '
     /**
      * ' . $className . ' ' . $columnPhrase . '
      * @return ' . $column['type'] . '
@@ -155,56 +155,56 @@ class TableClass {
         $this->' . $column['name'] . ' = $' . $column['name'] . ';
     }
 ';
-        }
+    }
 
-        //insert method
-        $methodDeclaration .= '
+    //insert method
+    $methodDeclaration .= '
     public function insert() {
 ';
 
-        foreach ($this->tableColumns as $column) {
+    foreach ($this->tableColumns as $column) {
 
-            if ($column['extra'] == "") {
-                $methodDeclaration .='        $this->addInsertField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
+      if ($column['extra'] == "") {
+        $methodDeclaration .='        $this->addInsertField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
-            }
-        }
-        $methodDeclaration .='
+      }
+    }
+    $methodDeclaration .='
         $this->createInsertStatement();
         return $this->executeQuery();
     }';
 
-        //update method
-        $methodDeclaration .= '
+    //update method
+    $methodDeclaration .= '
 
     public function update($whereClause = null) {
 ';
 
-        foreach ($this->tableColumns as $column) {
+    foreach ($this->tableColumns as $column) {
 
-            if ($column['extra'] == "") {
-                $methodDeclaration .='        $this->addUpdateField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
+      if ($column['extra'] == "") {
+        $methodDeclaration .='        $this->addUpdateField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
-            }
-        }
+      }
+    }
 
-        //setting default update where clause
-        foreach ($this->tableColumns as $column) {
-            if ($column['key'] == "PRI") {
-                $methodDeclaration .='
-        ($whereClause == null) ? $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '() : null;';
-                break;
-            }
-        }
-
+    //setting default update where clause
+    foreach ($this->tableColumns as $column) {
+      if ($column['key'] == "PRI") {
         $methodDeclaration .='
+        ($whereClause == null) ? $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '() : null;';
+        break;
+      }
+    }
+
+    $methodDeclaration .='
 
         $this->createUpdateStatement($whereClause);
         return $this->executeQuery();
     }';
 
-        //classFile
-        $cf = '&lt;?php
+    //classFile
+    $cf = '&lt;?php
 ' . $namespace . '
 
 use \org\codeminus\db as db;
@@ -228,32 +228,31 @@ class ' . $className . ' extends db\Table {
 }
 ';
 
-        $this->setCode($cf);
-    }
+    $this->setCode($cf);
+  }
 
-    public function getCode() {
-        return $this->code;
-    }
+  public function getCode() {
+    return $this->code;
+  }
 
-    public function setCode($code) {
-        $this->code = $code;
-    }
+  public function setCode($code) {
+    $this->code = $code;
+  }
 
-    /*
+  /*
     public function save($filepath, $overwriteExistent = false) {
 
-        $className = ucfirst($this->getTableName());
-        
-        $filepath = $filePath . '/' . $className . '.php';
-        //if the file doesnt exists or $overwriteExistent == true
-        if (!file_exists($filepath) || $overwriteExistent) {
-            //if file created if with success
-            if (file_put_contents($filePath, $this->getCode())) {
-                echo '<p class="info">' . $filePath . ' file created. </p>';
-            }
-        } else {
-            echo '<p class="warning">' . $filePath . ' file NOT created. File already exists </p>';
-        }
-    }*/
+    $className = ucfirst($this->getTableName());
 
+    $filepath = $filePath . '/' . $className . '.php';
+    //if the file doesnt exists or $overwriteExistent == true
+    if (!file_exists($filepath) || $overwriteExistent) {
+    //if file created if with success
+    if (file_put_contents($filePath, $this->getCode())) {
+    echo '<p class="info">' . $filePath . ' file created. </p>';
+    }
+    } else {
+    echo '<p class="warning">' . $filePath . ' file NOT created. File already exists </p>';
+    }
+    } */
 }
