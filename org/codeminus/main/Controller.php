@@ -14,6 +14,8 @@ abstract class Controller {
    * @var View
    */
   protected $view;
+  static $lastCalled;
+  
 
   /**
    * Base controller
@@ -21,8 +23,17 @@ abstract class Controller {
    */
   public function __construct() {
     $this->view = new View();
+    self::$lastCalled = get_called_class();
   }
 
+  /**
+   * Return the name of the last controller called
+   * @return string
+   */
+  public static function lastCalled(){
+    return self::$lastCalled;
+  }
+  
   /**
    * Redirects to a given location relative to APP_HTTP_PATH
    * @param string $url
