@@ -1,5 +1,6 @@
 <?php
 require_once '../main/installer.php';
+require_once '../util/FileHandler.php';
 
 use \org\codeminus\main as main;
 ?>
