@@ -2,14 +2,16 @@
 
 namespace org\codeminus\main;
 
+use \org\codeminus\util as util;
+
 /**
  * Framework Installer
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.0
+ * @version 1.1
  */
 class Installer {
 
-  const APP_ROOT = '../../../';
+  const APP_ROOT = '../../..';
 
   /**
    * @return Installer
@@ -23,200 +25,9 @@ class Installer {
    * @return void
    */
   public function createAppFiles() {
-
-    $configFolder = self::APP_ROOT . 'app/configs';
-    $this->createDir($configFolder, 0755);
-
-    $initFilePath = $configFolder . '/init.php';
-    $this->createFile($initFilePath, $this->getInitContent());
-
-    $this->createDir(self::APP_ROOT . 'app/controllers', 0755);
-
-    $indexControllerContent = <<<FILE
-<?php
-use org\codeminus\main as main;
-
-##################################################
-# CHANGE THIS CONTROLLER ACCORDING TO YOUR NEEDS #
-##################################################
-
-class Index extends main\Controller{
-    
-    function __construct() {
-        parent::__construct();        
-        \$this->view->setTitle('Framework Installed!');
-    }    
-    
-    public function index() {
-        \$this->view->render('index/index');
-    }
-    
-}
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/controllers/Index.php', $indexControllerContent);
-
-    $errorControllerContent = <<<FILE
-<?php
-use org\codeminus\main as main;
-
-##################################################
-# CHANGE THIS CONTROLLER ACCORDING TO YOUR NEEDS #
-##################################################
-
-class Error extends main\Controller{
-    
-    public function __construct() {
-        parent::__construct();
-        \$this->view->setTitle('Error');
-    }
-    
-    public function index() {
-        \$this->view->render('error/pageNotFound');
-    }
-
-}
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/controllers/Error.php', $errorControllerContent);
-
-    $this->createDir(self::APP_ROOT . 'app/models', 0755);
-    $this->createDir(self::APP_ROOT . 'app/views', 0755);
-    $this->createDir(self::APP_ROOT . 'app/views/index', 0755);
-
-    $indexViewContent = <<<FILE
-<?php
-############################################
-# CHANGE THIS VIEW ACCORDING TO YOUR NEEDS #
-############################################
-?>
-<div class="header">
-    <img src="<?php echo APP_HTTP_PATH ?>/org/codeminus/img/cmf-medium.png" />
-</div>
-<div class="root">
-    <h2>Welcome to your main page!</h2>
-    <section class="default-container">
-        <header>Your application is ready for you to get started!</header>
-        <section>
-            <p>Remember to review your environment configurations inside <b>/app/configs/init.php</b>.</p>
-            <p>
-                Go to <a href="https://github.com/codeminus/framework" target="_blank">https://github.com/codeminus/framework</a>
-                to keep updated about the framework.<br/>
-                Feel free to contact <a href="https://github.com/codeminus" target="_blank">codeminus</a>
-                should you have any questions or comments.
-            </p>
-        </section>
-    </section>
-</div>
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/views/index/index.php', $indexViewContent);
-
-    $this->createDir(self::APP_ROOT . 'app/views/error', 0755);
-
-    $errorViewContent = <<<FILE
-<?php
-############################################
-# CHANGE THIS VIEW ACCORDING TO YOUR NEEDS #
-############################################
-?>
-<h1>Invalid URL request</h1>
-<p>
-    Go to <a href="<?php echo APP_HTTP_PATH?>">main page</a>
-</p>
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/views/error/pageNotFound.php', $errorViewContent);
-
-    $this->createDir(self::APP_ROOT . 'app/views/templates', 0755);
-
-    $this->createDir(self::APP_ROOT . 'app/views/shared', 0755);
-
-    $headerContent = <<<FILE
-<?php
-use \org\codeminus\main as main;
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title><?php echo main\View::getTitle() ?></title>
-        <link rel="stylesheet" href="<?php echo APP_HTTP_PATH ?>/org/codeminus/css/codeminus.css"/>
-    </head>
-    <body>
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/views/shared/header.php', $headerContent);
-
-    $footerContent = <<<FILE
-    </body>
-</html>
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'app/views/shared/footer.php', $footerContent);
-
-    $this->createDir(self::APP_ROOT . 'assets/css');
-    $this->createDir(self::APP_ROOT . 'assets/js');
-    $this->createDir(self::APP_ROOT . 'assets/img');
-
-    $indexPageContent = <<<FILE
-<?php
-require_once ('app/configs/init.php');
-FILE;
-
-    $this->createFile(self::APP_ROOT . 'index.php', $indexPageContent);
-
-
-    $htaccessContent = <<<FILE
-#version 1.1
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-l
-
-RewriteRule ^(.+)$ index.php?qs=$1 [QSA,L]
-
-Options -Indexes
-FILE;
-
-    $this->createFile(self::APP_ROOT . '.htaccess', $htaccessContent);
-  }
-
-  /**
-   * Creates a directory
-   * @param string $dir path and name
-   * @param octal $mode according to the access level defined by chmod
-   * @return void;
-   */
-  private function createDir($dir, $mode = 0777) {
-    if (!file_exists($dir)) {
-      if (!mkdir($dir, $mode, true)) {
-        exit('<p class="warning">Unable to create ' . $dir . '</p>');
-      } else {
-        echo '<p class="info">' . $dir . ' created.</p>';
-      }
-    } else {
-      echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
-    }
-  }
-
-  /**
-   * Creates a file
-   * @param string $fileName complete file path
-   * @param string $fileContent Content to be put inside the file
-   * @return void
-   */
-  private function createFile($fileName, $fileContent) {
-    if (!file_exists($fileName)) {
-      if (!file_put_contents($fileName, $fileContent)) {
-        exit('<p>Unable to create ' . $fileName . '</p>');
-      } else {
-        echo '<p class="info">' . $fileName . ' created.</p>';
-      }
-    } else {
-      echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
-    }
+    util\FileHandler::recursiveCopy('../app-skeleton',  self::APP_ROOT);    
+    $initFilePath = self::APP_ROOT . '/app/configs/init.php';    
+    util\FileHandler::createFile($initFilePath, $this->getInitContent());
   }
 
   /**
