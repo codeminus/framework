@@ -3,7 +3,7 @@
 namespace org\codeminus\util;
 
 /**
- * Description of FileHandler
+ * FileHandler
  *
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
@@ -61,15 +61,19 @@ class FileHandler {
    * @param string $fileContent Content to be put inside the file
    * @return void
    */
-  public static function createFile($fileName, $fileContent) {
+  public static function createFile($fileName, $fileContent, $showLog = true) {
     if (!file_exists($fileName)) {
       if (!file_put_contents($fileName, $fileContent)) {
         exit('<p>Unable to create ' . $fileName . '</p>');
       } else {
-        echo '<p class="info">' . $fileName . ' created.</p>';
+        if($showLog){
+          echo '<p class="info">' . $fileName . ' created.</p>';
+        }
       }
     } else {
-      echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
+      if($showLog){
+        echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
+      }
     }
   }
 
@@ -79,15 +83,19 @@ class FileHandler {
    * @param octal $mode according to the access level defined by chmod
    * @return void;
    */
-  public static function createDir($dir, $mode = 0777) {
+  public static function createDir($dir, $mode = 0777, $showLog = true) {
     if (!file_exists($dir)) {
       if (!mkdir($dir, $mode, true)) {
         exit('<p class="warning">Unable to create ' . $dir . '</p>');
       } else {
-        echo '<p class="info">' . $dir . ' created.</p>';
+        if($showLog){
+          echo '<p class="info">' . $dir . ' created.</p>';
+        }
       }
     } else {
-      echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
+      if($showLog){
+        echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
+      }
     }
   }
   
