@@ -75,7 +75,7 @@ class Connection extends \mysqli {
    * @param string $host
    * @return void
    */
-  public function setHost($host) {
+  private function setHost($host) {
     $this->host = $host;
   }
 
@@ -92,7 +92,7 @@ class Connection extends \mysqli {
    * @param string $database
    * @return void
    */
-  public function setDatabase($database) {
+  private function setDatabase($database) {
     $this->database = $database;
   }
 
