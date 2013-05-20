@@ -1,6 +1,6 @@
 <?php
 require_once '../main/installer.php';
-require_once '../util/FileHandler.php';
+require_once '../file/FileHandler.php';
 
 use \org\codeminus\main as main;
 ?>
@@ -16,14 +16,14 @@ use \org\codeminus\main as main;
     <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
-    <div class="header clearFix">
-      <header class="">
-        <img src="../img/cmf-medium.png" class="floatLeft"/>
-        <div class="floatRight bold">main\Installer v1.0</div>
+    <div class="header-container">
+      <header class="root clearfix">
+        <img src="../img/cmf-medium.png" class="float-Left"/>
+        <div class="float-right bold">main\Installer v1.0</div>
       </header>
     </div>
     <div class="root">
-      <section><h2>Application initial configuration</h2></section>
+      <section><h3>Application initial configuration</h3></section>
       <?php if (!isset($_POST['cmd'])) { ?>
         <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
