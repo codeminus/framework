@@ -42,10 +42,10 @@ abstract class Controller {
   }
 
   /**
-   * Creates a link to the given $method inside this controller
+   * Prepends APP_HTTP_PATH . '/' to the given query
    * @param string $query you want to invoke.
    * ex.: TestController/testMethod/arg1/arg2
-   * @return string link
+   * @return string link source
    */
   public static function linkTo($query) {
     return APP_HTTP_PATH . '/' . $query;
