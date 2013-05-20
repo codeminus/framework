@@ -2,7 +2,7 @@
 
 namespace org\codeminus\main;
 
-use \org\codeminus\util as util;
+use \org\codeminus\file as file;
 
 /**
  * Framework Installer
@@ -25,9 +25,9 @@ class Installer {
    * @return void
    */
   public function createAppFiles() {
-    util\FileHandler::recursiveCopy('../app-skeleton',  self::APP_ROOT);    
+    file\FileHandler::recursiveCopy('../app-skeleton',  self::APP_ROOT);    
     $initFilePath = self::APP_ROOT . '/app/configs/init.php';    
-    util\FileHandler::createFile($initFilePath, $this->getInitContent());
+    file\FileHandler::createFile($initFilePath, $this->getInitContent());
   }
 
   /**
@@ -155,13 +155,13 @@ const DEFAULT_TIMEZONE = '$DEFAULT_TIMEZONE';
 const DEFAULT_RPP = 20;
 
 /**
- * Default email address to be used as default sender on org\codeminus\util\Email
+ * Default email address to be used as default sender on org\codeminus\file\Email
  * @var string email address
  */
 const DEFAULT_EMAILSENDER_ADDRESS = '';
 
 /**
- * Default email owner's name to be used as default sender on org\codeminus\util\Email
+ * Default email owner's name to be used as default sender on org\codeminus\file\Email
  * @var string email owner's name
  */
 const DEFAULT_EMAILSENDER_NAME    = '';
