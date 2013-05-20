@@ -1,43 +1,54 @@
-body > section{
-  margin: 5px;
-}
+/*Containers stylesheet v1.0*/
 
-.header{
-  background: #FFFFFF; /* Old browsers */
-  background: -moz-linear-gradient(top,  #f9f9f9, #f3f3f3); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f3f3f3)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,#f9f9f9,#f3f3f3); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #f9f9f9,#f3f3f3); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #f9f9f9,#f3f3f3); /* IE10+ */
-  background: linear-gradient(top,  #f9f9f9,#f3f3f3); /* W3C */
-
-  text-shadow: 0 1px 0 #fff;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 5px;
-}
-.default-container{
+/* ==========================================================================
+   Root container.
+   ========================================================================== */
+.root{
+  width: 940px;
+  margin: 0px auto;
   margin-bottom: 20px;
 }
 
-.default-container > header, .default-container > section{
+.header-container{
+   background-color: #f7f7f7;
+   border-bottom: solid 1px #ddd;
+   padding: 10px 0px;
+}
+
+/* ==========================================================================
+   Default container
+   ========================================================================== */
+.default-container{
+  margin-bottom: 20px;
+}
+.default-container > header, .default-container > section, .default-container > footer{
   border: solid 1px #ddd;
   padding: 10px;
 }
 
-.default-container > header{
+.default-container > header, .default-container > footer{
   background-color: #f7f7f7;
+  color: #333;
+}
+
+.default-container > header{
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  color: #333;
   font-weight: bold;
 }
 
-.default-container > section{
+.default-container > footer{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: right;
+  color: #999;
+}
+
+.default-container > section, .default-container > footer{
   border-top: none;
 }
 
-
-.default-container > section:last-of-type{
+.default-container:last-child{
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
