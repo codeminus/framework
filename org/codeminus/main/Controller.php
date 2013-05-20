@@ -14,7 +14,12 @@ abstract class Controller {
    * @var View
    */
   protected $view;
-  static $lastCalled;
+  
+  /**
+   * The name of the last controller called
+   * @var string
+   */
+  static $LASTCALLED;
   
 
   /**
@@ -23,15 +28,7 @@ abstract class Controller {
    */
   public function __construct() {
     $this->view = new View();
-    self::$lastCalled = get_called_class();
-  }
-
-  /**
-   * Return the name of the last controller called
-   * @return string
-   */
-  public static function lastCalled(){
-    return self::$lastCalled;
+    self::$LASTCALLED = get_called_class();
   }
   
   /**
