@@ -1,69 +1,46 @@
 /*
     codeminus.org CSS library.
-    version: 0.2
-    Thanks http://github.com for the great design concept
+    version: 0.3
 */
-
+@import "normalize.css";
 @import "containers.css";
-@import "tabs.css";
+@import "colors.css";
+@import "navs.css";
 @import "forms.css";
 @import "tables.css";
 @import "messages.css";
 
 
-*{
+html{
   font-family: Arial,Helvetica,sans-serif;
-  font-size: 13px;
   color: #666;
   outline: none;
-}
-
-body{
-  padding: 0px;
-  margin: 0px;
 }
 
 a, a:visited{
   text-decoration: none;
   color: #4183C4;
+  outline: none;
+  display: inline-block;
 }
 
-a > img{
+a img{
   border: none;
   margin-bottom: -2px;
 }
 
+
 h1, h2, h3, h4, h5, h6{
-  color: #495961;
+  color: #444;
   margin: 10px 0px;
 }
 
-h1{
-  font-size: 2.5em;
-}
-
-h2{
-  font-size: 2em;
-}
-
-h3{
-  font-size: 1.5em;
-}
-
-h4{
-  font-size: 1.2em;
-}
-
-
-.root{
-  width: 930px;
-  margin: 0px auto;
-}
-
-/* floating block fix*/
-.clearFix{
-  height: 1%; overflow: hidden; 
-}
+h1{ font-size: 4em; }
+h2{ font-size: 3.5em; }
+h3{ font-size: 3em; }
+h4{ font-size: 2.5em; }
+h5{ font-size: 2em; }
+h6{ font-size: 1.5em; }
 
 .block{
   display: block;
@@ -81,81 +58,46 @@ h4{
   visibility: hidden;
 }
 
-.floatLeft{
+.float-Left{
   float: left;
 }
 
-.floatRight{
+.float-right{
   float: right;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
 }
 
 .bold{
   font-weight: bold;
 }
 
-.hmenu, .vmenu, .foot-menu{
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-}
-
-.hmenu li{
-  display: inline;
-
-}
-
-.vmenu{    
-  width: 220px;    
-}
-
-.vmenu li{
-  border-top: solid 1px white;
-  border-bottom: solid 1px #EEE;
-  background-color: #FAFAFB;
-}
-
-.vmenu li:hover{
-  background-color: #FEFEFE;
-}
-
-.vmenu li a{
-  padding: 10px;
-  display: block;
-
-}
-
-.vmenu a.selected{
-  background-color: white;
-  border-left: solid 2px #D26911;
-  padding-left: 8px;
-}
-
-.section{
-  background-color: white;
-}
-
-.section-header{
-  background: #FFFFFF; /* Old browsers */
-  background: -moz-linear-gradient(top,  #FFFFFF, #EDEDED); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EDEDED)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,#FFFFFF,#EDEDED); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #FFFFFF,#EDEDED); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #FFFFFF,#EDEDED); /* IE10+ */
-  background: linear-gradient(top,  #FFFFFF,#EDEDED); /* W3C */
-
-  padding: 10px;
-  color: #333;
-  font-weight: bold;
-  font-size: 14px;
-  border: none;
-  border-bottom: solid 1px #CACACA !important;
-  text-shadow: 0 1px 0 white;
-
-
-}
-
-.section-content{
-  padding: 10px;
+.underline{
+  border-bottom: solid 1px #e5e5e5;
 }
 
 .upper-foot{
@@ -188,4 +130,18 @@ h4{
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+
+
+.page-header{
+  background: #FFFFFF;  
+  background-image: -moz-linear-gradient(top, #f9f9f9, #f3f3f3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f9f9f9), to(#f3f3f3));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
+  background-image: -o-linear-gradient(top, #f9f9f9, #f3f3f3);
+  background-image: linear-gradient(to bottom, #f9f9f9, #f3f3f3);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9f9f9', endColorstr='#fff3f3f3', GradientType=0);
+  text-shadow: 0 1px 0 #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 5px;
 }
