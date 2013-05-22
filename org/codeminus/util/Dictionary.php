@@ -2,14 +2,16 @@
 namespace org\codeminus\util;
 
 /**
+ * 
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 0.1b
+ * @version 0.2
  */
-class Dictionary {
+abstract class Dictionary {
     
     private $language;
     private $texts = array();
     
+    /*usage example
     const LANGUAGE_EN = 'en';
     const LANGUAGE_PTBR = 'pt-br';
     
@@ -17,11 +19,11 @@ class Dictionary {
     const PREV_PAGE = 'PREV_PAGE';
     const NEXT_PAGE = 'NEXT_PAGE';
     const LAST_PAGE = 'LAST_PAGE';
-    
+    */
     public function __construct($language){
         
         $this->setLanguage($language);
-        
+        /* usage example
         $this->addText(self::LANGUAGE_EN, self::FIRST_PAGE, 'First page');
         $this->addText(self::LANGUAGE_PTBR, self::FIRST_PAGE, 'Primeira página');
         $this->addText(self::LANGUAGE_EN, self::PREV_PAGE, 'Previous page');
@@ -30,7 +32,7 @@ class Dictionary {
         $this->addText(self::LANGUAGE_PTBR, self::NEXT_PAGE, 'Próxima página');
         $this->addText(self::LANGUAGE_EN, self::LAST_PAGE, 'Last page');
         $this->addText(self::LANGUAGE_PTBR, self::LAST_PAGE, 'Última página');
-        
+        */
     }
     
     public function getLanguage() {
