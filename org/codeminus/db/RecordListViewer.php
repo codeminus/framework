@@ -13,10 +13,12 @@ class RecordListViewer {
   private $recordList;
   private $linkSource;
   private $pageVarName = 'pg';
-  private $firstPageButtonContent = '|&lt;';
-  private $previousPageButtonContent = '&lt;';
-  private $nextPageButtonContent = '&gt;';
-  private $lastPageButtonContent = '&gt;|';
+  private $firstPageButtonContent = '&nbsp;|&lt;&nbsp;';
+  private $previousPageButtonContent = '&nbsp;&lt;&nbsp;';
+  private $nextPageButtonContent = '&nbsp;&gt;&nbsp;';
+  private $lastPageButtonContent = '&nbsp;&gt;|&nbsp;';
+  
+  private $tableParameters;
 
   const COMPLETE_CONTROLS = 0;
   const SIMPLE_CONTROLS = 1;
@@ -65,7 +67,7 @@ class RecordListViewer {
    */
   public function setLinkSource($linkSource) {
     $questionMark = '?';
-    (strpos($linkSource, '/?')) ? $questionMark = '' : null;
+    (strpos($linkSource, '/?') > -1) ? $questionMark = '' : null;
     $this->linkSource = $linkSource . $questionMark;
   }
 
@@ -84,7 +86,7 @@ class RecordListViewer {
    * @return void
    * @example if you setPageVarName('page') the paging control buttons will
    * be something similar to 
-   * http://yourdomain.com/app/paging.php?ex=example&page=2
+   * http://yourdomain.com/app/paging/?&page=2
    */
   public function setPageVarName($pageVarName) {
     $this->pageVarName = $pageVarName;
@@ -95,18 +97,17 @@ class RecordListViewer {
    * @param int $page the destination page 
    * @return string
    * @example 
-   * setLinkSource('http://example.com/paging.php');
-   * setLinkVars('style=thumbnail&orderby=name');
+   * setLinkSource('http://example.com/someRecordList/');
    * setPageVarName('p');
    * getPageLinkSource(10) will return
-   * http://example.com/paging.php?style=thumbnail&orderby=name&p=10
+   * http://example.com/someRecordList/?&p=10
    */
   public function getPageLinkSource($page) {
     return $this->getLinkSource() . '&' . $this->getPageVarName() . '=' . $page;
   }
 
   /**
-   * 
+   * The content that is going to be used insed the first page anchor tag
    * @return string
    */
   public function getFirstPageButtonContent() {
@@ -114,7 +115,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the first page anchor tag
    * @param string $content
    * @return void
    */
@@ -123,7 +124,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the previous page anchor tag
    * @return string
    */
   public function getPreviousPageButtonContent() {
@@ -131,7 +132,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the previous page anchor tag
    * @param string $content
    * @return void
    */
@@ -140,7 +141,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the next page anchor tag
    * @return string
    */
   public function getNextPageButtonContent() {
@@ -148,7 +149,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the next page anchor tag
    * @param string $content
    * @return void
    */
@@ -157,7 +158,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the last page anchor tag
    * @return string
    */
   public function getLastPageButtonContent() {
@@ -165,7 +166,7 @@ class RecordListViewer {
   }
 
   /**
-   * 
+   * The content that is going to be used insed the last page anchor tag
    * @param string $content
    * @return void
    */
@@ -174,7 +175,7 @@ class RecordListViewer {
   }
 
   /**
-   * HTML code for first page button
+   * Anchor tag code for first page button
    * This method does not consider if it is already on the first page
    * Consider calling getRewindButtons() instead
    * @param string $title link title parameter
@@ -187,7 +188,7 @@ class RecordListViewer {
   }
 
   /**
-   * HTML code for previous page button
+   * Anchor tag code for previous page button
    * This method does not consider if there is or not a previous page to show
    * Consider calling getRewindButtons() instead
    * @param string $title link title parameter
@@ -201,7 +202,7 @@ class RecordListViewer {
   }
 
   /**
-   * HTML code for next page button
+   * Anchor tag code for next page button
    * This method does not consider if there is or not a next page to show
    * Consider calling getForwardButtons() instead
    * @param string $title link title parameter
@@ -215,7 +216,7 @@ class RecordListViewer {
   }
 
   /**
-   * HTML code for last page button
+   * Anchor tag code for last page button
    * This method does not consider if it is already on the last page
    * Consider calling getForwardButtons() instead
    * @param string $title link title parameter
@@ -229,7 +230,7 @@ class RecordListViewer {
   }
 
   /**
-   * HTML code with buttons to control de paging rewinding
+   * HTML code with buttons to control de page rewinding
    * @return string HTML code
    * If page rewinding is not necessery, it will return inactive buttons
    */
@@ -241,15 +242,15 @@ class RecordListViewer {
         return $this->getFirstPageButton() . $this->getPreviousPageButton();
       } else {
         return '<span style="opacity: 0.5">' .
-                $this->getFirstPageButton() .
-                $this->getPreviousPageButton() .
+                $this->getFirstPageButtonContent() .
+                $this->getPreviousPageButtonContent() .
                 '</span>';
       }
     }
   }
 
   /**
-   * HTML code with buttons to control de paging forwarding
+   * HTML code with buttons to control de page forwarding
    * @return string HTML code
    * If page forwarding is not necessery, it will return inactive buttons
    */
@@ -261,8 +262,8 @@ class RecordListViewer {
         return $this->getNextPageButton() . $this->getLastPageButton();
       } else {
         return '<span style="opacity: 0.5">' .
-                $this->getNextPageButton() .
-                $this->getLastPageButton() .
+                $this->getNextPageButtonContent() .
+                $this->getLastPageButtonContent() .
                 '</span>';
       }
     }
@@ -291,6 +292,24 @@ class RecordListViewer {
   }
 
   /**
+   * Table tag parameters like class, id, etc...
+   * @return string
+   */
+  private function getTableParameters() {
+    return $this->tableParameters;
+  }
+
+  /**
+   * Table tag parameters like class, id, etc...
+   * @param string $tableParameters
+   * @return void
+   * @example setTableParameters('class="tableStyling"');
+   */
+  public function setTableParameters($tableParameters) {
+    $this->tableParameters = $tableParameters;
+  }
+  
+  /**
    * HTML table containing all rows from the result set
    * @param string $columnsHeaders column headers separated by ,(comma).
    * If null is given, the original columns names will be used.
@@ -298,8 +317,8 @@ class RecordListViewer {
    * @param type $className HTML class parameter value
    * @return string
    */
-  public function getTable($columnsHeaders = null, $tagParameters) {
-    $table = "<table $tagParameters >";
+  public function getTable($columnsHeaders = null) {
+    $table = "<table ".$this->getTableParameters()." >";
     $table .= "<thead>";
     $table .= "<tr>";
     if (isset($columnsHeaders)) {
