@@ -1,0 +1,107 @@
+/*Navegation stylesheet v1.0*/
+
+/* ==========================================================================
+   Horizontal list
+   ========================================================================== */
+.nav-hlist{
+  list-style: none;
+  padding-left: 0px;
+  width: 200px;
+}
+
+.nav-hlist > li.header{
+  background-color: #f7f7f7;
+  padding: 10px 13px;
+}
+.nav-hlist > li > a{
+  padding: 10px 13px;
+  color: inherit;
+}
+
+
+/* ==========================================================================
+   Horizontal tabs
+   ========================================================================== */
+.nav-htabs {
+  list-style: none;
+  padding-left: 0px;
+  border-bottom: solid 1px #ddd;
+}
+
+.nav-htabs > li{
+  display: inline-block;
+}
+
+.nav-htabs > li > a{
+  padding: 10px 13px;
+  color: inherit;
+}
+
+.nav-htabs .selected{
+  border: solid 1px #ddd;  
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: solid 1px #fff;
+  margin-bottom: -1px;
+  color: #333;
+}
+/* ==========================================================================
+   Horizontal inverted tabs 
+   ========================================================================== */
+.nav-htabs.inverted{
+  border-top: solid 1px #ddd;
+  border-bottom: none;
+}
+
+.nav-htabs.inverted .selected{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #ddd;
+  margin-top: -1px;
+  margin-bottom: 0px;
+}
+/* ==========================================================================
+   Vertical tabs
+   ========================================================================== */
+.nav-vtabs{
+  list-style: none;
+  padding-left: 0px;
+  display: inline-block;
+  margin: 10px;
+  border-right: solid 1px #ddd;
+}
+
+.nav-vtabs > li > a{
+  padding: 10px 13px;
+  color: inherit;
+}
+
+.nav-vtabs .selected{
+  border: solid 1px #ddd;  
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-right: solid 1px #fff;
+  margin-right: -1px;
+  color: #333;
+}
+/* ==========================================================================
+   Vertical tabs inverted
+   ========================================================================== */
+.nav-vtabs.inverted{
+  border-left: solid 1px #ddd;
+  border-right: none;
+}
+
+.nav-vtabs.inverted .selected{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-right: solid 1px #ddd;
+  border-left: solid 1px #fff;
+  margin-left: -1px;
+  margin-right: 0px;
+}

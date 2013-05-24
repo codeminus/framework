@@ -6,24 +6,18 @@
     <link rel="stylesheet" href="codeminus.css" />
   </head>
   <body>
-    <nav class="tab-hgroup">
-      <a href="?tab=0" class="tab">Item 01</a>
-      <a href="?tab=1" class="tab selected">Item 02</a>
-      <a href="?tab=2" class="tab">Item 03</a>
-    </nav>
+    <div class="header-container">
+      <img src="../img/cmf-medium.png" />
+    </div>
+    <div class="container">
+      <ul class="nav">
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+        <li><a href="#">Menu Item</a></li>
+      </ul>
+    </div>
 
-    <section class="default-container">
-      <header>Content Header</header>
-      <section>
-        <header>Content Title</header>
-        <section>Content</section>
-      </section>
-    </section>
 
-    <nav class="tab-vgroup">
-      <a href="?tab=0" class="tab">Item 01</a>
-      <a href="?tab=1" class="tab selected">Item 02</a>
-      <a href="?tab=2" class="tab">Item 03</a>
-    </nav>
   </body>
 </html>

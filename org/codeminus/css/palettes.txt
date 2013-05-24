@@ -1,8 +1,0 @@
-:orchid{
-    
-    color: #200772;
-    color: #876ED7;
-    border-color: lightblue;
-    border-color: cadetblue;
-    
-}
