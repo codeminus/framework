@@ -1,6 +1,9 @@
 nbproject/
-app/
-assets/
-org/codeminus/db/pdo/
-index.php
-.htaccess
+/app/
+/assets/
+/org/codeminus/db/pdo/
+/org/codeminus/css/test.php
+/org/codeminus/css/colors.css
+/org/codeminus/util/HTML.php
+/index.php
+/.htaccess
