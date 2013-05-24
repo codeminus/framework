@@ -30,7 +30,7 @@ class Connection extends \mysqli {
     parent::__construct($host, $user, $password, $database);
     $this->setInstance();
   }
-
+  
   /**
    * Clear the current DBConnection static instance, setting it to null
    */
