@@ -1,508 +1,501 @@
 <?php
+
 namespace org\codeminus\util;
 
 /**
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.1
+ * Supported image types: GIF, JPEG, PNG
  */
 final class ImageHandler {
 
-    private $image;
-    private $source;
-    private $tempImage;
-    
-    //Quality constants are needed because the quality values for JPG are different from PNG files
-    const QUALITY_HIGH = 101;
-    const QUALITY_MEDIUM = 102;
-    const QUALITY_HALF = 103;
-    
-    /**
-     * Image Handler
-     * @return object
-     * @param string $imageSource 
-     */
-    public function __construct($imageSource) {
-        $this->setImage(getimagesize($imageSource));
-        $this->setSource($imageSource);
-    }
+  private $identifier;
+  private $imageInfo;
+  private $source;
+  private $tempImage;
 
-    /**
-     * Image Info
-     * @return void
-     * @param array $image 
-     */
-    public function setImage($image) {
-        $this->image = $image;
-    }
-    
-    /**
-     * Image info
-     * @return array 
-     */
-    public function getImage() {
-        return $this->image;
-    }
+  //Quality constants are needed because the quality values for JPG are different from PNG files
 
-    /**
-     * Image source
-     * @return void
-     * @param string $source 
-     */
-    public function setSource($source) {
-        $this->source = $source;
-    }
-    
-    /**
-     * Image source
-     * @return string 
-     */
-    public function getSource() {
-        return $this->source;
-    }
-    
-    /**
-     * Image width
-     * @return int 
-     */
-    public function getWidth(){
-        return $this->image[0];
-    }
-    
-    /**
-     * Image height
-     * @return int 
-     */
-    public function getHeight(){
-        return $this->image[1];
-    }
-    
-    /**
-     * Image Type
-     * @return int
-     * @example 2 == IMG_JPG
-     * 
-     * Image constants:
-     * IMG_GIF == 1
-     * IMG_JPG == 2
-     * IMG_JPEG == 2
-     * IMG_PNG == 4
-     * 
-     */
-    public function getType(){
-        return $this->image[2];
-    }
-    
-    /**
-     * Image HTML
-     * @param string $baseDirectory complementing the previous given source
-     * @return string
-     * @example
-     * source = "img/example.jpg";
-     * getHTML("../"); return: <img src="../img/example.jpg" width="100" height="100" /> 
-     */
-    public function getHTML($baseDirectory = null, $replaceDirectory = false){
-        
-        if($replaceDirectory){
-            return '<img src="' . $baseDirectory . '" ' . $this->image[3] . ' />';
-        }else{
-            return '<img src="' . $baseDirectory . $this->getSource() . '" ' . $this->image[3] . ' />';
-        }
-        
-    }
-    
-    /**
-     * Image MIME
-     * @return string 
-     */
-    public function getMIME(){
-        return $this->image["mime"];
-    }
-    
-    /**
-     * Image resource identifier
-     * @return resource 
-     */
-    public function getIdentifier(){
-        
-        switch ($this->getType()){
-            case IMG_GIF:
-                return imagecreatefromgif($this->getSource());
-                break;
-            case IMG_JPG:
-                return imagecreatefromjpeg($this->getSource());
-                break;
-            case IMG_PNG:
-                return imagecreatefrompng($this->getSource());
-                break;
-                
-        }
-        
-    }
-    
-    /**
-     * Temporary image identifier
-     * @param identifier $tempImage 
-     */
-    public function setTempImage($tempImage) {
-        $this->tempImage = $tempImage;
-    }
-    
-    /**
-     * Temporary image identifier
-     * @return identifier 
-     */
-    public function getTempImage() {
-        return $this->tempImage;
-    }
-            
-    /**
-     * Image browser output
-     * @return boolean
-     * @param int $quality [optional]
-     */
-    public function output($quality = self::QUALITY_HIGH){
-        
-        if($quality == null){
-            $quality = self::QUALITY_HIGH;
-        }
-        
-        if($this->getTempImage() == null){
-            $identifier = $this->getIdentifier();
-        }else{
-            $identifier = $this->getTempImage();
-        }
-        
-        switch ($quality) {
-            
-            case self::QUALITY_HIGH:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 100;
-                        break;
-                    case IMG_PNG:
-                        $quality = 9;
-                        break;
-                }
+  const QUALITY_HIGH = 101;
+  const QUALITY_MEDIUM = 102;
+  const QUALITY_HALF = 103;
 
-                break;
-            
-            case self::QUALITY_MEDIUM:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 75;
-                        break;
-                    case IMG_PNG:
-                        $quality = 7;
-                        break;
-                }
+  /**
+   * Image Handler
+   * @param string $imageSource the image file path
+   * @return ImageHandler
+   */
+  public function __construct($imageSource) {
+    $this->setSource($imageSource);
+    $this->setImageInfo(getimagesize($imageSource));
+    switch ($this->getType()) {
+      case IMAGETYPE_GIF:
+        $identifier = imagecreatefromgif($this->getSource());
+        break;
+      case IMAGETYPE_JPEG:
+        $identifier = imagecreatefromjpeg($this->getSource());
+        break;
+      case IMAGETYPE_PNG:
+        $identifier = imagecreatefrompng($this->getSource());
+        break;
+    }
+    $this->setIdentifier($identifier);
+  }
 
-                break;
-            
-            case self::QUALITY_HALF:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 50;
-                        break;
-                    case IMG_PNG:
-                        $quality = 5;
-                        break;
-                }
+  /**
+   * Image info
+   * @return array containing informations about the image
+   * [0] => width
+   * [1] => height
+   * [2] => php image type constant
+   * [3] => string with width and height that can be use directly into img tag
+   * ['bits'] => numbers of bits for each color
+   * ['channels'] => 3 for RGB and 4 for CMYK
+   * ['mime'] =>  mime type of the image
+   */
+  public function getImageInfo() {
+    return $this->imageInfo;
+  }
 
-                break;
-            
-        }
-        
-        //outputting image to browser
-        
-        header("Content-Type: " . $this->getMIME());
-        
+  /**
+   * Image Info
+   * @param array $imageInfo
+   * @return void
+   */
+  protected function setImageInfo($imageInfo) {
+    $this->imageInfo = $imageInfo;
+  }
+
+  /**
+   * Image source
+   * @return string 
+   */
+  public function getSource() {
+    return $this->source;
+  }
+
+  /**
+   * Image source
+   * @param string $source the image file path
+   * @return void
+   */
+  protected function setSource($source) {
+    $this->source = $source;
+  }
+
+  /**
+   * Image width
+   * @return int 
+   */
+  public function getWidth() {
+    return imagesx($this->getIdentifier());
+  }
+
+  /**
+   * Image height
+   * @return int 
+   */
+  public function getHeight() {
+    return imagesy($this->getIdentifier());
+  }
+
+  /**
+   * Image Type
+   * @return int
+   * @example 2 == IMAGETYPE_JPEG
+   * 
+   * Supported PHP Image constants examples:
+   * IMAGETYPE_GIF == 1
+   * IMAGETYPE_JPEG == 2
+   * IMG_JPEG == 2
+   * IMAGETYPE_PNG == 4
+   * 
+   */
+  public function getType() {
+    return $this->imageInfo[2];
+  }
+
+  /**
+   * Image HTML
+   * @param string $baseDirectory complementing the previous given source
+   * @return string
+   * @example
+   * source = "img/example.jpg";
+   * getHTML("../"); return: <img src="../img/example.jpg" width="100" height="100" /> 
+   */
+  public function getHTML($baseDirectory = null, $replaceDirectory = false) {
+
+    if ($replaceDirectory) {
+      return '<img src="' . $baseDirectory . '" ' . $this->imageInfo[3] . ' />';
+    } else {
+      return '<img src="' . $baseDirectory . $this->getSource() . '" ' . $this->imageInfo[3] . ' />';
+    }
+  }
+
+  /**
+   * Image MIME
+   * @return string 
+   */
+  public function getMIME() {
+    return $this->imageInfo["mime"];
+  }
+
+  /**
+   * Image resource identifier
+   * @return resource 
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  private function setIdentifier($identifier) {
+    $this->identifier = $identifier;
+  }
+
+  /**
+   * Temporary image identifier
+   * @return identifier 
+   */
+  public function getTempImage() {
+    return $this->tempImage;
+  }
+
+  /**
+   * Temporary image identifier
+   * @param identifier $tempImage 
+   */
+  private function setTempImage($tempImage) {
+    $this->tempImage = $tempImage;
+  }
+
+  private function getQuality($qualityConstant) {
+    switch ($qualityConstant) {
+      case self::QUALITY_HIGH:
         switch ($this->getType()) {
-            case IMG_GIF:
-                return imagegif($identifier);                
-                break;
-            case IMG_JPG:
-                return imagejpeg($identifier, null, $quality);
-                break;
-            case IMG_PNG:
-                return imagepng($identifier, null, $quality);
-                break;
+          case IMAGETYPE_JPEG:
+            $quality = 100;
+            break;
+          case IMAGETYPE_PNG:
+            $quality = 9;
+            break;
         }
-        
-        imagedestroy($identifier);
-        
-    }
-    
-    /**
-     * Image save
-     * @return boolean
-     * @param int $quality [optional]
-     * @param string $fileSource [optional]
-     */
-    public function save($quality = self::QUALITY_HIGH, $fileSource = null){
-        
-        if($quality == null){
-            $quality = self::QUALITY_HIGH;
-        }
-        
-        if($fileSource == null){
-            $fileSource = $this->getSource();
-        }
-        
-        if($this->getTempImage() == null){
-            $identifier = $this->getIdentifier();
-        }else{
-            $identifier = $this->getTempImage();
-        }
-        
-        switch ($quality) {
-            
-            case self::QUALITY_HIGH:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 100;
-                        break;
-                    case IMG_PNG:
-                        $quality = 9;
-                        break;
-                }
-
-                break;
-            
-            case self::QUALITY_MEDIUM:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 80;
-                        break;
-                    case IMG_PNG:
-                        $quality = 7;
-                        break;
-                }
-
-                break;
-            
-            case self::QUALITY_HALF:
-                switch ($this->getType()) {
-                    case IMG_JPG:
-                        $quality = 50;
-                        break;
-                    case IMG_PNG:
-                        $quality = 5;
-                        break;
-                }
-
-                break;
-            
-        }
-        
+        break;
+      case self::QUALITY_MEDIUM:
         switch ($this->getType()) {
-            case IMG_GIF:
-                return imagegif($identifier, $fileSource);                
-                break;
-            case IMG_JPG:
-                return imagejpeg($identifier, $fileSource, $quality);
-                break;
-            case IMG_PNG:
-                return imagepng($identifier, $fileSource, $quality);
-                break;
+          case IMAGETYPE_JPEG:
+            $quality = 75;
+            break;
+          case IMAGETYPE_PNG:
+            $quality = 7;
+            break;
         }
-        
-        imagedestroy($identifier);
-        
+        break;
+      case self::QUALITY_HALF:
+        switch ($this->getType()) {
+          case IMAGETYPE_JPEG:
+            $quality = 50;
+            break;
+          case IMAGETYPE_PNG:
+            $quality = 5;
+            break;
+        }
+        break;
     }
-    
-    /**
-     * Resize image proportionally fitting it into a given dimension
-     * @return void
-     * @param int $maxWidth
-     * @param int $maxHeight
-     */
-    public function fitIntoDimension($maxWidth, $maxHeight){
+    return $quality;
+  }
 
-        $fit = false;
-        $newWidth = $this->getWidth();
-        $newHeight = $this->getHeight();
-        
-        $widthFactor = (100-($maxWidth*100/$newWidth));
-        $heightFactor = (100-($maxHeight*100/$newHeight));
+  /**
+   * Image browser output
+   * @param int $qualityConstant [optional]
+   * @return boolean
+   */
+  public function output($raw = false, $qualityConstant = self::QUALITY_HIGH) {
 
-        if($widthFactor > 0 && $widthFactor > $heightFactor){
+    if ($qualityConstant == null) {
+      $qualityConstant = self::QUALITY_HIGH;
+    }
+    $quality = $this->getQuality($qualityConstant);
 
-            $newWidth = floor(($newWidth - ($newWidth*($widthFactor/100))));
-            $newHeight = floor(($newHeight - ($newHeight*($widthFactor/100))));
+    $identifier = $this->getIdentifier();
+    /*
+    if ($this->getTempImage() == null) {
+      $identifier = $this->getIdentifier();
+    } else {
+      $identifier = $this->getTempImage();
+    }*/
 
-        }elseif($heightFactor > 0 && $heightFactor > $widthFactor){
+    //outputting image to browser
+    if (!$raw) {
+      header("Content-Type: " . $this->getMIME());
+    }
 
-            $newWidth = floor(($newWidth - ($newWidth*($heightFactor/100))));
-            $newHeight = floor(($newHeight - ($newHeight*($heightFactor/100))));
+    ob_start();
+    switch ($this->getType()) {
+      case IMAGETYPE_GIF:
+        return imagegif($identifier);
+        break;
+      case IMAGETYPE_JPEG:
+        return imagejpeg($identifier, null, $quality);
+        break;
+      case IMAGETYPE_PNG:
+        imagesavealpha($identifier, true);
+        return imagepng($identifier, null, $quality);
+        break;
+    }
+    $raw = ob_get_contents();
+    ob_end_clean();
+    imagedestroy($identifier);
+    return $raw;
+  }
 
-        }else{
-            
-            $fit = true;
-            
-        }
-        
-        if(!$fit){            
-            $this->resize($newWidth, $newHeight);            
-        }
-        
+  /**
+   * Image save
+   * @param int $qualityConstant [optional]
+   * @param string $fileSource [optional]
+   * @return boolean
+   */
+  public function save($qualityConstant = self::QUALITY_HIGH, $fileSource = null) {
+
+    if ($qualityConstant == null) {
+      $qualityConstant = self::QUALITY_HIGH;
     }
-    
-    /**
-     * Image resize
-     * @return void
-     * @param int $width
-     * @param int $height 
-     */
-    public function resize($width, $height){
-        
-        $newImage = imagecreatetruecolor($width, $height);
-        
-        //if a temporary image is not set it uses the original
-        if($this->getTempImage() == null){
-            imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
-            //setting a temporary image
-            $this->setTempImage($newImage);
-        }else{
-            imagecopyresampled($newImage, $this->getTempImage(), 0, 0, 0, 0, $width, $height, imagesx($this->getTempImage()), imagesy($this->getTempImage()));
-        }
-        
+    $quality = $this->getQuality($qualityConstant);
+
+    if ($fileSource == null) {
+      $fileSource = $this->getSource();
     }
-    
-    /**
-     * Image text
-     * @return void
-     * @param int $x coordinate
-     * @param int $y coordinate
-     * @param int $size from 1 to 5
-     * @param string $text
-     * @param int $red from 0 to 255
-     * @param int $green from 0 to 255
-     * @param int $blue from 0 to 255
-     */
-    public function setText($x, $y, $size, $text, $red = 0, $green = 0, $blue = 0){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            $color = imagecolorallocate($newImage, $red, $green, $blue);
-            imagestring($newImage, $size, $x, $y, $text, $color);            
-            $this->setTempImage($newImage);
-        }else{            
-            $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
-            imagestring($this->getTempImage(), $size, $x, $y, $text, $color);            
-        }
-        
+
+    if ($this->getTempImage() == null) {
+      $identifier = $this->getIdentifier();
+    } else {
+      $identifier = $this->getTempImage();
     }
-    
-    /**
-     * Image true type text
-     * @todo finish implementation
-     * @param int $x
-     * @param int $y
-     * @param int $size
-     * @param int $angle
-     * @param string $fontfile
-     * @param string $text
-     * @param int $red from 0 to 255
-     * @param int $green from 0 to 255
-     * @param int $blue from 0 to 255
-     */
-    public function setTrueTypeText($x, $y, $size, $angle, $fontfile, $text, $red = 0, $green = 0, $blue = 0){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            $color = imagecolorallocate($newImage, $red, $green, $blue);
-            imagettftext($newImage, $size, $angle, $x, $y, $color, $fontfile, $text);
-            $this->setTempImage($newImage);
-        }else{
-            $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
-            imagettftext($this->getTempImage(), $size, $angle, $x, $y, $color, $fontfile, $text);
-        }
-        
+
+    $imageSaved = false;
+
+    switch ($this->getType()) {
+      case IMAGETYPE_GIF:
+        $imageSaved = imagegif($identifier, $fileSource);
+        break;
+      case IMAGETYPE_JPEG:
+        $imageSaved = imagejpeg($identifier, $fileSource, $quality);
+        break;
+      case IMAGETYPE_PNG:
+        $imageSaved = imagepng($identifier, $fileSource, $quality);
+        break;
     }
-    
-    /**
-     * Image grayscale
-     * @return void
-     */
-    public function setGrayscale(){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            imagefilter($newImage, IMG_FILTER_GRAYSCALE);
-            $this->setTempImage($newImage);
-        }else{
-            imagefilter($this->getTempImage(), IMG_FILTER_GRAYSCALE);            
-        }
-        
+
+    imagedestroy($identifier);
+    return $imageSaved;
+  }
+
+  /**
+   * Resize image proportionally fitting it into a given dimension
+   * @param int $maxWidth
+   * @param int $maxHeight
+   * @return void
+   */
+  public function fitIntoDimension($maxWidth, $maxHeight) {
+
+    $fit = false;
+    $newWidth = $this->getWidth();
+    $newHeight = $this->getHeight();
+
+    $widthFactor = (100 - ($maxWidth * 100 / $newWidth));
+    $heightFactor = (100 - ($maxHeight * 100 / $newHeight));
+
+    if ($widthFactor > 0 && $widthFactor > $heightFactor) {
+      $newWidth = floor(($newWidth - ($newWidth * ($widthFactor / 100))));
+      $newHeight = floor(($newHeight - ($newHeight * ($widthFactor / 100))));
+    } elseif ($heightFactor > 0 && $heightFactor > $widthFactor) {
+      $newWidth = floor(($newWidth - ($newWidth * ($heightFactor / 100))));
+      $newHeight = floor(($newHeight - ($newHeight * ($heightFactor / 100))));
+    } else {
+      $fit = true;
     }
-    
-    /**
-     * Image brightness
-     * @return void
-     * @param int $level [Optional] value from -255 to 255
-     */
-    public function setBrightness($level = 0){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            imagefilter($newImage, IMG_FILTER_BRIGHTNESS, $level);
-            $this->setTempImage($newImage);            
-        }else{            
-            imagefilter($this->getTempImage(), IMG_FILTER_BRIGHTNESS, $level);            
-        }
-        
+
+    if (!$fit) {
+      $this->resize($newWidth, $newHeight);
     }
-    
-    /**
-     * Image contrast
-     * @return void
-     * @param int $level [Optional]
-     */
-    public function setConstrast($level = 0){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            imagefilter($newImage, IMG_FILTER_CONTRAST, $level);
-            $this->setTempImage($newImage);            
-        }else{            
-            imagefilter($this->getTempImage(), IMG_FILTER_CONTRAST, $level);
-            
-        }
-        
+  }
+
+  /**
+   * Image resize
+   * @param int $width
+   * @param int $height 
+   * @return void
+   */
+  public function resize($width, $height) {
+
+    $newImage = imagecreatetruecolor($width, $height);
+    imagealphablending($newImage, false);
+    imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+    $this->setIdentifier($newImage);
+    /*
+      //if a temporary image is not set it uses the original
+      if ($this->getTempImage() == null) {
+      imagealphablending($newImage, false);
+      imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+      //setting a temporary image
+      $this->setTempImage($newImage);
+      } else {
+      imagealphablending($newImage, false);
+      imagecopyresampled($newImage, $this->getTempImage(), 0, 0, 0, 0, $width, $height, imagesx($this->getTempImage()), imagesy($this->getTempImage()));
+      }*/
+  }
+
+  /**
+   * Image text
+   * @param int $x coordinate
+   * @param int $y coordinate
+   * @param int $size from 1 to 5
+   * @param string $text
+   * @param int $red from 0 to 255
+   * @param int $green from 0 to 255
+   * @param int $blue from 0 to 255
+   * @return void
+   */
+  public function setText($x, $y, $size, $text, $red = 0, $green = 0, $blue = 0) {
+
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      $color = imagecolorallocate($newImage, $red, $green, $blue);
+      imagestring($newImage, $size, $x, $y, $text, $color);
+      $this->setTempImage($newImage);
+    } else {
+      $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
+      imagestring($this->getTempImage(), $size, $x, $y, $text, $color);
     }
-    
-    /**
-     * Image emboss
-     * @return void
-     */
-    public function setEmboss(){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            imagefilter($newImage, IMG_FILTER_EMBOSS);
-            $this->setTempImage($newImage);            
-        }else{            
-            imagefilter($this->getTempImage(), IMG_FILTER_EMBOSS);
-            
-        }
-        
+  }
+
+  /**
+   * Image true type text
+   * @todo finish implementation
+   * @param int $x coordinate
+   * @param int $y coordinate
+   * @param int $size
+   * @param int $angle
+   * @param string $fontfile path
+   * @param string $text
+   * @param int $red from 0 to 255
+   * @param int $green from 0 to 255
+   * @param int $blue from 0 to 255
+   */
+  public function setTrueTypeText($x, $y, $size, $angle, $fontfile, $text, $red = 0, $green = 0, $blue = 0) {
+
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      $color = imagecolorallocate($newImage, $red, $green, $blue);
+      imagettftext($newImage, $size, $angle, $x, $y, $color, $fontfile, $text);
+      $this->setTempImage($newImage);
+    } else {
+      $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
+      imagettftext($this->getTempImage(), $size, $angle, $x, $y, $color, $fontfile, $text);
     }
-    
-    /**
-     * Image negative
-     * @return void
-     */
-    public function setNegative(){
-        
-        if($this->getTempImage() == null){
-            $newImage = $this->getIdentifier();
-            imagefilter($newImage, IMG_FILTER_NEGATE);
-            $this->setTempImage($newImage);            
-        }else{            
-            imagefilter($this->getTempImage(), IMG_FILTER_NEGATE);
-            
-        }
-        
+  }
+
+  /**
+   * Image grayscale
+   * @return void
+   */
+  public function setGrayscale() {
+    imagefilter($this->getIdentifier(), IMG_FILTER_GRAYSCALE);
+  }
+
+  /**
+   * Image brightness
+   * @param int $level [Optional] value from -255 to 255
+   * @return void
+   */
+  public function setBrightness($level = 0) {
+    imagefilter($this->getIdentifier(), IMG_FILTER_BRIGHTNESS, $level);
+  }
+
+  /**
+   * Image contrast
+   * @param int $level [Optional]
+   * @return void
+   */
+  public function setConstrast($level = 0) {
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      imagefilter($newImage, IMG_FILTER_CONTRAST, $level);
+      $this->setTempImage($newImage);
+    } else {
+      imagefilter($this->getTempImage(), IMG_FILTER_CONTRAST, $level);
     }
-    
+  }
+
+  /**
+   * Image emboss
+   * @return void
+   */
+  public function setEmboss() {
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      imagefilter($newImage, IMG_FILTER_EMBOSS);
+      $this->setTempImage($newImage);
+    } else {
+      imagefilter($this->getTempImage(), IMG_FILTER_EMBOSS);
+    }
+  }
+
+  /**
+   * Image negative
+   * @return void
+   */
+  public function setNegative() {
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      imagefilter($newImage, IMG_FILTER_NEGATE);
+      $this->setTempImage($newImage);
+    } else {
+      imagefilter($this->getTempImage(), IMG_FILTER_NEGATE);
+    }
+  }
+
+  public function addStamp($image, $x = 0, $y = 0) {
+
+    if (is_resource($image)) {
+      $stamp = $image;
+      imagesavealpha($stamp, true);
+    } else {
+      $stampInfo = getimagesize($image);
+      switch ($stampInfo[2]) {
+        case IMAGETYPE_GIF:
+          $stamp = imagecreatefromgif($image);
+          break;
+        case IMAGETYPE_JPEG:
+          $stamp = imagecreatefromjpeg($image);
+          break;
+        case IMAGETYPE_PNG:
+          $stamp = imagecreatefrompng($image);
+          /* imagealphablending($stamp, false);
+            imagesavealpha($stamp, true); */
+          break;
+      }
+    }
+
+
+    if ($this->getTempImage() == null) {
+      $newImage = $this->getIdentifier();
+      imagecopy($newImage, $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
+      $this->setTempImage($newImage);
+    } else {
+      imagecopy($this->getTempImage(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
+    }
+  }
+
 }
+
+$cmf = new ImageHandler('cmf.png');
+//$cmf->fitIntoDimension(250, 200);
+//$cmf->setGrayscale();
+$cmf->setBrightness(150);
+$cmf->output();
+exit;
+$imgh = new ImageHandler('test.jpg');
+$imgh->fitIntoDimension(300, 300);
+$imgh->addStamp($cmf->getTempImage(), 10, 10);
+
+$imgh->output();
