@@ -23,7 +23,7 @@ use \org\codeminus\main as main;
       </header>
     </div>
     <div class="root">
-      <section><h3>Application initial configuration</h3></section>
+      <section><h5>Application initial configuration</h5></section>
       <?php if (!isset($_POST['cmd'])) { ?>
         <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
@@ -48,7 +48,7 @@ use \org\codeminus\main as main;
               The development environment directory is on the same level of the framework package.                            
             </section>
             <section>
-              <h4>Database settings</h4>
+              <h6>Database settings</h6>
 
               <label for="DEV_DB_HOST">Database host:</label>
               <input type="text" name="DEV_DB_HOST" value="localhost" id="DEV_DB_HOST" class="medium" />
@@ -69,7 +69,7 @@ use \org\codeminus\main as main;
               <input type="text" name="PRO_ENVIRONMENT" value="" id="PRO_ENVIRONMENT" class="medium" />
             </section>
             <section>
-              <h4>Database settings</h4>
+              <h6>Database settings</h6>
 
               <label for="PRO_DB_HOST">Database host:</label>
               <input type="text" name="PRO_DB_HOST" value="" id="PRO_DB_HOST" class="medium" />
