@@ -150,6 +150,10 @@ final class ImageHandler {
 
   private function setIdentifier($identifier) {
     $this->identifier = $identifier;
+    //preserving png transparency
+    if ($this->getType() == IMAGETYPE_PNG) {
+      imagealphablending($this->identifier, false);
+    }
   }
 
   /**
@@ -218,11 +222,11 @@ final class ImageHandler {
 
     $identifier = $this->getIdentifier();
     /*
-    if ($this->getTempImage() == null) {
+      if ($this->getTempImage() == null) {
       $identifier = $this->getIdentifier();
-    } else {
+      } else {
       $identifier = $this->getTempImage();
-    }*/
+      } */
 
     //outputting image to browser
     if (!$raw) {
@@ -255,7 +259,6 @@ final class ImageHandler {
    * @return boolean
    */
   public function save($qualityConstant = self::QUALITY_HIGH, $fileSource = null) {
-
     if ($qualityConstant == null) {
       $qualityConstant = self::QUALITY_HIGH;
     }
@@ -264,15 +267,10 @@ final class ImageHandler {
     if ($fileSource == null) {
       $fileSource = $this->getSource();
     }
-
-    if ($this->getTempImage() == null) {
-      $identifier = $this->getIdentifier();
-    } else {
-      $identifier = $this->getTempImage();
-    }
-
+    
+    $identifier = $this->getIdentifier();
     $imageSaved = false;
-
+    
     switch ($this->getType()) {
       case IMAGETYPE_GIF:
         $imageSaved = imagegif($identifier, $fileSource);
@@ -284,7 +282,6 @@ final class ImageHandler {
         $imageSaved = imagepng($identifier, $fileSource, $quality);
         break;
     }
-
     imagedestroy($identifier);
     return $imageSaved;
   }
@@ -326,22 +323,13 @@ final class ImageHandler {
    * @return void
    */
   public function resize($width, $height) {
-
     $newImage = imagecreatetruecolor($width, $height);
-    imagealphablending($newImage, false);
+    //preserving png transparency
+    if ($this->getType() == IMAGETYPE_PNG) {
+      imagealphablending($newImage, false);
+    }
     imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
     $this->setIdentifier($newImage);
-    /*
-      //if a temporary image is not set it uses the original
-      if ($this->getTempImage() == null) {
-      imagealphablending($newImage, false);
-      imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
-      //setting a temporary image
-      $this->setTempImage($newImage);
-      } else {
-      imagealphablending($newImage, false);
-      imagecopyresampled($newImage, $this->getTempImage(), 0, 0, 0, 0, $width, $height, imagesx($this->getTempImage()), imagesy($this->getTempImage()));
-      }*/
   }
 
   /**
@@ -417,13 +405,7 @@ final class ImageHandler {
    * @return void
    */
   public function setConstrast($level = 0) {
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      imagefilter($newImage, IMG_FILTER_CONTRAST, $level);
-      $this->setTempImage($newImage);
-    } else {
-      imagefilter($this->getTempImage(), IMG_FILTER_CONTRAST, $level);
-    }
+    imagefilter($this->getIdentifier(), IMG_FILTER_CONTRAST, $level);
   }
 
   /**
@@ -431,13 +413,7 @@ final class ImageHandler {
    * @return void
    */
   public function setEmboss() {
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      imagefilter($newImage, IMG_FILTER_EMBOSS);
-      $this->setTempImage($newImage);
-    } else {
-      imagefilter($this->getTempImage(), IMG_FILTER_EMBOSS);
-    }
+    imagefilter($this->getIdentifier(), IMG_FILTER_EMBOSS);
   }
 
   /**
@@ -445,20 +421,20 @@ final class ImageHandler {
    * @return void
    */
   public function setNegative() {
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      imagefilter($newImage, IMG_FILTER_NEGATE);
-      $this->setTempImage($newImage);
-    } else {
-      imagefilter($this->getTempImage(), IMG_FILTER_NEGATE);
-    }
+    imagefilter($this->getIdentifier(), IMG_FILTER_NEGATE);
   }
 
+  /**
+   * Add image stamp
+   * @param mixed $image This parameter accepts either an image source or
+   * resource
+   * @param int $x coordinate
+   * @param int $y coordinate
+   * @return void
+   */
   public function addStamp($image, $x = 0, $y = 0) {
-
     if (is_resource($image)) {
       $stamp = $image;
-      imagesavealpha($stamp, true);
     } else {
       $stampInfo = getimagesize($image);
       switch ($stampInfo[2]) {
@@ -470,32 +446,22 @@ final class ImageHandler {
           break;
         case IMAGETYPE_PNG:
           $stamp = imagecreatefrompng($image);
-          /* imagealphablending($stamp, false);
-            imagesavealpha($stamp, true); */
           break;
       }
     }
-
-
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      imagecopy($newImage, $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
-      $this->setTempImage($newImage);
-    } else {
-      imagecopy($this->getTempImage(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
-    }
+    imagecopy($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
   }
 
 }
 
 $cmf = new ImageHandler('cmf.png');
-//$cmf->fitIntoDimension(250, 200);
-//$cmf->setGrayscale();
-$cmf->setBrightness(150);
-$cmf->output();
-exit;
+$cmf->fitIntoDimension(200, 200);
+$cmf->setBrightness(100);
+//$cmf->output();
+//exit;
 $imgh = new ImageHandler('test.jpg');
-$imgh->fitIntoDimension(300, 300);
-$imgh->addStamp($cmf->getTempImage(), 10, 10);
+//$imgh->fitIntoDimension(200, 300);
 
+$imgh->addStamp('cmf.png', 0, 0);
+$imgh->setConstrast(-10);
 $imgh->output();
