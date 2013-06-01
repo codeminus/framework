@@ -7,15 +7,13 @@ namespace org\codeminus\util;
  * @version 1.1
  * Supported image types: GIF, JPEG, PNG
  */
-final class ImageHandler {
+class ImageHandler {
 
+  private $source;
   private $identifier;
   private $imageInfo;
-  private $source;
-  private $tempImage;
 
   //Quality constants are needed because the quality values for JPG are different from PNG files
-
   const QUALITY_HIGH = 101;
   const QUALITY_MEDIUM = 102;
   const QUALITY_HALF = 103;
@@ -43,6 +41,44 @@ final class ImageHandler {
   }
 
   /**
+   * Image source
+   * @return string 
+   */
+  public function getSource() {
+    return $this->source;
+  }
+
+  /**
+   * Image source
+   * @param string $source the image file path
+   * @return void
+   */
+  private function setSource($source) {
+    $this->source = $source;
+  }
+
+  /**
+   * Image resource identifier
+   * @return resource 
+   */
+  public function getIdentifier() {
+    return $this->identifier;
+  }
+
+  /**
+   * Image resource identifier
+   * @param resource $identifier
+   * @return void
+   */
+  protected function setIdentifier($identifier) {
+    $this->identifier = $identifier;
+    //preserving png transparency
+    if ($this->getType() == IMAGETYPE_PNG) {
+      imagealphablending($this->identifier, false);
+    }
+  }
+
+  /**
    * Image info
    * @return array containing informations about the image
    * [0] => width
@@ -67,23 +103,6 @@ final class ImageHandler {
   }
 
   /**
-   * Image source
-   * @return string 
-   */
-  public function getSource() {
-    return $this->source;
-  }
-
-  /**
-   * Image source
-   * @param string $source the image file path
-   * @return void
-   */
-  protected function setSource($source) {
-    $this->source = $source;
-  }
-
-  /**
    * Image width
    * @return int 
    */
@@ -102,12 +121,10 @@ final class ImageHandler {
   /**
    * Image Type
    * @return int
-   * @example 2 == IMAGETYPE_JPEG
-   * 
+   * @example
    * Supported PHP Image constants examples:
    * IMAGETYPE_GIF == 1
    * IMAGETYPE_JPEG == 2
-   * IMG_JPEG == 2
    * IMAGETYPE_PNG == 4
    * 
    */
@@ -117,14 +134,17 @@ final class ImageHandler {
 
   /**
    * Image HTML
-   * @param string $baseDirectory complementing the previous given source
+   * @param string $baseDirectory [optional] if $replaceDirectory is not given
+   * it will be prepended to the original image source path
+   * @param boolean $replaceDirectory [optional] if true is given, the original
+   * image source path will be replaced by $baseDirectory
    * @return string
    * @example
    * source = "img/example.jpg";
-   * getHTML("../"); return: <img src="../img/example.jpg" width="100" height="100" /> 
+   * getHTML("../");
+   * return: <img src="../img/example.jpg" width="100" height="100" /> 
    */
   public function getHTML($baseDirectory = null, $replaceDirectory = false) {
-
     if ($replaceDirectory) {
       return '<img src="' . $baseDirectory . '" ' . $this->imageInfo[3] . ' />';
     } else {
@@ -141,38 +161,11 @@ final class ImageHandler {
   }
 
   /**
-   * Image resource identifier
-   * @return resource 
+   * Returns the apropriate quality value to be used for a specific image type
+   * @param int $qualityConstant
+   * @return int
    */
-  public function getIdentifier() {
-    return $this->identifier;
-  }
-
-  private function setIdentifier($identifier) {
-    $this->identifier = $identifier;
-    //preserving png transparency
-    if ($this->getType() == IMAGETYPE_PNG) {
-      imagealphablending($this->identifier, false);
-    }
-  }
-
-  /**
-   * Temporary image identifier
-   * @return identifier 
-   */
-  public function getTempImage() {
-    return $this->tempImage;
-  }
-
-  /**
-   * Temporary image identifier
-   * @param identifier $tempImage 
-   */
-  private function setTempImage($tempImage) {
-    $this->tempImage = $tempImage;
-  }
-
-  private function getQuality($qualityConstant) {
+  protected function getQuality($qualityConstant) {
     switch ($qualityConstant) {
       case self::QUALITY_HIGH:
         switch ($this->getType()) {
@@ -209,53 +202,42 @@ final class ImageHandler {
   }
 
   /**
-   * Image browser output
-   * @param int $qualityConstant [optional]
-   * @return boolean
+   * Outputs image to the browser
+   * @param int $qualityConstant[optional]
+   * @return void
    */
-  public function output($raw = false, $qualityConstant = self::QUALITY_HIGH) {
-
+  public function output($qualityConstant = self::QUALITY_HIGH) {
     if ($qualityConstant == null) {
       $qualityConstant = self::QUALITY_HIGH;
     }
     $quality = $this->getQuality($qualityConstant);
 
     $identifier = $this->getIdentifier();
-    /*
-      if ($this->getTempImage() == null) {
-      $identifier = $this->getIdentifier();
-      } else {
-      $identifier = $this->getTempImage();
-      } */
 
     //outputting image to browser
-    if (!$raw) {
-      header("Content-Type: " . $this->getMIME());
-    }
+    header("Content-Type: " . $this->getMIME());
 
-    ob_start();
     switch ($this->getType()) {
       case IMAGETYPE_GIF:
-        return imagegif($identifier);
+        imagegif($identifier);
         break;
       case IMAGETYPE_JPEG:
-        return imagejpeg($identifier, null, $quality);
+        imagejpeg($identifier, null, $quality);
         break;
       case IMAGETYPE_PNG:
         imagesavealpha($identifier, true);
-        return imagepng($identifier, null, $quality);
+        imagepng($identifier, null, $quality);
         break;
     }
-    $raw = ob_get_contents();
-    ob_end_clean();
     imagedestroy($identifier);
-    return $raw;
   }
 
   /**
-   * Image save
-   * @param int $qualityConstant [optional]
-   * @param string $fileSource [optional]
+   * Saves image
+   * @param int $qualityConstant[optional] one of the ImageHandler quality
+   * constants
+   * @param string $fileSource[optional] if not given the original image source
+   * path will be used and the previous image will be replaced
    * @return boolean
    */
   public function save($qualityConstant = self::QUALITY_HIGH, $fileSource = null) {
@@ -267,10 +249,10 @@ final class ImageHandler {
     if ($fileSource == null) {
       $fileSource = $this->getSource();
     }
-    
+
     $identifier = $this->getIdentifier();
     $imageSaved = false;
-    
+
     switch ($this->getType()) {
       case IMAGETYPE_GIF:
         $imageSaved = imagegif($identifier, $fileSource);
@@ -288,15 +270,21 @@ final class ImageHandler {
 
   /**
    * Resize image proportionally fitting it into a given dimension
+   * ATTENTION imagescale() is being implemented for PHP 5.5.0
+   * Checkout if your server has this version avaliable
    * @param int $maxWidth
-   * @param int $maxHeight
+   * @param int $maxHeight[optional] if max height is not given it will use the
+   * $maxWidth value
    * @return void
    */
-  public function fitIntoDimension($maxWidth, $maxHeight) {
-
+  public function fitIntoDimension($maxWidth, $maxHeight = null) {
     $fit = false;
     $newWidth = $this->getWidth();
     $newHeight = $this->getHeight();
+
+    if (!isset($maxHeight)) {
+      $maxHeight = $maxWidth;
+    }
 
     $widthFactor = (100 - ($maxWidth * 100 / $newWidth));
     $heightFactor = (100 - ($maxHeight * 100 / $newHeight));
@@ -317,12 +305,15 @@ final class ImageHandler {
   }
 
   /**
-   * Image resize
+   * Resizes the image to a given dimension
    * @param int $width
-   * @param int $height 
+   * @param int $height[optional] if not given, it will use $width value
    * @return void
    */
-  public function resize($width, $height) {
+  public function resize($width, $height = null) {
+    if (!isset($height)) {
+      $height = $width;
+    }
     $newImage = imagecreatetruecolor($width, $height);
     //preserving png transparency
     if ($this->getType() == IMAGETYPE_PNG) {
@@ -330,56 +321,6 @@ final class ImageHandler {
     }
     imagecopyresampled($newImage, $this->getIdentifier(), 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
     $this->setIdentifier($newImage);
-  }
-
-  /**
-   * Image text
-   * @param int $x coordinate
-   * @param int $y coordinate
-   * @param int $size from 1 to 5
-   * @param string $text
-   * @param int $red from 0 to 255
-   * @param int $green from 0 to 255
-   * @param int $blue from 0 to 255
-   * @return void
-   */
-  public function setText($x, $y, $size, $text, $red = 0, $green = 0, $blue = 0) {
-
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      $color = imagecolorallocate($newImage, $red, $green, $blue);
-      imagestring($newImage, $size, $x, $y, $text, $color);
-      $this->setTempImage($newImage);
-    } else {
-      $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
-      imagestring($this->getTempImage(), $size, $x, $y, $text, $color);
-    }
-  }
-
-  /**
-   * Image true type text
-   * @todo finish implementation
-   * @param int $x coordinate
-   * @param int $y coordinate
-   * @param int $size
-   * @param int $angle
-   * @param string $fontfile path
-   * @param string $text
-   * @param int $red from 0 to 255
-   * @param int $green from 0 to 255
-   * @param int $blue from 0 to 255
-   */
-  public function setTrueTypeText($x, $y, $size, $angle, $fontfile, $text, $red = 0, $green = 0, $blue = 0) {
-
-    if ($this->getTempImage() == null) {
-      $newImage = $this->getIdentifier();
-      $color = imagecolorallocate($newImage, $red, $green, $blue);
-      imagettftext($newImage, $size, $angle, $x, $y, $color, $fontfile, $text);
-      $this->setTempImage($newImage);
-    } else {
-      $color = imagecolorallocate($this->getTempImage(), $red, $green, $blue);
-      imagettftext($this->getTempImage(), $size, $angle, $x, $y, $color, $fontfile, $text);
-    }
   }
 
   /**
@@ -409,7 +350,7 @@ final class ImageHandler {
   }
 
   /**
-   * Image emboss
+   * Emboss image
    * @return void
    */
   public function setEmboss() {
@@ -417,7 +358,7 @@ final class ImageHandler {
   }
 
   /**
-   * Image negative
+   * Reverse image colors
    * @return void
    */
   public function setNegative() {
@@ -425,14 +366,59 @@ final class ImageHandler {
   }
 
   /**
+   * Rotate image
+   * @param type $angle
+   * @return void
+   */
+  public function rotate($angle) {
+    $this->setIdentifier(imagerotate($this->getIdentifier(), $angle, 0));
+  }
+
+  /**
+   * Add text on image
+   * @param string $text to add on image
+   * @param int $size[optional] from 1 to 5
+   * @param int $x[optional] coordinate
+   * @param int $y[optional] coordinate
+   * @param int $red[optional] from 0 to 255
+   * @param int $green[optional] from 0 to 255
+   * @param int $blue[optional] from 0 to 255
+   * @return void
+   */
+  public function addText($text, $size = 5, $x = 0, $y = 0, $red = 0, $green = 0, $blue = 0) {
+    $color = imagecolorallocate($this->getIdentifier(), $red, $green, $blue);
+    imagestring($this->getIdentifier(), $size, $x, $y, $text, $color);
+  }
+
+  /**
+   * Add true type text on image
+   * @param string $text to add on image
+   * @param string $fontfile file path to the font
+   * @param int $size[optional] font size
+   * @param int $x[optional] coordinate
+   * @param int $y[optional] coordinate
+   * @param int $red[optional] from 0 to 255
+   * @param int $green[optional] from 0 to 255
+   * @param int $blue[optional] from 0 to 255
+   * @param int $angle[optional] to rotate text counting counter-clockwise
+   * @return void
+   */
+  public function addTrueTypeText($text, $fontfile, $size = 20, $x = 0, $y = 0, $red = 0, $green = 0, $blue = 0, $angle = 0) {
+    $color = imagecolorallocate($this->getIdentifier(), $red, $green, $blue);
+    imagettftext($this->getIdentifier(), $size, $angle, $x, $y, $color, $fontfile, $text);
+  }
+
+  /**
    * Add image stamp
    * @param mixed $image This parameter accepts either an image source or
    * resource
-   * @param int $x coordinate
-   * @param int $y coordinate
+   * @param int $x[optional] coordinate
+   * @param int $y[optional] coordinate
+   * @param int $pct[optional] percentage of transparency. This parameter wont
+   * work with png alpha channel
    * @return void
    */
-  public function addStamp($image, $x = 0, $y = 0) {
+  public function addStamp($image, $x = 0, $y = 0, $pct = null) {
     if (is_resource($image)) {
       $stamp = $image;
     } else {
@@ -449,19 +435,11 @@ final class ImageHandler {
           break;
       }
     }
-    imagecopy($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
+    if (isset($pct)) {
+      imagecopymerge($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp), $pct);
+    } else {
+      imagecopy($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
+    }
   }
 
 }
-
-$cmf = new ImageHandler('cmf.png');
-$cmf->fitIntoDimension(200, 200);
-$cmf->setBrightness(100);
-//$cmf->output();
-//exit;
-$imgh = new ImageHandler('test.jpg');
-//$imgh->fitIntoDimension(200, 300);
-
-$imgh->addStamp('cmf.png', 0, 0);
-$imgh->setConstrast(-10);
-$imgh->output();
