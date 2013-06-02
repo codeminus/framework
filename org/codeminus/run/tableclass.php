@@ -28,15 +28,15 @@ if (isset($_POST['cmd'])) {
     <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
-    <div class="header clearFix">
-      <header class="">
-        <img src="../img/cmf-medium.png" class="floatLeft"/>
-        <div class="floatRight bold">TableClass v1.1</div>
+    <div class="header-container">
+      <header class="root clearfix">
+        <img src="../img/cmf-medium.png" class="float-left"/>
+        <div class="float-right bold">TableClass v1.1</div>
       </header>
     </div>
     <div class="root">
-      <section><h2>Table class generator</h2></section>
-      <div class="floatLeft" >
+      <section><h5>Table class generator</h5></section>
+      <div class="float-left" >
         <form name="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <section class="default-container">
             <header>Database connection parameters</header>
@@ -64,7 +64,7 @@ if (isset($_POST['cmd'])) {
           <input type="submit" name="cmd" value="generate" class="btn btn-blue"/>
         </form>
       </div>
-      <div class="floatRight" style="width: 630px;">
+      <div class="float-right" style="width: 630px;">
         <section class="default-container">
           <header>Output</header>
           <section style="height: 492px; overflow-y: auto;">
