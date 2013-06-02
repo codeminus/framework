@@ -1,24 +1,40 @@
 /*Navegation stylesheet v1.0*/
 
 /* ==========================================================================
-   Horizontal list
+   Base for all navegation lists
    ========================================================================== */
-.nav-hlist{
+.nav{
   list-style: none;
   padding-left: 0px;
-  width: 200px;
+  display: inline-block;
 }
-
+.nav > li > a{
+  padding: 10px 13px;
+}
+.nav > li > a:hover{
+  background-color: #f7f7f7;
+}
+.nav .selected{
+  color: #666;
+  border: solid 1px #ddd;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+}
+/* ==========================================================================
+   Vertical list
+   ========================================================================== */
+.nav-vlist > li > a{
+  display: block;
+}
+/* ==========================================================================
+   Horizontal list
+   ========================================================================== */
+.nav-hlist > li{
+  display: inline-block;
+}
 .nav-hlist > li.header{
   background-color: #f7f7f7;
   padding: 10px 13px;
 }
-.nav-hlist > li > a{
-  padding: 10px 13px;
-  color: inherit;
-}
-
-
 /* ==========================================================================
    Horizontal tabs
    ========================================================================== */
@@ -27,23 +43,17 @@
   padding-left: 0px;
   border-bottom: solid 1px #ddd;
 }
-
 .nav-htabs > li{
   display: inline-block;
 }
-
 .nav-htabs > li > a{
-  padding: 10px 13px;
-  color: inherit;
-}
-
-.nav-htabs .selected{
-  border: solid 1px #ddd;  
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+.nav-htabs .selected{
   border-bottom: solid 1px #fff;
+  box-shadow: 0px -1px 3px rgba(0,0,0,0.1);
   margin-bottom: -1px;
-  color: #333;
 }
 /* ==========================================================================
    Horizontal inverted tabs 
@@ -52,14 +62,16 @@
   border-top: solid 1px #ddd;
   border-bottom: none;
 }
-
-.nav-htabs.inverted .selected{
+.nav-htabs.inverted > li > a{
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+.nav-htabs.inverted .selected{
   border-top: solid 1px #fff;
   border-bottom: solid 1px #ddd;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
   margin-top: -1px;
   margin-bottom: 0px;
 }
@@ -73,19 +85,14 @@
   margin: 10px;
   border-right: solid 1px #ddd;
 }
-
 .nav-vtabs > li > a{
-  padding: 10px 13px;
-  color: inherit;
-}
-
-.nav-vtabs .selected{
-  border: solid 1px #ddd;  
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+}
+.nav-vtabs .selected{
   border-right: solid 1px #fff;
+  box-shadow: -1px 0px 3px rgba(0,0,0,0.1);
   margin-right: -1px;
-  color: #333;
 }
 /* ==========================================================================
    Vertical tabs inverted
@@ -94,14 +101,16 @@
   border-left: solid 1px #ddd;
   border-right: none;
 }
-
-.nav-vtabs.inverted .selected{
+.nav-vtabs.inverted > li > a{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+.nav-vtabs.inverted .selected{
   border-right: solid 1px #ddd;
   border-left: solid 1px #fff;
+  box-shadow: 1px 0px 3px rgba(0,0,0,0.1);
   margin-left: -1px;
   margin-right: 0px;
 }
