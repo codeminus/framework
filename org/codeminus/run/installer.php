@@ -1,5 +1,5 @@
 <?php
-require_once '../main/installer.php';
+require_once '../main/Installer.php';
 require_once '../file/FileHandler.php';
 
 use \org\codeminus\main as main;
@@ -13,21 +13,28 @@ use \org\codeminus\main as main;
     <?php } else { ?>
       <title>App configuration - output</title>
     <?php } ?>
-    <link rel="stylesheet" href="../css/codeminus.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/containers.css" />
+    <link rel="stylesheet" href="../css/forms.css" />
+    <style type="text/css">
+      .container-box{
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div class="header-container">
-      <header class="root clearfix">
+    <div class="container-header">
+      <header class="container-centered clearfix">
         <img src="../img/cmf-medium.png" class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
     </div>
-    <div class="root">
-      <section><h5>Application initial configuration</h5></section>
+    <div class="container-centered">
+      <section><h4>Application initial configuration</h4></section>
       <?php if (!isset($_POST['cmd'])) { ?>
         <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
-          <section class="default-container">
+          <section class="container-box block">
             <header>
               General environment settings
             </header>
@@ -38,7 +45,7 @@ use \org\codeminus\main as main;
               for a list of supported time zones
             </section>
           </section>
-          <section class="default-container">
+          <section class="container-box block">
             <header>
               Development environment
             </header>
@@ -60,7 +67,7 @@ use \org\codeminus\main as main;
               <input type="text" name="DEV_DB_NAME" value="" id="DEV_DB_NAME" class="medium" />
             </section>
           </section>
-          <section class="default-container">
+          <section class="container-box block">
             <header>
               Production environment
             </header>
@@ -81,7 +88,7 @@ use \org\codeminus\main as main;
               <input type="text" name="PRO_DB_NAME" value="" id="PRO_DB_NAME" class="medium" />
             </section>
           </section>
-          <section class="default-container">
+          <section class="container-box block">
             <header>
               Almost there!
             </header>
@@ -95,7 +102,7 @@ use \org\codeminus\main as main;
 
       <?php } else { ?>
 
-        <section class="default-container">
+        <section class="container-box block">
           <header>Output</header>
           <section>
             <?php
