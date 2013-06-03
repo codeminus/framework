@@ -19,8 +19,8 @@ class FileHandler {
    */
   public static function recursiveCopy($src, $dst, $showLog = true, $groupLog = true) {
     if ($groupLog) {
-        echo '<p class="info">_</p>';
-      }
+      echo '<p class="info">_</p>';
+    }
     $dir = opendir($src);
     if (!file_exists($dst)) {
       mkdir($dst);
@@ -31,7 +31,7 @@ class FileHandler {
       if ($showLog) {
         echo '<p class="warning">' . $dst . ' NOT created. Directory already exists.</p>';
       }
-    }    
+    }
     while (false !== ( $file = readdir($dir))) {
       if (( $file != '.' ) && ( $file != '..' )) {
         $sourceFilePath = $src . '/' . $file;
@@ -54,7 +54,7 @@ class FileHandler {
     }
     closedir($dir);
   }
-  
+
   /**
    * Creates a file
    * @param string $fileName complete file path
@@ -66,12 +66,12 @@ class FileHandler {
       if (!file_put_contents($fileName, $fileContent)) {
         exit('<p>Unable to create ' . $fileName . '</p>');
       } else {
-        if($showLog){
+        if ($showLog) {
           echo '<p class="info">' . $fileName . ' created.</p>';
         }
       }
     } else {
-      if($showLog){
+      if ($showLog) {
         echo '<p class="warning">' . $fileName . ' NOT created. File already exists.</p>';
       }
     }
@@ -88,17 +88,17 @@ class FileHandler {
       if (!mkdir($dir, $mode, true)) {
         exit('<p class="warning">Unable to create ' . $dir . '</p>');
       } else {
-        if($showLog){
+        if ($showLog) {
           echo '<p class="info">' . $dir . ' created.</p>';
         }
       }
     } else {
-      if($showLog){
+      if ($showLog) {
         echo '<p class="warning">' . $dir . ' NOT created. Directory already exists.</p>';
       }
     }
   }
-  
+
 }
 
 ?>
