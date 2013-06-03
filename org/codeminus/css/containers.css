@@ -1,61 +1,94 @@
-/*Containers stylesheet v1.0*/
+/*codeminus.org Containers CSS library v1.0*/
 
 /* ==========================================================================
-   Root container.
+   Main Containers
    ========================================================================== */
-.root{
+.container-centered{
   width: 940px;
   margin: 0px auto;
-  margin-bottom: 20px;
 }
-
-.header-container{
+.container-header{
    background-color: #f7f7f7;
-   border-bottom: solid 1px #ddd;
+   border-bottom: solid 1px #d8d8d8;
    padding: 10px 0px;
+}
+.container-foot{
+   border-top: solid 1px #eee;
+   font-size: 85%;
+   padding-top: 5px;
+   margin-top: 10px;
 }
 
 /* ==========================================================================
-   Default container
+   Container box
    ========================================================================== */
-.default-container{
-  margin-bottom: 20px;
+.container-box{
+  display: inline-block;
+  vertical-align: top;
 }
-.default-container > header, .default-container > section, .default-container > footer{
-  border: solid 1px #ddd;
-  padding: 10px;
+.container-box > header:first-child,
+.container-box > section:first-child,
+.container-box > footer:first-child{
+  border: solid 1px #d8d8d8;
 }
-
-.default-container > header, .default-container > footer{
-  background-color: #f7f7f7;
-  color: #333;
-}
-
-.default-container > header{
+.container-box.rounded > header:first-child,
+.container-box.rounded > section:first-child,
+.container-box.rounded > footer:first-child{
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+.container-box.rounded > header:last-child,
+.container-box.rounded > section:last-child,
+.container-box.rounded > footer:last-child{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.container-box > header,
+.container-box > section,
+.container-box > footer{
+  border: solid 1px #d8d8d8;
+  padding: 10px;
+  line-height: 12px;
+}
+.container-box > header,
+.container-box > footer{
+  background-color: #f7f7f7;
+  text-shadow: 0 1px 0 #fff;
+}
+.container-box > header{
   font-weight: bold;
 }
-
-.default-container > footer{
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  text-align: right;
-  color: #999;
+.container-box > section{
+  background-color: white;
 }
-
-.default-container > section, .default-container > footer{
+.container-box > footer{
+  color: #999;
+  font-size: 80%;
+}
+.container-box > header,
+.container-box > section,
+.container-box > footer{
   border-top: none;
 }
-
-.default-container:last-child{
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+/* ==========================================================================
+   Bubble container
+   ========================================================================== */
+.container-bubble{
+  background-color: #eee;
+  border-radius: 3px;
+  padding: 3px;
+  display: inline-block;
+  vertical-align: top;
 }
-
-.default-container .separator{
-  display: block;
-  height: 2px;
-  border-bottom: 1px solid #e5e5e5;
-  margin: 10px 0px; 
+/* ==========================================================================
+   Container shadow
+   ========================================================================== */
+.container-shadow{
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+  display: inline-block;
+  vertical-align: top;
 }
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
