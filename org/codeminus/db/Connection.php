@@ -13,7 +13,7 @@ class Connection extends \mysqli {
   private $host;
   private $user;
   private $database;
-  
+
   /**
    * Opens connection with a database server
    * Default values will be used when an optional parameter isn't set.
@@ -30,7 +30,7 @@ class Connection extends \mysqli {
     parent::__construct($host, $user, $password, $database);
     $this->setInstance();
   }
-  
+
   /**
    * Clear the current DBConnection static instance, setting it to null
    */
@@ -97,7 +97,7 @@ class Connection extends \mysqli {
   private function setUser($user) {
     $this->user = $user;
   }
-    
+
   /**
    * Database name
    * @return string

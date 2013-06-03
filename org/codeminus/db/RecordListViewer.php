@@ -17,7 +17,6 @@ class RecordListViewer {
   private $previousPageButtonContent = '&nbsp;&lt;&nbsp;';
   private $nextPageButtonContent = '&nbsp;&gt;&nbsp;';
   private $lastPageButtonContent = '&nbsp;&gt;|&nbsp;';
-  
   private $tableParameters;
 
   const COMPLETE_CONTROLS = 0;
@@ -308,7 +307,7 @@ class RecordListViewer {
   public function setTableParameters($tableParameters) {
     $this->tableParameters = $tableParameters;
   }
-  
+
   /**
    * HTML table containing all rows from the result set
    * @param string $columnsHeaders column headers separated by ,(comma).
@@ -318,7 +317,7 @@ class RecordListViewer {
    * @return string
    */
   public function getTable($columnsHeaders = null) {
-    $table = "<table ".$this->getTableParameters()." >";
+    $table = "<table " . $this->getTableParameters() . " >";
     $table .= "<thead>";
     $table .= "<tr>";
     if (isset($columnsHeaders)) {

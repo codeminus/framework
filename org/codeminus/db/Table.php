@@ -804,7 +804,7 @@ abstract class Table {
         if (isset($row[$tableColumn])) {
           //populates class properties with correspondent table columnn values
           $this->$tableColumn = $row[$tableColumn];
-        }else{
+        } else {
           $this->$tableColumn = null;
         }
       }
