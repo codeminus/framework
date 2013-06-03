@@ -1,0 +1,107 @@
+/*codeminus.org Base CSS library v1.0*/
+@import "normalize.css";
+/*@import "containers.css";
+@import "colors.css";
+@import "navs.css";
+@import "forms.css";
+@import "tables.css";
+@import "messages.css";*/
+
+/* ==========================================================================
+   General tags
+   ========================================================================== */
+html{
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 14px;
+  color: #666;
+  outline: none;
+}
+
+a, a:visited{
+  text-decoration: none;
+  color: #4183C4;
+  outline: none;
+  display: inline-block;
+}
+
+a img{
+  border: none;
+  margin-bottom: -2px;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+  color: #555;
+  margin: 10px 0px;
+}
+
+h1{ font-size: 3.5em; }
+h2{ font-size: 3em; }
+h3{ font-size: 2.5em; }
+h4{ font-size: 2em; }
+h5{ font-size: 1.5em; }
+h6{ font-size: 1.2em; }
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+.block{
+  display: block;
+}
+
+.inline{
+  display: inline;
+}
+
+.hide{
+  display: none;    
+}
+
+.invisible{
+  visibility: hidden;
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.bold{
+  font-weight: bold;
+}
+.underline{
+  border-bottom: solid 1px #eee;
+}
+.separator{
+  display: block;
+  height: 1px;
+  border-bottom: 1px solid #eee;
+}
