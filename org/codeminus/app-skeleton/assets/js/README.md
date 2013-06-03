@@ -1,0 +1,1 @@
+Your application javascript go on this folder
