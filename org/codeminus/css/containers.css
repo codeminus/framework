@@ -8,15 +8,21 @@
   margin: 0px auto;
 }
 .container-header{
-   background-color: #f7f7f7;
-   border-bottom: solid 1px #d8d8d8;
-   padding: 10px 0px;
+  background-color: #f7f7f7;
+  border-bottom: solid 1px #d8d8d8;
+  padding: 10px 0px;
 }
-.container-foot{
-   border-top: solid 1px #eee;
-   font-size: 85%;
-   padding-top: 5px;
-   margin-top: 10px;
+.container-upper-foot{
+  background-color: #f7f7f7;
+  border-top: solid 1px #eee;
+  font-size: 85%;
+  padding-top: 5px;
+  margin-top: 10px;
+}
+.container-lower-foot{
+  font-size: 85%;
+  padding-top: 5px;
+  margin-top: 10px;
 }
 
 /* ==========================================================================

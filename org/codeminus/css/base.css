@@ -19,7 +19,7 @@ html{
 a, a:visited{
   text-decoration: none;
   color: #4183C4;
-  outline: none;
+  outline: none; 
   display: inline-block;
 }
 a img{
@@ -40,7 +40,7 @@ h6{ font-size: 1.2em; }
    Utility classes
    ========================================================================== */
 .block{
-  display: block;
+  display: block !important;
 }
 .inline{
   display: inline;
@@ -94,4 +94,5 @@ h6{ font-size: 1.2em; }
   display: block;
   height: 1px;
   border-bottom: 1px solid #eee;
+  margin: 10px 0px;
 }
