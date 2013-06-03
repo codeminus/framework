@@ -25,8 +25,8 @@ class Installer {
    * @return void
    */
   public function createAppFiles() {
-    file\FileHandler::recursiveCopy('../app-skeleton',  self::APP_ROOT);    
-    $initFilePath = self::APP_ROOT . '/app/configs/init.php';    
+    file\FileHandler::recursiveCopy('../app-skeleton', self::APP_ROOT);
+    $initFilePath = self::APP_ROOT . '/app/configs/init.php';
     file\FileHandler::createFile($initFilePath, $this->getInitContent());
   }
 

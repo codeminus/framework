@@ -14,13 +14,12 @@ abstract class Controller {
    * @var View
    */
   protected $view;
-  
+
   /**
    * The name of the last controller called
    * @var string
    */
   static $LASTCALLED;
-  
 
   /**
    * Base controller
@@ -30,7 +29,7 @@ abstract class Controller {
     $this->view = new View();
     self::$LASTCALLED = get_called_class();
   }
-  
+
   /**
    * Redirects to a given location relative to APP_HTTP_PATH
    * @param string $url
