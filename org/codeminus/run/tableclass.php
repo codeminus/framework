@@ -25,20 +25,27 @@ if (isset($_POST['cmd'])) {
 <html>
   <head>
     <title>Table class generator</title>
-    <link rel="stylesheet" href="../css/codeminus.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/containers.css" />
+    <link rel="stylesheet" href="../css/forms.css" />
+    <style type="text/css">
+      .container-box{
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div class="header-container">
-      <header class="root clearfix">
+    <div class="container-header">
+      <header class="container-centered clearfix">
         <img src="../img/cmf-medium.png" class="float-left"/>
         <div class="float-right bold">TableClass v1.1</div>
       </header>
     </div>
-    <div class="root">
+    <div class="container-centered">
       <section><h5>Table class generator</h5></section>
       <div class="float-left" >
         <form name="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-          <section class="default-container">
+          <section class="container-box rounded block">
             <header>Database connection parameters</header>
             <section>
               <label for="db_host">Host:</label>
@@ -54,7 +61,7 @@ if (isset($_POST['cmd'])) {
             </section>
 
           </section>
-          <section class="default-container">
+          <section class="container-box rounded block">
             <header>Class properties</header>
             <section>
               <label for="class_namespace">Namespace:</label>
@@ -65,7 +72,7 @@ if (isset($_POST['cmd'])) {
         </form>
       </div>
       <div class="float-right" style="width: 630px;">
-        <section class="default-container">
+        <section class="container-box rounded block">
           <header>Output</header>
           <section style="height: 492px; overflow-y: auto;">
 
