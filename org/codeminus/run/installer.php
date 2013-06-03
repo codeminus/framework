@@ -17,6 +17,9 @@ use \org\codeminus\main as main;
     <link rel="stylesheet" href="../css/containers.css" />
     <link rel="stylesheet" href="../css/forms.css" />
     <style type="text/css">
+      .container-centered{
+        width: 920px;
+      }
       .container-box{
         margin-bottom: 20px;
       }
@@ -34,7 +37,7 @@ use \org\codeminus\main as main;
       <?php if (!isset($_POST['cmd'])) { ?>
         <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
-          <section class="container-box block">
+          <section class="container-box rounded block">
             <header>
               General environment settings
             </header>
@@ -45,7 +48,7 @@ use \org\codeminus\main as main;
               for a list of supported time zones
             </section>
           </section>
-          <section class="container-box block">
+          <section class="container-box rounded block">
             <header>
               Development environment
             </header>
@@ -67,7 +70,7 @@ use \org\codeminus\main as main;
               <input type="text" name="DEV_DB_NAME" value="" id="DEV_DB_NAME" class="medium" />
             </section>
           </section>
-          <section class="container-box block">
+          <section class="container-box rounded block">
             <header>
               Production environment
             </header>
@@ -88,7 +91,7 @@ use \org\codeminus\main as main;
               <input type="text" name="PRO_DB_NAME" value="" id="PRO_DB_NAME" class="medium" />
             </section>
           </section>
-          <section class="container-box block">
+          <section class="container-box rounded block">
             <header>
               Almost there!
             </header>
@@ -102,7 +105,7 @@ use \org\codeminus\main as main;
 
       <?php } else { ?>
 
-        <section class="container-box block">
+        <section class="container-box rounded block">
           <header>Output</header>
           <section>
             <?php
