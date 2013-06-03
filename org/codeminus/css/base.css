@@ -16,63 +16,53 @@ html{
   color: #666;
   outline: none;
 }
-
 a, a:visited{
   text-decoration: none;
   color: #4183C4;
   outline: none;
   display: inline-block;
 }
-
 a img{
   border: none;
   margin-bottom: -2px;
 }
-
-
 h1, h2, h3, h4, h5, h6{
   color: #555;
   margin: 10px 0px;
 }
-
 h1{ font-size: 3.5em; }
 h2{ font-size: 3em; }
 h3{ font-size: 2.5em; }
 h4{ font-size: 2em; }
 h5{ font-size: 1.5em; }
 h6{ font-size: 1.2em; }
-
 /* ==========================================================================
    Utility classes
    ========================================================================== */
 .block{
   display: block;
 }
-
 .inline{
   display: inline;
 }
-
 .hide{
   display: none;    
 }
-
 .invisible{
   visibility: hidden;
 }
-
 .float-left{
   float: left;
 }
-
 .float-right{
   float: right;
 }
-
 .text-right{
   text-align: right;
 }
-
+.text-center{
+  text-align: center;
+}
 .clearfix {
   *zoom: 1;
 }
