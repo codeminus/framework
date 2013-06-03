@@ -18,7 +18,7 @@ use \org\codeminus\main as main;
   <body>
     <div class="header-container">
       <header class="root clearfix">
-        <img src="../img/cmf-medium.png" class="float-Left"/>
+        <img src="../img/cmf-medium.png" class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
     </div>
