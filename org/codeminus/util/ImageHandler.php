@@ -14,6 +14,7 @@ class ImageHandler {
   private $imageInfo;
 
   //Quality constants are needed because the quality values for JPG are different from PNG files
+
   const QUALITY_HIGH = 101;
   const QUALITY_MEDIUM = 102;
   const QUALITY_HALF = 103;
@@ -405,7 +406,7 @@ class ImageHandler {
    */
   public function addTrueTypeText($text, $fontfile, $size = 20, $x = 0, $y = null, $red = 0, $green = 0, $blue = 0, $angle = 0) {
     $color = imagecolorallocate($this->getIdentifier(), $red, $green, $blue);
-    if(!isset($y)){
+    if (!isset($y)) {
       $y = imagesy($this->getIdentifier());
     }
     imagettftext($this->getIdentifier(), $size, $angle, $x, $y, $color, $fontfile, $text);
@@ -444,4 +445,5 @@ class ImageHandler {
       imagecopy($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
     }
   }
+
 }
