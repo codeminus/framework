@@ -403,8 +403,11 @@ class ImageHandler {
    * @param int $angle[optional] to rotate text counting counter-clockwise
    * @return void
    */
-  public function addTrueTypeText($text, $fontfile, $size = 20, $x = 0, $y = 0, $red = 0, $green = 0, $blue = 0, $angle = 0) {
+  public function addTrueTypeText($text, $fontfile, $size = 20, $x = 0, $y = null, $red = 0, $green = 0, $blue = 0, $angle = 0) {
     $color = imagecolorallocate($this->getIdentifier(), $red, $green, $blue);
+    if(!isset($y)){
+      $y = imagesy($this->getIdentifier());
+    }
     imagettftext($this->getIdentifier(), $size, $angle, $x, $y, $color, $fontfile, $text);
   }
 
@@ -441,5 +444,4 @@ class ImageHandler {
       imagecopy($this->getIdentifier(), $stamp, $x, $y, 0, 0, imagesx($stamp), imagesy($stamp));
     }
   }
-
 }
