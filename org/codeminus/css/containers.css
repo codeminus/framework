@@ -24,6 +24,24 @@
   padding-top: 5px;
 }
 /* ==========================================================================
+   Container message
+   ========================================================================== */
+.container-box.success section,
+.container-bubble.success section,
+.container-shadow.success section{
+  background-color: #dff0d8;
+}
+.container-box.warning section,
+.container-bubble.warning section,
+.container-shadow.warning section{
+  background-color: #fcf8e3;
+}
+.container-box.info section,
+.container-bubble.info section,
+.container-shadow.info section{
+  background-color: #d9edf7;
+}
+/* ==========================================================================
    Container box
    ========================================================================== */
 .container-box{
@@ -77,14 +95,7 @@
 /* ==========================================================================
    Container box style 02
    ========================================================================== */
-.container-box.style02 > header{
-  background-color: #eee;
-  background-image: -moz-linear-gradient(#eee, #fafafa);
-  background-image: -webkit-linear-gradient(#eee, #fafafa);
-  background-image: linear-gradient(#eee, #fafafa);
-  background-repeat: repeat-x;
-}
-.container-box.style02 > footer{
+.container-box.style02 > footer, .container-box.style02 > header{
   background-color: #fafafa;
   background-image: -moz-linear-gradient(#fafafa, #e7e7e7);
   background-image: -webkit-linear-gradient(#fafafa, #e7e7e7);
