@@ -107,6 +107,12 @@ h6{ font-size: 1.2em; }
 .margined-bottom{
   margin-bottom: 5px;
 }
+.margined-left{
+  margin-left: 5px;
+}
+.margined-right{
+  margin-right: 5px;
+}
 .margined-vertical{
   margin-top: 5px;
   margin-bottom: 5px;
