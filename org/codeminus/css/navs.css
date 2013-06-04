@@ -48,6 +48,9 @@
 .nav-vlist.style02 > li:last-child{
   border-bottom: #fafafb;
 }
+.nav.nav-vlist > li > a:hover{
+  background-color: #f5f5f5;
+}
 .nav-vlist.style02 .selected{
   box-shadow: none;
   border: none;
