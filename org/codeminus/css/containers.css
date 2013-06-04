@@ -1,5 +1,4 @@
 /*codeminus.org Containers CSS library v1.0*/
-
 /* ==========================================================================
    Main Containers
    ========================================================================== */
@@ -11,26 +10,24 @@
   background-color: #f7f7f7;
   border-bottom: solid 1px #d8d8d8;
   padding: 10px 0px;
+  margin-bottom: 10px;
 }
 .container-upper-foot{
   background-color: #f7f7f7;
   border-top: solid 1px #eee;
   font-size: 85%;
-  padding-top: 5px;
+  padding: 10px 0px;
   margin-top: 10px;
 }
 .container-lower-foot{
   font-size: 85%;
   padding-top: 5px;
-  margin-top: 10px;
 }
-
 /* ==========================================================================
    Container box
    ========================================================================== */
 .container-box{
   display: inline-block;
-  vertical-align: top;
 }
 .container-box > header:first-child,
 .container-box > section:first-child,
@@ -78,6 +75,23 @@
   border-top: none;
 }
 /* ==========================================================================
+   Container box style 02
+   ========================================================================== */
+.container-box.style02 > header{
+  background-color: #eee;
+  background-image: -moz-linear-gradient(#eee, #fafafa);
+  background-image: -webkit-linear-gradient(#eee, #fafafa);
+  background-image: linear-gradient(#eee, #fafafa);
+  background-repeat: repeat-x;
+}
+.container-box.style02 > footer{
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(#fafafa, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fafafa, #e7e7e7);
+  background-image: linear-gradient(#fafafa, #e7e7e7);
+  background-repeat: repeat-x;
+}
+/* ==========================================================================
    Bubble container
    ========================================================================== */
 .container-bubble{
@@ -85,7 +99,6 @@
   border-radius: 3px;
   padding: 3px;
   display: inline-block;
-  vertical-align: top;
 }
 /* ==========================================================================
    Container shadow
@@ -93,7 +106,6 @@
 .container-shadow{
   box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
   display: inline-block;
-  vertical-align: top;
 }
 /* ==========================================================================
    Utility classes
