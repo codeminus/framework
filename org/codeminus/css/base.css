@@ -1,12 +1,5 @@
 /*codeminus.org Base CSS library v1.0*/
 @import "normalize.css";
-/*@import "containers.css";
-@import "colors.css";
-@import "navs.css";
-@import "forms.css";
-@import "tables.css";
-@import "messages.css";*/
-
 /* ==========================================================================
    General tags
    ========================================================================== */
@@ -15,6 +8,9 @@ html{
   font-size: 14px;
   color: #666;
   outline: none;
+}
+*{
+  vertical-align: top;
 }
 a, a:visited{
   text-decoration: none;
@@ -95,4 +91,27 @@ h6{ font-size: 1.2em; }
   height: 1px;
   border-bottom: 1px solid #eee;
   margin: 10px 0px;
+}
+.bordered{
+  border: solid 1px #ddd;
+}
+/* ==========================================================================
+   Margins
+   ========================================================================== */
+.margined{
+  margin: 5px;
+}
+.margined-top{
+  margin-bottom: 5px;
+}
+.margined-bottom{
+  margin-bottom: 5px;
+}
+.margined-vertical{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.margined-horizontal{
+  margin-left: 5px;
+  margin-right: 5px;
 }
