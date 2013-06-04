@@ -207,7 +207,7 @@ class TableClass {
     }';
 
     //classFile
-    $cf = '&lt;?php
+    $cf = '
 ' . $namespace . '
 
 use \org\codeminus\db as db;
