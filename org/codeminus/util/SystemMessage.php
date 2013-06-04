@@ -61,7 +61,7 @@ abstract class SystemMessage {
    * @param string $message
    * @return void
    */
-  protected function addMessage($code, $message, $type, $icon = null) {
+  protected function addMessage($code, $message, $type = self::INFO_MESSAGE, $icon = null) {
     $this->messages[$code]['text'] = $message;
     $this->messages[$code]['type'] = $type;
     $this->messages[$code]['icon'] = $icon;
