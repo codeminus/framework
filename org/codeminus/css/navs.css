@@ -1,7 +1,7 @@
-/*codeminus.org Navigation CSS library v1.0*/
+/*codeminus.org Navigators CSS library v1.0*/
 
 /* ==========================================================================
-   Base for all navigation lists
+   Base for all navigators lists
    ========================================================================== */
 .nav{
   list-style: none;
@@ -10,7 +10,7 @@
   display: inline-block;
 }
 .nav > li > a, .nav > li.header, .nav > li.footer{
-  padding: 10px 13px;
+  padding: 8px 11px;
   text-shadow: 0 1px 0 #fff;
 }
 .nav > li > a:hover{
