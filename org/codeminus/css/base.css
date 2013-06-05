@@ -4,13 +4,12 @@
    General tags
    ========================================================================== */
 html{
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 14px;
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 13px;
   color: #666;
-  outline: none;
 }
 *{
-  vertical-align: top;
+  outline: none;
 }
 a, a:visited{
   text-decoration: none;
@@ -32,6 +31,10 @@ h3{ font-size: 2.5em; }
 h4{ font-size: 2em; }
 h5{ font-size: 1.5em; }
 h6{ font-size: 1.2em; }
+
+div, header, section, footer, ul, nav{
+  vertical-align: top;
+}
 /* ==========================================================================
    Utility classes
    ========================================================================== */
@@ -39,7 +42,7 @@ h6{ font-size: 1.2em; }
   display: block !important;
 }
 .inline{
-  display: inline;
+  display: inline-block;
 }
 .hide{
   display: none;    
@@ -96,28 +99,49 @@ h6{ font-size: 1.2em; }
   border: solid 1px #ddd;
 }
 /* ==========================================================================
+   Shadows
+   ========================================================================== */
+.shadow-small{
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+}
+.shadow-large{
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+}
+/* ==========================================================================
+   Messages
+   ========================================================================== */
+.success{
+  color: #468847;
+}
+.warning{
+  color: #c09853;
+}
+.info{
+  color: #3a87ad;
+}
+/* ==========================================================================
    Margins
    ========================================================================== */
 .margined{
-  margin: 5px;
+  margin: 5px !important;
 }
 .margined-top{
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 .margined-bottom{
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 .margined-left{
-  margin-left: 5px;
+  margin-left: 5px !important;
 }
 .margined-right{
-  margin-right: 5px;
+  margin-right: 5px !important;
 }
 .margined-vertical{
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
 }
 .margined-horizontal{
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }
