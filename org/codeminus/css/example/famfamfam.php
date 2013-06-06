@@ -1,5 +1,9 @@
 <h3>famfamfam</h3>
 <div class="separator"></div>
+<p>
+  How to use:
+  <span class="code">&lt;span class="famfamfam-some-icon"&gt;&lt;/span&gt;</span>
+</p>
 <p class="container-bubble text-shadow">
   These icons can be used both commercially and for personal use,
   but you must always add a link to
@@ -10,7 +14,7 @@
   <a href="http://famfamfam.com" target="blank">famfamfam.com</a> on
   every page using famfamfam icons.
 </p>
-<div class="multi-columns4 container-childs-margined" style="font-size: 10px;">
+<div id="icons" class="multi-columns4 container-childs-margined" style="font-size: 10px;">
   <span class="famfamfam-add"></span>
   <span class="famfamfam-anchor"></span>
   <span class="famfamfam-application"></span>
@@ -1013,7 +1017,7 @@
 </div>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript">
-  $('span').after(function() {
+  $('#icons span').after(function() {
     return " ." + $(this).attr('class') + "<br/>";
   });
 </script>

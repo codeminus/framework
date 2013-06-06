@@ -34,7 +34,12 @@
     </span>
     <span class="input-group">
       <label>label</label>
-      <input type="text" value="text" />
+      <input type="text" value="input text" />
+      <input type="submit" value="submit" class="btn btn-blue" />
+    </span>
+    <span class="input-group">
+      <span>span</span>
+      <input type="text" value="input text" />
       <input type="submit" value="submit" class="btn btn-blue" />
     </span>
   </fieldset>
