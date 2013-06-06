@@ -23,7 +23,6 @@ input, textarea, select, button, .btn,
   border: solid 1px #dcdcdc;
   color: #333;
   vertical-align: middle;
-  line-height: 16px;
 }
 select{
   padding: 5px;
