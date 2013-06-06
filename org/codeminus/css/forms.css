@@ -3,7 +3,7 @@
    General form tags
    ========================================================================== */
 fieldset{
-  border: solid 1px #ddd;
+  border: solid 1px #dcdcdc;
   margin-bottom: 5px;
 }
 legend{
@@ -14,12 +14,16 @@ legend{
 label{
   font-weight: bold;
 }
-input, textarea, button, .btn, select{
+input, textarea, select, button, .btn, 
+.input-group > label, .input-group > span{
+  display: inline-block;
   margin: 5px 0px;
   padding: 6px;
   border-radius: 2px;
   border: solid 1px #dcdcdc;
   color: #333;
+  vertical-align: middle;
+  line-height: 16px;
 }
 select{
   padding: 5px;
@@ -103,7 +107,7 @@ input.xlarge, textarea.xlarge{
    Button style classes
    ========================================================================== */
 .btn-blue:not(:disabled), .btn-blue:visited{
-  border: 1px solid #3079ed;
+  border-color: #3079ed;
   color: #fff;
   background-color: #4787ed;
   background-image: -moz-linear-gradient(#4d90fe, #4787ed);
@@ -146,12 +150,15 @@ input.xlarge, textarea.xlarge{
   margin-left: -5px;
   border-radius: 0px;
 }
-.input-group > input:first-child, .input-group > button:first-child{
+.input-group > *:first-child{
   margin-left: 0px;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
-.input-group > input:last-child, .input-group > button:last-child{
+.input-group > *:last-child{
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+.input-group > label, .input-group > span{
+  background-color: #f7f7f7;
 }
