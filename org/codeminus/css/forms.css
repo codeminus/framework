@@ -31,6 +31,7 @@ input[type="radio"], input[type="checkbox"]{
   border: none;
   position: relative;
   top: 2px;
+  vertical-align: baseline;
 }
 input[type="text"], input[type="password"], input[type="email"],textarea{
   -webkit-appearance: none;
@@ -83,6 +84,21 @@ input[type="button"]:hover, button:hover, .btn:hover{
 input[type="submit"]:disabled, input[type="reset"]:disabled,
 input[type="button"]:disabled, button:disabled, .btn:disabled{
   opacity: 0.7;
+}
+/* ==========================================================================
+   Form style classes
+   ========================================================================== */
+.form-input-perline input,
+.form-input-perline textarea, 
+.form-input-perline select,
+.form-input-perline button,
+.form-input-perline .btn{
+  display: table;
+}
+.form-input-perline input[type="radio"],
+.form-input-perline input[type="checkbox"]{
+  display: inline;
+  vertical-align: baseline;
 }
 /* ==========================================================================
    Input sizes
@@ -148,6 +164,9 @@ input.xlarge, textarea.xlarge{
 .input-group > input, .input-group > button{
   margin-left: -5px;
   border-radius: 0px;
+}
+.input-group > *{
+  display: inline-block !important;
 }
 .input-group > *:first-child{
   margin-left: 0px;
