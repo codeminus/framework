@@ -2,6 +2,9 @@
 /* ==========================================================================
    Main Containers
    ========================================================================== */
+[class^="container-"], [class*=" container-"]{
+  vertical-align: top;
+}
 .container-centered{
   width: 920px;
   margin: 0px auto;
@@ -69,8 +72,7 @@
 .container-box > section,
 .container-box > footer{
   border: solid 1px #d8d8d8;
-  padding: 10px;
-  line-height: 12px;
+  padding: 8px 11px;
 }
 .container-box > header,
 .container-box > footer{
