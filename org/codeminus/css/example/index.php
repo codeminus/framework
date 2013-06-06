@@ -6,6 +6,8 @@ $contents = array(
     'forms' => false,
     'tables' => false,
     'medias' => false,
+    'glyphicons' => false,
+    'famfamfam' => false,
 );
 if (isset($_GET['c'])) {
   $contents[$_GET['c']] = 'selected';
@@ -23,6 +25,10 @@ if (isset($_GET['c'])) {
     <link rel="stylesheet" href="../containers.css" />
     <link rel="stylesheet" href="../navs.css" />
     <link rel="stylesheet" href="../forms.css" />
+    <link rel="stylesheet" href="../glyphicon.css" />
+    <link rel="stylesheet" href="../famfamfam.css" />
+    <style type="text/css">
+    </style>
   </head>
   <body>
     <div class="container-header">
@@ -38,22 +44,32 @@ if (isset($_GET['c'])) {
         <li><a href="?c=forms" class="<?php echo $contents['forms'] ?>">Forms</a></li>
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
         <li><a href="?c=medias" class="<?php echo $contents['medias'] ?>">Medias</a></li>
+        <li><a href="?c=glyphicons" class="<?php echo $contents['glyphicons'] ?>">Glyphicons</a></li>
+        <li><a href="?c=famfamfam" class="<?php echo $contents['famfamfam'] ?>">famfamfam</a></li>
       </ul>
       <div class="separator"></div>
-      <?php
-      if ($contents['base']) {
-        require 'base.php';
-      }
-      if ($contents['containers']) {
-        require 'containers.php';
-      }
-      if ($contents['navs']) {
-        require 'navs.php';
-      }
-      if ($contents['forms']) {
-        require 'forms.php';
-      }
-      ?>
+      <div class="container-childs-margined">
+        <?php
+        if ($contents['base']) {
+          require 'base.php';
+        }
+        if ($contents['containers']) {
+          require 'containers.php';
+        }
+        if ($contents['navs']) {
+          require 'navs.php';
+        }
+        if ($contents['forms']) {
+          require 'forms.php';
+        }
+        if ($contents['glyphicons']) {
+          require 'glyphicons.php';
+        }
+        if ($contents['famfamfam']) {
+          require 'famfamfam.php';
+        }
+        ?>
+      </div>
       <div class="container-upper-foot">
         <ul class="nav nav-simple">
           <li class="header">Codeminus</li>
