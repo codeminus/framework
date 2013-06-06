@@ -1,4 +1,4 @@
-<div class="container-bubble margined">
+<div class="container-bubble">
   <section class="container-box">
     <section>
       <ul class="nav nav-vlist">
@@ -11,7 +11,7 @@
     </section>
   </section>
 </div>
-<div class="container-bubble margined">
+<div class="container-bubble">
   <ul class="nav nav-vlist style02">
     <li class="header">.nav-vlist .style02</li>
     <li><a href="#" >Menu Item</a></li>
@@ -21,7 +21,7 @@
     <li class="footer">.footer</li>
   </ul>
 </div>
-<ul class="nav nav-vlist style02 margined">
+<ul class="nav nav-vlist style02">
   <li class="header">.nav-vlist .style02</li>
   <li><a href="#" >Menu Item</a></li>
   <li><a href="#" class="selected">Menu Item</a></li>
@@ -29,7 +29,7 @@
   <li><a href="#">Menu Item</a></li>
   <li class="footer">.footer</li>
 </ul>
-<div class="container-bubble  margined">
+<div class="container-bubble ">
   <section class="container-box block">
     <section>
       <ul class="nav nav-vtabs">
@@ -43,7 +43,7 @@
     </section>
   </section>
 </div>
-<div class="container-bubble  margined">
+<div class="container-bubble ">
   <section class="container-box block">
     <section>
       <span>content</span>
@@ -57,7 +57,7 @@
     </section>
   </section>
 </div>
-<div class="container-bubble margined">
+<div class="container-bubble">
   <section class="container-box">
     <section>
       <ul class="nav nav-hlist">
@@ -70,7 +70,7 @@
     </section>
   </section>
 </div>
-<div class="container-bubble margined">
+<div class="container-bubble">
   <section class="container-box">
     <section>
       <ul class="nav nav-htabs block">
@@ -83,7 +83,7 @@
     </section>
   </section>
 </div>
-<div class="container-bubble margined">
+<div class="container-bubble">
   <section class="container-box">
     <section>
       <span>.nav-htabs .inverted</span>
@@ -95,4 +95,34 @@
       </ul>
     </section>
   </section>
-</div>
+</div><br/>
+<ul class="nav nav-pager">
+  <li><a href="#" class="disabled"><span class="icon-chevron-left"></span></a></li>
+  <li><a href="#" class="selected">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">...</a></li>
+  <li><a href="#">10</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#"></a></li>
+</ul><br/>
+<ul class="nav nav-pager small">
+  <li><a href="#" class="disabled">«</a></li>
+  <li><a href="#" class="selected">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">...</a></li>
+  <li><a href="#">10</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#">»</a></li>
+</ul><br/>
+<ul class="nav nav-pager tiny">
+  <li><a href="#" class="disabled">«</a></li>
+  <li><a href="#" class="selected">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">...</a></li>
+  <li><a href="#">10</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#">»</a></li>
+</ul>
