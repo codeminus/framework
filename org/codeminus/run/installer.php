@@ -16,14 +16,6 @@ use \org\codeminus\main as main;
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/containers.css" />
     <link rel="stylesheet" href="../css/forms.css" />
-    <style type="text/css">
-      .container-centered{
-        width: 920px;
-      }
-      .container-box{
-        margin-bottom: 20px;
-      }
-    </style>
   </head>
   <body>
     <div class="container-header">
@@ -35,72 +27,67 @@ use \org\codeminus\main as main;
     <div class="container-centered">
       <section><h4>Application initial configuration</h4></section>
       <?php if (!isset($_POST['cmd'])) { ?>
-        <form name="configForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-          <input type="hidden" name="DEV_ENVIRONMENT" value="<?php echo main\Installer::getInvironment() ?>" />
-          <section class="container-box rounded block">
+        <form name="configForm" class="form-input-perline"
+              action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+          <input type="hidden" name="DEV_ENVIRONMENT" 
+                 value="<?php echo main\Installer::getInvironment() ?>" />
+          <section class="container-box rounded block margined-bottom">
             <header>
               General environment settings
             </header>
             <section>
-              <label for="DEFAULT_TIMEZONE">Default time zone:</label>
-              <input type="text" name="DEFAULT_TIMEZONE" value="<?php echo date_default_timezone_get() ?>" id="DEFAULT_TIMEZONE" class="medium" />
-              Take a look at <a href="http://www.php.net/manual/en/timezones.php" target="_blank">http://www.php.net/manual/en/timezones.php</a>
-              for a list of supported time zones
+              <label for="DEFAULT_TIMEZONE">Default time zone:</label><br/>
+              <input type="text" name="DEFAULT_TIMEZONE" 
+                     value="<?php echo date_default_timezone_get() ?>" 
+                     id="DEFAULT_TIMEZONE" class="medium" />
+              <small>
+                Take a look at 
+                <a href="http://www.php.net/manual/en/timezones.php" 
+                   target="_blank">http://www.php.net/manual/en/timezones.php</a>
+                for a list of supported time zones
+              </small>
             </section>
           </section>
-          <section class="container-box rounded block">
+          <section class="container-box rounded block margined-bottom">
             <header>
               Development environment
             </header>
             <section>
               <label for="DEV_ENVIRONMENT">Environment directory:</label>
-              <input type="text" disabled value="<?php echo main\Installer::getInvironment() ?>" id="DEV_ENVIRONMENT" class="medium" />
-              The development environment directory is on the same level of the framework package.                            
+              <input type="text" disabled 
+                     value="<?php echo main\Installer::getInvironment() ?>"
+                     id="DEV_ENVIRONMENT" class="medium" />
+              <small>
+                The development environment directory is on the same level of 
+                the framework package.                            
+              </small>
             </section>
             <section>
               <h6>Database settings</h6>
-
               <label for="DEV_DB_HOST">Database host:</label>
-              <input type="text" name="DEV_DB_HOST" value="localhost" id="DEV_DB_HOST" class="medium" />
+              <input type="text" name="DEV_DB_HOST" value="localhost" 
+                     id="DEV_DB_HOST" class="medium" />
               <label for="DEV_DB_USER">Database user:</label>
-              <input type="text" name="DEV_DB_USER" value="root" id="DEV_DB_USER" class="medium" />
+              <input type="text" name="DEV_DB_USER" value="root" 
+                     id="DEV_DB_USER" class="medium" />
               <label for="DEV_DB_PASS">Database password:</label>
-              <input type="text" name="DEV_DB_PASS" value="" id="DEV_DB_PASS" class="medium" />
+              <input type="text" name="DEV_DB_PASS" value="" 
+                     id="DEV_DB_PASS" class="medium" />
               <label for="DEV_DB_NAME">Database name:</label>
-              <input type="text" name="DEV_DB_NAME" value="" id="DEV_DB_NAME" class="medium" />
+              <input type="text" name="DEV_DB_NAME" value="" 
+                     id="DEV_DB_NAME" class="medium" />
             </section>
           </section>
-          <section class="container-box rounded block">
-            <header>
-              Production environment
-            </header>
-            <section>
-              <label for="PRO_ENVIRONMENT">Environment directory:</label>
-              <input type="text" name="PRO_ENVIRONMENT" value="" id="PRO_ENVIRONMENT" class="medium" />
-            </section>
-            <section>
-              <h6>Database settings</h6>
-
-              <label for="PRO_DB_HOST">Database host:</label>
-              <input type="text" name="PRO_DB_HOST" value="" id="PRO_DB_HOST" class="medium" />
-              <label for="PRO_DB_USER">Database user:</label>
-              <input type="text" name="PRO_DB_USER" value="" id="PRO_DB_USER" class="medium" />
-              <label for="PRO_DB_PASS">Database password:</label>
-              <input type="text" name="PRO_DB_PASS" value="" id="PRO_DB_PASS" class="medium" />
-              <label for="PRO_DB_NAME">Database name:</label>
-              <input type="text" name="PRO_DB_NAME" value="" id="PRO_DB_NAME" class="medium" />
-            </section>
-          </section>
-          <section class="container-box rounded block">
-            <header>
-              Almost there!
-            </header>
-            <section>
-              Clicking on install will create your app's default configurations, folders and files:
-              <input type="submit" name="cmd" value="install" class="btn btn-blue" />
-              <br/>Note that no existing files will be replaced, so, if you wish to recreate any specific file, delete it first.
-            </section>
-          </section>
+          <p class="info">
+                Clicking on the button below will create your app's default configurations,
+                folders and files:
+              </p>
+              <p class="warning">
+              Note that no existing files will be replaced. If you wish to
+              recreate any specific file, delete it first.
+              </p>
+              <input type="submit" name="cmd" value="set application configurations" 
+                     class="btn btn-blue " />
         </form>
 
       <?php } else { ?>
