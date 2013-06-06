@@ -1,14 +1,14 @@
 <h3>Glyphicons</h3>
 <div class="separator"></div>
 <p class="container-bubble text-shadow">
-  These Glyphicons can be used both commercially and for personal use,
+  These icons can be used both commercially and for personal use,
   but you must always add a link to
   <a href="http://glyphicons.com" target="blank">glyphicons.com</a> in a
   prominent place, include the
   <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY license</a> and
   the reference to
   <a href="http://glyphicons.com" target="blank">glyphicons.com</a> on
-  every page using Glyphicons.
+  every page using Glyphicons icons.
 </p>
 <div class="multi-columns4 container-childs-margined" style="font-size: 10px;">
   <span class="glyphicon-glass"></span>
