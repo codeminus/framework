@@ -29,9 +29,14 @@ input[type="radio"], input[type="checkbox"]{
   position: relative;
   top: 2px;
 }
-input[type="text"], input[type="password"], input[type="email"]
-, textarea, select{
+input[type="text"], input[type="password"], input[type="email"],textarea{
+  -webkit-appearance: none;
+}
+input[type="text"], input[type="password"], input[type="email"], textarea,
+select{
   width: 175px;
+  background-color: white;
+  
 }
 input:focus, textarea:focus, select:focus{
   background-color: #ffffee;
