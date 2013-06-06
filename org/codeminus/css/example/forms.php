@@ -19,11 +19,11 @@
     <input type="reset" value="reset" />
     <button>button tag</button>
     <a href="#" class="btn">button anchor tag</a>
-    <span class="btn">button span tag</span>
-    <a href="#" class="btn btn-blue">button anchor tag .btn-blue</a>
-    <a href="#" class="btn btn-red">button anchor tag .btn-red</a>
-    <input type="button" value=".btn-blue disabled" class="btn-blue" disabled />
-    <input type="button" value=".btn-red disabled" class="btn-red" disabled />
+    <span class="btn">button span tag</span><br/>
+    <a href="#" class="btn btn-blue">anchor tag .btn .btn-blue</a>
+    <input type="button" value="button .btn .btn-blue disabled" class="btn btn-blue" disabled />
+    <a href="#" class="btn btn-red" >anchor tag .btn .btn-red</a>
+    <input type="button" value="button .btn .btn-red disabled" class="btn btn-red" disabled />
   </fieldset>
   <fieldset>
     <legend>.input-group</legend>
@@ -33,8 +33,9 @@
       <input type="button" value="button 03" />
     </span>
     <span class="input-group">
+      <label>label</label>
       <input type="text" value="text" />
-      <input type="submit" value="submit" class="btn-blue" />
+      <input type="submit" value="submit" class="btn btn-blue" />
     </span>
   </fieldset>
   <fieldset>
