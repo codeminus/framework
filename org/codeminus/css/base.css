@@ -3,7 +3,7 @@
 /* ==========================================================================
    General tags
    ========================================================================== */
-html{
+body{
   font-family: Helvetica, arial, freesans, clean, sans-serif;
   font-size: 13px;
   color: #666;
@@ -32,8 +32,12 @@ h4{ font-size: 2em; }
 h5{ font-size: 1.5em; }
 h6{ font-size: 1.2em; }
 
-div, header, section, footer, ul, nav{
-  vertical-align: top;
+pre, .code{
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  border-radius: 3px;
+  border: solid 1px #ddd;
+  background-color: #f7f7f7;
+  padding: 2px;
 }
 /* ==========================================================================
    Utility classes
@@ -42,7 +46,7 @@ div, header, section, footer, ul, nav{
   display: block !important;
 }
 .inline{
-  display: inline-block;
+  display: inline-block !important;
 }
 .hide{
   display: none;    
@@ -103,6 +107,7 @@ div, header, section, footer, ul, nav{
   -moz-column-count: 4;
   column-count: 4;
 }
+
 /* ==========================================================================
    Shadows
    ========================================================================== */
