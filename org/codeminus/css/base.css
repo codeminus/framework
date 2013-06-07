@@ -60,11 +60,17 @@ pre, .code{
 .float-right{
   float: right;
 }
+.text-left{
+  text-align: left;
+}
 .text-right{
   text-align: right;
 }
 .text-center{
   text-align: center;
+}
+.text-disabled{
+  color: #ccc;
 }
 .clearfix {
   *zoom: 1;
@@ -157,7 +163,4 @@ pre, .code{
 .margined-horizontal{
   margin-left: 5px !important;
   margin-right: 5px !important;
-}
-.container-childs-margined > *{
-  margin: 5px !important;
 }

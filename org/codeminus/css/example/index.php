@@ -5,7 +5,7 @@ $contents = array(
     'navs' => false,
     'forms' => false,
     'tables' => false,
-    'medias' => false,
+    'media' => false,
     'glyphicons' => false,
     'famfamfam' => false,
 );
@@ -25,6 +25,8 @@ if (isset($_GET['c'])) {
     <link rel="stylesheet" href="../containers.css" />
     <link rel="stylesheet" href="../navs.css" />
     <link rel="stylesheet" href="../forms.css" />
+    <link rel="stylesheet" href="../tables.css" />
+    <link rel="stylesheet" href="../media.css" />
     <link rel="stylesheet" href="../glyphicon.css" />
     <link rel="stylesheet" href="../famfamfam.css" />
     <style type="text/css">
@@ -43,7 +45,7 @@ if (isset($_GET['c'])) {
         <li><a href="?c=navs" class="<?php echo $contents['navs'] ?>">Navigators</a></li>
         <li><a href="?c=forms" class="<?php echo $contents['forms'] ?>">Forms</a></li>
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
-        <li><a href="?c=medias" class="<?php echo $contents['medias'] ?>">Medias</a></li>
+        <li><a href="?c=media" class="<?php echo $contents['media'] ?>">Media</a></li>
         <li><a href="?c=glyphicons" class="<?php echo $contents['glyphicons'] ?>">Glyphicons</a></li>
         <li><a href="?c=famfamfam" class="<?php echo $contents['famfamfam'] ?>">famfamfam</a></li>
       </ul>
