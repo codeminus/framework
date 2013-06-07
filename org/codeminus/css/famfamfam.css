@@ -10,6 +10,9 @@
 [class^="famfamfam-"]:last-child,[class*=" famfamfam-"]:last-child {
     *margin-left:0;
 }
+[class^="famfamfam-"].disabled, [class*=" famfamfam-"].disabled{
+  opacity: 0.3;
+}
 .famfamfam-add {background-position: -0px -0px;}
 .famfamfam-anchor {background-position: -18px -0px;}
 .famfamfam-application {background-position: -36px -0px;}

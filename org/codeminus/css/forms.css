@@ -15,7 +15,8 @@ label{
   font-weight: bold;
 }
 input, textarea, select, button, .btn, 
-.input-group > label, .input-group > span{
+.input-group > label, .input-group > span,
+.textarea-group > label, .textarea-group > span{
   display: inline-block;
   margin: 5px 0px;
   padding: 6px;
@@ -23,6 +24,7 @@ input, textarea, select, button, .btn,
   border: solid 1px #dcdcdc;
   color: #333;
   vertical-align: middle;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.075) inset;
 }
 select{
   padding: 5px;
@@ -38,18 +40,18 @@ input[type="text"], input[type="password"], input[type="email"],textarea{
 }
 input[type="text"], input[type="password"], input[type="email"], textarea,
 select{
-  width: 175px;
+  width: 180px;
   background-color: white;
-  
+
 }
 input:focus, textarea:focus, select:focus{
   background-color: #ffffee;
   border-color: #ccc;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.075);
-  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-  transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
+  -moz-transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
+  -o-transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
+  transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
 }
 input:disabled, textarea:disabled{
   background-color: #fafafa !important;
@@ -75,6 +77,7 @@ button, .btn, .btn:visited{
   background-image: -webkit-linear-gradient(#f7f7f7, #f3f3f3);
   background-image: linear-gradient(#f7f7f7, #f3f3f3);
   background-repeat: repeat-x;
+  box-shadow: none;
 }
 input[type="submit"]:hover, input[type="reset"]:hover,
 input[type="button"]:hover, button:hover, .btn:hover{
@@ -92,7 +95,8 @@ input[type="button"]:disabled, button:disabled, .btn:disabled{
 .form-input-perline textarea, 
 .form-input-perline select,
 .form-input-perline button,
-.form-input-perline .btn{
+.form-input-perline .btn,
+.form-input-perline .input-group{
   display: table;
 }
 .form-input-perline input[type="radio"],
@@ -104,19 +108,32 @@ input[type="button"]:disabled, button:disabled, .btn:disabled{
    Input sizes
    ========================================================================== */
 input.tiny, textarea.tiny{
-  width: 55px;
+  width: 30px;
+  min-width: 30px;
+}
+input.mini, textarea.mini{
+  width: 60px;
+  min-width: 60px;
 }
 input.small, textarea.small{
   width: 100px;
+  min-width: 100px;
 }
 input.medium, textarea.medium{
-  width: 175px;
+  width: 180px;
+  min-width: 180px;
 }
 input.large, textarea.large{
   width: 250px;
+  min-width: 250px;
 }
 input.xlarge, textarea.xlarge{
   width: 350px;
+  min-width: 350px;
+}
+input.xxlarge, textarea.xxlarge{
+  width: 550px;
+  min-width: 550px;
 }
 /* ==========================================================================
    Button style classes
@@ -156,17 +173,20 @@ input.xlarge, textarea.xlarge{
   background-repeat: repeat-x;
 }
 /* ==========================================================================
-   Input group
+   Input group & textarea-group
    ========================================================================== */
 .input-group{
   white-space: nowrap;
+  display: inline-block;
+  font-size: 0;
 }
 .input-group > input, .input-group > button{
-  margin-left: -5px;
+  margin-left: -1px;
   border-radius: 0px;
 }
 .input-group > *{
   display: inline-block !important;
+  font-size:13px;
 }
 .input-group > *:first-child{
   margin-left: 0px;
@@ -179,4 +199,62 @@ input.xlarge, textarea.xlarge{
 }
 .input-group > label, .input-group > span{
   background-color: #f7f7f7;
+  box-shadow: none;
+}
+/* ==========================================================================
+   Input group prepend & append
+   ========================================================================== */
+.input-group.prepend-tiny > *:first-child,
+.input-group.append-tiny > *:last-child{
+  width: 30px;
+}
+.input-group.prepend-mini > *:first-child,
+.input-group.append-mini > *:last-child{
+  width: 60px;
+}
+.input-group.prepend-small > *:first-child,
+.input-group.append-small > *:last-child{
+  width: 100px;
+}
+.input-group.prepend-medium > *:first-child,
+.input-group.append-medium > *:last-child{
+  width: 180px;
+}
+/* ==========================================================================
+   Textarea group
+   ========================================================================== */
+.textarea-group{
+  display: inline-block;
+  margin: 5px 0px;
+  vertical-align: top;
+}
+.textarea-group > span, .textarea-group > textarea, .textarea-group > label{
+  display: block !important;
+  margin: 0px;
+}
+.textarea-group > label, .textarea-group > span{
+  background-color: #f7f7f7;
+  box-shadow: none;
+  margin-bottom: -1px;
+}
+.textarea-group > textarea, .textarea-group > button, .textarea-group > input{
+  border-radius: 0px;
+  margin-bottom: -1px;
+}
+.textarea-group > *:first-child{
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.textarea-group > *:last-child{
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.textarea-group > .input-group{
+  display: table !important;
+  padding: 0px;
+  border: none;
+}
+.textarea-group > .input-group > *{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

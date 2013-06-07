@@ -97,32 +97,32 @@
   </section>
 </div><br/>
 <ul class="nav nav-pager">
-  <li><a href="#" class="disabled"><span class="icon-chevron-left"></span></a></li>
+  <li><a href="#" class="disabled"><span class="glyphicon-thin-arrow-left disabled"></span></a></li>
   <li><a href="#" class="selected">1</a></li>
   <li><a href="#">2</a></li>
   <li><a href="#">3</a></li>
   <li><a href="#">...</a></li>
   <li><a href="#">10</a></li>
   <li><a href="#">11</a></li>
-  <li><a href="#"></a></li>
+  <li><a href="#"><span class="glyphicon-thin-arrow-right"></span></a></li>
 </ul><br/>
 <ul class="nav nav-pager small">
-  <li><a href="#" class="disabled">«</a></li>
+  <li><a href="#" class="disabled"><</a></li>
   <li><a href="#" class="selected">1</a></li>
   <li><a href="#">2</a></li>
   <li><a href="#">3</a></li>
   <li><a href="#">...</a></li>
   <li><a href="#">10</a></li>
   <li><a href="#">11</a></li>
-  <li><a href="#">»</a></li>
+  <li><a href="#">></a></li>
 </ul><br/>
 <ul class="nav nav-pager tiny">
-  <li><a href="#" class="disabled">«</a></li>
+  <li><a href="#" class="disabled"><</a></li>
   <li><a href="#" class="selected">1</a></li>
   <li><a href="#">2</a></li>
   <li><a href="#">3</a></li>
   <li><a href="#">...</a></li>
   <li><a href="#">10</a></li>
   <li><a href="#">11</a></li>
-  <li><a href="#">»</a></li>
+  <li><a href="#">></a></li>
 </ul>

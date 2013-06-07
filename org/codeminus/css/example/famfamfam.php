@@ -1,8 +1,12 @@
 <h3>famfamfam</h3>
 <div class="separator"></div>
 <p>
-  How to use:
-  <span class="code">&lt;span class="famfamfam-some-icon"&gt;&lt;/span&gt;</span>
+  How to use:<br/>
+  <span class="famfamfam-add"></span>
+  <code>&lt;span class="famfamfam-add"&gt;&lt;/span&gt;</code><br/>
+  <span class="famfamfam-add disabled"></span>
+  <code>&lt;span class="famfamfam-add disabled"&gt;&lt;/span&gt;</code>
+  
 </p>
 <p class="container-bubble text-shadow">
   These icons can be used both commercially and for personal use,

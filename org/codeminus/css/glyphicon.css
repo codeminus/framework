@@ -10,6 +10,9 @@
 [class^="glyphicon-"]:last-child,[class*=" glyphicon-"]:last-child {
     *margin-left:0;
 }
+[class^="glyphicon-"].disabled, [class*=" glyphicon-"].disabled{
+  opacity: 0.3;
+}
 .glyphicon-glass { background-position: 0 0 }
 .glyphicon-leaf { background-position: -34px 0 }
 .glyphicon-dog { background-position: -68px 0 }
@@ -118,8 +121,8 @@
 .glyphicon-text-height { background-position: -1564px -34px }
 .glyphicon-text-width { background-position: -1598px -34px }
 .glyphicon-text-resize { background-position: -1632px -34px }
-.glyphicon-left-indent { background-position: -1666px -34px }
-.glyphicon-right-indent { background-position: -1700px -34px }
+.glyphicon-indent-left { background-position: -1666px -34px }
+.glyphicon-indent-right { background-position: -1700px -34px }
 .glyphicon-align-left { background-position: -1734px -34px }
 .glyphicon-align-center { background-position: -1768px -34px }
 .glyphicon-align-right { background-position: -1802px -34px }
@@ -220,10 +223,10 @@
 .glyphicon-remove-2 { background-position: -1020px -102px }
 .glyphicon-cart-out { background-position: -1054px -102px }
 .glyphicon-cart-in { background-position: -1088px -102px }
-.glyphicon-left-arrow { background-position: -1122px -102px }
-.glyphicon-right-arrow { background-position: -1156px -102px }
-.glyphicon-down-arrow { background-position: -1190px -102px }
-.glyphicon-up-arrow { background-position: -1224px -102px }
+.glyphicon-arrow-left { background-position: -1122px -102px }
+.glyphicon-arrow-right { background-position: -1156px -102px }
+.glyphicon-arrow-down { background-position: -1190px -102px }
+.glyphicon-arrow-up { background-position: -1224px -102px }
 .glyphicon-resize-small { background-position: -1258px -102px }
 .glyphicon-resize-full { background-position: -1292px -102px }
 .glyphicon-circle-arrow-left { background-position: -1326px -102px }
@@ -233,7 +236,7 @@
 .glyphicon-play-button { background-position: -1462px -102px }
 .glyphicon-unshare { background-position: -1496px -102px }
 .glyphicon-share { background-position: -1530px -102px }
-.glyphicon-thin-right-arrow { background-position: -1564px -102px }
+.glyphicon-thin-arrow-right { background-position: -1564px -102px }
 .glyphicon-thin-arrow-left { background-position: -1598px -102px }
 .glyphicon-bluetooth { background-position: -1632px -102px }
 .glyphicon-euro { background-position: -1666px -102px }

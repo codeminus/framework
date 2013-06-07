@@ -1,8 +1,12 @@
 <h3>Glyphicons</h3>
 <div class="separator"></div>
 <p>
-  How to use:
-  <span class="code">&lt;span class="glyphicon-some-icon"&gt;&lt;/span&gt;</span>
+  How to use:<br/>
+  <span class="glyphicon-glass"></span>
+  <code>&lt;span class="glyphicon-glass"&gt;&lt;/span&gt;</code><br/>
+  <span class="glyphicon-glass disabled"></span>
+  <code>&lt;span class="glyphicon-glass disabled"&gt;&lt;/span&gt;</code>
+  
 </p>
 <p class="container-bubble text-shadow">
   These icons can be used both commercially and for personal use,
@@ -123,8 +127,8 @@
   <span class="glyphicon-text-height"></span> 
   <span class="glyphicon-text-width"></span> 
   <span class="glyphicon-text-resize"></span> 
-  <span class="glyphicon-left-indent"></span> 
-  <span class="glyphicon-right-indent"></span> 
+  <span class="glyphicon-indent-left"></span> 
+  <span class="glyphicon-indent-right"></span> 
   <span class="glyphicon-align-left"></span> 
   <span class="glyphicon-align-center"></span> 
   <span class="glyphicon-align-right"></span> 
@@ -225,10 +229,10 @@
   <span class="glyphicon-remove-2"></span> 
   <span class="glyphicon-cart-out"></span> 
   <span class="glyphicon-cart-in"></span> 
-  <span class="glyphicon-left-arrow"></span> 
-  <span class="glyphicon-right-arrow"></span> 
-  <span class="glyphicon-down-arrow"></span> 
-  <span class="glyphicon-up-arrow"></span> 
+  <span class="glyphicon-arrow-left"></span> 
+  <span class="glyphicon-arrow-right"></span> 
+  <span class="glyphicon-arrow-down"></span> 
+  <span class="glyphicon-arrow-up"></span> 
   <span class="glyphicon-resize-small"></span> 
   <span class="glyphicon-resize-full"></span> 
   <span class="glyphicon-circle-arrow-left"></span> 
@@ -238,7 +242,7 @@
   <span class="glyphicon-play-button"></span> 
   <span class="glyphicon-unshare"></span> 
   <span class="glyphicon-share"></span> 
-  <span class="glyphicon-thin-right-arrow"></span> 
+  <span class="glyphicon-thin-arrow-right"></span> 
   <span class="glyphicon-thin-arrow-left"></span> 
   <span class="glyphicon-bluetooth"></span> 
   <span class="glyphicon-euro"></span> 

@@ -4,12 +4,14 @@
     <label for="name">Input Text</label><br/>
     <input type="text" id="name" placeholder="input text required" required />
     <input type="password" value="123456" disabled />
-    <input type="email" id="name" value="wilson@codeminus.org" /><br/>
+    <input type="email" id="name" placeholder="input email" /><br/>
     <input type="text" placeholder=".tiny" class="tiny" />
+    <input type="text" placeholder=".mini" class="mini" />
     <input type="text" placeholder=".small" class="small" />
     <input type="text" placeholder=".medium" class="medium" />
     <input type="text" placeholder=".large" class="large" />
     <input type="text" placeholder=".xlarge" class="xlarge" />
+    <input type="text" placeholder=".xxlarge" class="xxlarge" />
   </fieldset>
   <fieldset>
     <legend>Buttons</legend>
@@ -33,14 +35,32 @@
       <input type="button" value="button 03" />
     </span>
     <span class="input-group">
-      <label>label</label>
-      <input type="text" value="input text" />
+      <label for="textIn">label</label>
+      <input type="text" placeholder="input text" id="textIn"/>
       <input type="submit" value="submit" class="btn btn-blue" />
     </span>
     <span class="input-group">
       <span>span</span>
-      <input type="text" value="input text" />
+      <input type="text" placeholder="input text" />
       <input type="submit" value="submit" class="btn btn-blue" />
+    </span>
+  </fieldset>
+  <fieldset>
+    <legend>.textarea-group</legend>
+    <span class="textarea-group">
+      <label for="msg1">label</label>
+      <textarea id="msg1" rows="4" class="large" name="msg1">sdfsd</textarea>
+      <span class="input-group float-right">
+        <input type="button" value="button 01" />
+        <input type="button" value="button 02" />
+        <input type="button" value="button 03" />
+      </span>
+    </span>
+    <span class="textarea-group">
+      <label for="msg2">label</label>
+      <textarea id="msg2" rows="4" class="large" name="msg2">textarea</textarea>
+      <span>span</span>
+    </span>
     </span>
   </fieldset>
   <fieldset>
@@ -75,8 +95,25 @@
     <input type="checkbox" name="taste" id="c"/>
     <label for="c">I like chinese food!</label><br/>
   </fieldset>
+</form>
+<form class="form-input-perline" >
   <fieldset>
-    <legend>textarea</legend>
-    <textarea></textarea>
+    <legend>.form-input-perline</legend>
+    <span class="input-group prepend-mini">
+      <label for="nameIn">Name</label>
+      <input type="text" id="nameIn" />
+    </span>
+    <span class="input-group prepend-mini">
+      <label for="emailIn">E-mail</label>
+      <input type="text" id="emailIn" />
+    </span>
+    <span class="input-group prepend-mini">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" />
+    </span>
+    <span class="textarea-group">
+      <label for="msg3">Message</label>
+      <textarea id="msg3" rows="4" class="large"></textarea>
+    </span>
   </fieldset>
 </form>

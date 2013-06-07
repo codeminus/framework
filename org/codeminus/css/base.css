@@ -32,12 +32,15 @@ h4{ font-size: 2em; }
 h5{ font-size: 1.5em; }
 h6{ font-size: 1.2em; }
 
-pre, .code{
+pre, code{
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
   border-radius: 3px;
   border: solid 1px #ddd;
   background-color: #f7f7f7;
   padding: 2px;
+}
+p{
+  line-height: 22px;
 }
 /* ==========================================================================
    Utility classes
