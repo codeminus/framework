@@ -23,7 +23,7 @@ a img{
 }
 h1, h2, h3, h4, h5, h6{
   color: #555;
-  margin: 10px 0px;
+  margin: 10px0;
 }
 h1{ font-size: 3.5em; }
 h2{ font-size: 3em; }
@@ -106,7 +106,7 @@ p{
   display: block;
   height: 1px;
   border-bottom: 1px solid #eee;
-  margin: 10px 0px;
+  margin: 10px0;
 }
 .bordered{
   border: solid 1px #ddd;
@@ -121,13 +121,13 @@ p{
    Shadows
    ========================================================================== */
 .shadow-small{
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  box-shadow:0 1px 3px rgba(0,0,0,0.1);
 }
 .shadow-large{
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
 }
 .text-shadow{
-  text-shadow: #ffffff 0px 1px 0px;
+  text-shadow: #ffffff0 1px0;
 }
 /* ==========================================================================
    Messages
