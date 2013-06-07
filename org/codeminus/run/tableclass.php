@@ -75,7 +75,7 @@ if (isset($_POST['cmd'])) {
           <input type="submit" name="cmd" value="generate" class="btn btn-blue"/>
         </form>
       </div>
-      <div class="float-left" style="width: 66.70%">
+      <div class="float-left" style="width: 66.60%">
         <section class="container-box rounded block">
           <header>Output</header>
           <section style="height: 492px; overflow-y: auto;">
