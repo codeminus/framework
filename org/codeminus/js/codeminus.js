@@ -25,21 +25,24 @@ $('.code-line').html(function() {
   var code = $(this).html().replace(stringHL,
           "<span class=\"code-highlight-string\">$1$2$1</span>");
           
-  var beginComment = /\/\*(.*)/g; //string beging /* */
-  var endComment = /(.*)\*\//g; //string ending with */
-  var commentSingleLine = /\/\*(.*)\*\//g; //string between /* */
-  
+  //string beginning with /*
+  var beginComment = /(\/\*.*)/g;
+  //string ending with */
+  var endComment = /(.*\*\/)/g;
+  //string between /* */ or beginning with //
+  var commentSingleLine = /(\/\*.*\*\/)|(\/\/.*)/g;
+
   if (code.match(commentSingleLine)) {
     code = code.replace(commentSingleLine,
-            "<span class=\"code-highlight-comment\">/*$1*/</span>");
+            "<span class=\"code-highlight-comment\">$1$2</span>");
   } else if (code.match(beginComment)) {
     code = code.replace(beginComment,
-            "<span class=\"code-highlight-comment\">/*$1</span>");
+            "<span class=\"code-highlight-comment\">$1</span>");
     isMultiLineComment = true;
   } else if (isMultiLineComment) {
     if (code.match(endComment)) {
       code = code.replace(endComment,
-              "<span class=\"code-highlight-comment\">$1*/</span>");
+              "<span class=\"code-highlight-comment\">$1</span>");
       isMultiLineComment = false;
     } else {
       code = "<span class=\"code-highlight-comment\">" + code + "</span>";
@@ -53,7 +56,7 @@ $('.code-line-numbered > ol > .code-line').wrap('<li>');
 /* ==========================================================================
  Dropdown menu
  ========================================================================== */
-$('body').on('click', function() {
+$('html').on('click', function() {
   $('.dropdown-menu').slideUp('fast');
 });
 $('.dropdown').on('click', function(e) {
