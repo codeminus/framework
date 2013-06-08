@@ -3,7 +3,7 @@
     <img src="<?php echo APP_HTTP_PATH ?>/org/codeminus/img/cmf-medium.png" />
   </div>
 </div>
-<div class="container-centered container-childs-block">
+<div class="container-centered childs-block">
   <h3>Welcome to your main page!</h3>
   <section class="container-bubble container-box margined-bottom">
     <header>Your application is ready for you to get started!</header>
