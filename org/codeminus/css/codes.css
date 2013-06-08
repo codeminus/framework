@@ -1,9 +1,12 @@
 /*codeminus.org Source code styling CSS library v1.0*/
 /* ==========================================================================
-   Source code
+   Source code line
    ========================================================================== */
-.code-source *{
-  /*the container of the code source*/
+.code-line {
+  background-color: #f7f7f7;
+  color: #333;
+  border-left: solid 1px #ddd;
+  padding-left: 2px;
 }
 /* ==========================================================================
    Numbered lines
@@ -17,11 +20,6 @@
   list-style-type: decimal-leading-zero;
   background-color: #fefefe;
   color: #999;
-  border-right: solid 1px #ddd;
-}
-.code-line-numbered > *{
-  display: inline-block;
-  vertical-align: top;
 }
 /* ==========================================================================
    Code highlighting
