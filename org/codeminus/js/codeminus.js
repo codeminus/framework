@@ -2,48 +2,60 @@ $('#icons span').after(function() {
   return " ." + $(this).attr('class') + "<br/>";
 });
 /* ==========================================================================
-   Source code styling
-   ========================================================================== */
-$('[class^="code-"],[class*=" code-"]').html(function() {
-  $(this).wrapInner('<div class="code-source">');
-});
-
-//code high-lighting
-$('.code-highlight > div').html(function() {
-  //string between quotes
-  var stringHL = /"((?:[^"\\]|\\.)*)"/gi;
-  var code = $(this).html().trim().replace(stringHL,
-          "<span class=\"code-highlight-string\">\"$1\"</span>");
-  //string between /* */
-  var commentHL = /\/\*(.*)\*\//gi;
-  code = code.replace(commentHL,
-          "<span class=\"code-highlight-comment\">/*$1*/</span>");
-  $(this).html(code);
-});
-
-//code line numbering
-$('.code-line-numbered').html(function() {
+ Source code styling
+ ========================================================================== */
+$('.code').html(function() {
   var code = $(this).html().trim();
   var lines = code.split('\n');
-  var list = '<ol>';
+  var codeWrapped = '';
   for (i = 0; i < lines.length; i++) {
-    list += '<li></li>';
+    if (lines[i] === "") {
+      lines[i] = '&nbsp;';
+    }
+    codeWrapped += '<div class="code-line">' + lines[i] + '</div>';
   }
-  list += '</ol>';
-  $(this).html(list + code);
+  return codeWrapped;
 });
+
+var isMultiLineComment = false;
+//code high-lighting
+$('.code-line').html(function() {
+  //string between quotes
+  var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
+  var code = $(this).html().replace(stringHL,
+          "<span class=\"code-highlight-string\">$1$2$1</span>");
+  //string between /* */
+  var beginComment = /\/\*(.*)/g;
+  var endComment = /(.*)\*\//g;
+  var commentHL = /\/\*(.*)\*\//g;
+  if (code.match(commentHL)) {
+    code = code.replace(commentHL,
+            "<span class=\"code-highlight-comment\">/*$1*/</span>");
+  } else if (code.match(beginComment)) {
+    code = code.replace(beginComment,
+            "<span class=\"code-highlight-comment\">/*$1</span>");
+    isMultiLineComment = true;
+  } else if (isMultiLineComment) {
+    if (code.match(endComment)) {
+      code = code.replace(endComment,
+              "<span class=\"code-highlight-comment\">$1*/</span>");
+      isMultiLineComment = false;
+    } else {
+      code = "<span class=\"code-highlight-comment\">" + code + "</span>";
+    }
+  }
+  return code;
+});
+//code line numbering
+$('.code-line-numbered').wrapInner('<ol>');
+$('.code-line-numbered > ol > .code-line').wrap('<li>');
 /* ==========================================================================
-   Dropdown menu
-   ========================================================================== */
-$('body').on('click',function(){
-  $('.nav-dropdown-menu').slideUp('fast');
+ Dropdown menu
+ ========================================================================== */
+$('body').on('click', function() {
+  $('.dropdown-menu').slideUp('fast');
 });
-$('.nav-dropdown').on('click', function(e){
+$('.dropdown').on('click', function(e) {
   e.stopPropagation();
-  $(this).next('.nav-dropdown-menu').slideToggle('fast');/*
-  if($(this).next('.nav-dropdown-menu').css('display') === 'none'){
-    $(this).next('.nav-dropdown-menu').fadeIn('fast');
-  }else{
-    $(this).next('.nav-dropdown-menu').fadeOut();
-  }*/
+  $(this).next('.dropdown-menu').slideToggle('fast');
 });
