@@ -1,4 +1,40 @@
-<div class="childs-margined">
+<div class="childs-margined-bottom">
+  <div class="container-bubble">
+    <ul class="nav nav-hlist">
+      <li class="header">.nav-hlist</li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li>
+        <a href="#" class="nav-dropdown" data-toggle="dropdown">Dropdown &blacktriangledown;</a>
+        <ul class="nav nav-vlist nav-dropdown-menu">
+          <li><a href="#">Menu Item</a></li>
+          <li><a href="#">Menu Item</a></li>
+          <li><a href="#">Menu Item</a></li>
+          <li class="separator"></li>
+          <li><a href="#">Menu Item</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="container-bubble">
+    <ul class="nav nav-simple inline">
+      <li class="header">.nav-simple .inline</li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+    </ul>
+  </div><br/>
+  <div class="container-bubble">
+    <ul class="nav nav-simple">
+      <li class="header">.nav-simple</li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+      <li><a href="#">Menu Item</a></li>
+    </ul>
+  </div>
   <div class="container-bubble">
     <section class="container-box">
       <section>
@@ -6,6 +42,7 @@
           <li class="header">.nav-vlist</li>
           <li><a href="#" class="selected">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
+          <li class="separator"></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
         </ul>
