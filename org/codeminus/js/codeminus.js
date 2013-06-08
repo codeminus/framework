@@ -24,12 +24,13 @@ $('.code-line').html(function() {
   var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
   var code = $(this).html().replace(stringHL,
           "<span class=\"code-highlight-string\">$1$2$1</span>");
-  //string between /* */
-  var beginComment = /\/\*(.*)/g;
-  var endComment = /(.*)\*\//g;
-  var commentHL = /\/\*(.*)\*\//g;
-  if (code.match(commentHL)) {
-    code = code.replace(commentHL,
+          
+  var beginComment = /\/\*(.*)/g; //string beging /* */
+  var endComment = /(.*)\*\//g; //string ending with */
+  var commentSingleLine = /\/\*(.*)\*\//g; //string between /* */
+  
+  if (code.match(commentSingleLine)) {
+    code = code.replace(commentSingleLine,
             "<span class=\"code-highlight-comment\">/*$1*/</span>");
   } else if (code.match(beginComment)) {
     code = code.replace(beginComment,
