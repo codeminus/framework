@@ -32,6 +32,17 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.nav.rounded{
+  border-radius: 3px;
+}
+.nav.rounded > li > a:first-child{
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.nav.rounded > li > a:last-child{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
 /* ==========================================================================
    Vertical list
    ========================================================================== */
@@ -237,15 +248,15 @@
   line-height: 12px;
 }
 /* ==========================================================================
-   nav-dropdown
+   Dropdown
    ========================================================================== */
-.nav-dropdown{
+.dropdown{
   cursor: pointer !important;
 }
-.nav-dropdown + .nav-dropdown-menu{
+.dropdown + .dropdown-menu{
   display: none;
 }
-.nav-dropdown-menu{
+.dropdown-menu{
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
