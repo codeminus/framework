@@ -13,6 +13,7 @@ legend{
 }
 label{
   font-weight: bold;
+  cursor: pointer;
 }
 input, textarea, select, button, .btn, 
 .input-group > label, .input-group > span,
@@ -146,6 +147,7 @@ input.xxlarge, textarea.xxlarge{
   background-image: -webkit-linear-gradient(#4d90fe, #4d90fe);
   background-image: linear-gradient(#4d90fe, #4d90fe);
   background-repeat: repeat-x;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
 }
 .btn-blue:not(:disabled):hover{
   border-color: #2f5bb7;
@@ -163,6 +165,7 @@ input.xxlarge, textarea.xxlarge{
   background-image: -webkit-linear-gradient(#dd4b39, #d14836);
   background-image: linear-gradient(#dd4b39, #d14836);
   background-repeat: repeat-x;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
 }
 .btn-red:not(:disabled):hover{
   border-color: #b0281a;

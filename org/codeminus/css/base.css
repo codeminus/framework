@@ -6,24 +6,14 @@
 body{
   font-family: Helvetica, arial, freesans, clean, sans-serif;
   font-size: 13px;
-  color: #666;
+  color: #444;
 }
 *{
   outline: none;
 }
-a, a:visited{
-  text-decoration: none;
-  color: #4183C4;
-  outline: none; 
-  display: inline-block;
-}
-a img{
-  border: none;
-  margin-bottom: -2px;
-}
 h1, h2, h3, h4, h5, h6{
-  color: #555;
   margin: 10px 0;
+  margin-top: 20px;
 }
 h1{ font-size: 3.5em; }
 h2{ font-size: 3em; }
@@ -31,21 +21,35 @@ h3{ font-size: 2.5em; }
 h4{ font-size: 2em; }
 h5{ font-size: 1.5em; }
 h6{ font-size: 1.2em; }
-
-pre, code{
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-  border-radius: 3px;
-  border: solid 1px #ddd;
-  background-color: #f7f7f7;
-  padding: 2px;
+a, a:visited{
+  text-decoration: none;
+  color: #4183C4;
+  outline: none; 
+  display: inline-block;
+}
+a:hover{
+  text-decoration: underline;
+}
+a img{
+  border: none;
+  vertical-align: middle;
 }
 p{
   line-height: 22px;
 }
+pre, code{
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  border-radius: 3px;
+  border: solid 1px #ddd !important;
+  background-color: #f7f7f7;
+  padding: 2px;
+  color: #333;
+  text-shadow: 0 1px 0 #ffffff;
+}
 /* ==========================================================================
    Utility classes
    ========================================================================== */
-.block{
+.block, .childs-block > *{
   display: block !important;
 }
 .inline{
@@ -73,7 +77,13 @@ p{
   text-align: center;
 }
 .text-disabled{
-  color: #ccc;
+  color: #aaa;
+}
+.text-disabled a{
+  color: #ffccff;
+}
+img.disabled{
+  opacity: 0.3;
 }
 .clearfix {
   *zoom: 1;
@@ -116,7 +126,6 @@ p{
   -moz-column-count: 4;
   column-count: 4;
 }
-
 /* ==========================================================================
    Shadows
    ========================================================================== */
@@ -127,7 +136,7 @@ p{
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .text-shadow{
-  text-shadow: #ffffff0 1px 0;
+  text-shadow: #ffffff 0 1px 0 !important;
 }
 /* ==========================================================================
    Messages
@@ -144,26 +153,26 @@ p{
 /* ==========================================================================
    Margins
    ========================================================================== */
-.margined{
+.margined, .childs-margined > *{
   margin: 5px !important;
 }
-.margined-top{
+.margined-top, .childs-margined-top > *{
   margin-bottom: 5px !important;
 }
-.margined-bottom{
+.margined-bottom, .childs-margined-bottom > *{
   margin-bottom: 5px !important;
 }
-.margined-left{
+.margined-left, .childs-margined-left > *{
   margin-left: 5px !important;
 }
-.margined-right{
+.margined-right, .childs-margined-right > *{
   margin-right: 5px !important;
 }
-.margined-vertical{
+.margined-vertical, .childs-margined-vertical > *{
   margin-top: 5px !important;
   margin-bottom: 5px !important;
 }
-.margined-horizontal{
+.margined-horizontal, .childs-margined-horizontal > *{
   margin-left: 5px !important;
   margin-right: 5px !important;
 }
