@@ -1,0 +1,34 @@
+/*codeminus.org Source code styling CSS library v1.0*/
+/* ==========================================================================
+   Source code
+   ========================================================================== */
+.code-source *{
+  /*the container of the code source*/
+}
+/* ==========================================================================
+   Numbered lines
+   ========================================================================== */
+.code-line-numbered{
+  padding: 0px;
+}
+.code-line-numbered ol{
+  margin: 0px;
+  margin-right: 5px;
+  list-style-type: decimal-leading-zero;
+  background-color: #fefefe;
+  color: #999;
+  border-right: solid 1px #ddd;
+}
+.code-line-numbered > *{
+  display: inline-block;
+  vertical-align: top;
+}
+/* ==========================================================================
+   Code highlighting
+   ========================================================================== */
+.code-highlight-string{
+  color: red;
+}
+.code-highlight-comment{
+  color: #aaa;
+}
