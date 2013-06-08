@@ -6,8 +6,8 @@
       <li><a href="#">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
       <li>
-        <a href="#" class="nav-dropdown" data-toggle="dropdown">Dropdown &blacktriangledown;</a>
-        <ul class="nav nav-vlist nav-dropdown-menu">
+        <a href="#" class="dropdown" data-toggle="dropdown">Dropdown &blacktriangledown;</a>
+        <ul class="nav nav-vlist dropdown-menu">
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
