@@ -26,9 +26,7 @@ if (isset($_POST['cmd'])) {
   <head>
     <title>Table class generator</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/containers.css" />
-    <link rel="stylesheet" href="../css/forms.css" />
+    <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
     <div class="container-header">
@@ -78,7 +76,7 @@ if (isset($_POST['cmd'])) {
       <div class="float-left" style="width: 66.60%">
         <section class="container-box rounded block">
           <header>Output</header>
-          <section style="height: 492px; overflow-y: auto;">
+          <section style="height: 492px; overflow: auto;">
             <?php
             if (isset($_POST['cmd'])) {
               $dbconn = new db\Connection($_POST['db_host'], $_POST['db_user'], $_POST['db_pass'], $_POST['db_name']);
@@ -87,10 +85,13 @@ if (isset($_POST['cmd'])) {
               $tc = new db\TableClass($dbconn, $_POST['db_table'], $namespace);
               $tc->create();
               ?>
-              <pre style="font-family: Courier; font-size: 0.9em"><?php echo $tc->getCode(); ?></pre>
+            <pre class="code code-line-numbered code-highlight"><?php echo $tc->getCode(); ?></pre>
             <?php } ?>    
           </section>    
         </section>
-
       </div>
     </div>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/codeminus.js"></script>
+  </body>
+</html>
