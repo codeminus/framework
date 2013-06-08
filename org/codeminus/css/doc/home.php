@@ -3,7 +3,7 @@
   To use Codeminus CSS Library, include the CSS and js files to your page
   as shown in the example below:
 </p>
-<pre class="code-line-numbered code-highlight">
+<pre class="code code-line-numbered code-highlight">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -95,7 +95,7 @@
   By default, <strong>codeminus.css</strong> imports all CSS files, just in case
   you dont want to import all theses files yourself:
 </p>
-<pre class="code-line-numbered code-highlight">
+<pre class="code code-line-numbered code-highlight">
 @import "normalize.css";
 @import "base.css";
 @import "codes.css";
@@ -121,7 +121,7 @@
   Lets say you only want to use form element styling and the glyphicons sprite
   from our library. Your <strong>personalized.css</strong> file would look like:
 </p>
-<pre class="code-line-numbered code-highlight">
+<pre class="code code-line-numbered code-highlight">
 @import "base.css";
 @import "forms.css";
 @import "glyphicon.css";

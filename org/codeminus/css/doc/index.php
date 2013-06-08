@@ -40,10 +40,10 @@ if (isset($_GET['c'])) {
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
         <li><a href="?c=media" class="<?php echo $contents['media'] ?>">Media</a></li>
         <li>
-          <a href="#" class="nav-dropdown <?php echo $contents['glyphicons'].$contents['famfamfam'] ?>">
+          <a href="#" class="dropdown <?php echo $contents['glyphicons'].$contents['famfamfam'] ?>">
             Icons&blacktriangledown;
           </a>
-          <ul class="nav nav-vlist nav-dropdown-menu">
+          <ul class="nav nav-vlist dropdown-menu rounded">
             <li><a href="?c=glyphicons">Glyphicons</a></li>
             <li><a href="?c=famfamfam">famfamfam</a></li>
           </ul>
@@ -84,7 +84,7 @@ if (isset($_GET['c'])) {
         <span class="float-right">&copy; 2013 Codeminus. All rights reserved</span>
       </div>
     </div>
-    <script src="assets/jquery.js"></script>
+    <script src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/codeminus.js"></script>
   </body>
 </html>
