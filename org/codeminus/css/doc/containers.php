@@ -46,8 +46,8 @@
     <section>Content</section>
     <footer>Footer</footer>
   </section>
-  <section class="container-box container-message success block">
-    <section>.container-shadow .success > .container-box</section>
+  <section class="container-box container-message success">
+    <section>.container-box .container-message .success .block</section>
   </section>
   <section class="container-box container-message warning shadow-small">
     <section>.container-box .container-message .warning .shadow-small</section>
@@ -55,4 +55,8 @@
   <section class="container-box container-message info shadow-large">
     <section>.container-box .container-message .info .shadow-large</section>
   </section>
+</div>
+<div class="bordered childs-margined">
+  <div class="float-left">.float-left</div>
+  <div class="float-right">.float-right</div>
 </div>

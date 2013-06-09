@@ -1,5 +1,4 @@
 <h3>Glyphicons</h3>
-<div class="separator"></div>
 <p>
   How to use:<br/>
   <span class="glyphicon-glass"></span>
@@ -8,7 +7,7 @@
   <code>&lt;span class="glyphicon-glass disabled"&gt;&lt;/span&gt;</code>
   
 </p>
-<p class="container-bubble text-shadow">
+<p class="bubble text-shadow">
   These icons can be used both commercially and for personal use,
   but you must always add a link to
   <a href="http://glyphicons.com" target="blank">glyphicons.com</a> in a
@@ -420,3 +419,9 @@
   <span class="glyphicon-skype"></span> 
   <span class="glyphicon-e-mail"></span> 
 </div>
+<script type="text/javascript">
+
+$('#icons span').after(function() {
+  return " ." + $(this).attr('class') + "<br/>";
+});
+</script>

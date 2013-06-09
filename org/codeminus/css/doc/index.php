@@ -21,6 +21,7 @@ if (isset($_GET['c'])) {
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Codeminus CSS Library</title>
+    <script src="../../js/jquery.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
     <link rel="stylesheet" href="../codeminus.css" />
   </head>
@@ -84,7 +85,6 @@ if (isset($_GET['c'])) {
         <span class="float-right">&copy; 2013 Codeminus. All rights reserved</span>
       </div>
     </div>
-    <script src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/codeminus.js"></script>
   </body>
 </html>

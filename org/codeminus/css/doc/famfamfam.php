@@ -1,5 +1,4 @@
 <h3>famfamfam</h3>
-<div class="separator"></div>
 <p>
   How to use:<br/>
   <span class="famfamfam-add"></span>
@@ -8,7 +7,7 @@
   <code>&lt;span class="famfamfam-add disabled"&gt;&lt;/span&gt;</code>
   
 </p>
-<p class="container-bubble text-shadow">
+<p class="bubble text-shadow">
   These icons can be used both commercially and for personal use,
   but you must always add a link to
   <a href="http://famfamfam.com" target="blank">famfamfam.com</a> in a
@@ -1019,3 +1018,9 @@
   <span class="famfamfam-zoom-in"></span>
   <span class="famfamfam-zoom-out"></span>
 </div>
+<script type="text/javascript">
+
+$('#icons span').after(function() {
+  return " ." + $(this).attr('class') + "<br/>";
+});
+</script>
