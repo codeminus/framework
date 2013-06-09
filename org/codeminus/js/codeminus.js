@@ -29,12 +29,12 @@ $('.code-line').html(function() {
   var beginComment = /(\/\*.*)/g;
   //string ending with */
   var endComment = /(.*\*\/)/g;
-  //string between /* */ or beginning with //
-  var commentSingleLine = /(\/\*.*\*\/)|(\/\/.*)/g;
+  //string between /* */
+  var commentSingleLine = /(\/\*.*\*\/)/g;
 
   if (code.match(commentSingleLine)) {
     code = code.replace(commentSingleLine,
-            "<span class=\"code-highlight-comment\">$1$2</span>");
+            "<span class=\"code-highlight-comment\">$1</span>");
   } else if (code.match(beginComment)) {
     code = code.replace(beginComment,
             "<span class=\"code-highlight-comment\">$1</span>");
