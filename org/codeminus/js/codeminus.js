@@ -1,6 +1,8 @@
-$('#icons span').after(function() {
-  return " ." + $(this).attr('class') + "<br/>";
-});
+/* ==========================================================================
+ clearfix for floating containers
+ ========================================================================== */
+$('.float-left, .float-right').parent().addClass('clearfix');
+
 /* ==========================================================================
  Source code styling
  ========================================================================== */
@@ -53,8 +55,9 @@ $('.code-line').html(function() {
 //code line numbering
 $('.code-line-numbered').wrapInner('<ol>');
 $('.code-line-numbered > ol > .code-line').wrap('<li>');
+
 /* ==========================================================================
- Dropdown menu
+ Dropdown menu **alpha version
  ========================================================================== */
 $('html').on('click', function() {
   $('.dropdown-menu').slideUp('fast');
