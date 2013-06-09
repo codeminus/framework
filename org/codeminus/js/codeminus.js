@@ -21,7 +21,7 @@ $('.code').html(function() {
 
 var isMultiLineComment = false;
 //code high-lighting
-$('.code-line').html(function() {
+$('.code-highlight .code-line').html(function() {
   //string between quotes
   var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
   var code = $(this).html().replace(stringHL,
