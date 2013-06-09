@@ -1,17 +1,17 @@
 <form>
-  <fieldset class="shadow-small">
+  <fieldset class="shadow-width-small">
     <legend>Text fields & label</legend>
     <label for="name">Input Text</label><br/>
     <input type="text" id="name" placeholder="input text required" required />
     <input type="password" value="123456" disabled />
     <input type="email" id="name" placeholder="input email" /><br/>
-    <input type="text" placeholder=".tiny" class="tiny" />
-    <input type="text" placeholder=".mini" class="mini" />
-    <input type="text" placeholder=".small" class="small" />
-    <input type="text" placeholder=".medium" class="medium" />
-    <input type="text" placeholder=".large" class="large" />
-    <input type="text" placeholder=".xlarge" class="xlarge" />
-    <input type="text" placeholder=".xxlarge" class="xxlarge" />
+    <input type="text" placeholder=".width-tiny" class="width-tiny" />
+    <input type="text" placeholder=".width-mini" class="width-mini" />
+    <input type="text" placeholder=".width-small" class="width-small" />
+    <input type="text" placeholder=".width-medium" class="width-medium" />
+    <input type="text" placeholder=".width-large" class="width-large" />
+    <input type="text" placeholder=".width-xlarge" class="width-xlarge" />
+    <input type="text" placeholder=".width-xxlarge" class="width-xxlarge" />
   </fieldset>
   <fieldset>
     <legend>Buttons</legend>
@@ -49,7 +49,7 @@
     <legend>.textarea-group</legend>
     <span class="textarea-group">
       <label for="msg1">label</label>
-      <textarea id="msg1" rows="4" class="large" name="msg1">sdfsd</textarea>
+      <textarea id="msg1" rows="4" class="width-large" name="msg1">sdfsd</textarea>
       <span class="input-group float-right">
         <input type="button" value="button 01" />
         <input type="button" value="button 02" />
@@ -58,7 +58,7 @@
     </span>
     <span class="textarea-group">
       <label for="msg2">label</label>
-      <textarea id="msg2" rows="4" class="large" name="msg2">textarea</textarea>
+      <textarea id="msg2" rows="4" class="width-large" name="msg2">textarea</textarea>
       <span>span</span>
     </span>
     </span>
@@ -113,7 +113,7 @@
     </span>
     <span class="textarea-group">
       <label for="msg3">Message</label>
-      <textarea id="msg3" rows="4" class="large"></textarea>
+      <textarea id="msg3" rows="4" class="width-large"></textarea>
     </span>
   </fieldset>
 </form>

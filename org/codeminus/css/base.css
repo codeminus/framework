@@ -139,6 +139,14 @@ img.disabled{
   text-shadow: #ffffff 0 1px 0 !important;
 }
 /* ==========================================================================
+   Bubble
+   ========================================================================== */
+.bubble{
+  background-color: #eee;
+  border-radius: 3px;
+  padding: 3px;
+}
+/* ==========================================================================
    Messages
    ========================================================================== */
 .success{
@@ -175,4 +183,35 @@ img.disabled{
 .margined-horizontal, .childs-margined-horizontal > *{
   margin-left: 5px !important;
   margin-right: 5px !important;
+}
+/* ==========================================================================
+   Widths
+   ========================================================================== */
+.width-tiny, .childs-width-tiny > *{
+  width: 30px;
+  min-width: 30px;
+}
+.width-mini, .childs-width-mini > *{
+  width: 60px;
+  min-width: 60px;
+}
+.width-small, .childs-width-small > *{
+  width: 100px;
+  min-width: 100px;
+}
+.width-medium, .childs-width-medium > *{
+  width: 180px;
+  min-width: 180px;
+}
+.width-large, .childs-width-large > *{
+  width: 250px;
+  min-width: 250px;
+}
+.width-xlarge, .childs-width-xlarge > *{
+  width: 350px;
+  min-width: 350px;
+}
+.width-xxlarge, .childs-width-xxlarge > *{
+  width: 550px;
+  min-width: 550px;
 }

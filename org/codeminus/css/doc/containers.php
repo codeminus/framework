@@ -1,4 +1,4 @@
-<div class="childs-margined">
+<div class="childs-margined childs-width-large">
   <section class="container-box">
     <header>.container-box</header>
     <section>Content</section>
@@ -29,6 +29,11 @@
       <footer>Footer</footer>
     </section>
   </div>
+  <div class="container-box">
+    <div class="header">.header</div>
+    <div>Div content</div>
+    <div class="footer">.footer</div>
+  </div>
   <div class="container-bubble">
     <section class="container-box style02">
       <header>.container-bubble .style02</header>
@@ -36,31 +41,18 @@
       <footer>Footer</footer>
     </section>
   </div>
-  <section class="container-box style02">
-    <header>.container-bubble .style02</header>
+  <section class="container-box shadow-large">
+    <header>.container-box .shadow-large</header>
     <section>Content</section>
     <footer>Footer</footer>
   </section>
-  <div class="container-shadow">
-    <section class="container-box">
-      <header>.container-shadow</header>
-      <section>Content</section>
-      <footer>Footer</footer>
-    </section>
-  </div>
-  <div class="container-shadow success block">
-    <section class="container-box block">
-      <section>.container-shadow .success > .container-box</section>
-    </section>
-  </div>
-  <div class="container-shadow warning">
-    <section class="container-box">
-      <section>.container-shadow .warning</section>
-    </section>
-  </div>
-  <div class="container-shadow info">
-    <section class="container-box">
-      <section>.container-shadow .info</section>
-    </section>
-  </div>
+  <section class="container-box container-message success block">
+    <section>.container-shadow .success > .container-box</section>
+  </section>
+  <section class="container-box container-message warning shadow-small">
+    <section>.container-box .container-message .warning .shadow-small</section>
+  </section>
+  <section class="container-box container-message info shadow-large">
+    <section>.container-box .container-message .info .shadow-large</section>
+  </section>
 </div>

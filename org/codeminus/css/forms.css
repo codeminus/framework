@@ -106,37 +106,6 @@ input[type="button"]:disabled, button:disabled, .btn:disabled{
   vertical-align: baseline;
 }
 /* ==========================================================================
-   Input sizes
-   ========================================================================== */
-input.tiny, textarea.tiny{
-  width: 30px;
-  min-width: 30px;
-}
-input.mini, textarea.mini{
-  width: 60px;
-  min-width: 60px;
-}
-input.small, textarea.small{
-  width: 100px;
-  min-width: 100px;
-}
-input.medium, textarea.medium{
-  width: 180px;
-  min-width: 180px;
-}
-input.large, textarea.large{
-  width: 250px;
-  min-width: 250px;
-}
-input.xlarge, textarea.xlarge{
-  width: 350px;
-  min-width: 350px;
-}
-input.xxlarge, textarea.xxlarge{
-  width: 550px;
-  min-width: 550px;
-}
-/* ==========================================================================
    Button style classes
    ========================================================================== */
 .btn-blue:not(:disabled), .btn-blue:visited{

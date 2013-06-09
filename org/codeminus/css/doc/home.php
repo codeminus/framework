@@ -11,9 +11,9 @@
     &lt;link href="org/codeminus/css/codeminus.css" rel="stylesheet" /&gt;
   &lt;/head&gt;
   &lt;body&gt;
-  Your page content
-  &lt;script src="http://code.jquery.com/jquery.js"&gt;&lt;/script&gt;
-  &lt;script src="org/codeminus/js/codeminus.js"&gt;&lt;/script&gt;
+    Your page content
+    &lt;script src="http://code.jquery.com/jquery.js"&gt;&lt;/script&gt;
+    &lt;script src="org/codeminus/js/codeminus.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </pre>

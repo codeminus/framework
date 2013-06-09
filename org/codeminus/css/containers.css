@@ -29,19 +29,19 @@
 /* ==========================================================================
    Container message
    ========================================================================== */
-.container-box.success section,
-.container-bubble.success section,
-.container-shadow.success section{
+.container-message.success section,
+.container-message.success section,
+.container-message.success section{
   background-color: #dff0d8;
 }
-.container-box.warning section,
-.container-bubble.warning section,
-.container-shadow.warning section{
+.container-message.warning section,
+.container-message.warning section,
+.container-message.warning section{
   background-color: #fcf8e3;
 }
-.container-box.info section,
-.container-bubble.info section,
-.container-shadow.info section{
+.container-message.info section,
+.container-message.info section,
+.container-message.info section{
   background-color: #d9edf7;
 }
 /* ==========================================================================
@@ -50,49 +50,35 @@
 .container-box{
   display: inline-block;
 }
-.container-box > header:first-child,
-.container-box > section:first-child,
-.container-box > footer:first-child{
+.container-box > *:first-child{
   border: solid 1px #d8d8d8;
 }
-.container-box.rounded > header:first-child,
-.container-box.rounded > section:first-child,
-.container-box.rounded > footer:first-child{
+.container-box.rounded > *:first-child{
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.container-box.rounded > header:last-child,
-.container-box.rounded > section:last-child,
-.container-box.rounded > footer:last-child{
+.container-box.rounded > *:last-child{
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.container-box > header,
-.container-box > section,
-.container-box > footer{
+.container-box > *{
   border: solid 1px #d8d8d8;
+  border-top: none;
   padding: 8px 11px;
+  background-color: white;
 }
-.container-box > header,
-.container-box > footer{
+.container-box > header, .container-box > .header,
+.container-box > footer, .container-box > .footer{
   background-color: #f7f7f7;
   text-shadow: 0 1px 0 #fff;
 }
-.container-box > header{
+.container-box > header, .container-box > .header{
   font-weight: bold;
 }
-.container-box > section{
-  background-color: white;
-}
-.container-box > footer{
+.container-box > footer, .container-box > .footer{
   color: #999;
   font-size: 80%;
-}
-.container-box > header,
-.container-box > section,
-.container-box > footer{
-  border-top: none;
 }
 /* ==========================================================================
    Container box style 02
@@ -113,13 +99,6 @@
   padding: 3px;
   display: inline-block;
 }
-/* ==========================================================================
-   Container shadow
-   ========================================================================== */
-.container-shadow{
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  display: inline-block;
+.container-bubble > *{
+  display: block;
 }
-/* ==========================================================================
-   Utility classes
-   ========================================================================== */
