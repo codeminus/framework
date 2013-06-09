@@ -27,6 +27,6 @@
 .code-highlight-string{
   color: red;
 }
-.code-highlight-comment{
+.code-highlight-comment, .code-highlight-comment .code-highlight-string{
   color: #aaa;
 }
