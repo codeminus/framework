@@ -3,62 +3,74 @@
 namespace org\codeminus\util;
 
 /**
- * 
+ * Dictionary abstract model
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 0.2
+ * @version 0.3
  */
 abstract class Dictionary {
 
   private $language;
-  private $texts = array();
+  private $expressions = array();
 
-  /* usage example
-    const LANGUAGE_EN = 'en';
-    const LANGUAGE_PTBR = 'pt-br';
-
-    const FIRST_PAGE = 'FIRST_PAGE';
-    const PREV_PAGE = 'PREV_PAGE';
-    const NEXT_PAGE = 'NEXT_PAGE';
-    const LAST_PAGE = 'LAST_PAGE';
+  /**
+   * Dictionary
+   * @param mixed $language the value that represent a specific language
+   * @return Dictionary
    */
-
   public function __construct($language) {
-
     $this->setLanguage($language);
-    /* usage example
-      $this->addText(self::LANGUAGE_EN, self::FIRST_PAGE, 'First page');
-      $this->addText(self::LANGUAGE_PTBR, self::FIRST_PAGE, 'Primeira página');
-      $this->addText(self::LANGUAGE_EN, self::PREV_PAGE, 'Previous page');
-      $this->addText(self::LANGUAGE_PTBR, self::PREV_PAGE, 'Página anterior');
-      $this->addText(self::LANGUAGE_EN, self::NEXT_PAGE, 'Next page');
-      $this->addText(self::LANGUAGE_PTBR, self::NEXT_PAGE, 'Próxima página');
-      $this->addText(self::LANGUAGE_EN, self::LAST_PAGE, 'Last page');
-      $this->addText(self::LANGUAGE_PTBR, self::LAST_PAGE, 'Última página');
-     */
   }
-
-  public function getLanguage() {
+  
+  /**
+   * Dictionary language
+   * @return mixed
+   */
+  public function lang() {
     return $this->language;
   }
 
-  public function setLanguage($language) {
+  /**
+   * Dictionary language
+   * @param mixed $language
+   * @return void
+   */
+  private function setLanguage($language) {
     $this->language = $language;
   }
 
-  public function getTexts() {
-    return $this->texts;
+  /**
+   * Dictionary expressions
+   * @return array
+   */
+  public function getExpressions() {
+    return $this->expressions;
   }
 
-  public function setTexts($texts) {
-    $this->texts = $texts;
+  /**
+   * Dictionary expressions
+   * @param array $expressions
+   * @return void
+   */
+  protected function setExpressions($expressions) {
+    $this->expressions = $expressions;
+  }
+  
+  /**
+   * Dictionary expression
+   * @param mixed $key
+   * @return string
+   */
+  public function expression($key) {
+    return $this->expressions[$this->language][$key];
   }
 
-  public function addText($language, $key, $text) {
-    $this->texts[$language][$key] = $text;
+  /**
+   * Dictionary expression
+   * @param mixed $key
+   * @param string $expression
+   * @return void
+   */
+  public function addExpression($key, $expression) {
+    $this->expressions[$this->language][$key] = $expression;
   }
-
-  public function text($key) {
-    return $this->texts[$this->getLanguage()][$key];
-  }
-
 }
