@@ -26,7 +26,7 @@ $('.code-highlight .code-line').html(function() {
   var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
   var code = $(this).html().replace(stringHL,
           "<span class=\"code-highlight-string\">$1$2$1</span>");
-          
+
   //string beginning with /*
   var beginComment = /(\/\*.*)/g;
   //string ending with */
@@ -66,3 +66,34 @@ $('.dropdown').on('click', function(e) {
   e.stopPropagation();
   $(this).next('.dropdown-menu').slideToggle('fast');
 });
+
+/* ==========================================================================
+ data-dismiss handler
+ ========================================================================== */
+$('[data-dismiss]').on('click', function() {
+  var mode = $(this).attr('data-dismiss-mode');
+  switch (mode) {
+    case 'slide':
+      $('#' + $(this).attr('data-dismiss')).stop(true).slideUp('fast');
+      break;
+    default:
+      $('#' + $(this).attr('data-dismiss')).stop(true).fadeOut('fast');
+      break;
+  }
+});
+
+
+$('[data-dismiss-after]').on('click', function() {
+  var mode = $(this).attr('data-dismiss-mode');
+  switch (mode) {
+    case 'slide':
+      $(this).delay($(this).attr('data-dismiss-after')).slideUp('fast');
+      break;
+    default:
+      $(this).delay($(this).attr('data-dismiss-after')).fadeOut('fast');
+      break;
+  }
+
+});
+$('[data-dismiss-after]').click();
+
