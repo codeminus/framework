@@ -11,7 +11,7 @@
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
-          <li class="separator"></li>
+          <li class="divider"></li>
           <li><a href="#">Menu Item</a></li>
         </ul>
       </li>
@@ -40,9 +40,9 @@
       <section>
         <ul class="nav nav-vlist">
           <li class="header">.nav-vlist</li>
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
-          <li class="separator"></li>
+          <li class="divider"></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
         </ul>
@@ -53,7 +53,7 @@
     <ul class="nav nav-vlist style02">
       <li class="header">.nav-vlist .style02</li>
       <li><a href="#" >Menu Item</a></li>
-      <li><a href="#" class="selected">Menu Item</a></li>
+      <li><a href="#" class="active">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
       <li class="footer">.footer</li>
@@ -62,7 +62,7 @@
   <ul class="nav nav-vlist style02">
     <li class="header">.nav-vlist .style02</li>
     <li><a href="#" >Menu Item</a></li>
-    <li><a href="#" class="selected">Menu Item</a></li>
+    <li><a href="#" class="active">Menu Item</a></li>
     <li><a href="#">Menu Item</a></li>
     <li><a href="#">Menu Item</a></li>
     <li class="footer">.footer</li>
@@ -72,7 +72,7 @@
       <section>
         <ul class="nav nav-vtabs">
           <li class="header">.nav-vtabs</li>
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
@@ -87,7 +87,7 @@
         <span>content</span>
         <ul class="nav nav-vtabs inverted">
           <li class="header">.nav-vtabs .inverted</li>
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
@@ -100,7 +100,7 @@
       <section>
         <ul class="nav nav-hlist">
           <li class="header">.nav-hlist</li>
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
@@ -112,7 +112,7 @@
     <section class="container-box">
       <section>
         <ul class="nav nav-htabs block">
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
@@ -126,7 +126,7 @@
       <section>
         <span>.nav-htabs .inverted</span>
         <ul class="nav nav-htabs inverted block">
-          <li><a href="#" class="selected">Menu Item</a></li>
+          <li><a href="#" class="active">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
@@ -136,7 +136,7 @@
   </div><br/>
   <ul class="nav nav-pager">
     <li><a href="#" class="disabled"><span class="glyphicon-thin-arrow-left disabled"></span></a></li>
-    <li><a href="#" class="selected">1</a></li>
+    <li><a href="#" class="active">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">...</a></li>
@@ -146,7 +146,7 @@
   </ul><br/>
   <ul class="nav nav-pager small">
     <li><a href="#" class="disabled"><</a></li>
-    <li><a href="#" class="selected">1</a></li>
+    <li><a href="#" class="active">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">...</a></li>
@@ -156,7 +156,7 @@
   </ul><br/>
   <ul class="nav nav-pager tiny">
     <li><a href="#" class="disabled"><</a></li>
-    <li><a href="#" class="selected">1</a></li>
+    <li><a href="#" class="active">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">...</a></li>

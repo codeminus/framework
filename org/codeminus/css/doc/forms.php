@@ -16,22 +16,32 @@
   <fieldset>
     <legend>Buttons</legend>
     <input type="submit" value="submit" />
-    <input type="button" value="button input" />
+    <input type="button" value="button" />
     <input type="button" value="disabled" disabled />
     <input type="reset" value="reset" />
-    <button>button tag</button>
+    <button type="button">button tag</button>
     <a href="#" class="btn">button anchor tag</a>
-    <span class="btn">button span tag</span><br/>
-    <a href="#" class="btn btn-blue">anchor tag .btn .btn-blue</a>
-    <input type="button" value="button .btn .btn-blue disabled" class="btn btn-blue" disabled />
-    <a href="#" class="btn btn-red" >anchor tag .btn .btn-red</a>
-    <input type="button" value="button .btn .btn-red disabled" class="btn btn-red" disabled />
+    <input type="button" value="active" class="active" />
+    <input type="button" value=".btn .blue" class="btn blue" />
+    <input type="button" value="button .btn .blue disabled" class="btn blue" disabled />
+    <input type="button" class="btn red" value="button .btn .red">
+    <input type="button" class="btn " value="button .btn .">
+    <br/>
+    <input type="button" class="btn text-success" value=".btn .text-success" />
+    <input type="button" class="btn text-warning" value=".btn .text-warning" />
+    <input type="button" class="btn text-info" value=".btn .text-info" />
+    <input type="button" class="btn text-error" value=".btn .text-info" />
+    <br/>
+    <input type="button" class="btn success" value=".btn .success" />
+    <input type="button" class="btn warning" value=".btn .warning" />
+    <input type="button" class="btn info" value=".btn .info" />
+    <input type="button" class="btn error" value=".btn .error" />
   </fieldset>
   <fieldset>
     <legend>.input-group</legend>
     <span class="input-group">
       <input type="button" value="button 01" />
-      <input type="button" value="button 02" />
+      <input type="button" value="active" />
       <input type="button" value="button 03" />
     </span>
     <span class="input-group">

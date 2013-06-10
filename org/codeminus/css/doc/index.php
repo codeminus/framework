@@ -11,9 +11,9 @@ $contents = array(
     'famfamfam' => false,
 );
 if (isset($_GET['c'])) {
-  $contents[$_GET['c']] = 'selected';
+  $contents[$_GET['c']] = 'active';
 } else {
-  $contents['home'] = 'selected';
+  $contents['home'] = 'active';
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ if (isset($_GET['c'])) {
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
         <li><a href="?c=media" class="<?php echo $contents['media'] ?>">Media</a></li>
         <li>
-          <a href="#" class="dropdown <?php echo $contents['glyphicons'].$contents['famfamfam'] ?>">
+          <a href="#" class="dropdown <?php echo $contents['glyphicons'] . $contents['famfamfam'] ?>">
             Icons&blacktriangledown;
           </a>
           <ul class="nav nav-vlist dropdown-menu rounded">
@@ -50,7 +50,7 @@ if (isset($_GET['c'])) {
           </ul>
         </li>
       </ul>
-      <div class="separator"></div>
+      <div class="divider"></div>
       <?php
       if ($contents['home']) {
         require 'home.php';
@@ -74,15 +74,20 @@ if (isset($_GET['c'])) {
         require 'famfamfam.php';
       }
       ?>
-      <div class="container-upper-foot">
+
+    </div>
+    <div class="container-upper-foot">
+      <div class="container-centered">
         <ul class="nav nav-simple inline">
           <li class="header">Codeminus</li>
           <li><a href="http://github.com/codeminus" target="blank">on GitHub</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
-      <div class="container-lower-foot clearfix">
-        <span class="float-right">&copy; 2013 Codeminus. All rights reserved</span>
+    </div>
+    <div class="container-centered">
+      <div class="container-lower-foot">
+        <div class="float-right">&copy; 2013 Codeminus. All rights reserved</div>
       </div>
     </div>
     <script type="text/javascript" src="../../js/codeminus.js"></script>

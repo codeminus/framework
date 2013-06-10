@@ -19,7 +19,7 @@ use \org\codeminus\main as main;
   </head>
   <body>
     <div class="container-header">
-      <header class="container-centered clearfix">
+      <header class="container-centered">
         <img src="../img/cmf-medium.png" class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
@@ -109,5 +109,7 @@ use \org\codeminus\main as main;
       <?php } ?>
 
     </div>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/codeminus.js"></script>
   </body>
 </html>

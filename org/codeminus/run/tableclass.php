@@ -30,7 +30,7 @@ if (isset($_POST['cmd'])) {
   </head>
   <body>
     <div class="container-header">
-      <header class="container-centered clearfix">
+      <header class="container-centered">
         <img src="../img/cmf-medium.png" class="float-left"/>
         <div class="float-right bold">TableClass v1.1</div>
       </header>
