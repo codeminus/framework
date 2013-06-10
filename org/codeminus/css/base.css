@@ -46,8 +46,26 @@ pre, code{
   color: #333;
   text-shadow: 0 1px 0 #ffffff;
 }
+li{
+  line-height: 20px;
+}
 /* ==========================================================================
-   Utility classes
+   clear fix
+   ========================================================================== */
+.clearfix, .row {
+  *zoom: 1;
+}
+.clearfix:before, .row:before,
+.clearfix:after, .row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after, .row:after {
+  clear: both;
+}
+/* ==========================================================================
+   Position classes
    ========================================================================== */
 .block, .childs-block > *{
   display: block !important;
@@ -67,6 +85,9 @@ pre, code{
 .float-right{
   float: right;
 }
+/* ==========================================================================
+   Text classes
+   ========================================================================== */
 .text-left{
   text-align: left;
 }
@@ -82,37 +103,13 @@ pre, code{
 .text-disabled a{
   color: #ffccff;
 }
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
 img.disabled{
   opacity: 0.3;
 }
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-.clearfix:after {
-  clear: both;
-}
-.bold{
-  font-weight: bold;
-}
-.underline{
-  border-bottom: solid 1px #eee;
-}
-.separator{
+.divider{
   display: block;
   height: 1px;
   border-bottom: 1px solid #eee;
@@ -120,6 +117,12 @@ img.disabled{
 }
 .bordered{
   border: solid 1px #ddd;
+}
+.bold{
+  font-weight: bold;
+}
+.underlined{
+  border-bottom: solid 1px #eee;
 }
 .multi-columns4{
   -webkit-column-count: 4;
@@ -149,14 +152,28 @@ img.disabled{
 /* ==========================================================================
    Messages
    ========================================================================== */
-.success{
-  color: #468847;
+.success, .text-success{
+  color: #468847 !important;
 }
-.warning{
-  color: #c09853;
+.warning, .text-warning{
+  color: #c09853 !important;
 }
-.info{
-  color: #3a87ad;
+.info, .text-info{
+  color: #3a87ad !important;
+}
+.error, .text-error{
+  color: #b94a48 !important;
+}
+.close{
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  top: -5px;
+  float: right;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 5px !important;
 }
 /* ==========================================================================
    Margins
