@@ -19,30 +19,33 @@
   background-color: #f7f7f7;
   border-top: solid 1px #eee;
   font-size: 85%;
-  padding: 10px;
+  padding: 10px 0;
   margin-top: 10px;
 }
 .container-lower-foot{
   font-size: 85%;
-  padding-top: 5px;
+  padding: 10px 0;
 }
 /* ==========================================================================
-   Container message
+   Container alert
    ========================================================================== */
-.container-message.success section,
-.container-message.success section,
-.container-message.success section{
+.container-alert > div,
+.container-alert > header,
+.container-alert > section,
+.container-alert > footer{
+  border: solid 1px #d8d8d8;
+}
+.container-alert.success > *{
   background-color: #dff0d8;
 }
-.container-message.warning section,
-.container-message.warning section,
-.container-message.warning section{
+.container-alert.warning > *{
   background-color: #fcf8e3;
 }
-.container-message.info section,
-.container-message.info section,
-.container-message.info section{
+.container-alert.info > *{
   background-color: #d9edf7;
+}
+.container-alert.error > *{
+  background-color: #f2dede;
 }
 /* ==========================================================================
    Container box
@@ -101,4 +104,68 @@
 }
 .container-bubble > *{
   display: block;
+}
+/* ==========================================================================
+   Layout row
+   ========================================================================== */
+[class*="span"]{
+  float:left;
+}
+.span10{
+  width: 920px;
+}
+.span9{
+  width: 828px;
+}
+.span8{
+  width: 736px;
+}
+.span7{
+  width: 644px;
+}
+.span6{
+  width: 552px;
+}
+.span5{
+  width: 460px;
+}
+.span4{
+  width: 368px;
+}
+.span3{
+  width: 276px;
+}
+.span2{
+  width: 184px;
+}
+.span1{
+  width: 92px;
+}
+
+.offset9{
+  margin-left: 828px;
+}
+.offset8{
+  margin-left: 736px;
+}
+.offset7{
+  margin-left: 644px;
+}
+.offset6{
+  margin-left: 552px;
+}
+.offset5{
+  margin-left: 460px;
+}
+.offset4{
+  margin-left: 368px;
+}
+.offset3{
+  margin-left: 276px;
+}
+.offset2{
+  margin-left: 184px;
+}
+.offset1{
+  margin-left: 92px;
 }
