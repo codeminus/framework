@@ -15,9 +15,16 @@ label{
   font-weight: bold;
   cursor: pointer;
 }
-input, textarea, select, button, .btn, 
-.input-group > label, .input-group > span,
-.textarea-group > label, .textarea-group > span{
+input,
+textarea,
+select,
+button,
+.btn,
+.btn:visited,
+.input-group > label,
+.input-group > span,
+.textarea-group > label,
+.textarea-group > span{
   display: inline-block;
   margin: 5px 0;
   padding: 6px;
@@ -36,16 +43,25 @@ input[type="radio"], input[type="checkbox"]{
   top: 2px;
   vertical-align: baseline;
 }
-input[type="text"], input[type="password"], input[type="email"],textarea{
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea{
   -webkit-appearance: none;
 }
-input[type="text"], input[type="password"], input[type="email"], textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
 select{
   width: 180px;
   background-color: white;
-
-}
-input:focus, textarea:focus, select:focus{
+} 
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus{
   background-color: #ffffee;
   border-color: #ccc;
   box-shadow: 0 1px 2px rgba(0,0,0,0.075);
@@ -54,40 +70,12 @@ input:focus, textarea:focus, select:focus{
   -o-transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
   transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
 }
-input:disabled, textarea:disabled{
+input:disabled,
+textarea:disabled{
   background-color: #fafafa !important;
   color: #bbb !important;
   border: solid 1px #dcdcdc !important;
   box-shadow: none !important;
-}
-::-webkit-input-placeholder,
-::-moz-placeholder,
-:-ms-input-placeholder{
-  color: #999 !important;
-}
-/* ==========================================================================
-   Button tags
-   ========================================================================== */
-input[type="submit"], input[type="reset"], input[type="button"],
-button, .btn, .btn:visited{
-  border: 1px solid #dcdcdc;
-  font-weight: bold;
-  cursor: pointer;
-  background-color: #f7f7f7;
-  background-image: -moz-linear-gradient(#f7f7f7, #f3f3f3);
-  background-image: -webkit-linear-gradient(#f7f7f7, #f3f3f3);
-  background-image: linear-gradient(#f7f7f7, #f3f3f3);
-  background-repeat: repeat-x;
-  box-shadow: none;
-}
-input[type="submit"]:hover, input[type="reset"]:hover,
-input[type="button"]:hover, button:hover, .btn:hover{
-  border-color: #c6c6c6;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-input[type="submit"]:disabled, input[type="reset"]:disabled,
-input[type="button"]:disabled, button:disabled, .btn:disabled{
-  opacity: 0.7;
 }
 /* ==========================================================================
    Form style classes
@@ -106,43 +94,109 @@ input[type="button"]:disabled, button:disabled, .btn:disabled{
   vertical-align: baseline;
 }
 /* ==========================================================================
+   Buttons
+   ========================================================================== */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.btn,
+.btn:visited{
+  border: 1px solid #dcdcdc;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #f7f7f7;
+  background-image: -moz-linear-gradient(#f7f7f7, #f3f3f3);
+  background-image: -webkit-linear-gradient(#f7f7f7, #f3f3f3);
+  background-image: linear-gradient(#f7f7f7, #f3f3f3);
+  background-repeat: repeat-x;
+  box-shadow: none;
+  text-decoration: none !important;
+}
+input[type="submit"].active,
+input[type="reset"].active,
+input[type="button"].active,
+button.active,
+.btn.active,
+.btn.active:visited{
+  background-color: #eee;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#eee),to(#e0e0e0));
+  background-image: -webkit-linear-gradient(top,#eee,#e0e0e0);
+  background-image: -moz-linear-gradient(top,#eee,#e0e0e0);
+  background-image: -ms-linear-gradient(top,#eee,#e0e0e0);
+  background-image: -o-linear-gradient(top,#eee,#e0e0e0);
+  background-image: linear-gradient(top,#eee,#e0e0e0);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  color: #333;
+}
+input[type="submit"]:hover, input[type="reset"]:hover,
+input[type="button"]:hover, button:hover, .btn:hover{
+  border-color: #c6c6c6;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+input[type="submit"]:disabled, input[type="reset"]:disabled,
+input[type="button"]:disabled, button:disabled, .btn:disabled{
+  opacity: 0.7;
+}
+
+/* ==========================================================================
    Button style classes
    ========================================================================== */
-.btn-blue:not(:disabled), .btn-blue:visited{
-  border-color: #3079ed;
+.btn.blue:not(:disabled), .btn.blue:visited{
+  border: 1px solid #3079ed;
   color: #fff;
-  background-color: #4787ed;
-  background-image: -moz-linear-gradient(#4d90fe, #4787ed);
-  background-image: -webkit-linear-gradient(#4d90fe, #4d90fe);
-  background-image: linear-gradient(#4d90fe, #4d90fe);
-  background-repeat: repeat-x;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  background-color: #4d90fe;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));
+  background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+  background-image: linear-gradient(top,#4d90fe,#4787ed);
 }
-.btn-blue:not(:disabled):hover{
-  border-color: #2f5bb7;
+.btn.blue:not(:disabled):hover{
+  border: 1px solid #2f5bb7;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
   background-color: #357ae8;
-  background-image: -moz-linear-gradient(#4d90fe, #357ae8);
-  background-image: -webkit-linear-gradient(#4d90fe, #357ae8);
-  background-image: linear-gradient(#4d90fe, #357ae8);
-  background-repeat: repeat-x;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#357ae8));
+  background-image: -webkit-linear-gradient(top,#4d90fe,#357ae8);
+  background-image: -moz-linear-gradient(top,#4d90fe,#357ae8);
+  background-image: -ms-linear-gradient(top,#4d90fe,#357ae8);
+  background-image: -o-linear-gradient(top,#4d90fe,#357ae8);
+  background-image: linear-gradient(top,#4d90fe,#357ae8);
 }
-.btn-red:not(:disabled), .btn-red:visited{
+.btn.red:not(:disabled), .btn.red:visited{
   border: 1px solid transparent;
   color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #d14836;
-  background-image: -moz-linear-gradient(#dd4b39, #d14836);
-  background-image: -webkit-linear-gradient(#dd4b39, #d14836);
-  background-image: linear-gradient(#dd4b39, #d14836);
-  background-repeat: repeat-x;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#dd4b39),to(#d14836));
+  background-image: -webkit-linear-gradient(top,#dd4b39,#d14836);
+  background-image: -moz-linear-gradient(top,#dd4b39,#d14836);
+  background-image: -ms-linear-gradient(top,#dd4b39,#d14836);
+  background-image: -o-linear-gradient(top,#dd4b39,#d14836);
+  background-image: linear-gradient(top,#dd4b39,#d14836);
 }
-.btn-red:not(:disabled):hover{
-  border-color: #b0281a;
-  background-color: #357ae8;
-  background-image: -moz-linear-gradient(#dd4b39, #c53727);
-  background-image: -webkit-linear-gradient(#dd4b39, #c53727);
-  background-image: linear-gradient(#dd4b39, #c53727);
-  background-repeat: repeat-x;
+.btn.red:not(:disabled):hover{
+  border: 1px solid #b0281a;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #c53727;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#dd4b39),to(#c53727));
+  background-image: -webkit-linear-gradient(top,#dd4b39,#c53727);
+  background-image: -moz-linear-gradient(top,#dd4b39,#c53727);
+  background-image: -ms-linear-gradient(top,#dd4b39,#c53727);
+  background-image: -o-linear-gradient(top,#dd4b39,#c53727);
+  background-image: linear-gradient(top,#dd4b39,#c53727);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -ms-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -o-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 /* ==========================================================================
    Input group & textarea-group
