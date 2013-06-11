@@ -3,16 +3,14 @@ require_once '../main/Installer.php';
 require_once '../file/FileHandler.php';
 
 use \org\codeminus\main as main;
-?>
 
+(isset($_POST['cmd'])) ? $title = 'output' : $title = '';
+?>
 <!DOCTYPE html>
 <html>
   <head>
-    <?php if (!isset($_POST['cmd'])) { ?>
-      <title>App configuration</title>
-    <?php } else { ?>
-      <title>App configuration - output</title>
-    <?php } ?>
+    <title>App configuration <?php echo $title?></title>
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/containers.css" />
     <link rel="stylesheet" href="../css/forms.css" />
@@ -20,7 +18,7 @@ use \org\codeminus\main as main;
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../img/cmf-medium.png" class="float-left"/>
+        <img src="../img/codeminus-php-framework-300x73.png" class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
     </div>
@@ -87,7 +85,7 @@ use \org\codeminus\main as main;
               recreate any specific file, delete it first.
               </p>
               <input type="submit" name="cmd" value="set application configurations" 
-                     class="btn btn-blue " />
+                     class="btn blue " />
         </form>
 
       <?php } else { ?>
@@ -101,8 +99,8 @@ use \org\codeminus\main as main;
             ?>
           </section>
           <section>
-            <a href="javascript:history.back()" class="btn btn-blue">go back</a>
-            <a href="<?php echo main\Installer::APP_ROOT ?>" class="btn btn-blue">Test Installation</a>
+            <a href="javascript:history.back()" class="btn">go back</a>
+            <a href="<?php echo main\Installer::APP_ROOT ?>" class="btn blue">Test Installation</a>
           </section>
         </section>
 

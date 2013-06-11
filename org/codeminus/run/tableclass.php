@@ -24,14 +24,14 @@ if (isset($_POST['cmd'])) {
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Table class generator</title>
+    <title>CMF - Table class generator</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
     <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../img/cmf-medium.png" class="float-left"/>
+        <img src="../img/codeminus-php-framework-300x73.png" class="float-left"/>
         <div class="float-right bold">TableClass v1.1</div>
       </header>
     </div>
@@ -70,7 +70,7 @@ if (isset($_POST['cmd'])) {
               </span>
             </section>
           </section>
-          <input type="submit" name="cmd" value="generate" class="btn btn-blue"/>
+          <input type="submit" name="cmd" value="generate" class="btn blue"/>
         </form>
       </div>
       <div class="float-left" style="width: 66.60%">
