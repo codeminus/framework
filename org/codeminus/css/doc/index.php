@@ -67,6 +67,9 @@ if (isset($_GET['c'])) {
       if ($contents['forms']) {
         require 'forms.php';
       }
+      if ($contents['tables']) {
+        require 'tables.php';
+      }
       if ($contents['glyphicons']) {
         require 'glyphicons.php';
       }
