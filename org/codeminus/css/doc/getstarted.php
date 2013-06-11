@@ -22,31 +22,40 @@
   Codeminus CSS Library is separated in different modules in order to give you
   the option to import only the ones you need to your project.
 </p>
+<table class="table-border-rounded">
+  <tr>
+    <th>File</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>base.css</td>
+    <td>Basic tag styling and normalize.css importation</td>
+  </tr>
+  <tr>
+    <td>codeminus.css</td>
+    <td>Imports all css files except <b>famfamfam.css</b></td>
+  </tr>
+  <tr>
+    <td>codeminus.min.css</td>
+    <td>A minified file containing all css declarations except <b>famfamfam.css</b></td>
+  </tr>
+  <tr>
+    <td>codes.css</td>
+    <td>Code source styling</td>
+  </tr>
+  <tr>
+    <td>containers.css</td>
+    <td>Content box styling</td>
+  </tr>
+  <tr>
+    <td>famfamfam.css</td>
+    <td>
+      <a href="http://famfamfam.com" target="blank">famfamfam</a>
+      icons in sprite form
+    </td>
+  </tr>
+</table>
 <ul>
-  <li>
-    base.css
-    <span class="text-disabled">
-      (basic tag styling and normalize.css importation)
-    </span>
-  </li>
-  <li>
-    codeminus.css
-    <span class="text-disabled">
-      (only used to put all css files together)
-    </span>
-  </li>  
-  <li>
-    codes.css
-    <span class="text-disabled">
-      (source code formatting)
-    </span>
-  </li>
-  <li>
-    containers.css
-    <span class="text-disabled">
-      (container classes)
-    </span>
-  </li>
   <li>famfamfam.css
     <span class="text-disabled">
       (<a href="http://famfamfam.com" target="blank">famfamfam</a>
