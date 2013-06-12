@@ -1,6 +1,7 @@
 [class^="fam-"],[class*=" fam-"] {
     display:inline-block;
-    width:16px;height:16px;
+    width:16px;
+    height:16px;
     *margin-right:.3em;
     line-height:16px;
     vertical-align:text-top;
@@ -12,6 +13,9 @@
 }
 [class^="fam-"].disabled, [class*=" fam-"].disabled{
   opacity: 0.3;
+}
+[class^="fam-"].close, [class*=" fam-"].close{
+  margin-top: 10px;
 }
 .fam-accept{background-position: -0px -0px}
 .fam-add{background-position: -16px -0px}

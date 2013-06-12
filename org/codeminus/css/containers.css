@@ -53,14 +53,23 @@
 .container-box{
   display: inline-block;
 }
-.container-box > *:first-child{
+.container-box > div:first-child,
+.container-box > header:first-child,
+.container-box > section:first-child,
+.container-box > footer:first-child{
   border: solid 1px #d8d8d8;
 }
-.container-box.rounded > *:first-child{
+.container-box.rounded > div:first-child,
+.container-box.rounded > header:first-child,
+.container-box.rounded > section:first-child,
+.container-box.rounded > footer:first-child{
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.container-box.rounded > *:last-child{
+.container-box.rounded > div:last-child,
+.container-box.rounded > header:last-child,
+.container-box.rounded > section:last-child,
+.container-box.rounded > footer:last-child{
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }

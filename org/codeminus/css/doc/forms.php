@@ -59,7 +59,7 @@
     <legend>.textarea-group</legend>
     <span class="textarea-group">
       <label for="msg1">label</label>
-      <textarea id="msg1" rows="4" class="width-large" name="msg1">sdfsd</textarea>
+      <textarea id="msg1" rows="4" class="width-large" name="msg1">textarea</textarea>
       <span class="input-group float-right">
         <input type="button" value="button 01" />
         <input type="button" value="button 02" />

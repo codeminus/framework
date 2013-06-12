@@ -52,11 +52,11 @@
     <section>.container-box .container-alert .success .block</section>
   </section>
   <section id="message2" class="container-box container-alert warning shadow-small">
-    <span class="close" data-dismiss="message2" >&times;</span>
+    <span class="close glyphicon-remove" data-dismiss="message2" ></span>
     <section>.container-box .container-alert .warning .shadow-small</section>
   </section>
   <section id="message3" class="container-box container-alert info shadow-large">
-    <span class="close" data-dismiss="message3" >&times;</span>
+    <span class="close fam-cross" data-dismiss="message3" ></span>
     <section>
       .container-box .container-alert .info .shadow-large
     </section>

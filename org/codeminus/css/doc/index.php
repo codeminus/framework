@@ -6,7 +6,8 @@ $contents = array(
     'navs' => false,
     'forms' => false,
     'tables' => false,
-    'media' => false,
+    'images' => false,
+    'js' => false,
     'glyphicons' => false,
     'famfamfam' => false,
 );
@@ -20,7 +21,9 @@ if (isset($_GET['c'])) {
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Codeminus CSS Library</title>
+    <title>Codeminus Front-end Framework</title>
+    <meta name="author" content="Codeminus.org"></meta>
+    <meta name="description" content="Codeminus: Less code, fast development, more Results. PHP MVC Framework and Front-End Framework."></meta>
     <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
     <link rel="stylesheet" href="../codeminus.css" />
     <link rel="stylesheet" href="../famfamfam.css" />
@@ -29,7 +32,7 @@ if (isset($_GET['c'])) {
   <body>
     <div class="container-header">
       <div class="container-centered">
-        <img src="../../img/cmf-medium.png" />
+        <img src="../../img/codeminus-front-end-framework-300x73.png" />
       </div>
     </div>
     <div class="container-centered">
@@ -40,10 +43,11 @@ if (isset($_GET['c'])) {
         <li><a href="?c=navs" class="<?php echo $contents['navs'] ?>">Navigators</a></li>
         <li><a href="?c=forms" class="<?php echo $contents['forms'] ?>">Forms</a></li>
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
-        <li><a href="?c=media" class="<?php echo $contents['media'] ?>">Media</a></li>
+        <li><a href="?c=images" class="<?php echo $contents['images'] ?>">Images</a></li>
+        <li><a href="?c=js" class="<?php echo $contents['js'] ?>">Javascript</a></li>
         <li>
           <a href="#" class="dropdown <?php echo $contents['glyphicons'] . $contents['famfamfam'] ?>">
-            Icons&blacktriangledown;
+            Icons &blacktriangledown;
           </a>
           <ul class="nav nav-vlist dropdown-menu rounded">
             <li><a href="?c=glyphicons">Glyphicons</a></li>

@@ -1,6 +1,7 @@
 [class^="glyphicon-"],[class*=" glyphicon-"] {
     display:inline-block;
-    width:14px;height:14px;
+    width:14px;
+    height:14px;
     *margin-right:.3em;
     line-height:14px;
     vertical-align:text-top;
@@ -12,6 +13,9 @@
 }
 [class^="glyphicon-"].disabled, [class*=" glyphicon-"].disabled{
   opacity: 0.3;
+}
+[class^="glyphicon-"].close, [class*=" glyphicon-"].close{
+  margin-top: 10px;
 }
 .glyphicon-glass { background-position: 0 0 }
 .glyphicon-leaf { background-position: -34px 0 }
