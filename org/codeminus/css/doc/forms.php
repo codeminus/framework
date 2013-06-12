@@ -15,44 +15,49 @@
   </fieldset>
   <fieldset>
     <legend>Buttons</legend>
-    <input type="submit" value="submit" />
     <input type="button" value="button" />
-    <input type="button" value="disabled" disabled />
-    <input type="reset" value="reset" />
-    <button type="button">button tag</button>
-    <a href="#" class="btn">button anchor tag</a>
-    <input type="button" value="active" class="active" />
-    <input type="button" value=".btn .blue" class="btn blue" />
-    <input type="button" value="button .btn .blue disabled" class="btn blue" disabled />
-    <input type="button" class="btn red" value="button .btn .red">
-    <input type="button" class="btn " value="button .btn .">
+    <input type="button" value="button disabled" disabled />
+    <a href="#" class="btn">.btn</a>
+    <input type="button" class="active" value="active" />
     <br/>
-    <input type="button" class="btn text-success" value=".btn .text-success" />
-    <input type="button" class="btn text-warning" value=".btn .text-warning" />
-    <input type="button" class="btn text-info" value=".btn .text-info" />
-    <input type="button" class="btn text-error" value=".btn .text-info" />
+    <input type="button" class="btn-blue" value=".btn-blue" />
+    <input type="button" class="btn-blue" value=".btn-blue disabled" disabled />
+    <input type="button" class="btn-red" value=".btn-red">
+    <input type="button" class="btn-red" value=".btn-red disabled" disabled>
     <br/>
-    <input type="button" class="btn success" value=".btn .success" />
-    <input type="button" class="btn warning" value=".btn .warning" />
-    <input type="button" class="btn info" value=".btn .info" />
-    <input type="button" class="btn error" value=".btn .error" />
+    <input type="button" class="text-success" value=".text-success" />
+    <input type="button" class="text-warning" value=".text-warning" />
+    <input type="button" class="text-info" value=".text-info" />
+    <input type="button" class="text-error" value=".text-info" />
+    <br/>
   </fieldset>
   <fieldset>
     <legend>.input-group</legend>
     <span class="input-group">
       <input type="button" value="button 01" />
-      <input type="button" value="active" />
+      <input type="button" value="button 02" />
       <input type="button" value="button 03" />
     </span>
+    <span class="input-group" data-toggle="button-radio">
+      <input type="button" value="active" />
+      <input type="button" value="only" />
+      <input type="button" value="one" />
+    </span>
+    <span class="input-group" data-toggle="button-checkbox">
+      <input type="button" class="btn-blue" value="select" />
+      <input type="button" class="btn-blue" value="only" />
+      <input type="button" class="btn-blue" value="one" />
+    </span>
+    <br/>
     <span class="input-group">
       <label for="textIn">label</label>
       <input type="text" placeholder="input text" id="textIn"/>
-      <input type="submit" value="submit" class="btn btn-blue" />
+      <input type="button" class="btn-red" value="button" />
     </span>
     <span class="input-group">
       <span>span</span>
       <input type="text" placeholder="input text" />
-      <input type="submit" value="submit" class="btn btn-blue" />
+      <input type="button" value="button" class="btn-blue" />
     </span>
   </fieldset>
   <fieldset>
