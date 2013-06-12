@@ -44,9 +44,9 @@
       <input type="button" value="one" />
     </span>
     <span class="input-group" data-toggle="button-checkbox">
-      <input type="button" class="btn-blue" value="select" />
-      <input type="button" class="btn-blue" value="only" />
-      <input type="button" class="btn-blue" value="one" />
+      <input type="button" class="btn-blue" value="active" />
+      <input type="button" class="btn-blue" value="more" />
+      <input type="button" class="btn-blue" value="than one" />
     </span>
     <br/>
     <span class="input-group">

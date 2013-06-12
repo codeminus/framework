@@ -107,4 +107,14 @@ $(document).ready(function() {
     return $('#' + $(this).attr('data-colspan-from')).children().length;
   });
   
+  /* ==========================================================================
+   data-toggle handler
+   ========================================================================== */
+  $('[data-toggle] > *').on('click', function (){
+    $(this).toggleClass('active');
+    if($(this).parent().attr('data-toggle') === 'button-radio'){
+      $(this).siblings().removeClass('active');
+    }
+  });
+  
 });
