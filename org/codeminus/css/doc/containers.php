@@ -70,3 +70,6 @@
     <div class="float-right">.float-right</div>
   </div>
 </div>
+<div class="container-box">
+  <h6>123123</h6>
+</div>
