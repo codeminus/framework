@@ -1,0 +1,15 @@
+.img-polaroid{
+  padding: 5px;
+  border: solid 1px #d8d8d8;
+  background-color: white;
+}
+.img-circle{
+  border-radius: 1500px;
+}
+.img-circle.shadow-small, .img-circle.shadow-small{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+.img-circle.shadow-large, .img-circle.shadow-large{
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+

@@ -7,14 +7,16 @@ $contents = array(
     'forms' => false,
     'tables' => false,
     'images' => false,
-    'js' => false,
+    //'js' => false,
     'glyphicons' => false,
     'famfamfam' => false,
 );
-if (isset($_GET['c'])) {
+if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
   $contents[$_GET['c']] = 'active';
+  $reqFile = $_GET['c'].'.php';
 } else {
-  $contents['home'] = 'active';
+  header("Location: ?c=getstarted",true);
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -56,25 +58,9 @@ if (isset($_GET['c'])) {
         </li>
       </ul>
       <div class="divider"></div>
-      <?php
-      if ($contents['base']) {
-        require 'base.php';
-      } elseif ($contents['containers']) {
-        require 'containers.php';
-      } elseif ($contents['navs']) {
-        require 'navs.php';
-      } elseif ($contents['forms']) {
-        require 'forms.php';
-      } elseif ($contents['tables']) {
-        require 'tables.php';
-      } elseif ($contents['glyphicons']) {
-        require 'glyphicons.php';
-      } elseif ($contents['famfamfam']) {
-        require 'famfamfam.php';
-      } else {
-        require 'getstarted.php';
-      }
-      ?>
+      
+      <?php require $reqFile; ?>
+      
     </div>
     <div class="container-upper-foot">
       <div class="container-centered">

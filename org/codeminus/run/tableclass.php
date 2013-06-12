@@ -26,7 +26,9 @@ if (isset($_POST['cmd'])) {
   <head>
     <title>CMF - Table class generator</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
-    <link rel="stylesheet" href="../css/codeminus.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/containers.css" />
+    <link rel="stylesheet" href="../css/forms.css" />
   </head>
   <body>
     <div class="container-header">
