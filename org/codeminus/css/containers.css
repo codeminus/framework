@@ -75,9 +75,12 @@
 }
 .container-box > *{
   border: solid 1px #d8d8d8;
-  border-top: none;
   padding: 8px 11px;
+  border-top: none;
   background-color: white;
+}
+.container-box > *:only-child{
+  border-top: solid 1px #d8d8d8;
 }
 .container-box > header, .container-box > .header,
 .container-box > footer, .container-box > .footer{
