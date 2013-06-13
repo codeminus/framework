@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
   /* ==========================================================================
    clearfix for floating containers
    ========================================================================== */
@@ -84,7 +84,6 @@ $(document).ready(function() {
     }
   });
 
-
   $('[data-dismiss-after]').on('click', function() {
     var mode = $(this).attr('data-dismiss-mode');
     switch (mode) {
@@ -106,15 +105,52 @@ $(document).ready(function() {
     //$(this).css('width','100%');
     return $('#' + $(this).attr('data-colspan-from')).children().length;
   });
-  
+
   /* ==========================================================================
    data-toggle handler
    ========================================================================== */
-  $('[data-toggle] > *').on('click', function (){
-    $(this).toggleClass('active');
-    if($(this).parent().attr('data-toggle') === 'button-radio'){
-      $(this).siblings().removeClass('active');
+  $('[data-toggle-value]').on('click', function() {
+    var values = $(this).attr('data-toggle-value').split(';');
+    if(values[1] == null){
+      values[1] = $(this).attr('value');
+      $(this).attr('data-toggle-value',values[0]+';'+values[1]);
+    }
+    if($(this).attr('value') == values[0]){
+      $(this).attr('value',values[1]);
+    }else{
+      $(this).attr('value',values[0]);
     }
   });
   
+  $('[data-toggle="button"]').on('click', function() {
+    var className = '';
+    if($(this).attr('data-toggle-class') == null){
+      className = 'active';
+    }else{
+      className = $(this).attr('data-toggle-class');
+    }
+    $(this).toggleClass(className);
+  });
+  
+  $('[data-toggle="button-group-radio"] > *').on('click', function() {
+    var className = '';
+    if($(this).parent().attr('data-toggle-class') == null){
+      className = 'active';
+    }else{
+      className = $(this).parent().attr('data-toggle-class');
+    }
+    $(this).toggleClass(className);
+    $(this).siblings().removeClass(className);
+  });
+
+  $('[data-toggle="button-group-checkbox"] > *').on('click', function() {
+    var className = '';
+    if($(this).parent().attr('data-toggle-class') == null){
+      className = 'active';
+    }else{
+      className = $(this).parent().attr('data-toggle-class');
+    }
+    $(this).toggleClass(className);
+  });
+
 });
