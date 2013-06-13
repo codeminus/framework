@@ -1,4 +1,4 @@
-framework
+Codeminus Frameworks
 =========
 
-Codeminus MVC Framework for PHP
+Codeminus PHP MVC & Frontend Framwork
