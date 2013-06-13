@@ -18,18 +18,27 @@
     <input type="button" value="button" />
     <input type="button" value="button disabled" disabled />
     <a href="#" class="btn">.btn</a>
-    <input type="button" class="active" value="active" />
+    <input type="button" value="off"
+           data-toggle="button"
+           data-toggle-value="on;off"
+           data-toggle-class="btn-blue"/>
+    <input type="button" value="initial state"
+           data-toggle="button"
+           data-toggle-value="clicked 01;clicked 02"
+           data-toggle-class=""/>
+    <br/>
+    <input type="button" class="success" value=".text-success" />
+    <input type="button" class="warning" value=".text-warning" />
+    <input type="button" class="info" value=".text-info" />
+    <input type="button" class="error" value=".text-info" />
     <br/>
     <input type="button" class="btn-blue" value=".btn-blue" />
-    <input type="button" class="btn-blue" value=".btn-blue disabled" disabled />
-    <input type="button" class="btn-red" value=".btn-red">
-    <input type="button" class="btn-red" value=".btn-red disabled" disabled>
-    <br/>
-    <input type="button" class="text-success" value=".text-success" />
-    <input type="button" class="text-warning" value=".text-warning" />
-    <input type="button" class="text-info" value=".text-info" />
-    <input type="button" class="text-error" value=".text-info" />
-    <br/>
+    <input type="button" class="btn-black" value=".btn-info" />
+    <input type="button" class="btn-success" value=".btn-success" />
+    <input type="button" class="btn-warning" value=".btn-warning" />
+    <input type="button" class="btn-info" value=".btn-info" />
+    <input type="button" class="btn-danger" value=".btn-danger">
+    <input type="button" class="btn-danger" value=".btn-danger disabled" disabled>
   </fieldset>
   <fieldset>
     <legend>.input-group</legend>
@@ -38,21 +47,23 @@
       <input type="button" value="button 02" />
       <input type="button" value="button 03" />
     </span>
-    <span class="input-group" data-toggle="button-radio">
+    <span class="input-group"
+          data-toggle="button-group-radio"
+          data-toggle-class="btn-info">
       <input type="button" value="active" />
       <input type="button" value="only" />
       <input type="button" value="one" />
     </span>
-    <span class="input-group" data-toggle="button-checkbox">
-      <input type="button" class="btn-blue" value="active" />
-      <input type="button" class="btn-blue" value="more" />
-      <input type="button" class="btn-blue" value="than one" />
+    <span class="input-group" data-toggle="button-group-checkbox">
+      <input type="button" class="btn-danger" value="active" />
+      <input type="button" class="btn-danger" value="more" />
+      <input type="button" class="btn-danger" value="than one" />
     </span>
     <br/>
     <span class="input-group">
       <label for="textIn">label</label>
       <input type="text" placeholder="input text" id="textIn"/>
-      <input type="button" class="btn-red" value="button" />
+      <input type="button" class="btn-danger" value="button" />
     </span>
     <span class="input-group">
       <span>span</span>
