@@ -6,13 +6,33 @@
       <li><a href="#">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
       <li>
-        <a href="#" class="dropdown">Dropdown &blacktriangledown;</a>
+        <a href="#" class="dropdown">
+          Dropdown <span class="caret"></span>
+        </a>
         <ul class="nav nav-vlist dropdown-menu">
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li class="divider"></li>
-          <li><a href="#">Menu Item</a></li>
+          <li>
+            <a href="#" class="submenu">
+              Menu Item <span class="caret"></span>
+            </a>
+            <ul class="nav nav-vlist dropdown-menu">
+              <li><a href="#">Menu Item</a></li>
+              <li><a href="#">Menu Item</a></li>
+              <li>
+                <a href="#" class="submenu">
+                  Menu Item <span class="caret"></span>
+                </a>
+                <ul class="nav nav-vlist dropdown-menu">
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                  <li><a href="#">Menu Item</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
@@ -145,23 +165,23 @@
     <li><a href="#"><span class="glyphicon-thin-arrow-right"></span></a></li>
   </ul><br/>
   <ul class="nav nav-pager small">
-    <li><a href="#" class="disabled"><</a></li>
+    <li><a href="#" class="disabled"><span class="arrow-left"></span></a></li>
     <li><a href="#" class="active">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">...</a></li>
     <li><a href="#">10</a></li>
     <li><a href="#">11</a></li>
-    <li><a href="#">></a></li>
+    <li><a href="#"><span class="arrow-right"></span></a></li>
   </ul><br/>
   <ul class="nav nav-pager tiny">
-    <li><a href="#" class="disabled"><</a></li>
+    <li><a href="#" class="disabled"><span class="arrow-left"></span></a></li>
     <li><a href="#" class="active">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">...</a></li>
     <li><a href="#">10</a></li>
     <li><a href="#">11</a></li>
-    <li><a href="#">></a></li>
+    <li><a href="#"><span class="arrow-right"></span></a></li>
   </ul>
 </div>
