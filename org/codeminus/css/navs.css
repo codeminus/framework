@@ -15,7 +15,7 @@
   text-shadow: 0 1px 0 #fff;
 }
 .nav > li > a:hover{
-  background-color: #f7f7f7;
+  background-color: #f5f5f5;
   text-decoration: none;
 }
 .nav .active{
@@ -66,9 +66,6 @@
 .nav-vlist.style02 > li:last-child{
   border-bottom: #fafafb;
 }
-.nav.nav-vlist > li > a:hover{
-  background-color: #f5f5f5;
-}
 .nav-vlist.style02 .active{
   box-shadow: none;
   border: none;
@@ -95,6 +92,10 @@
    ========================================================================== */
 .nav-hlist > li{
   display: inline-block;
+}
+.nav-hlist > .divider{
+  border-left: solid 1px;
+  width: 1px;
 }
 /* ==========================================================================
    Horizontal tabs
@@ -254,9 +255,19 @@
 .dropdown + .dropdown-menu{
   display: none;
 }
-.dropdown-menu{
+.dropdown-menu, .submenu > .dropdown-menu{
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   min-width: 150px;
+}
+.submenu > .dropdown-menu{
+}
+.caret,
+.arrow-top,
+.arrow-right,
+.arrow-bottom,
+.arrow-left{
+  font-size: 20px;
+  vertical-align: bottom;
 }
