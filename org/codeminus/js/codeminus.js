@@ -59,15 +59,45 @@ $(document).ready(function() {
   $('.code-line-numbered > ol > .code-line').wrap('<li>');
 
   /* ==========================================================================
-   Dropdown menu **alpha version
+   Dropdown and dropup menu handler
    ========================================================================== */
   $('html').on('click', function() {
     $('.dropdown-menu').slideUp('fast');
   });
+  
   $('.dropdown').on('click', function(e) {
     e.stopPropagation();
+    $('.dropdown-menu').not($(this).next('.dropdown-menu')).slideUp('fast');
     $(this).next('.dropdown-menu').slideToggle('fast');
   });
+
+  $('.submenu').mouseenter(function() {
+    $(this).css('cursor', 'default');
+    var dropDownMenu = $(this).next('.dropdown-menu');
+    var y = $(this).parent().height();
+    var x = $(this).parent().outerWidth();
+    dropDownMenu.css('margin-top', -y);
+    dropDownMenu.css('left', x);
+    dropDownMenu.show();
+    $(this).parent().mouseleave(function(){
+      dropDownMenu.hide();
+    });
+  });
+  
+  $('.submenu').click(function(e){
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  //defining arrows for usage on menus
+  $('.arrow-left, .caret').html('&blacktriangleleft;');
+  $('.arrow-top').html('&blacktriangle;');
+  $('.arrow-right').html('&blacktriangleright;');
+  $('.arrow-bottom').html('&blacktriangledown;');
+  //defining caret orientation according to its menu type
+  $('.dropdown').find('.caret').html('&blacktriangledown;');
+  $('.dropup').find('.caret').html('&blacktriangle;');
+  $('.submenu').find('.caret').html('&blacktriangleright;').css('float', 'right');
 
   /* ==========================================================================
    data-dismiss handler
@@ -111,32 +141,32 @@ $(document).ready(function() {
    ========================================================================== */
   $('[data-toggle-value]').on('click', function() {
     var values = $(this).attr('data-toggle-value').split(';');
-    if(values[1] == null){
+    if (values[1] == null) {
       values[1] = $(this).attr('value');
-      $(this).attr('data-toggle-value',values[0]+';'+values[1]);
+      $(this).attr('data-toggle-value', values[0] + ';' + values[1]);
     }
-    if($(this).attr('value') == values[0]){
-      $(this).attr('value',values[1]);
-    }else{
-      $(this).attr('value',values[0]);
+    if ($(this).attr('value') == values[0]) {
+      $(this).attr('value', values[1]);
+    } else {
+      $(this).attr('value', values[0]);
     }
   });
-  
+
   $('[data-toggle="button"]').on('click', function() {
     var className = '';
-    if($(this).attr('data-toggle-class') == null){
+    if ($(this).attr('data-toggle-class') == null) {
       className = 'active';
-    }else{
+    } else {
       className = $(this).attr('data-toggle-class');
     }
     $(this).toggleClass(className);
   });
-  
+
   $('[data-toggle="button-group-radio"] > *').on('click', function() {
     var className = '';
-    if($(this).parent().attr('data-toggle-class') == null){
+    if ($(this).parent().attr('data-toggle-class') == null) {
       className = 'active';
-    }else{
+    } else {
       className = $(this).parent().attr('data-toggle-class');
     }
     $(this).toggleClass(className);
@@ -145,9 +175,9 @@ $(document).ready(function() {
 
   $('[data-toggle="button-group-checkbox"] > *').on('click', function() {
     var className = '';
-    if($(this).parent().attr('data-toggle-class') == null){
+    if ($(this).parent().attr('data-toggle-class') == null) {
       className = 'active';
-    }else{
+    } else {
       className = $(this).parent().attr('data-toggle-class');
     }
     $(this).toggleClass(className);
