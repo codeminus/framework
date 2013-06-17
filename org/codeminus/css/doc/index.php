@@ -49,7 +49,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
         <li><a href="?c=js" class="<?php echo $contents['js'] ?>">Javascript</a></li>
         <li>
           <a href="#" class="dropdown <?php echo $contents['glyphicons'] . $contents['famfamfam'] ?>">
-            Icons &blacktriangledown;
+            Icons <span class="caret"></span>
           </a>
           <ul class="nav nav-vlist dropdown-menu rounded">
             <li><a href="?c=glyphicons">Glyphicons</a></li>

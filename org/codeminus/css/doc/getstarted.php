@@ -89,7 +89,7 @@
   </tr>
 </table>
 <p>
-  By default, <strong>codeminus.css</strong> imports all CSS files, just in case
+  By default, <strong>codeminus.css</strong> imports all CSS files, except <strong>famfamfam.css</strong>, just in case
   you dont want to import all theses files yourself:
 </p>
 <pre class="code code-line-numbered code-highlight">
@@ -101,7 +101,6 @@
 @import "navs.css";
 @import "tables.css";
 @import "glyphicon.css";
-@import "famfamfam.css";
 </pre>
 <p>
   It is highly recommended that you always include 
