@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   /* ==========================================================================
    clearfix for floating containers
    ========================================================================== */
@@ -22,7 +21,7 @@ $(document).ready(function() {
   });
 
   var isMultiLineComment = false;
-//code high-lighting
+  //code high-lighting
   $('.code-highlight .code-line').html(function() {
     //string between quotes
     var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
@@ -54,37 +53,50 @@ $(document).ready(function() {
     }
     return code;
   });
-//code line numbering
+  //code line numbering
   $('.code-line-numbered').wrapInner('<ol>');
   $('.code-line-numbered > ol > .code-line').wrap('<li>');
 
   /* ==========================================================================
+   disabled navigator item behavior
+   ========================================================================== */
+  $('.nav .disabled').click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  /* ==========================================================================
    Dropdown and dropup menu handler
    ========================================================================== */
+  $('.dropdown-menu').addClass('nav nav-vlist');
+  
   $('html').on('click', function() {
+    $('.dropdown-menu').prev('.trigger').removeClass('active');
     $('.dropdown-menu').slideUp('fast');
   });
-  
-  $('.dropdown').on('click', function(e) {
+
+  $('.dropdown > .trigger').on('click', function(e) {
     e.stopPropagation();
+    $(this).toggleClass('active');
     $('.dropdown-menu').not($(this).next('.dropdown-menu')).slideUp('fast');
     $(this).next('.dropdown-menu').slideToggle('fast');
   });
 
-  $('.submenu').mouseenter(function() {
-    $(this).css('cursor', 'default');
-    var dropDownMenu = $(this).next('.dropdown-menu');
-    var y = $(this).parent().height();
-    var x = $(this).parent().outerWidth();
-    dropDownMenu.css('margin-top', -y);
-    dropDownMenu.css('left', x);
-    dropDownMenu.show();
-    $(this).parent().mouseleave(function(){
-      dropDownMenu.hide();
-    });
+  $('.submenu > .trigger').mouseenter(function() {
+    if(!$(this).hasClass('disabled')){
+      $(this).css('cursor', 'default');
+      var dropDownMenu = $(this).next('.dropdown-menu');
+      var y = $(this).parent().height();
+      var x = $(this).parent().outerWidth();
+      dropDownMenu.css('margin-top', -y);
+      dropDownMenu.css('left', x);
+      dropDownMenu.show();
+      $(this).parent().mouseleave(function() {
+        dropDownMenu.hide();
+      });
+    }
   });
-  
-  $('.submenu').click(function(e){
+
+  $('.submenu > .trigger').click(function(e) {
     e.preventDefault();
     e.stopPropagation();
   });

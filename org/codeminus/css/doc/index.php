@@ -47,11 +47,11 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
         <li><a href="?c=images" class="<?php echo $contents['images'] ?>">Images</a></li>
         <li><a href="?c=js" class="<?php echo $contents['js'] ?>">Javascript</a></li>
-        <li>
-          <a href="#" class="dropdown <?php echo $contents['glyphicons'] . $contents['famfamfam'] ?>">
+        <li class="dropdown">
+          <a href="#" class="trigger <?php echo $contents['glyphicons'] . $contents['famfamfam'] ?>">
             Icons <span class="caret"></span>
           </a>
-          <ul class="nav nav-vlist dropdown-menu rounded">
+          <ul class="dropdown-menu">
             <li><a href="?c=glyphicons">Glyphicons</a></li>
             <li><a href="?c=famfamfam">famfamfam</a></li>
           </ul>

@@ -5,27 +5,27 @@
       <li><a href="#">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
       <li><a href="#">Menu Item</a></li>
-      <li>
-        <a href="#" class="dropdown">
+      <li class="dropdown">
+        <a href="#" class="trigger">
           Dropdown <span class="caret"></span>
         </a>
-        <ul class="nav nav-vlist dropdown-menu">
+        <ul class="dropdown-menu">
           <li><a href="#">Menu Item</a></li>
-          <li><a href="#">Menu Item</a></li>
+          <li><a href="#" class="disabled">Menu Item</a></li>
           <li><a href="#">Menu Item</a></li>
           <li class="divider"></li>
-          <li>
-            <a href="#" class="submenu">
+          <li class="submenu">
+            <a href="#" class="trigger">
               Menu Item <span class="caret"></span>
             </a>
-            <ul class="nav nav-vlist dropdown-menu">
+            <ul class="dropdown-menu">
               <li><a href="#">Menu Item</a></li>
               <li><a href="#">Menu Item</a></li>
-              <li>
-                <a href="#" class="submenu">
+              <li class="submenu">
+                <a href="#" class="trigger">
                   Menu Item <span class="caret"></span>
                 </a>
-                <ul class="nav nav-vlist dropdown-menu">
+                <ul class="dropdown-menu">
                   <li><a href="#">Menu Item</a></li>
                   <li><a href="#">Menu Item</a></li>
                   <li><a href="#">Menu Item</a></li>

@@ -25,7 +25,18 @@
     <input type="button" value="initial state"
            data-toggle="button"
            data-toggle-value="clicked 01;clicked 02"
-           data-toggle-class=""/>
+           data-toggle-class="" class="dropdown"/>
+    <div class="inline dropdown">
+      <button type="button" class="trigger btn-warning">
+        dropdown
+        <span class="caret"></span>
+      </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+    </ul>
+    </div>
     <br/>
     <input type="button" class="success" value=".text-success" />
     <input type="button" class="warning" value=".text-warning" />
@@ -48,8 +59,7 @@
       <input type="button" value="button 03" />
     </span>
     <span class="input-group"
-          data-toggle="button-group-radio"
-          data-toggle-class="btn-info">
+          data-toggle="button-group-radio">
       <input type="button" value="active" />
       <input type="button" value="only" />
       <input type="button" value="one" />

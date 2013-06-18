@@ -1,4 +1,4 @@
-<h3>fam</h3>
+<h3>famfamfam</h3>
 <p>
   How to use:<br/>
   <span class="fam-add"></span>
