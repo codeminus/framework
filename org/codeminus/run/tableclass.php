@@ -26,9 +26,7 @@ if (isset($_POST['cmd'])) {
   <head>
     <title>CMF - Table class generator</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/containers.css" />
-    <link rel="stylesheet" href="../css/forms.css" />
+    <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
     <div class="container-header">
@@ -72,7 +70,7 @@ if (isset($_POST['cmd'])) {
               </span>
             </section>
           </section>
-          <input type="submit" name="cmd" value="generate" class="btn blue"/>
+          <input type="submit" name="cmd" value="generate" class="btn-blue"/>
         </form>
       </div>
       <div class="float-left" style="width: 66.60%">

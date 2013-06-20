@@ -11,9 +11,7 @@ use \org\codeminus\main as main;
   <head>
     <title>App configuration <?php echo $title?></title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/containers.css" />
-    <link rel="stylesheet" href="../css/forms.css" />
+    <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
     <div class="container-header">
@@ -85,7 +83,7 @@ use \org\codeminus\main as main;
               recreate any specific file, delete it first.
               </p>
               <input type="submit" name="cmd" value="set application configurations" 
-                     class="btn blue " />
+                     class="btn-blue " />
         </form>
 
       <?php } else { ?>
@@ -100,7 +98,7 @@ use \org\codeminus\main as main;
           </section>
           <section>
             <a href="javascript:history.back()" class="btn">go back</a>
-            <a href="<?php echo main\Installer::APP_ROOT ?>" class="btn blue">Test Installation</a>
+            <a href="<?php echo main\Installer::APP_ROOT ?>" class="btn-blue">Test Installation</a>
           </section>
         </section>
 
