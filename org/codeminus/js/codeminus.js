@@ -2,8 +2,7 @@ $(document).ready(function() {
   /* ==========================================================================
    clearfix for floating containers
    ========================================================================== */
-  $('.float-left, .float-right').parent().addClass('clearfix');
-
+  $('.float-left, .float-right, [class^="span"], [class*=" span"]').parent().addClass('clearfix');
   /* ==========================================================================
    Source code styling
    ========================================================================== */
@@ -67,31 +66,47 @@ $(document).ready(function() {
   /* ==========================================================================
    Dropdown and dropup menu handler
    ========================================================================== */
-  $('.dropdown-menu').addClass('nav nav-vlist');
-  
+  $('.drop-menu').addClass('nav nav-vlist');
+
   $('html').on('click', function() {
-    $('.dropdown-menu').prev('.trigger').removeClass('active');
-    $('.dropdown-menu').slideUp('fast');
+    $('.drop-menu').prev('.trigger.on:not(.tab-trigger)').removeClass('active on');
+    $('.drop-menu').hide();
   });
 
   $('.dropdown > .trigger').on('click', function(e) {
     e.stopPropagation();
-    $(this).toggleClass('active');
-    $('.dropdown-menu').not($(this).next('.dropdown-menu')).slideUp('fast');
-    $(this).next('.dropdown-menu').slideToggle('fast');
+    $('.trigger.on').not($(this)).removeClass('active on');
+    if(!$(this).hasClass('tab-trigger')){
+      $(this).toggleClass('active on');
+    }
+    $('.drop-menu').not($(this).next('.drop-menu')).hide();
+    $(this).next('.drop-menu').toggle();
+  });
+
+  $('.dropup > .trigger').on('click', function(e) {
+    e.stopPropagation();
+    $('.trigger.on').not($(this)).removeClass('active on');
+    if(!$(this).hasClass('tab-trigger')){
+      $(this).toggleClass('active on');
+    }
+    var dropMenu = $(this).next('.drop-menu');
+    $('.drop-menu').not(dropMenu).hide();
+    var y = $(this).parent().height()+dropMenu.height();
+    dropMenu.css('margin-top', -y);
+    dropMenu.toggle();
   });
 
   $('.submenu > .trigger').mouseenter(function() {
-    if(!$(this).hasClass('disabled')){
+    if (!$(this).hasClass('disabled')) {
       $(this).css('cursor', 'default');
-      var dropDownMenu = $(this).next('.dropdown-menu');
+      var dropMenu = $(this).next('.drop-menu');
       var y = $(this).parent().height();
       var x = $(this).parent().outerWidth();
-      dropDownMenu.css('margin-top', -y);
-      dropDownMenu.css('left', x);
-      dropDownMenu.show();
+      dropMenu.css('margin-top', -y);
+      dropMenu.css('left', x);
+      dropMenu.show();
       $(this).parent().mouseleave(function() {
-        dropDownMenu.hide();
+        dropMenu.hide();
       });
     }
   });
@@ -110,6 +125,21 @@ $(document).ready(function() {
   $('.dropdown').find('.caret').html('&blacktriangledown;');
   $('.dropup').find('.caret').html('&blacktriangle;');
   $('.submenu').find('.caret').html('&blacktriangleright;').css('float', 'right');
+
+/* ==========================================================================
+   data-tab handler
+   ========================================================================== */
+  $('[data-tab-target]').click(function(){
+    $(this).parents('.tab-triggers').find('[data-tab-target], .tab-trigger').removeClass('active');
+    if($(this).parents('.dropdown, .dropup').length === 1){
+      $(this).parents('.dropdown, .dropup').find('.trigger').addClass('active');
+    }else{
+      $(this).addClass('active');
+    }
+    var tab = '#'+$(this).attr('data-tab-target');
+    $(tab).siblings('.tab').removeClass('active');
+    $(tab).addClass('active');
+  });
 
   /* ==========================================================================
    data-dismiss handler
