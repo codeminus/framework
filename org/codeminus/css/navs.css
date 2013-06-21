@@ -15,15 +15,21 @@
   text-shadow: 0 1px 0 #fff;
   
 }
+.nav > li > a{
+  cursor: pointer;
+}
 .nav > li > a:hover{
-  background-color: #f5f5f5;
+  background-color: #f3f3f3;
   text-decoration: none;
+}
+.nav > li > a{
+  border: solid 1px transparent;
 }
 .nav .active{
   color: #666;
   border: solid 1px #ddd;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  cursor: default;
+  /*cursor: default;*/
 }
 .nav .disabled{
   color: #aaa;
@@ -190,8 +196,6 @@
 .nav-vtabs.inverted{
   border-left: solid 1px #ddd;
   border-right: none;
-  margin-right: 0;
-  margin-left: 5px;
 }
 .nav-vtabs.inverted > li > a{
   border-top-left-radius: 0;
@@ -205,6 +209,12 @@
   box-shadow: none;
   margin-left: -1px;
   margin-right: 0;
+}
+/* ==========================================================================
+   Tabs
+   ========================================================================== */
+.tab:not(.active){
+  display: none;
 }
 /* ==========================================================================
    Simple list
@@ -272,13 +282,11 @@
 /* ==========================================================================
    Dropdown
    ========================================================================== */
-.nav .dropdown > .trigger.active{
-  border: none;
-}
-.dropdown > .dropdown-menu{
+.dropdown > .drop-menu,
+.dropup > .drop-menu{
   display: none;
 }
-.dropdown-menu, .submenu > .dropdown-menu{
+.drop-menu, .submenu > .drop-menu{
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
