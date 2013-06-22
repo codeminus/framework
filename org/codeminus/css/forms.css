@@ -166,7 +166,7 @@ button:disabled,
 .btn-danger:not(:disabled), .btn-danger:visited,
 .btn-black:not(:disabled), .btn-black:visited{
   color: #fff !important;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.3) !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.3) !important;
 }
 .btn-blue:not(:disabled):hover,
 .btn-success:not(:disabled):hover,
