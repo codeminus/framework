@@ -70,6 +70,10 @@
     <td>Image styling</td>
   </tr>
   <tr>
+    <td>layouts.css</td>
+    <td>A grid system with 15 columns for a 920px wide container.</td>
+  </tr>
+  <tr>
     <td>navs.css</td>
     <td>Navigation components</td>
   </tr>
@@ -98,6 +102,7 @@
 @import "containers.css";
 @import "forms.css";
 @import "images.css";
+@import "layouts.css";
 @import "navs.css";
 @import "tables.css";
 @import "glyphicon.css";
