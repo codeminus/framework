@@ -53,11 +53,20 @@
 .container-box{
   display: inline-block;
 }
-.container-box > div:first-child,
+.container-box > *{
+  border: solid 1px #d8d8d8;
+  border-top: none;
+  background-color: white;
+}
+/*.container-box > div:first-child,
 .container-box > header:first-child,
 .container-box > section:first-child,
-.container-box > footer:first-child{
+.container-box > footer:first-child*/
+.container-box > *:first-child{
   border: solid 1px #d8d8d8;
+}
+.container-box > *:only-child{
+  border-top: solid 1px #d8d8d8;
 }
 .container-box.rounded > div:first-child,
 .container-box.rounded > header:first-child,
@@ -73,14 +82,11 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-.container-box > *{
-  border: solid 1px #d8d8d8;
-  padding: 8px 11px;
-  border-top: none;
-  background-color: white;
-}
-.container-box > *:only-child{
-  border-top: solid 1px #d8d8d8;
+.container-box > div,
+.container-box > header,
+.container-box > section,
+.container-box > footer{
+  padding: 10px 13px;
 }
 .container-box > header, .container-box > .header,
 .container-box > footer, .container-box > .footer{
@@ -115,68 +121,4 @@
 }
 .container-bubble > *{
   display: block;
-}
-/* ==========================================================================
-   Layout row
-   ========================================================================== */
-[class*="span"]{
-  float:left;
-}
-.span10{
-  width: 920px;
-}
-.span9{
-  width: 828px;
-}
-.span8{
-  width: 736px;
-}
-.span7{
-  width: 644px;
-}
-.span6{
-  width: 552px;
-}
-.span5{
-  width: 460px;
-}
-.span4{
-  width: 368px;
-}
-.span3{
-  width: 276px;
-}
-.span2{
-  width: 184px;
-}
-.span1{
-  width: 92px;
-}
-
-.offset9{
-  margin-left: 828px;
-}
-.offset8{
-  margin-left: 736px;
-}
-.offset7{
-  margin-left: 644px;
-}
-.offset6{
-  margin-left: 552px;
-}
-.offset5{
-  margin-left: 460px;
-}
-.offset4{
-  margin-left: 368px;
-}
-.offset3{
-  margin-left: 276px;
-}
-.offset2{
-  margin-left: 184px;
-}
-.offset1{
-  margin-left: 92px;
 }
