@@ -13,7 +13,7 @@
 .nav > li > a, .nav > li.header, .nav > li.footer{
   padding: 8px 11px;
   text-shadow: 0 1px 0 #fff;
-  
+  border: solid 1px transparent;
 }
 .nav > li > a{
   cursor: pointer;
@@ -21,9 +21,6 @@
 .nav > li > a:hover{
   background-color: #f3f3f3;
   text-decoration: none;
-}
-.nav > li > a{
-  border: solid 1px transparent;
 }
 .nav .active{
   color: #666;
@@ -77,7 +74,7 @@
 }
 .nav-vlist.style02 .active{
   box-shadow: none;
-  border: none;
+  border: solid 1px transparent;
   background-color: white;
   color: #333;
   font-weight: bold;
