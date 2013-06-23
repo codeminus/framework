@@ -73,9 +73,6 @@ li{
 .inline, .childs-inline > *{
   display: inline-block !important;
 }
-.table, .childs-table > *{
-  display: table !important;
-}
 .hide{
   display: none;    
 }
@@ -230,15 +227,15 @@ img.disabled{
   min-width: 180px;
 }
 .width-large, .childs-width-large > *{
-  width: 360px !important;
+  width: 250px !important;
   min-width: 250px;
 }
 .width-xlarge, .childs-width-xlarge > *{
-  width: 540px !important;
+  width: 350px !important;
   min-width: 350px;
 }
 .width-xxlarge, .childs-width-xxlarge > *{
-  width: 720px !important;
+  width: 550px !important;
   min-width: 550px;
 }
 .width-max, .childs-width-max > *{
