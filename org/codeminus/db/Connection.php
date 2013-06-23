@@ -2,6 +2,8 @@
 
 namespace org\codeminus\db;
 
+use org\codeminus\main as main;
+
 /**
  * Database connection
  * @author Wilson Santos <wilson@codeminus.org>
@@ -114,5 +116,47 @@ class Connection extends \mysqli {
   private function setDatabase($database) {
     $this->database = $database;
   }
-
+  
+  /**
+	 * (PHP 5)<br/>
+	 * Performs a query on the database
+	 * @link http://php.net/manual/en/mysqli.query.php
+	 * @param string $query <p>
+	 * The query string.
+	 * </p>
+	 * <p>
+	 * Data inside the query should be properly escaped.
+	 * </p>
+	 * @param int $resultmode [optional] <p>
+	 * Either the constant <b>MYSQLI_USE_RESULT</b> or
+	 * <b>MYSQLI_STORE_RESULT</b> depending on the desired
+	 * behavior. By default, <b>MYSQLI_STORE_RESULT</b> is used.
+	 * </p>
+	 * <p>
+	 * If you use <b>MYSQLI_USE_RESULT</b> all subsequent calls
+	 * will return error Commands out of sync unless you
+	 * call <b>mysqli_free_result</b>
+	 * </p>
+	 * <p>
+	 * With <b>MYSQLI_ASYNC</b> (available with mysqlnd), it is
+	 * possible to perform query asynchronously.
+	 * <b>mysqli_poll</b> is then used to get results from such
+	 * queries.
+	 * </p>
+	 * @return mixed <b>FALSE</b> on failure. For successful SELECT, SHOW, DESCRIBE or
+	 * EXPLAIN queries <b>mysqli_query</b> will return
+	 * a <b>mysqli_result</b> object. For other successful queries <b>mysqli_query</b> will
+	 * return <b>TRUE</b>.
+   * @throws ExtException A more detailed error message.
+	 */
+  public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
+    $result = parent::query($query, $resultmode);
+    if(!$result){
+      throw new main\ExtException(
+              "<b>Database error:</b> ".$this->error.
+              "<br/><b>SQL statement:</b>  <pre>".$query."</pre>");
+    }else{
+      return $result;
+    }
+  }
 }
