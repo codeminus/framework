@@ -51,19 +51,19 @@
 .span6{
   width: 362px;
 }
-.span5{
+.span5, .childs-span5 > *{
   width: 300px;
 }
-.span4{
+.span4, .childs-span4 > *{
   width: 238px;
 }
-.span3{
+.span3, .childs-span3 > *{
   width: 176px;
 }
-.span2{
+.span2, .childs-span2 > *{
   width: 114px;
 }
-.span1{
+.span1, .childs-span1 > *{
   width: 52px;
 }
 .offset14{
