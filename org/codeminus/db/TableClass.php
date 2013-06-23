@@ -2,6 +2,8 @@
 
 namespace org\codeminus\db;
 
+use org\codeminus\main as main;
+
 /**
  * Description of TableClass
  * @author Wilson Santos <wilson@codeminus.org>
