@@ -73,6 +73,9 @@ li{
 .inline, .childs-inline > *{
   display: inline-block !important;
 }
+.table, .childs-table > *{
+  display: table !important;
+}
 .hide{
   display: none;    
 }
@@ -211,33 +214,33 @@ img.disabled{
    Widths
    ========================================================================== */
 .width-tiny, .childs-width-tiny > *{
-  width: 30px;
+  width: 30px !important;
   min-width: 30px;
 }
 .width-mini, .childs-width-mini > *{
-  width: 60px;
+  width: 60px !important;
   min-width: 60px;
 }
 .width-small, .childs-width-small > *{
-  width: 100px;
+  width: 100px !important;
   min-width: 100px;
 }
 .width-medium, .childs-width-medium > *{
-  width: 180px;
+  width: 180px !important;
   min-width: 180px;
 }
 .width-large, .childs-width-large > *{
-  width: 250px;
+  width: 360px !important;
   min-width: 250px;
 }
 .width-xlarge, .childs-width-xlarge > *{
-  width: 350px;
+  width: 540px !important;
   min-width: 350px;
 }
 .width-xxlarge, .childs-width-xxlarge > *{
-  width: 550px;
+  width: 720px !important;
   min-width: 550px;
 }
 .width-max, .childs-width-max > *{
-  width: 100%;
+  width: 100% !important;
 }
