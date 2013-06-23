@@ -20,14 +20,10 @@ textarea,
 select,
 button,
 .btn,
-.btn:visited,
-.input-group > label,
-.input-group > span,
-.textarea-group > label,
-.textarea-group > span{
+.btn:visited{
   display: inline-block;
   margin: 5px 0;
-  padding: 6px;
+  padding: 6px 9px;
   border-radius: 2px;
   border: solid 1px #dcdcdc;
   color: #333;
@@ -76,22 +72,6 @@ textarea:disabled{
   color: #bbb !important;
   border: solid 1px #dcdcdc !important;
   box-shadow: none !important;
-}
-/* ==========================================================================
-   Form style classes
-   ========================================================================== */
-.form-input-perline input,
-.form-input-perline textarea, 
-.form-input-perline select,
-.form-input-perline button,
-.form-input-perline .btn,
-.form-input-perline .input-group{
-  display: table;
-}
-.form-input-perline input[type="radio"],
-.form-input-perline input[type="checkbox"]{
-  display: inline;
-  vertical-align: baseline;
 }
 /* ==========================================================================
    Buttons
@@ -157,8 +137,67 @@ button:disabled,
   box-shadow: none !important;
 }
 /* ==========================================================================
+   Form style classes
+   ========================================================================== */
+.form-input-perline input,
+.form-input-perline textarea, 
+.form-input-perline select,
+.form-input-perline button,
+.form-input-perline .btn,
+.form-input-perline .input-group,
+.form-input-perline .textarea-group{
+  display: table;
+}
+.form-input-perline input[type="radio"],
+.form-input-perline input[type="checkbox"]{
+  display: inline;
+  vertical-align: baseline;
+}
+.form-input-padding-large input,
+.form-input-padding-large textarea,
+.form-input-padding-large button,
+.form-input-padding-large .btn,
+.form-input-padding-large .input-group > label,
+.form-input-padding-large .input-group > span,
+.form-input-padding-large .textarea-group > label,
+.form-input-padding-large .textarea-group > span{
+  padding: 8px 11px;
+}
+.form-input-padding-large select{
+  padding: 7px;
+}
+.form-input-padding-xlarge input,
+.form-input-padding-xlarge textarea,
+.form-input-padding-xlarge button,
+.form-input-padding-xlarge .btn,
+.form-input-padding-xlarge .input-group > label,
+.form-input-padding-xlarge .input-group > span,
+.form-input-padding-xlarge .textarea-group > label,
+.form-input-padding-xlarge .textarea-group > span{
+  padding: 12px 15px;
+}
+.form-input-padding-xlarge select{
+  padding: 11px;
+}
+/* ==========================================================================
    Button style classes
    ========================================================================== */
+.btn-small, .btn-large, .btn-xlarge{
+  font-weight: normal !important;
+}
+.btn-large, .btn-xlarge{
+  border-radius: 4px;
+  padding: 10px 13px;
+}
+.btn-small{
+  font-size: 9px;
+}
+.btn-large{
+  font-size: 20px;
+}
+.btn-xlarge{
+  font-size: 26px;
+}
 .btn-blue:not(:disabled), .btn-blue:visited,
 .btn-success:not(:disabled), .btn-success:visited,
 .btn-warning:not(:disabled), .btn-warning:visited,
@@ -293,10 +332,22 @@ button:disabled,
   white-space: nowrap;
   display: inline-block;
   font-size: 0;
+  margin: 5px 0;
+  vertical-align: middle;
 }
-.input-group > *{
+.input-group > label,
+.input-group > span,
+.textarea-group > label,
+.textarea-group > span{
+  display: inline-block;
+  padding: 6px 9px;
+  border: solid 1px #dcdcdc;
+}
+.input-group > *, .input-group .trigger{
   /*margin-left: -1px;*/
   border-radius: 0 !important;
+  vertical-align: middle;
+  margin: 0 !important;
 }
 .input-group > *{
   display: inline-block !important;
@@ -307,7 +358,7 @@ button:disabled,
   border-top-left-radius: 2px !important;
   border-bottom-left-radius: 2px !important;
 }
-.input-group > *:last-child{
+.input-group > *:last-child, .input-group .trigger{
   border-top-right-radius: 2px !important;
   border-bottom-right-radius: 2px !important;
 }
