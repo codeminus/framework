@@ -15,6 +15,12 @@
   text-shadow: 0 1px 0 #fff;
   border: solid 1px transparent;
 }
+.nav.medium > li > a, .nav.medium > li.header, .nav.medium > li.footer{
+  padding: 18px 21px;
+}
+.nav.large > li > a, .nav.large > li.header, .nav.large > li.footer{
+  padding: 28px 31px;
+}
 .nav > li > a{
   cursor: pointer;
 }
@@ -38,6 +44,7 @@
 .nav > .divider{
   margin: 0px;
 }
+/*
 .nav.rounded{
   border-radius: 3px;
 }
@@ -48,7 +55,7 @@
 .nav.rounded > li > a:last-child{
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-}
+}*/
 /* ==========================================================================
    Vertical list
    ========================================================================== */
@@ -103,32 +110,63 @@
   border-left: solid 1px #ddd;
 }
 /* ==========================================================================
-   Navigation toolbar
+   Navigation horizontal toolbar
    ========================================================================== */
-.nav-toolbar > li > a{
-  background-color: white;
+.nav-htoolbar > li{
+  display: table-cell;
 }
-.nav-toolbar > li:first-child > a{
+.nav-htoolbar > li > a{
+  background-color: white;
+  border: solid 1px #eee;
+  border-left: none;
+  text-align: center;
+}
+.nav-htoolbar > li:first-child > a{
+  border-left: solid 1px #eee;
+}
+.nav-htoolbar > li > a.active{
+  background-color: #d9edf7;
+  box-shadow: none;
+}
+.nav-htoolbar.rounded > li:first-child > a{
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.nav-toolbar > li:last-child > a{
+.nav-htoolbar.rounded > li:last-child > a{
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-.nav-toolbar > li{
-  display: table-cell;
-  border-right: solid 1px #eee;
+/* ==========================================================================
+   Navigation vertical toolbar
+   ========================================================================== */
+.nav-vtoolbar > li{
+  display: block;
 }
-.nav-toolbar > li:last-child{
-  border-right: none;
+.nav-vtoolbar > li > a{
+  background-color: white;
+  border: solid 1px #eee;
+  border-bottom: none;
+  text-align: center;
+}
+.nav-vtoolbar > li:last-child > a{
+  border-bottom: solid 1px #eee;
+}
+.nav-vtoolbar > li > a.active{
+  background-color: #d9edf7;
+  box-shadow: none;
+}
+.nav-vtoolbar.rounded > li:first-child > a{
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.nav-vtoolbar.rounded > li:last-child > a{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 /* ==========================================================================
    Horizontal tabs
    ========================================================================== */
 .nav-htabs {
-  list-style: none;
-  padding-left: 0;
   border-bottom: solid 1px #ddd;
   margin-bottom: 5px;
 }
@@ -171,10 +209,8 @@
    Vertical tabs
    ========================================================================== */
 .nav-vtabs{
-  list-style: none;
-  padding-left: 0;
-  display: inline-block;
   border-right: solid 1px #ddd;
+  display: inline-block;
 }
 .nav-vtabs > li > a{
   display: block;
@@ -279,11 +315,8 @@
 /* ==========================================================================
    Dropdown
    ========================================================================== */
-.dropdown > .drop-menu,
-.dropup > .drop-menu{
-  display: none;
-}
 .drop-menu, .submenu > .drop-menu{
+  display: none;
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
