@@ -1,0 +1,110 @@
+/*codeminus.org Layouts CSS library v1.0*/
+/* ==========================================================================
+   Layout row
+   ========================================================================== */
+.row {
+  *zoom: 1;
+}
+.row:before,
+.row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.row:after {
+  clear: both;
+}
+.row > [class^="span"]:not(:first-child),
+.row > [class*=" span"]:not(:first-child){
+  margin-left: 10px;
+}
+[class^="span"], [class*=" span"]{
+  float:left;
+}
+.span15{
+  width: 920px;
+}
+.span14{
+  width: 858px;
+}
+.span13{
+  width: 796px;
+}
+.span12{
+  width: 734px;
+}
+.span11{
+  width: 672px;
+}
+.span10{
+  width: 610px;
+}
+.span9{
+  width: 548px;
+}
+.span8{
+  width: 486px;
+}
+.span7{
+  width: 424px;
+}
+.span6{
+  width: 362px;
+}
+.span5{
+  width: 300px;
+}
+.span4{
+  width: 238px;
+}
+.span3{
+  width: 176px;
+}
+.span2{
+  width: 114px;
+}
+.span1{
+  width: 52px;
+}
+.offset14{
+  margin-left: 858px;
+}
+.offset13{
+  margin-left: 796px;
+}
+.offset12{
+  margin-left: 734px;
+}
+.offset11{
+  margin-left: 672px;
+}
+.offset10{
+  margin-left: 610px;
+}
+.offset9{
+  margin-left: 548px;
+}
+.offset8{
+  margin-left: 486px;
+}
+.offset7{
+  margin-left: 424px;
+}
+.offset6{
+  margin-left: 362px;
+}
+.offset5{
+  margin-left: 300px;
+}
+.offset4{
+  margin-left: 238px;
+}
+.offset3{
+  margin-left: 176px;
+}
+.offset2{
+  margin-left: 114px;
+}
+.offset1{
+  margin-left: 52px;
+}
