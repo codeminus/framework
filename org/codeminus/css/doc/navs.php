@@ -76,6 +76,31 @@
       <li class="footer">.footer</li>
     </ul>
   </div>
+  <ul class="nav nav-vtoolbar">
+    <li><a href="#"><span class="glyphicon-home"></span></a></li>
+    <li><a href="#"><span class="glyphicon-user"></span></a></li>
+    <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
+  </ul>
+  <ul class="nav nav-vtoolbar medium rounded">
+    <li><a href="#"><span class="glyphicon-home"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon-user"></span></a></li>
+    <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
+  </ul>
+  <ul class="nav nav-vtoolbar large">
+    <li><a href="#"><span class="glyphicon-home"></span></a></li>
+    <li><a href="#" ><span class="glyphicon-user"></span></a></li>
+    <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
+  </ul>
+  <ul class="nav nav-htoolbar">
+    <li><a href="#"><span class="glyphicon-home"></span></a></li>
+    <li><a href="#"><span class="glyphicon-user"></span></a></li>
+    <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
+  </ul>
+  <ul class="nav nav-htoolbar rounded">
+    <li><a href="#"><span class="glyphicon-home"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon-user"></span></a></li>
+    <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
+  </ul>
   <br/>
   <section class="container-box container-bubble">
     <section>
