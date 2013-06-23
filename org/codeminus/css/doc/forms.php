@@ -1,19 +1,19 @@
 <form>
-  <fieldset class="shadow-width-small">
+  <fieldset class="shadow-small">
     <legend>Text fields & label</legend>
     <label for="name">Input Text</label><br/>
     <input type="text" id="name" placeholder="input text required" required />
     <input type="password" value="123456" disabled />
     <input type="email" id="name" placeholder="input email" /><br/>
-    <input type="text" placeholder=".width-tiny" class="width-tiny" />
-    <input type="text" placeholder=".width-mini" class="width-mini" />
-    <input type="text" placeholder=".width-small" class="width-small" />
-    <input type="text" placeholder=".width-medium" class="width-medium" />
-    <input type="text" placeholder=".width-large" class="width-large" />
-    <input type="text" placeholder=".width-xlarge" class="width-xlarge" />
-    <input type="text" placeholder=".width-xxlarge" class="width-xxlarge" />
+    <input type="text" placeholder=".width-tiny" class="width-tiny" /><br/>
+    <input type="text" placeholder=".width-mini" class="width-mini" /><br/>
+    <input type="text" placeholder=".width-small" class="width-small" /><br/>
+    <input type="text" placeholder=".width-medium" class="width-medium" /><br/>
+    <input type="text" placeholder=".width-large" class="width-large" /><br/>
+    <input type="text" placeholder=".width-xlarge" class="width-xlarge" /><br/>
+    <input type="text" placeholder=".width-xxlarge" class="width-xxlarge" /><br/>
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>Buttons</legend>
     <input type="button" value="button" />
     <input type="button" value="button disabled" disabled />
@@ -25,18 +25,42 @@
     <input type="button" value="initial state"
            data-toggle="button"
            data-toggle-value="clicked 01;clicked 02"
-           data-toggle-class="" class="dropdown"/>
+           data-toggle-class=""/>
     <div class="inline dropdown">
       <button type="button" class="trigger btn-warning">
         dropdown
         <span class="caret"></span>
       </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
-    </ul>
+      <ul class="drop-menu">
+        <li><a href="#">Item</a></li>
+        <li><a href="#">Item</a></li>
+        <li><a href="#">Item</a></li>
+      </ul>
     </div>
+    <div class="inline dropup">
+      <button type="button" class="trigger btn-warning">
+        dropup
+        <span class="caret"></span>
+      </button>
+      <ul class="drop-menu">
+        <li><a href="#">Item</a></li>
+        <li class="submenu">
+          <a href="#" class="trigger">Item
+            <span class="caret"></span>
+          </a>
+          <ul class="drop-menu">
+            <li><a href="#">Item</a></li>
+            <li><a href="#">Item</a></li>
+            <li><a href="#">Item</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item</a></li>
+      </ul>
+    </div>
+    <br/>
+    <input type="button" class="btn-small" value=".btn-small" />
+    <input type="button" class="btn-large" value=".btn-large" />
+    <input type="button" class="btn-xlarge" value=".btn-xlarge" />
     <br/>
     <input type="button" class="success" value=".text-success" />
     <input type="button" class="warning" value=".text-warning" />
@@ -51,9 +75,9 @@
     <input type="button" class="btn-danger" value=".btn-danger">
     <input type="button" class="btn-danger" value=".btn-danger disabled" disabled>
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>.input-group</legend>
-    <span class="input-group">
+    <span class="input-group large">
       <input type="button" value="button 01" />
       <input type="button" value="button 02" />
       <input type="button" value="button 03" />
@@ -69,6 +93,19 @@
       <input type="button" class="btn-danger" value="more" />
       <input type="button" class="btn-danger" value="than one" />
     </span>
+    <span class="input-group">
+      <input type="button" class="btn-danger" value="active" />
+      <div class="dropup">
+        <button type="button" class="trigger btn-danger">
+          <span class="caret"></span>
+        </button>
+        <ul class="drop-menu">
+          <li><a>Item</a></li>
+          <li><a>Item</a></li>
+          <li><a>Item</a></li>
+        </ul>
+      </div>
+    </span>
     <br/>
     <span class="input-group">
       <label for="textIn">label</label>
@@ -81,7 +118,7 @@
       <input type="button" value="button" class="btn-blue" />
     </span>
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>.textarea-group</legend>
     <span class="textarea-group">
       <label for="msg1">label</label>
@@ -99,7 +136,7 @@
     </span>
     </span>
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>datalist & select</legend>
     <input type="text" list="browsers" placeholder="type the name of a browser">
     <datalist id="browsers">
@@ -116,11 +153,11 @@
       <option>Option 04</option>
     </select>
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>File input</legend>
     <input type="file" />
   </fieldset>
-  <fieldset>
+  <fieldset class="shadow-small">
     <legend>Radio & checkbox</legend>
     <input type="radio" name="gender" id="m"/>
     <label for="m">Male</label>
@@ -132,9 +169,10 @@
     <label for="c">I like chinese food!</label><br/>
   </fieldset>
 </form>
-<form class="form-input-perline" >
-  <fieldset>
-    <legend>.form-input-perline</legend>
+<form class="form-input-perline form-input-padding-large" >
+  <fieldset class="shadow-small">
+    <legend>.form-input-perline .form-input-padding-large</legend>
+    <h4>Contact Form</h4>
     <span class="input-group prepend-mini">
       <label for="nameIn">Name</label>
       <input type="text" id="nameIn" />
@@ -151,5 +189,6 @@
       <label for="msg3">Message</label>
       <textarea id="msg3" rows="4" class="width-large"></textarea>
     </span>
+    <input type="button" value="Send" class="btn-blue"/>
   </fieldset>
 </form>
