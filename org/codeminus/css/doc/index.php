@@ -3,6 +3,7 @@ $contents = array(
     'getstarted' => false,
     'base' => false,
     'containers' => false,
+    'layouts' => false,
     'navs' => false,
     'forms' => false,
     'tables' => false,
@@ -42,6 +43,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
         <li><a href="?c=getstarted" class="<?php echo $contents['getstarted'] ?>">Get Started</a></li>
         <li><a href="?c=base" class="<?php echo $contents['base'] ?>">Base</a></li>
         <li><a href="?c=containers" class="<?php echo $contents['containers'] ?>">Containers</a></li>
+        <li><a href="?c=layouts" class="<?php echo $contents['layouts'] ?>">Layouts</a></li>
         <li><a href="?c=navs" class="<?php echo $contents['navs'] ?>">Navigators</a></li>
         <li><a href="?c=forms" class="<?php echo $contents['forms'] ?>">Forms</a></li>
         <li><a href="?c=tables" class="<?php echo $contents['tables'] ?>">Tables</a></li>
