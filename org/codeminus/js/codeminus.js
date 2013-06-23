@@ -76,11 +76,18 @@ $(document).ready(function() {
   $('.dropdown > .trigger').on('click', function(e) {
     e.stopPropagation();
     $('.trigger.on').not($(this)).removeClass('active on');
+    //if its a navigation tab
     if(!$(this).hasClass('tab-trigger')){
       $(this).toggleClass('active on');
     }
-    $('.drop-menu').not($(this).next('.drop-menu')).hide();
-    $(this).next('.drop-menu').toggle();
+    var dropMenu = $(this).next('.drop-menu');
+    $('.drop-menu').not(dropMenu).hide();
+    //if its a input-group
+    if(dropMenu.parents('.input-group').length === 1){
+      var x = $(this).parents('.input-group').width()-$(this).outerWidth();
+      dropMenu.css('margin-left', -x);
+    }
+    dropMenu.toggle();
   });
 
   $('.dropup > .trigger').on('click', function(e) {
@@ -93,6 +100,11 @@ $(document).ready(function() {
     $('.drop-menu').not(dropMenu).hide();
     var y = $(this).parent().height()+dropMenu.height();
     dropMenu.css('margin-top', -y);
+    //if its a input-group
+    if(dropMenu.parents('.input-group').length === 1){
+      var x = $(this).parents('.input-group').width()-$(this).outerWidth();
+      dropMenu.css('margin-left', -x);
+    }
     dropMenu.toggle();
   });
 
