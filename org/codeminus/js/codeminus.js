@@ -68,41 +68,41 @@ $(document).ready(function() {
    ========================================================================== */
   $('.drop-menu').addClass('nav nav-vlist');
 
-  $('html').on('click', function() {
+  $('html').click(function() {
     $('.drop-menu').prev('.trigger.on:not(.tab-trigger)').removeClass('active on');
     $('.drop-menu').hide();
   });
 
-  $('.dropdown > .trigger').on('click', function(e) {
+  $('.dropdown > .trigger').click(function(e) {
     e.stopPropagation();
     $('.trigger.on').not($(this)).removeClass('active on');
     //if its a navigation tab
-    if(!$(this).hasClass('tab-trigger')){
+    if (!$(this).hasClass('tab-trigger')) {
       $(this).toggleClass('active on');
     }
     var dropMenu = $(this).next('.drop-menu');
     $('.drop-menu').not(dropMenu).hide();
     //if its a input-group
-    if(dropMenu.parents('.input-group').length === 1){
-      var x = $(this).parents('.input-group').width()-$(this).outerWidth();
+    if (dropMenu.parents('.input-group').length === 1) {
+      var x = $(this).parents('.input-group').width() - $(this).outerWidth();
       dropMenu.css('margin-left', -x);
     }
     dropMenu.toggle();
   });
 
-  $('.dropup > .trigger').on('click', function(e) {
+  $('.dropup > .trigger').click(function(e) {
     e.stopPropagation();
     $('.trigger.on').not($(this)).removeClass('active on');
-    if(!$(this).hasClass('tab-trigger')){
+    if (!$(this).hasClass('tab-trigger')) {
       $(this).toggleClass('active on');
     }
     var dropMenu = $(this).next('.drop-menu');
     $('.drop-menu').not(dropMenu).hide();
-    var y = $(this).parent().height()+dropMenu.height();
+    var y = $(this).parent().height() + dropMenu.height();
     dropMenu.css('margin-top', -y);
     //if its a input-group
-    if(dropMenu.parents('.input-group').length === 1){
-      var x = $(this).parents('.input-group').width()-$(this).outerWidth();
+    if (dropMenu.parents('.input-group').length === 1) {
+      var x = $(this).parents('.input-group').width() - $(this).outerWidth();
       dropMenu.css('margin-left', -x);
     }
     dropMenu.toggle();
@@ -138,17 +138,17 @@ $(document).ready(function() {
   $('.dropup').find('.caret').html('&blacktriangle;');
   $('.submenu').find('.caret').html('&blacktriangleright;').css('float', 'right');
 
-/* ==========================================================================
+  /* ==========================================================================
    data-tab handler
    ========================================================================== */
-  $('[data-tab-target]').click(function(){
+  $('[data-tab-target]').click(function() {
     $(this).parents('.tab-triggers').find('[data-tab-target], .tab-trigger').removeClass('active');
-    if($(this).parents('.dropdown, .dropup').length === 1){
+    if ($(this).parents('.dropdown, .dropup').length === 1) {
       $(this).parents('.dropdown, .dropup').find('.trigger').addClass('active');
-    }else{
+    } else {
       $(this).addClass('active');
     }
-    var tab = '#'+$(this).attr('data-tab-target');
+    var tab = '#' + $(this).attr('data-tab-target');
     $(tab).siblings('.tab').removeClass('active');
     $(tab).addClass('active');
   });
@@ -156,7 +156,7 @@ $(document).ready(function() {
   /* ==========================================================================
    data-dismiss handler
    ========================================================================== */
-  $('[data-dismiss]').on('click', function() {
+  $('[data-dismiss]').click(function() {
     var mode = $(this).attr('data-dismiss-mode');
     switch (mode) {
       case 'slide':
@@ -168,7 +168,7 @@ $(document).ready(function() {
     }
   });
 
-  $('[data-dismiss-after]').on('click', function() {
+  $('[data-dismiss-after]').click(function() {
     var mode = $(this).attr('data-dismiss-mode');
     switch (mode) {
       case 'slide':
@@ -186,14 +186,24 @@ $(document).ready(function() {
    data-colspan-from handler
    ========================================================================== */
   $('[data-colspan-from]').attr('colspan', function() {
-    //$(this).css('width','100%');
     return $('#' + $(this).attr('data-colspan-from')).children().length;
   });
 
   /* ==========================================================================
+   data-height-from handler
+   ========================================================================== */
+  $('[data-height-from]').click(function() {
+    $(this).css('height', function() {
+      return $('#' + $(this).attr('data-height-from')).height();
+    });
+  });
+  $('[data-height-from]').css('height', function() {
+    return $('#' + $(this).attr('data-height-from')).height();
+  });
+  /* ==========================================================================
    data-toggle handler
    ========================================================================== */
-  $('[data-toggle-value]').on('click', function() {
+  $('[data-toggle-value]').click(function() {
     var values = $(this).attr('data-toggle-value').split(';');
     if (values[1] == null) {
       values[1] = $(this).attr('value');
@@ -206,7 +216,7 @@ $(document).ready(function() {
     }
   });
 
-  $('[data-toggle="button"]').on('click', function() {
+  $('[data-toggle="button"]').click(function() {
     var className = '';
     if ($(this).attr('data-toggle-class') == null) {
       className = 'active';
@@ -216,7 +226,7 @@ $(document).ready(function() {
     $(this).toggleClass(className);
   });
 
-  $('[data-toggle="button-group-radio"] > *').on('click', function() {
+  $('[data-toggle="button-group-radio"] > *').click(function() {
     var className = '';
     if ($(this).parent().attr('data-toggle-class') == null) {
       className = 'active';
@@ -227,7 +237,7 @@ $(document).ready(function() {
     $(this).siblings().removeClass(className);
   });
 
-  $('[data-toggle="button-group-checkbox"] > *').on('click', function() {
+  $('[data-toggle="button-group-checkbox"] > *').click(function() {
     var className = '';
     if ($(this).parent().attr('data-toggle-class') == null) {
       className = 'active';
