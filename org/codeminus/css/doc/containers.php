@@ -1,4 +1,4 @@
-<div class="childs-margined childs-width-large">
+<div class="childs-margined childs-span4">
   <section class="container-box">
     <header>.container-box</header>
     <section>Content</section>
