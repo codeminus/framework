@@ -83,7 +83,6 @@ button,
 .btn,
 .btn:visited{
   border: 1px solid #dcdcdc;
-  font-weight: bold;
   cursor: pointer;
   background-color: #f7f7f7;
   background-image: -moz-linear-gradient(#f7f7f7, #f3f3f3);
@@ -351,7 +350,7 @@ button:disabled,
 }
 .input-group > *{
   display: inline-block !important;
-  font-size:13px;
+  font-size: 14px;
 }
 .input-group > *:first-child{
   margin-left: 0;
@@ -402,7 +401,9 @@ button:disabled,
   box-shadow: none;
   margin-bottom: -1px;
 }
-.textarea-group > textarea, .textarea-group > button, .textarea-group > input{
+.textarea-group textarea,
+.textarea-group button,
+.textarea-group input{
   border-radius: 0;
   margin-bottom: -1px;
 }
@@ -422,4 +423,10 @@ button:disabled,
 .textarea-group > .input-group > *{
   margin-top: 0;
   margin-bottom: 0;
+}
+.textarea-group > .input-group:last-child > *:first-child{
+  border-top-left-radius: 0px !important;
+}
+.textarea-group > .input-group:last-child > *:last-child{
+  border-top-right-radius: 0px !important;
 }
