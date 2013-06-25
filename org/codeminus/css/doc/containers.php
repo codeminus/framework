@@ -1,4 +1,4 @@
-<div class="childs-margined childs-span4">
+<div class="childs-margined multi-columns">
   <section class="container-box">
     <header>.container-box</header>
     <section>Content</section>
@@ -41,13 +41,13 @@
       <footer>Footer</footer>
     </section>
   </div>
-  <section class="container-box shadow-large">
-    <header>.container-box .shadow-large</header>
+  <section class="container-box shadow-medium">
+    <header>.container-box .shadow-medium</header>
     <section>Content</section>
     <footer>Footer</footer>
   </section>
-  <section id="message1" class="container-box container-alert success"
-           data-dismiss-after="10000">
+  <section id="message1" class="container-box container-alert success fixed"
+           data-dismiss-after="5000">
     <span class="close" data-dismiss="message1" data-dismiss-mode="slide" >&times;</span>
     <section>.container-box .container-alert .success .block</section>
   </section>
@@ -55,13 +55,13 @@
     <span class="close glyphicon-remove" data-dismiss="message2" ></span>
     <section>.container-box .container-alert .warning .shadow-small</section>
   </section>
-  <section id="message3" class="container-box container-alert info shadow-large">
+  <section id="message3" class="container-box container-alert info shadow-medium">
     <span class="close fam-cross" data-dismiss="message3" ></span>
     <section>
-      .container-box .container-alert .info .shadow-large
+      .container-box .container-alert .info .shadow-medium
     </section>
   </section>
-  <section id="message4" class="container-box container-alert error rounded">
+  <section id="message4" class="container-box container-alert error rounded shadow-large">
     <span class="close" data-dismiss="message4" data-dismiss-mode="slide">&times;</span>
     <section>.container-box .container-alert .error .shadow-large </section>
   </section>
