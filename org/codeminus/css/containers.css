@@ -4,6 +4,7 @@
    ========================================================================== */
 [class^="container-"], [class*=" container-"]{
   vertical-align: top;
+  color: #444;
 }
 .container-centered{
   width: 920px;
@@ -35,6 +36,12 @@
 .container-alert > footer{
   border: solid 1px #d8d8d8;
 }
+.container-alert.rounded > div,
+.container-alert.rounded > header,
+.container-alert.rounded > section,
+.container-alert.rounded > footer{
+  border-radius: 3px;
+}
 .container-alert.success > *{
   background-color: #dff0d8;
 }
@@ -58,10 +65,10 @@
   border-top: none;
   background-color: white;
 }
-/*.container-box > div:first-child,
+.container-box > div:first-child,
 .container-box > header:first-child,
 .container-box > section:first-child,
-.container-box > footer:first-child*/
+.container-box > footer:first-child,
 .container-box > *:first-child{
   border: solid 1px #d8d8d8;
 }
