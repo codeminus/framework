@@ -24,7 +24,7 @@ button,
   display: inline-block;
   margin: 5px 0;
   padding: 6px 9px;
-  border-radius: 2px;
+  border-radius: 3px;
   border: solid 1px #dcdcdc;
   color: #333;
   vertical-align: middle;
@@ -354,12 +354,12 @@ button:disabled,
 }
 .input-group > *:first-child{
   margin-left: 0;
-  border-top-left-radius: 2px !important;
-  border-bottom-left-radius: 2px !important;
+  border-top-left-radius: 3px !important;
+  border-bottom-left-radius: 3px !important;
 }
 .input-group > *:last-child, .input-group .trigger{
-  border-top-right-radius: 2px !important;
-  border-bottom-right-radius: 2px !important;
+  border-top-right-radius: 3px !important;
+  border-bottom-right-radius: 3px !important;
 }
 .input-group > label, .input-group > span{
   background-color: #f7f7f7;
@@ -408,12 +408,12 @@ button:disabled,
   margin-bottom: -1px;
 }
 .textarea-group > *:first-child{
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 .textarea-group > *:last-child{
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .textarea-group > .input-group{
   display: table !important;
