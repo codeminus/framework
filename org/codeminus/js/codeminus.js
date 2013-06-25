@@ -1,8 +1,17 @@
 $(document).ready(function() {
   /* ==========================================================================
-   clearfix for floating containers
+   CSS dynamic utilities
    ========================================================================== */
   $('.float-left, .float-right, [class^="span"], [class*=" span"]').parent().addClass('clearfix');
+  
+  $('.fixed').after(function(){
+    var newElement = document.createElement('div');
+    newElement.setAttribute('class','invisible '+$(this).attr('class').replace('fixed',''));
+    newElement.innerHTML = $(this).html();
+    $(this).width($(this).removeClass('fixed').width()).addClass('fixed');
+    $(this).css('z-index',1);
+    return newElement;
+  });
   /* ==========================================================================
    Source code styling
    ========================================================================== */
