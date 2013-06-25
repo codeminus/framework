@@ -1,4 +1,4 @@
-<div class="childs-margined-bottom">
+<div class="childs-margined">
   <div class="container-bubble">
     <ul class="nav nav-hlist">
       <li class="header">.nav-hlist</li>
@@ -142,7 +142,7 @@
   </section>
   <section class="container-box container-bubble">
     <section>
-      <div class="span4 margined-right">
+      <div class="span5" id="tab-content">
         <section class="tab" id="tab11">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Phasellus quis lectus metus, at posuere neque.
@@ -170,11 +170,23 @@
           at ullamcorper erat diam dignissim ante. Pellentesque justo risus.
         </section>
       </div>
-      <ul class="nav nav-vtabs inverted tab-triggers span3">
-        <li class="header">.nav-vtabs .inverted</li>
-        <li><a data-tab-target="tab11">Menu Item</a></li>
-        <li><a data-tab-target="tab22" class="active">Menu Item</a></li>
-        <li><a data-tab-target="tab33">Menu Item</a></li>
+      <ul class="nav nav-vtabs inverted tab-triggers"
+          data-height-from="tab-content">
+        <li>
+          <a data-tab-target="tab11">
+            <span class="glyphicon-edit"></span>
+          </a>
+        </li>
+        <li>
+          <a data-tab-target="tab22" class="active">
+            <span class="glyphicon-star"></span>
+          </a>
+        </li>
+        <li>
+          <a data-tab-target="tab33">
+            <span class="glyphicon-cogwheels"></span>
+          </a>
+        </li>
       </ul>
     </section>
   </section>
@@ -268,7 +280,7 @@
           rutrum in adipiscing ut, porttitor ac ante. Sed euismod, mauris a.
         </section>
       </div>
-      <ul class="nav nav-htabs inverted block tab-triggers ">
+      <ul class="nav nav-htabs inverted block tab-triggers">
         <li><a data-tab-target="tab1111" class="active">Menu Item 01</a></li>
         <li><a data-tab-target="tab2222">Menu Item 02</a></li>
         <li class="dropup">
@@ -283,7 +295,7 @@
         </li>
       </ul>
     </section>
-  </section><br/>
+  </section>
   <ul class="nav nav-pager">
     <li><a href="#" class="disabled"><span class="glyphicon-thin-arrow-left disabled"></span></a></li>
     <li><a href="#" class="active">1</a></li>
@@ -313,5 +325,10 @@
     <li><a href="#">10</a></li>
     <li><a href="#">11</a></li>
     <li><a href="#"><span class="arrow-right"></span></a></li>
+  </ul><br/>
+  <ul class="breadcrumb">
+    <li><a href="#">org</a> <span class="divider">/</span></li>
+    <li><a href="#">codeminus</a> <span class="divider">/</span></li>
+    <li class="active">css</li>
   </ul>
 </div>
