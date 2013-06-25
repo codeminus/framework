@@ -35,7 +35,7 @@ a img{
   vertical-align: middle;
 }
 p{
-  line-height: 22px;
+  line-height: 24px;
 }
 pre, code{
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
@@ -85,6 +85,9 @@ li{
 .float-right{
   float: right;
 }
+.fixed{
+  position: fixed;
+}
 /* ==========================================================================
    Text classes
    ========================================================================== */
@@ -118,6 +121,9 @@ img.disabled{
 .bordered, .childs-bordered > *{
   border: solid 1px #ddd;
 }
+.rounded{
+  border-radius: 3px;
+}
 .bold{
   font-weight: bold;
 }
@@ -140,8 +146,11 @@ img.disabled{
 .shadow-small{
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.shadow-large{
+.shadow-medium{
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.shadow-large{
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .text-shadow{
   text-shadow: 0 1px 0 #ffffff !important;
