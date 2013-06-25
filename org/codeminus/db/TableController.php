@@ -3,7 +3,7 @@ namespace org\codeminus\db;
 /**
  * TableController Interface
  * Defines methods for database table controllers
- * @author Wilson Santos <web@wilsonssantos.com>
+ * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
  */
 interface TableController {
