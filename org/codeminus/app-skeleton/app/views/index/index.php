@@ -1,6 +1,6 @@
 <div class="container-header">
   <div class="container-centered">
-    <img src="<?php echo APP_HTTP_PATH ?>/org/codeminus/img/codeminus-php-framework-300x73.png" />
+    <img src="<?php echo CMF_ASSETS ?>/img/codeminus-php-framework-300x73.png" />
   </div>
 </div>
 <div class="container-centered childs-block">
