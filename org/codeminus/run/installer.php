@@ -117,7 +117,7 @@ use org\codeminus\main as main;
                       $class = 'error';
                       break;
                   }
-                  echo '<span class="' . $class . '">' . $log['desc'] . '</span><br/>';
+                  echo '<span class="' . $class . '">' . $log['message'] . '</span><br/>';
                 }
               }
 
