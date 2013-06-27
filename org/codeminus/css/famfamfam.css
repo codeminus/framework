@@ -5,7 +5,7 @@
     *margin-right:.3em;
     line-height:16px;
     vertical-align:text-top;
-    background-image:url("../img/icon/famfamfam.png");
+    background-image:url("icon/famfamfam.png");
     background-repeat:no-repeat;
 }
 [class^="fam-"]:last-child,[class*=" fam-"]:last-child {

@@ -5,7 +5,7 @@
     *margin-right:.3em;
     line-height:14px;
     vertical-align:text-top;
-    background-image:url("../img/icon/glyphicons.png");
+    background-image:url("icon/glyphicons.png");
     background-repeat:no-repeat;
 }
 [class^="glyphicon-"]:last-child,[class*=" glyphicon-"]:last-child {
