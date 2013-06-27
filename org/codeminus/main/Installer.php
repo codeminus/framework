@@ -18,9 +18,10 @@ class Installer {
   private $devDbInfo = array();
   private $proDbInfo = array();
   private $defaultTimeZone;
-  private $viewDefaultTitle;
+  private $defaultViewTitle;
   
   /**
+   * Framework Installer
    * @return Installer
    */
   public function __construct($appRoot = null) {
@@ -39,34 +40,94 @@ class Installer {
     
   }
 
+  /**
+   * Returns the framework's root directory
+   * @return string
+   */
+  public static function getFrameworkPath() {
+    return substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], '/org'));
+  }
+
+  /**
+   * Application HTTP path
+   * @return string
+   */
+  public function getFrameworkHttpPath() {
+    return 'http://' . $_SERVER['HTTP_HOST'] . $this->getFrameworkPath();
+  }
+  
+  /**
+   * Path for the application's installation
+   * @return string
+   */
   public function getAppRoot() {
     return $this->appRoot;
   }
 
+  /**
+   * Defines the path for the application's installation
+   * @param string $appRoot
+   * @return void
+   */
   private function setAppRoot($appRoot) {
     $this->appRoot = $appRoot;
   }
 
+  /**
+   * Application's development environment directory
+   * @return string
+   */
   public function getDevEnvironment() {
     return $this->devEnvironment;
   }
 
+  /**
+   * Defines the application's development environment directory
+   * @param string $devEnvironment
+   * @return void
+   */
   public function setDevEnvironment($devEnvironment) {
     $this->devEnvironment = $devEnvironment;
   }
 
+  /**
+   * Application's production environment directory
+   * @return string
+   */
   public function getProEnvironment() {
     return $this->proEnvironment;
   }
 
+  /**
+   * Defines the application's production environment directory
+   * @param string $proEnvironment
+   * @return void
+   */
   public function setProEnvironment($proEnvironment) {
     $this->proEnvironment = $proEnvironment;
   }
 
+  /**
+   * An associative array containing the application's development environment
+   * database informations:<br/>
+   * ['host']
+   * ['user']
+   * ['pass']
+   * ['name']
+   * @return array
+   */
   public function getDevDbInfo() {
     return $this->devDbInfo;
   }
 
+  /**
+   * Defines the application's development environment database informations
+   * @param string $host database host
+   * @param string $user database user
+   * @param string $pass database user's password
+   * @param string $database database name
+   * @return void
+   */
   public function setDevDbInfo($host, $user, $pass, $database) {
     $this->devDbInfo['host'] = $host;
     $this->devDbInfo['user'] = $user;
@@ -74,10 +135,27 @@ class Installer {
     $this->devDbInfo['name'] = $database;
   }
 
+  /**
+   * An associative array containing the application's production environment
+   * database informations:<br/>
+   * ['host']
+   * ['user']
+   * ['pass']
+   * ['name']
+   * @return array
+   */
   public function getProDbInfo() {
     return $this->proDbInfo;
   }
 
+  /**
+   * Defines the application's production environment database informations
+   * @param string $host database host
+   * @param string $user database user
+   * @param string $pass database user's password
+   * @param string $database database name
+   * @return void
+   */
   public function setProDbInfo($host, $user, $pass, $database) {
     $this->proDbInfo['host'] = $host;
     $this->proDbInfo['user'] = $user;
@@ -85,26 +163,43 @@ class Installer {
     $this->proDbInfo['name'] = $database;
   }
 
+  /**
+   * Application's default timezone
+   * @return string
+   */
   public function getDefaultTimeZone() {
     return $this->defaultTimeZone;
   }
 
+  /**
+   * Defines the application's default timezone
+   * @param type $defaultTimeZone
+   */
   public function setDefaultTimeZone($defaultTimeZone) {
     $this->defaultTimeZone = $defaultTimeZone;
   }
-    
-  public function getViewDefaultTitle() {
-    return $this->viewDefaultTitle;
+  
+  /**
+   * Application's default view title
+   * @return string
+   */
+  public function getDefaultViewTitle() {
+    return $this->defaultViewTitle;
   }
 
-  public function setViewDefaultTitle($viewDefaultTitle) {
-    $this->viewDefaultTitle = $viewDefaultTitle;
+  /**
+   * Defines the application's default view title
+   * @param string $defaultViewTitle
+   * @return void
+   */
+  public function setDefaultViewTitle($defaultViewTitle) {
+    $this->defaultViewTitle = $defaultViewTitle;
   }
-
     
   /**
    * Create application's default files and folders
-   * @return boolean
+   * @return boolean TRUE if no problems occur during installation and FALSE
+   * otherwise
    */
   public function createApp() {
     if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
@@ -117,24 +212,8 @@ class Installer {
   }
 
   /**
-   * Returns the Application's environment assuming that the framework package
-   * has the same root folder as the application
-   * @return string
-   */
-  public static function getInvironment() {
-    return substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], '/org'));
-  }
-
-  /**
-   * Application HTTP path
-   * @return string
-   */
-  public function getAppHttpPath() {
-    return 'http://' . $_SERVER['HTTP_HOST'] . $this->getInvironment();
-  }
-
-  /**
-   * Generates the content to the app/configs/init.php main configuration file
+   * Generates the content to app/configs/init.php. Application's main
+   * configuration file
    * @return string
    */
   public function getInitContent() {
@@ -178,7 +257,7 @@ const VIEW_DIR = '/app/views';
  * @var string
  * @see org/codeminus/main/View.php for more information
  */
-const VIEW_DEFAULT_TITLE = '{$this->getViewDefaultTitle()}';
+const VIEW_DEFAULT_TITLE = '{$this->getDefaultViewTitle()}';
 
 /**
  * File to be included before the view file. When requested
