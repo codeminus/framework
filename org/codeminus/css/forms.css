@@ -84,10 +84,14 @@ button,
 .btn:visited{
   border: 1px solid #dcdcdc;
   cursor: pointer;
-  background-color: #f7f7f7;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(#fafafa, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fafafa, #e7e7e7);
+  background-image: linear-gradient(#fafafa, #e7e7e7);
+  /*background-color: #f7f7f7;
   background-image: -moz-linear-gradient(#f7f7f7, #f3f3f3);
   background-image: -webkit-linear-gradient(#f7f7f7, #f3f3f3);
-  background-image: linear-gradient(#f7f7f7, #f3f3f3);
+  background-image: linear-gradient(#f7f7f7, #f3f3f3);*/
   background-repeat: repeat-x;
   box-shadow: none;
   text-decoration: none !important;
