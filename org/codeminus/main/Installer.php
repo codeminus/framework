@@ -338,22 +338,22 @@ function init(\$environment){
     
     date_default_timezone_set(DEFAULT_TIMEZONE);
     
-    \$path = \$_SERVER['DOCUMENT_ROOT'].\$environment;
+    \$path = \$_SERVER['DOCUMENT_ROOT'] . \$environment;
 
     if(!is_dir(\$path)){
-        exit('<b>Fatal error:</b> Invalid environment directory. Path: '.\$path.' does not exist.');
+        exit('<b>Fatal error:</b> Invalid environment directory. Path: ' . \$path . ' does not exist.');
     }
     
     define('APP_ENVIRONMENT_PATH',\$environment);
     define('APP_PATH', \$path);    
-    define('APP_HTTP_PATH', 'http://'.\$_SERVER['HTTP_HOST'].\$environment);
+    define('APP_HTTP_PATH', 'http://' . \$_SERVER['HTTP_HOST'] . \$environment);
     
-    define('CONTROLLER_PATH', APP_PATH.CONTROLLER_DIR);
-    define('VIEW_PATH', APP_PATH.VIEW_DIR);
+    define('CONTROLLER_PATH', APP_PATH . CONTROLLER_DIR);
+    define('VIEW_PATH', APP_PATH . VIEW_DIR);
     
-    define('CMF_ASSETS', \$environment.'/org/codeminus/assets');
-    define('CMF_CSS_PATH', \$environment.'/org/codeminus/css');
-    define('CMF_JS_PATH', \$environment.'/org/codeminus/js');
+    define('CMF_ASSETS', \$environment . '/org/codeminus/assets');
+    define('CMF_CSS_PATH', \$environment . '/org/codeminus/css');
+    define('CMF_JS_PATH', \$environment . '/org/codeminus/js');
     
     switch (\$environment){
 
@@ -386,7 +386,7 @@ function init(\$environment){
 }
 
 spl_autoload_register(function(\$className){
-    require_once APP_PATH . '/' .  str_replace('\\\', '/', \$className).'.php';
+    require_once APP_PATH . '/' .  str_replace('\\\', '/', \$className) . '.php';
 });
 
 
