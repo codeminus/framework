@@ -2,42 +2,135 @@
 
 namespace org\codeminus\main;
 
-use \org\codeminus\file as file;
+use org\codeminus\main as main;
+use org\codeminus\file as file;
 
 /**
  * Framework Installer
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.1
+ * @version 1.2
  */
 class Installer {
 
-  const APP_ROOT = '../../..';
-
+  private $appRoot;
+  private $devEnvironment;
+  private $proEnvironment;
+  private $devDbInfo = array();
+  private $proDbInfo = array();
+  private $defaultTimeZone;
+  private $viewDefaultTitle;
+  
   /**
    * @return Installer
    */
-  public function __construct() {
+  public function __construct($appRoot = null) {
+    if (isset($appRoot)) {
+      $this->setAppRoot($appRoot);
+    } else {
+      $this->setAppRoot(substr($_SERVER['SCRIPT_FILENAME'], 0, strpos($_SERVER['SCRIPT_FILENAME'], '/org')));
+    }
+    
+    $this->setDefaultTimeZone(date_default_timezone_get());
+    
+    $this->proDbInfo['host'] = null;
+    $this->proDbInfo['user'] = null;
+    $this->proDbInfo['pass'] = null;
+    $this->proDbInfo['name'] = null;
     
   }
 
+  public function getAppRoot() {
+    return $this->appRoot;
+  }
+
+  private function setAppRoot($appRoot) {
+    $this->appRoot = $appRoot;
+  }
+
+  public function getDevEnvironment() {
+    return $this->devEnvironment;
+  }
+
+  public function setDevEnvironment($devEnvironment) {
+    $this->devEnvironment = $devEnvironment;
+  }
+
+  public function getProEnvironment() {
+    return $this->proEnvironment;
+  }
+
+  public function setProEnvironment($proEnvironment) {
+    $this->proEnvironment = $proEnvironment;
+  }
+
+  public function getDevDbInfo() {
+    return $this->devDbInfo;
+  }
+
+  public function setDevDbInfo($host, $user, $pass, $database) {
+    $this->devDbInfo['host'] = $host;
+    $this->devDbInfo['user'] = $user;
+    $this->devDbInfo['pass'] = $pass;
+    $this->devDbInfo['name'] = $database;
+  }
+
+  public function getProDbInfo() {
+    return $this->proDbInfo;
+  }
+
+  public function setProDbInfo($host, $user, $pass, $database) {
+    $this->proDbInfo['host'] = $host;
+    $this->proDbInfo['user'] = $user;
+    $this->proDbInfo['pass'] = $pass;
+    $this->proDbInfo['name'] = $database;
+  }
+
+  public function getDefaultTimeZone() {
+    return $this->defaultTimeZone;
+  }
+
+  public function setDefaultTimeZone($defaultTimeZone) {
+    $this->defaultTimeZone = $defaultTimeZone;
+  }
+    
+  public function getViewDefaultTitle() {
+    return $this->viewDefaultTitle;
+  }
+
+  public function setViewDefaultTitle($viewDefaultTitle) {
+    $this->viewDefaultTitle = $viewDefaultTitle;
+  }
+
+    
   /**
    * Create application's default files and folders
-   * @return void
+   * @return boolean
    */
-  public function createAppFiles() {
-    file\FileHandler::recursiveCopy('../app-skeleton', self::APP_ROOT);
-    $initFilePath = self::APP_ROOT . '/app/configs/init.php';
+  public function createApp() {
+    if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
+      throw new main\ExtException('You need to set, at least, the development environment.');
+    }
+    file\FileHandler::recursiveCopy('../app-skeleton', $this->getAppRoot());
+    $initFilePath = $this->getAppRoot() . '/app/configs/init.php';
     file\FileHandler::createFile($initFilePath, $this->getInitContent());
+    return true;
   }
 
   /**
    * Returns the Application's environment assuming that the framework package
-   * has the same root folder has app
+   * has the same root folder as the application
    * @return string
-   * @todo implement a more dynamic solution
    */
   public static function getInvironment() {
-    return str_replace('/org/codeminus/run/installer.php', '', $_SERVER['SCRIPT_NAME']);
+    return substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], '/org'));
+  }
+
+  /**
+   * Application HTTP path
+   * @return string
+   */
+  public function getAppHttpPath() {
+    return 'http://' . $_SERVER['HTTP_HOST'] . $this->getInvironment();
   }
 
   /**
@@ -45,22 +138,6 @@ class Installer {
    * @return string
    */
   public function getInitContent() {
-
-    $DEV_ENVIRONMENT = (isset($_POST['DEV_ENVIRONMENT'])) ? $_POST['DEV_ENVIRONMENT'] : '';
-    $PRO_ENVIRONMENT = (isset($_POST['PRO_ENVIRONMENT'])) ? $_POST['PRO_ENVIRONMENT'] : '';
-    $VIEW_DEFAULT_TITLE = (isset($_POST['VIEW_DEFAULT_TITLE'])) ? $_POST['VIEW_DEFAULT_TITLE'] : '';
-
-    $DEV_DB_HOST = (isset($_POST['DEV_DB_HOST'])) ? $_POST['DEV_DB_HOST'] : '';
-    $DEV_DB_USER = (isset($_POST['DEV_DB_USER'])) ? $_POST['DEV_DB_USER'] : '';
-    $DEV_DB_PASS = (isset($_POST['DEV_DB_PASS'])) ? $_POST['DEV_DB_PASS'] : '';
-    $DEV_DB_NAME = (isset($_POST['DEV_DB_NAME'])) ? $_POST['DEV_DB_NAME'] : '';
-
-    $PRO_DB_HOST = (isset($_POST['PRO_DB_HOST'])) ? $_POST['PRO_DB_HOST'] : '';
-    $PRO_DB_USER = (isset($_POST['PRO_DB_USER'])) ? $_POST['PRO_DB_USER'] : '';
-    $PRO_DB_PASS = (isset($_POST['PRO_DB_PASS'])) ? $_POST['PRO_DB_PASS'] : '';
-    $PRO_DB_NAME = (isset($_POST['PRO_DB_NAME'])) ? $_POST['PRO_DB_NAME'] : '';
-
-    $DEFAULT_TIMEZONE = (isset($_POST['DEFAULT_TIMEZONE'])) ? $_POST['DEFAULT_TIMEZONE'] : '';
 
     $initFile = <<<FILE
 <?php
@@ -74,13 +151,13 @@ class Installer {
  * Development environment directory
  * @var string path relative to domain root directory
  */
-const DEV_ENVIRONMENT = '$DEV_ENVIRONMENT';
+const DEV_ENVIRONMENT = '{$this->getDevEnvironment()}';
 
 /**
  * Production environment directory
  * @var string path relative to domain root directory
  */
-const PRO_ENVIRONMENT = '$PRO_ENVIRONMENT';
+const PRO_ENVIRONMENT = '{$this->getProEnvironment()}';
 
 /**
  * Controllers directory 
@@ -101,7 +178,7 @@ const VIEW_DIR = '/app/views';
  * @var string
  * @see org/codeminus/main/View.php for more information
  */
-const VIEW_DEFAULT_TITLE = '$VIEW_DEFAULT_TITLE';
+const VIEW_DEFAULT_TITLE = '{$this->getViewDefaultTitle()}';
 
 /**
  * File to be included before the view file. When requested
@@ -130,23 +207,23 @@ const INDEX_CONTROLLER = 'Index';
 const ERROR_CONTROLLER = 'Error';
 
 //Development Database configuration
-const DEV_DB_HOST = '$DEV_DB_HOST';
-const DEV_DB_USER = '$DEV_DB_USER';
-const DEV_DB_PASS = '$DEV_DB_PASS';
-const DEV_DB_NAME = '$DEV_DB_NAME';
+const DEV_DB_HOST = '{$this->getDevDbInfo()['host']}';
+const DEV_DB_USER = '{$this->getDevDbInfo()['user']}';
+const DEV_DB_PASS = '{$this->getDevDbInfo()['pass']}';
+const DEV_DB_NAME = '{$this->getDevDbInfo()['name']}';
 
 //Production Database configuration
-const PRO_DB_HOST = '$PRO_DB_HOST';
-const PRO_DB_USER = '$PRO_DB_USER';
-const PRO_DB_PASS = '$PRO_DB_PASS';
-const PRO_DB_NAME = '$PRO_DB_NAME';
+const PRO_DB_HOST = '{$this->getProDbInfo()['host']}';
+const PRO_DB_USER = '{$this->getProDbInfo()['user']}';
+const PRO_DB_PASS = '{$this->getProDbInfo()['pass']}';
+const PRO_DB_NAME = '{$this->getProDbInfo()['name']}';
 
 /**
  * Default timezone
  * @var string timezone  supported by php
  * @see http://www.php.net/manual/en/timezones.php for a list of supported timezones
  */
-const DEFAULT_TIMEZONE = '$DEFAULT_TIMEZONE';
+const DEFAULT_TIMEZONE = '{$this->getDefaultTimeZone()}';
 
 /**
  * Default records per page on a result listing
@@ -155,16 +232,16 @@ const DEFAULT_TIMEZONE = '$DEFAULT_TIMEZONE';
 const DEFAULT_RPP = 20;
 
 /**
- * Default email address to be used as default sender on org\codeminus\file\Email
+ * Default email address to be used as default sender on org\codeminus\util\Email
  * @var string email address
  */
-const DEFAULT_EMAILSENDER_ADDRESS = '';
+const DEFAULT_EMAIL_SENDER_ADDRESS = '';
 
 /**
- * Default email owner's name to be used as default sender on org\codeminus\file\Email
+ * Default email owner's name to be used as default sender on org\codeminus\util\Email
  * @var string email owner's name
  */
-const DEFAULT_EMAILSENDER_NAME    = '';
+const DEFAULT_EMAIL_SENDER_NAME = '';
 
 /**
  * Call the init function and set the application environment
@@ -196,7 +273,6 @@ function init(\$environment){
     define('VIEW_PATH', APP_PATH.VIEW_DIR);
     
     define('LIB_IMAGES_PATH', \$environment.'/org/codeminus/img');
-    define('LIB_ICONS_PATH', \$environment.'/org/codeminus/img/icon');
     define('LIB_CSS_PATH', \$environment.'/org/codeminus/css');
     
     switch (\$environment){
