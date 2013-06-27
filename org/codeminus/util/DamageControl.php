@@ -45,7 +45,8 @@ class DamageControl {
   /**
    * Verifies if a given value has whitespaces
    * @param type $value
-   * @return boolean true if whitespace(space, tab, etc.) is found and false otherwise
+   * @return boolean true if whitespace(space, tab, etc.) is found and false
+   * otherwise
    */
   public static function hasWhitespace($value) {
     if (preg_match('/\s/', $value)) {
@@ -57,7 +58,8 @@ class DamageControl {
 
   /**
    * Removes all whitespaces from the given value
-   * For only whitespace before, after or both, refer to ltrim, rtrim ou trim on php.net
+   * For only whitespace before, after or both, refer to ltrim, rtrim or trim
+   * on php.net
    * @param string $value
    * @return string
    */
@@ -68,7 +70,8 @@ class DamageControl {
   /**
    * Returns the strengh of a given password
    * For each type of character in the password it adds +1 to the strengh.
-   * If the result at the end is 1, the password is very weak, if it is 4, the password is strong
+   * If the result at the end is 1, the password is very weak, if it is 4,
+   * the password is strong
    * @param string $password
    * @return int
    */
@@ -151,7 +154,8 @@ class DamageControl {
   }
 
   /**
-   * Verifies if a given value is a number and if it is within specified type and direction
+   * Verifies if a given value is a number and if it is within specified type
+   * and direction
    * @param mixed $value
    * @param int $type[optional]
    * @param int $direction[optional] as in positive or negative
@@ -253,7 +257,8 @@ class DamageControl {
   }
 
   /**
-   * Removes invalid domain characters and adds the prefix http:// or leaves https:// if it's already set
+   * Removes invalid domain characters and adds the prefix http://
+   * or leaves https:// if it's already set
    * @param string $url
    */
   public static function sanitizeURL($url) {
