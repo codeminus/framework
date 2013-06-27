@@ -73,6 +73,9 @@ li{
 .inline, .childs-inline > *{
   display: inline-block !important;
 }
+.table, .childs-table > *{
+  display: table !important;
+}
 .hide{
   display: none;    
 }
@@ -163,6 +166,9 @@ img.disabled{
   border-radius: 3px;
   padding: 3px;
 }
+.bubble.light{
+  background-color: #f7f7f7;
+}
 /* ==========================================================================
    Messages
    ========================================================================== */
@@ -249,4 +255,7 @@ img.disabled{
 }
 .width-max, .childs-width-max > *{
   width: 100% !important;
+}
+.width-min{
+  width: 1px;
 }
