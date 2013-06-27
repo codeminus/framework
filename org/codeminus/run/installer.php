@@ -13,13 +13,13 @@ use org\codeminus\main as main;
 <html>
   <head>
     <title>App configuration <?php echo $title ?></title>
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" href="../css/codeminus.css" />
   </head>
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../img/codeminus-php-framework-300x73.png"
+        <img src="../assets/img/codeminus-php-framework-300x73.png"
              class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
