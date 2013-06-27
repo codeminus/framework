@@ -7,14 +7,14 @@ use org\codeminus\main as main;
 /**
  * File upload 
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 2.0
+ * @version 2.1
  */
 class FileUpload {
 
   private $errorMessages = array();
   private $files = array();
-  private $validFiles = array();
-  private $invalidFiles = array();
+  private $validFiles;
+  private $invalidFiles;
 
   //Extensions filters
 
@@ -45,7 +45,7 @@ class FileUpload {
   }
 
   private function setErrorMessages() {
-    (isset($_POST['MAX_FILE_SIZE'])) ? $maxSize = $_POST['MAX_FILE_SIZE'] : $maxSize = null ;
+    (isset($_POST['MAX_FILE_SIZE'])) ? $maxSize = $_POST['MAX_FILE_SIZE'] : $maxSize = null;
     //Default upload error codes
     $this->errorMessages[0] = "The file uploaded to temporary folder with success.";
     $this->errorMessages[1] = "The uploaded file exceeds the upload_max_filesize of " . ini_get('upload_max_filesize') . ". Directive in php.ini. ";
@@ -141,38 +141,58 @@ class FileUpload {
 
   /**
    * Valid files
+   * @param string $varname[optional] the HTML form input name that contains
+   * the files. If null is given it will return all valid files
    * @return array containing all files that passed filterFiles() validation and
    * can be saved
    */
-  public function getValidFiles() {
-    return $this->validFiles;
+  public function getValidFiles($varname = null) {
+    if(isset($varname)){
+      return $this->validFiles[$varname];
+    }else{
+      return $this->validFiles;
+    }
   }
 
   /**
    * Adds a valid file
+   * @param string $varname the HTML form input name that contains the files
    * @param array $validFile a file that pased the filterFiles()
    * @return void
    */
-  private function addValidFile($validFile) {
-    array_push($this->validFiles, $validFile);
+  private function addValidFile($varname, $validFile) {
+    if(!is_array(@$this->validFiles[$varname])){
+      $this->validFiles[$varname] = array();
+    }
+    array_push($this->validFiles[$varname], $validFile);
   }
 
   /**
    * Invalid failes
+   * @param string $varname[optional] the HTML form input name that contains
+   * the files. If null is given it will return all valid files
    * @return array containing all files that fail filterFiles() validation and
    * can NOT be saved
    */
-  public function getInvalidFiles() {
-    return $this->invalidFiles;
+  public function getInvalidFiles($varname = null) {
+    if(isset($varname)){
+      return $this->invalidFiles[$varname];
+    }else{
+      return $this->invalidFiles;
+    }
   }
 
   /**
    * Add an invalid file
+   * @param string $varname the HTML form input name that contains the files
    * @param array $invalidFile a file that fail the filterFiles()
    * @return void
    */
-  private function addInvalidFile($invalidFile) {
-    array_push($this->invalidFiles, $invalidFile);
+  private function addInvalidFile($varname, $invalidFile) {
+    if(!is_array(@$this->invalidFiles[$varname])){
+      $this->invalidFiles[$varname] = array();
+    }
+    array_push($this->invalidFiles[$varname], $invalidFile);
   }
 
   /**
@@ -339,7 +359,13 @@ class FileUpload {
    * $invalidFiles array receives the files that fail the filter
    * @return void
    */
-  protected function filterFiles() {
+  public function filterFiles() {
+
+    $this->validFiles = array();
+    $this->invalidFiles = array();
+    $countValid = 0;
+    $countInvalid = 0;
+
     foreach (array_keys($this->files) as $varname) {
       if (is_array($this->files[$varname])) {
         $fileCount = count($this->files[$varname]);
@@ -350,21 +376,29 @@ class FileUpload {
             if (FileHandler::validateExtension($this->files[$varname][$i]['name'], $this->files[$varname][$i]['ext_filter'])) {
               //if the file size is within maximum allowed size
               if ($this->files[$varname][$i]['size'] <= $this->files[$varname][$i]['max_size']) {
-                $this->addValidFile($this->files[$varname][$i]);
+                $this->addValidFile($varname, $this->files[$varname][$i]);
+                //$this->validFiles[$varname][$countValid] = $this->files[$varname][$i];
+                $countValid++;
               } else {
                 //defining error
                 $this->files[$varname][$i]['error'] = -2;
                 $this->files[$varname][$i]['error_msg'] = $this->getErrorMessage(-2);
-                $this->addInvalidFile($this->files[$varname][$i]);
+                $this->addInvalidFile($varname, $this->files[$varname][$i]);
+                //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
+                $countInvalid++;
               }
             } else {
               //defining error
               $this->files[$varname][$i]['error'] = -1;
               $this->files[$varname][$i]['error_msg'] = $this->getErrorMessage(-1);
-              $this->addInvalidFile($this->files[$varname][$i]);
+              $this->addInvalidFile($varname, $this->files[$varname][$i]);
+              //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
+              $countInvalid++;
             }
           } else {
-            $this->addInvalidFile($this->files[$varname][$i]);
+            $this->addInvalidFile($varname, $this->files[$varname][$i]);
+            //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
+            $countInvalid++;
           }
         }
       }
@@ -408,9 +442,11 @@ class FileUpload {
       $this->replaceExistent($replaceExistent);
     }
     $this->filterFiles();
-    $fileCount = count($this->getValidFiles());
-    for ($i = 0; $i < $fileCount; $i++) {
-      $this->moveUploadedFile($this->validFiles[$i]);
+    foreach ($this->validFiles as $varname) {
+      $fileCount = count($varname);
+      for ($i = 0; $i < $fileCount; $i++) {
+        $this->moveUploadedFile($varname[$i]);
+      }
     }
   }
 
