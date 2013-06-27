@@ -88,6 +88,18 @@ class FileUpload {
   }
 
   /**
+   * Number of uploaded files
+   * @return int
+   */
+  public function getFilesCount(){
+    $count = 0;
+    foreach ($this->files as $varname){
+      $count += count($varname);
+    }
+    return $count;
+  }
+  
+  /**
    * Reorganizes $_FILES array to this pattern: $files['varname'][index]['info']
    * @return void
    */
@@ -159,6 +171,18 @@ class FileUpload {
   }
 
   /**
+   * Numbers of valid uploaded files
+   * @return int
+   */
+  public function getValidFilesCount(){
+    $count = 0;
+    foreach ($this->validFiles as $varname){
+      $count += count($varname);
+    }
+    return $count;
+  }
+  
+  /**
    * Adds a valid file
    * @param string $varname the HTML form input name that contains the files
    * @param array $validFile a file that pased the filterFiles()
@@ -186,6 +210,18 @@ class FileUpload {
     }
   }
 
+  /**
+   * Number of invalid uploaded files
+   * @return int
+   */
+  public function getInvalidFilesCount(){
+    $count = 0;
+    foreach ($this->invalidFiles as $varname){
+      $count += count($varname);
+    }
+    return $count;
+  }
+  
   /**
    * Add an invalid file
    * @param string $varname the HTML form input name that contains the files
