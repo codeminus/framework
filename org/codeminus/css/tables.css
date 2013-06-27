@@ -80,6 +80,21 @@ table tfoot{
   background-color: #f7f7f7;
 }
 /* ==========================================================================
+   table colors
+   ========================================================================== */
+tr.success, th.success, td.success{
+  background-color: #dff0d8;
+}
+tr.warning, th.warning, td.warning{
+  background-color: #fcf8e3;
+}
+tr.info, th.info, td.info{
+  background-color: #d9edf7;
+}
+tr.error, th.error, td.error{
+  background-color: #f2dede;
+}
+/* ==========================================================================
    table-condensed
    ========================================================================== */
 .table-condensed th,
