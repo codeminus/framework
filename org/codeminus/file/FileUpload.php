@@ -44,6 +44,10 @@ class FileUpload {
     return $this->errorMessages[$code];
   }
 
+  /**
+   * Initializes the error message array
+   * @return void
+   */
   private function setErrorMessages() {
     (isset($_POST['MAX_FILE_SIZE'])) ? $maxSize = $_POST['MAX_FILE_SIZE'] : $maxSize = null;
     //Default upload error codes
