@@ -8,7 +8,7 @@ $contents = array(
     'forms' => false,
     'tables' => false,
     'images' => false,
-    //'js' => false,
+    'js' => false,
     'glyphicons' => false,
     'famfamfam' => false,
 );
