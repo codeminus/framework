@@ -7,7 +7,7 @@
   <section class="container-box rounded">
     <header>.container-box .rounded</header>
     <section>Content</section>
-    <footer class="text-right">.text-right</footer>
+    <footer class="text-align-right">.text-align-right</footer>
   </section>
   <section class="container-box rounded">
     <section>.container-box .rounded</section>
