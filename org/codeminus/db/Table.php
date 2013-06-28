@@ -50,12 +50,12 @@ abstract class Table {
   const DELETE = 2;
 
   //Error messages    
-  const ERR_NOSQLSTMT = '<b>Error:</b> SQL statement not defined';
-  const ERR_INVALIDSQL = '<b>Error:</b> Invalid SQL statement';
-  const ERR_NULLFIELD = '<b>Error:</b> Required table field not set';
-  const ERR_NOFIELDS = '<b>Error:</b> No table fields defined';
-  const ERR_INVALIDOP = '<b>Error:</b> Invalid database operation';
-  const ERR_STRICTOP = '<b>Error:</b> Strict database operation. Where clause not set';
+  const ERR_NOSQLSTMT = 'SQL statement not defined';
+  const ERR_INVALIDSQL = 'Invalid SQL statement';
+  const ERR_NULLFIELD = 'Required table field not set';
+  const ERR_NOFIELDS = 'No table fields defined';
+  const ERR_INVALIDOP = 'Invalid database operation';
+  const ERR_STRICTOP = 'Strict database operation. Where clause not set';
 
   /**
    * Database Table abstract model
@@ -113,7 +113,7 @@ abstract class Table {
     try {
       $this->setTableColumns();
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
@@ -128,7 +128,7 @@ abstract class Table {
     $result = $this->dbConn->query("DESCRIBE " . $this->getTableName());
 
     if (!$result) {
-      throw new main\ExtendedException($this->dbConn->error);
+      throw new main\ExtendedException($this->dbConn->error, main\ExtendedException::E_ERROR);
     }
 
     while ($row = $result->fetch_assoc()) {
@@ -198,7 +198,7 @@ abstract class Table {
   final public function getInsertFields() {
 
     if (count($this->insertFields) == 0) {
-      throw new main\ExtendedException(self::ERR_NOFIELDS);
+      throw new main\ExtendedException(self::ERR_NOFIELDS, main\ExtendedException::E_ERROR);
     } else {
       return $this->insertFields;
     }
@@ -243,7 +243,7 @@ abstract class Table {
   final public function getUpdateFields() {
 
     if (count($this->updateFields) == 0) {
-      throw new main\ExtendedException(self::ERR_NOFIELDS);
+      throw new main\ExtendedException(self::ERR_NOFIELDS, main\ExtendedException::E_ERROR);
     } else {
       return $this->updateFields;
     }
@@ -304,7 +304,7 @@ abstract class Table {
         break;
 
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
         break;
     }
   }
@@ -345,7 +345,7 @@ abstract class Table {
         break;
 
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
         break;
     }
   }
@@ -362,7 +362,7 @@ abstract class Table {
       case self::INSERT:
         foreach ($this->requiredInsertFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')');
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
             return false;
           }
         }
@@ -371,7 +371,7 @@ abstract class Table {
       case self::UPDATE:
         foreach ($this->requiredUpdateFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')');
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
             return false;
           }
         }
@@ -380,14 +380,14 @@ abstract class Table {
       case self::DELETE:
         foreach ($this->requiredDeleteFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')');
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
             return false;
           }
         }
         break;
 
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
         break;
     }
   }
@@ -425,7 +425,7 @@ abstract class Table {
     try {
       $fieldCount = count($this->getInsertFields());
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
 
@@ -463,7 +463,7 @@ abstract class Table {
       $this->setSqlStatement($sql, self::INSERT);
       return true;
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
@@ -478,14 +478,14 @@ abstract class Table {
     try {
       $fieldCount = count($this->getUpdateFields());
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
 
     try {
       $this->validateRestriction(self::UPDATE, $whereClause);
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
 
@@ -517,7 +517,7 @@ abstract class Table {
       $this->setSqlStatement($sql, self::UPDATE);
       return true;
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
@@ -547,7 +547,7 @@ abstract class Table {
   final protected function executeQuery() {
 
     if (!isset($this->sqlStatement)) {
-      throw new main\ExtendedException(self::ERR_NOSQLSTMT);
+      throw new main\ExtendedException(self::ERR_NOSQLSTMT, main\ExtendedException::E_ERROR);
     }
 
     $result = $this->dbConn->query($this->getSqlStatement());
@@ -556,7 +556,7 @@ abstract class Table {
       $this->setNumRows($this->dbConn->affected_rows);
       return true;
     } else {
-      throw new main\ExtendedException($this->dbConn->error);
+      throw new main\ExtendedException($this->dbConn->error, main\ExtendedException::E_ERROR);
       return false;
     }
   }
@@ -648,20 +648,20 @@ abstract class Table {
     switch ($operation) {
       case self::UPDATE:
         if ($this->getStrictUpdate() && trim($whereClause) == '') {
-          throw new main\ExtendedException(self::ERR_STRICTOP);
+          throw new main\ExtendedException(self::ERR_STRICTOP, main\ExtendedException::E_ERROR);
         } else {
           return true;
         }
         break;
       case self::DELETE:
         if ($this->getStrictDelete() && trim($whereClause) == '') {
-          throw new main\ExtendedException(self::ERR_STRICTOP);
+          throw new main\ExtendedException(self::ERR_STRICTOP, main\ExtendedException::E_ERROR);
         } else {
           return true;
         }
         break;
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
         break;
     }
   }
@@ -698,7 +698,7 @@ abstract class Table {
       $this->setSqlStatement("SELECT " . $fields . " FROM " . $this->getTableName() . " " . $whereClause);
       return $this->executeQuery();
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
@@ -758,7 +758,7 @@ abstract class Table {
       $this->setSqlStatement("DELETE FROM " . $this->getTableName() . " " . $whereClause, self::DELETE);
       return $this->executeQuery();
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
