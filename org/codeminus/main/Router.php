@@ -50,7 +50,7 @@ class Router {
   /**
    * Handles the URL query string
    * @return Router
-   * @throws ExtException
+   * @throws ExtendedException
    */
   public function __construct() {
     if (APP_ENVIRONMENT_PATH != '') {
@@ -76,7 +76,7 @@ class Router {
 
         //if neither controller is found    
       } else {
-        throw new ExtException('<b>Fatal Error:</b> Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>');
+        throw new ExtendedException('<b>Fatal Error:</b> Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>');
       }
 
       //if no controller is requested try to load INDEX_CONTROLLER
@@ -87,7 +87,7 @@ class Router {
 
       //if the INDEX_CONTROLLER doesnt exists
     } else {
-      throw new ExtException('<b>Fatal error:</b> Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH);
+      throw new ExtendedException('<b>Fatal error:</b> Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH);
     }
   }
 

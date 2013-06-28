@@ -203,7 +203,7 @@ class Installer {
    */
   public function createApp() {
     if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
-      throw new main\ExtException('You need to set, at least, the development environment.');
+      throw new main\ExtendedException('You need to set, at least, the development environment.');
     }
     file\FileHandler::recursiveCopy('../app-skeleton', $this->getAppRoot());
     $initFilePath = $this->getAppRoot() . '/app/configs/init.php';
@@ -395,7 +395,7 @@ use \org\codeminus\main as main;
 //Initializing path router
 try{
     new main\Router();
-}  catch (main\ExtException \$e){
+}  catch (main\ExtendedException \$e){
     echo \$e->getMessage();
     exit;
 }
