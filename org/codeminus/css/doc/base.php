@@ -20,8 +20,8 @@
           codeminus
         </a>
         <p>Paragraph</p>
-        <p class="text-center">.text-center</p>
-        <p class="text-right">.text-right</p>
+        <p class="text-align-center">.text-align-center</p>
+        <p class="text-align-right">.text-align-right</p>
         <p class="bold">.bold</p>
         <p class="underlined">.underlined</p>
       </section>
