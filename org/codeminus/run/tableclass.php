@@ -1,5 +1,5 @@
 <?php
-require '../main/ExtException.php';
+require '../main/ExtendedException.php';
 require '../db/Connection.php';
 require '../db/TableClass.php';
 
@@ -90,7 +90,7 @@ if (isset($_POST['cmd'])) {
                   ?>
                   <pre class="code code-line-numbered code-highlight"><?php echo $tc->getCode(); ?></pre>
                   <?php
-                } catch (main\ExtException $e) {
+                } catch (main\ExtendedException $e) {
                   echo $e->getMessage();
                 }
               }

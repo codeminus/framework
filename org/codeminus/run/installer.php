@@ -1,5 +1,5 @@
 <?php
-require '../main/ExtException.php';
+require '../main/ExtendedException.php';
 require '../util/ClassLog.php';
 require '../main/Installer.php';
 require '../file/FileHandler.php';
@@ -122,7 +122,7 @@ use org\codeminus\main as main;
               }
 
               $created = true;
-            } catch (main\ExtException $e) {
+            } catch (main\ExtendedException $e) {
               echo $e->getMessage();
             }
             ?>
