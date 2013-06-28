@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="span1">
-    <ul class="nav nav-vlist style02 block text-center">
+    <ul class="nav nav-vlist style02 block text-align-center">
       <li><a href="#"><span class="glyphicon-home"></span></a></li>
       <li><a href="#"><span class="glyphicon-user"></span></a></li>
       <li><a href="#"><span class="glyphicon-calendar"></span></a></li>
