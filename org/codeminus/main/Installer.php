@@ -203,7 +203,7 @@ class Installer {
    */
   public function createApp() {
     if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
-      throw new main\ExtendedException('You need to set, at least, the development environment.');
+      throw new main\ExtendedException('You need to set, at least, the development environment.', main\ExtendedException::E_WARNING);
     }
     file\FileHandler::recursiveCopy('../app-skeleton', $this->getAppRoot());
     $initFilePath = $this->getAppRoot() . '/app/configs/init.php';
