@@ -23,8 +23,8 @@ class RecordList {
 
   //Error messages
 
-  const ERR_LIMITCLAUSE = '<b>Error:</b> There can be no LIMIT clause on the SQL statement. This declaration is set automatically';
-  const ERR_RPP = '<b>Error:</b> records per page must be greater than zero';
+  const ERR_LIMITCLAUSE = 'There can be no LIMIT clause on the SQL statement. This declaration is set automatically';
+  const ERR_RPP = 'Records per page must be greater than zero';
 
   /**
    * Database record list
@@ -44,7 +44,7 @@ class RecordList {
       $this->setSqlStatement($sqlStmt);
       $this->setRecordsPerPage($recordsPerPage);
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
 
@@ -57,7 +57,7 @@ class RecordList {
     try {
       $this->setSqlResult();
     } catch (main\ExtendedException $e) {
-      echo $e->getDetailedMessage();
+      echo $e->getFormattedMessage();
       exit;
     }
   }
@@ -82,7 +82,7 @@ class RecordList {
     $tmpSql = explode('"', $tmpSql);
 
     if (stripos($tmpSql[count($tmpSql) - 1], "LIMIT") > -1) {
-      throw new main\ExtendedException(self::ERR_LIMITCLAUSE);
+      throw new main\ExtendedException(self::ERR_LIMITCLAUSE, main\ExtendedException::E_ERROR);
     } else {
       $this->sqlStatement = $sqlStatement;
     }
@@ -129,7 +129,7 @@ class RecordList {
 
     $this->sqlResult = $this->dbconn->query($this->getSqlStatement() . $this->getSqlLimit());
     if (!$this->sqlResult) {
-      throw new main\ExtendedException($this->dbconn->error);
+      throw new main\ExtendedException($this->dbconn->error, main\ExtendedException::E_ERROR);
     }
   }
 
@@ -152,7 +152,7 @@ class RecordList {
     $result = $this->dbconn->query(self::getCountStatement($this->getSqlStatement()));
 
     if (!$result) {
-      throw new main\ExtendedException($this->dbconn->error);
+      throw new main\ExtendedException($this->dbconn->error, main\ExtendedException::E_ERROR);
     } else {
 
       $totalRows = $result->fetch_array();
@@ -198,7 +198,7 @@ class RecordList {
     if ($recordsPerPage > 0) {
       $this->recordsPerPage = round($recordsPerPage);
     } else {
-      throw new main\ExtendedException(self::ERR_RPP);
+      throw new main\ExtendedException(self::ERR_RPP, main\ExtendedException::E_ERROR);
     }
   }
 
