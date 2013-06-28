@@ -43,7 +43,7 @@ if (isset($_POST['cmd'])) {
           <form name="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <section class="container-box rounded block margined-bottom">
               <header>Database connection parameters</header>
-            <section class="text-right">
+            <section class="text-align-right">
                 <label for="db_host">Host</label>
                 <input type="text" name="db_host" id="db_host" 
                      value="<?php echo $db_host ?>" /><br/>
@@ -91,10 +91,10 @@ if (isset($_POST['cmd'])) {
                   <pre class="code code-line-numbered code-highlight"><?php echo $tc->getCode(); ?></pre>
                   <?php
                 } catch (main\ExtendedException $e) {
-                  echo $e->getMessage();
+                  echo $e->getFormattedMessage();
                 }
               }
-              ?>    
+              ?>
             </section>    
           </section>
         </div>
