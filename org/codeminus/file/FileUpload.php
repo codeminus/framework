@@ -105,7 +105,7 @@ class FileUpload {
    */
   private function setFiles() {
     if (empty($_FILES)) {
-      throw new main\ExtendedException('<b>Error:</b> $_FILES superglobal is empty.');
+      throw new main\ExtendedException('$_FILES superglobal is empty.', main\ExtendedException::E_ERROR);
     }
     foreach (array_keys($_FILES) as $varname) {
       //if it's an array within $_FILES
