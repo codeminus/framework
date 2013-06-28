@@ -88,19 +88,28 @@ li{
 .float-right{
   float: right;
 }
+.align-top, .childs-align-top > *{
+  vertical-align: top;
+}
+.align-middle, .childs-align-middle > *{
+  vertical-align: middle;
+}
+.align-bottom, .childs-align-bottom > *{
+  vertical-align: bottom;
+}
 .fixed{
   position: fixed;
 }
 /* ==========================================================================
    Text classes
    ========================================================================== */
-.text-left{
+.text-align-left{
   text-align: left;
 }
-.text-right{
+.text-align-right{
   text-align: right;
 }
-.text-center{
+.text-align-center{
   text-align: center;
 }
 .text-disabled{
@@ -108,6 +117,12 @@ li{
 }
 .text-disabled a{
   color: #ffccff;
+}
+.text-large{
+  font-size: 150%;
+}
+.text-xlarge{
+  font-size: 200%;
 }
 /* ==========================================================================
    Utility classes
