@@ -147,12 +147,12 @@ class Connection extends \mysqli {
 	 * EXPLAIN queries <b>mysqli_query</b> will return
 	 * a <b>mysqli_result</b> object. For other successful queries <b>mysqli_query</b> will
 	 * return <b>TRUE</b>.
-   * @throws ExtException A more detailed error message.
+   * @throws ExtendedException A more detailed error message.
 	 */
   public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
     $result = parent::query($query, $resultmode);
     if(!$result){
-      throw new main\ExtException(
+      throw new main\ExtendedException(
               "<b>Database error:</b> ".$this->error.
               "<br/><b>SQL statement:</b>  <pre>".$query."</pre>");
     }else{

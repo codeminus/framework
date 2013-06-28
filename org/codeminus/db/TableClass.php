@@ -79,13 +79,13 @@ class TableClass {
    * $columns[0]['key'],
    * $columns[0]['default'],
    * $columns[0]['extra']
-   * @throws main\ExtException
+   * @throws main\ExtendedException
    */
   public static function getTableColumns(Connection $dbConn, $tableName) {
     $result = $dbConn->query("DESCRIBE " . $tableName);
 
     if (!$result) {
-      throw new main\ExtException($dbConn->error);
+      throw new main\ExtendedException($dbConn->error);
     }
 
     $tableColumnsArray = array();

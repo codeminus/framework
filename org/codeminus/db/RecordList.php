@@ -43,7 +43,7 @@ class RecordList {
     try {
       $this->setSqlStatement($sqlStmt);
       $this->setRecordsPerPage($recordsPerPage);
-    } catch (main\ExtException $e) {
+    } catch (main\ExtendedException $e) {
       echo $e->getDetailedMessage();
       exit;
     }
@@ -56,7 +56,7 @@ class RecordList {
 
     try {
       $this->setSqlResult();
-    } catch (main\ExtException $e) {
+    } catch (main\ExtendedException $e) {
       echo $e->getDetailedMessage();
       exit;
     }
@@ -74,7 +74,7 @@ class RecordList {
    * SQL statement
    * @param string $sqlStatement without LIMIT declaration
    * @return void
-   * @throws ExtException
+   * @throws ExtendedException
    */
   private function setSqlStatement($sqlStatement) {
 
@@ -82,7 +82,7 @@ class RecordList {
     $tmpSql = explode('"', $tmpSql);
 
     if (stripos($tmpSql[count($tmpSql) - 1], "LIMIT") > -1) {
-      throw new main\ExtException(self::ERR_LIMITCLAUSE);
+      throw new main\ExtendedException(self::ERR_LIMITCLAUSE);
     } else {
       $this->sqlStatement = $sqlStatement;
     }
@@ -123,13 +123,13 @@ class RecordList {
   /**
    * Result of SQL statement
    * @return void
-   * @throws ExtException
+   * @throws ExtendedException
    */
   private function setSqlResult() {
 
     $this->sqlResult = $this->dbconn->query($this->getSqlStatement() . $this->getSqlLimit());
     if (!$this->sqlResult) {
-      throw new main\ExtException($this->dbconn->error);
+      throw new main\ExtendedException($this->dbconn->error);
     }
   }
 
@@ -145,14 +145,14 @@ class RecordList {
    * Performs a faster query to count the number of rows from the result and
    * calculates the total pages
    * @return void
-   * @throws ExtException
+   * @throws ExtendedException
    */
   private function setTotalRows() {
 
     $result = $this->dbconn->query(self::getCountStatement($this->getSqlStatement()));
 
     if (!$result) {
-      throw new main\ExtException($this->dbconn->error);
+      throw new main\ExtendedException($this->dbconn->error);
     } else {
 
       $totalRows = $result->fetch_array();
@@ -198,7 +198,7 @@ class RecordList {
     if ($recordsPerPage > 0) {
       $this->recordsPerPage = round($recordsPerPage);
     } else {
-      throw new main\ExtException(self::ERR_RPP);
+      throw new main\ExtendedException(self::ERR_RPP);
     }
   }
 
