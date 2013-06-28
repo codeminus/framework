@@ -150,6 +150,10 @@ class Connection extends \mysqli {
    * @throws ExtendedException A more detailed error message.
 	 */
   public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
+    $db = $this->database;
+    if(empty($db)){
+      throw new main\ExtendedException('No database selected', main\ExtendedException::E_ERROR);
+    }
     $result = parent::query($query, $resultmode);
     if(!$result){
       throw new main\ExtendedException(
