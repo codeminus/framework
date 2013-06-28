@@ -153,8 +153,9 @@ class Connection extends \mysqli {
     $result = parent::query($query, $resultmode);
     if(!$result){
       throw new main\ExtendedException(
-              "<b>Database error:</b> ".$this->error.
-              "<br/><b>SQL statement:</b>  <pre>".$query."</pre>");
+              $this->error . 
+              "<br/><b>SQL statement:</b>  <pre>" . $query . "</pre>",
+              main\ExtendedException::E_ERROR);
     }else{
       return $result;
     }
