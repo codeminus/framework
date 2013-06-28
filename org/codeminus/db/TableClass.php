@@ -82,6 +82,11 @@ class TableClass {
    * @throws main\ExtendedException
    */
   public static function getTableColumns(Connection $dbConn, $tableName) {
+    
+    if(empty($tableName)){
+      throw new main\ExtendedException('<b>Error:</b> No table name was given');
+    }
+    
     $result = $dbConn->query("DESCRIBE " . $tableName);
 
     if (!$result) {
