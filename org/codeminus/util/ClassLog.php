@@ -13,7 +13,7 @@ class ClassLog {
   static $logs = array();
   
   const LOG_INFO = 0;
-  const LOG_WARNNING = 1;
+  const LOG_WARNING = 1;
   const LOG_ERROR = 2;
   
   /**
@@ -25,7 +25,7 @@ class ClassLog {
    * @param string $message The message to be logged
    * @param int $type[optional] A log type constant.<br/>
    * LOG_INFO - the default if none is given<br/>
-   * LOG_WARNNING<br/>
+   * LOG_WARNING<br/>
    * LOG_ERROR
    * @return void
    */
