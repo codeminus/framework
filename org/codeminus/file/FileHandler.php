@@ -76,9 +76,13 @@ class FileHandler {
    * @param string $fileName complete file path
    * @param string $fileContent Content to be put inside the file
    * method
+   * @param boolean $replaceExistent if TRUE it will replace all existent files
    * @return void
    */
-  public static function createFile($fileName, $fileContent) {
+  public static function createFile($fileName, $fileContent, $replaceExistent) {
+    if($replaceExistent){
+      self::delete($fileName);
+    }
     if (!file_exists($fileName)) {
       if (!file_put_contents($fileName, $fileContent)) {
         exit('<p>Unable to create ' . $fileName . '</p>');
