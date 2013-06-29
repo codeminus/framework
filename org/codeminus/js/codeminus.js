@@ -3,13 +3,13 @@ $(document).ready(function() {
    CSS dynamic utilities
    ========================================================================== */
   $('.float-left, .float-right, [class^="span"], [class*=" span"]').parent().addClass('clearfix');
-  
-  $('.fixed').after(function(){
+
+  $('.fixed').after(function() {
     var newElement = document.createElement('div');
-    newElement.setAttribute('class','invisible '+$(this).attr('class').replace('fixed',''));
+    newElement.setAttribute('class', 'invisible ' + $(this).attr('class').replace('fixed', ''));
     newElement.innerHTML = $(this).html();
     $(this).width($(this).removeClass('fixed').width()).addClass('fixed');
-    $(this).css('z-index',1);
+    $(this).css('z-index', 1);
     return newElement;
   });
   /* ==========================================================================
@@ -197,17 +197,19 @@ $(document).ready(function() {
   $('[data-colspan-from]').attr('colspan', function() {
     return $('#' + $(this).attr('data-colspan-from')).children().length;
   });
-
+  /* ==========================================================================
+   data-width-from handler
+   ========================================================================== */
+  $('[data-width-from]').css('width', function() {
+    var hPadding = parseInt($(this).css('padding-left')) + parseInt($(this).css('padding-right'));
+    return ($('#' + $(this).attr('data-width-from')).width() - hPadding);
+  });
   /* ==========================================================================
    data-height-from handler
    ========================================================================== */
-  $('[data-height-from]').click(function() {
-    $(this).css('height', function() {
-      return $('#' + $(this).attr('data-height-from')).height();
-    });
-  });
   $('[data-height-from]').css('height', function() {
-    return $('#' + $(this).attr('data-height-from')).height();
+    var vPadding = parseInt($(this).css('padding-top')) + parseInt($(this).css('padding-bottom'));
+    return $('#' + $(this).attr('data-height-from')).height() - vPadding;
   });
   /* ==========================================================================
    data-toggle handler
