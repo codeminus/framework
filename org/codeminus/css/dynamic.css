@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Position classes
+   ========================================================================== */
+.fixed{
+  position: fixed;
+}
+.absolute-center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.absolute-center-horizontal{
+  position: absolute;
+  left: 50%; 
+}
+.absolute-center-vertical{
+  position: absolute;
+  top: 50%;
+}
