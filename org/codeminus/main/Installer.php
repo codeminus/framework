@@ -223,7 +223,7 @@ class Installer {
 /**
  * Codeminus Framework Initializer
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 3.0
+ * @version 1.1
  */
 
 /**
@@ -326,16 +326,38 @@ const DEFAULT_EMAIL_SENDER_NAME = '';
  * Call the init function and set the application environment
  * Change the parameter according to environment
  */
-init(DEV_ENVIRONMENT);
+init('dev');
 
 
 ###############################################################################
 # DO NOT CHANGE BELOW THIS LINE
 ###############################################################################
 
-
-function init(\$environment){    
+/**
+ * Initializes the environment constants
+ * @param string \$mode One of the following environment modes:<br/>
+ * 'dev' - Development environment<br/>
+ * 'pro' - Production environment
+ * @return void
+ */
+function init(\$mode = 'dev'){    
     
+    switch (\$mode){
+
+        case 'dev':
+            \$environment = DEV_ENVIRONMENT;
+            break;
+
+        case 'pro':
+            \$environment = PRO_ENVIRONMENT;
+            break;
+
+        default :
+            exit('<b>Fatal error:</b> Invalid environment mode. Please specify a valid one.');
+    }
+
+    define('ENVIRONMENT_MODE', \$mode);
+
     date_default_timezone_set(DEFAULT_TIMEZONE);
     
     \$path = \$_SERVER['DOCUMENT_ROOT'] . \$environment;
@@ -355,9 +377,9 @@ function init(\$environment){
     define('CMF_CSS_PATH', \$environment . '/org/codeminus/css');
     define('CMF_JS_PATH', \$environment . '/org/codeminus/js');
     
-    switch (\$environment){
+    switch (ENVIRONMENT_MODE){
 
-        case DEV_ENVIRONMENT:
+        case 'dev':
 
             error_reporting(E_ALL);
             define('DB_HOST',  DEV_DB_HOST);
@@ -367,7 +389,7 @@ function init(\$environment){
 
             break;
 
-        case PRO_ENVIRONMENT:
+        case 'pro':
 
             error_reporting(0);
             ini_set('display_errors',0);
