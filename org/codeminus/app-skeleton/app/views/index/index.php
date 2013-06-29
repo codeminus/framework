@@ -7,7 +7,7 @@
   <h3>Welcome to your main page!</h3>
   <section class="container-bubble container-box margined-bottom">
     <header>Your application is ready for you to get started!</header>
-    <section class="text-left">
+    <section class="text-align-left">
       <p>
         Remember to review your environment configurations inside
         <b>/app/configs/init.php</b>.
@@ -28,7 +28,7 @@
   </section>
   <section class="container-bubble container-box">
     <header>About this page</header>
-    <section class="text-left">
+    <section class="text-align-left">
       <p>The files that generated the contents of this view are:</p>
       <ul>
         <?php
