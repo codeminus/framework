@@ -12,6 +12,7 @@ use org\codeminus\main as main;
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>App configuration <?php echo $title ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" href="../css/codeminus.css" />
@@ -110,7 +111,7 @@ use org\codeminus\main as main;
               $i->setDefaultTimeZone($_POST['default_timezone']);
 
               (isset($_POST['reinstall'])) ? $reinstall = true : $reinstall = false;
-              
+
               if ($i->createApp($reinstall)) {
                 foreach (util\ClassLog::$logs as $log) {
                   switch ($log['type']) {
@@ -138,11 +139,14 @@ use org\codeminus\main as main;
 
         <a href="javascript:history.back()" class="btn">go back</a>
         <?php if (isset($created)) { ?>
-          <a href="<?php echo $i->getFrameworkHttpPath() ?>" class="btn btn-blue">Test Installation</a>
+          <a href="<?php echo $i->getFrameworkHttpPath() ?>" id="testApp" class="btn btn-blue">Test Installation</a>
         <?php } ?>
       <?php } ?>
     </div>
     <script src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/codeminus.js"></script>
+    <script src="../js/codeminus.js"></script>
+    <script>
+      $('html').animate({ scrollTop : $('#testApp').offset().top});
+    </script>
   </body>
 </html>
