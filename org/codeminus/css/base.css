@@ -65,7 +65,7 @@ li{
   clear: both;
 }
 /* ==========================================================================
-   Position classes
+   Display classes
    ========================================================================== */
 .block, .childs-block > *{
   display: block !important;
@@ -82,23 +82,23 @@ li{
 .invisible{
   visibility: hidden;
 }
+/* ==========================================================================
+   Position classes
+   ========================================================================== */
 .float-left{
   float: left;
 }
 .float-right{
   float: right;
 }
-.align-top, .childs-align-top > *{
+.valign-top, .childs-valign-top > *{
   vertical-align: top;
 }
-.align-middle, .childs-align-middle > *{
+.valign-middle, .childs-valign-middle > *{
   vertical-align: middle;
 }
-.align-bottom, .childs-align-bottom > *{
+.valign-bottom, .childs-valign-bottom > *{
   vertical-align: bottom;
-}
-.fixed{
-  position: fixed;
 }
 /* ==========================================================================
    Text classes
@@ -123,6 +123,9 @@ li{
 }
 .text-xlarge{
   font-size: 200%;
+}
+.text-xxlarge{
+  font-size: 300%;
 }
 /* ==========================================================================
    Utility classes
@@ -218,7 +221,7 @@ img.disabled{
   margin: 5px !important;
 }
 .margined-top, .childs-margined-top > *{
-  margin-bottom: 5px !important;
+  margin-top: 5px !important;
 }
 .margined-bottom, .childs-margined-bottom > *{
   margin-bottom: 5px !important;
