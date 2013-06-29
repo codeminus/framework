@@ -27,7 +27,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
     <title>Codeminus Front-end Framework</title>
     <meta name="author" content="Codeminus.org"></meta>
     <meta name="description" content="Codeminus: Less code, fast development, more Results. PHP MVC Framework and Front-End Framework."></meta>
-    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.ico">
     <link rel="stylesheet" href="../codeminus.css" />
     <link rel="stylesheet" href="../famfamfam.css" />
     <script src="../../js/jquery.js"></script>
@@ -35,7 +35,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
   <body>
     <div class="container-header">
       <div class="container-centered">
-        <img src="../../img/codeminus-front-end-framework-300x73.png" />
+        <img src="../../assets/img/codeminus-front-end-framework-300x73.png" />
       </div>
     </div>
     <div class="container-centered">
