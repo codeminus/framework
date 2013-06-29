@@ -173,22 +173,28 @@
   <fieldset class="shadow-small">
     <legend>.form-input-perline .form-input-padding-large</legend>
     <h4>Contact Form</h4>
-    <span class="input-group prepend-mini">
-      <label for="nameIn">Name</label>
-      <input type="text" id="nameIn" />
-    </span>
-    <span class="input-group prepend-mini">
-      <label for="emailIn">E-mail</label>
-      <input type="text" id="emailIn" />
-    </span>
-    <span class="input-group prepend-mini">
-      <label for="subject">Subject</label>
-      <input type="text" id="subject" />
-    </span>
-    <span class="textarea-group">
+    <div class="float-left margined-right childs-align-top"
+         id="height-referene">
+      <span class="input-group prepend-mini">
+        <label for="nameIn">Name</label>
+        <input type="text" id="nameIn" />
+      </span>
+      <span class="input-group prepend-mini">
+        <label for="emailIn">E-mail</label>
+        <input type="text" id="emailIn" />
+      </span>
+      <span class="input-group prepend-mini" id="width-reference">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" />
+      </span>
+    </div>
+    <textarea id="msg3" rows="4" data-height-from="height-referene"
+                data-width-from="width-reference">data-width-from</textarea>
+    <span class="textarea-group" >
       <label for="msg3">Message</label>
-      <textarea id="msg3" rows="4" class="width-large"></textarea>
+      
     </span>
+
     <input type="button" value="Send" class="btn-blue"/>
   </fieldset>
 </form>
