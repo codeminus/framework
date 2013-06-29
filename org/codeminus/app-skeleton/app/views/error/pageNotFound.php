@@ -2,8 +2,22 @@
 ############################################
 # CHANGE THIS VIEW ACCORDING TO YOUR NEEDS #
 ############################################
+
+use org\codeminus\main as main;
 ?>
-<h1>Invalid URL request</h1>
-<p>
-    Go to <a href="<?php echo APP_HTTP_PATH?>">main page</a>
-</p>
+<div class="margined">
+  <div class="container-box rounded container-alert error block">
+    <section>
+      <p class="text-xxlarge">Invalid page request</p>
+      <?php if (ENVIRONMENT_MODE == 'dev') { ?>
+        <p>
+          <b><?php echo ucfirst(main\Router::$CONTROLLER_NAME) ?></b> controller not found in 
+          <b><?php echo CONTROLLER_PATH ?></b>
+        </p>
+      <?php } ?>
+    </section>
+  </div>
+  <p>
+    Go to <a href="<?php echo APP_HTTP_PATH ?>">main page</a>.
+  </p>
+</div>
