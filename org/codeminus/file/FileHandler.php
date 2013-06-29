@@ -24,7 +24,7 @@ class FileHandler {
       mkdir($dst);
       util\ClassLog::add(__METHOD__, $dst . ' created');
     } else {
-      util\ClassLog::add(__METHOD__, $dst . ' not created. Directory already exists', util\ClassLog::LOG_WARNNING);
+      util\ClassLog::add(__METHOD__, $dst . ' not created. Directory already exists', util\ClassLog::LOG_WARNING);
     }
     while (false !== ( $file = readdir($dir))) {
       if (( $file != '.' ) && ( $file != '..' )) {
@@ -37,7 +37,7 @@ class FileHandler {
             copy($sourceFilePath, $destinationFilePath);
             util\ClassLog::add(__METHOD__, $destinationFilePath . ' created');
           } else {
-            util\ClassLog::add(__METHOD__, $destinationFilePath . ' not created. File already exists', util\ClassLog::LOG_WARNNING);
+            util\ClassLog::add(__METHOD__, $destinationFilePath . ' not created. File already exists', util\ClassLog::LOG_WARNING);
           }
         }
       }
@@ -60,7 +60,7 @@ class FileHandler {
         util\ClassLog::add(__METHOD__, $fileName . ' created');
       }
     } else {
-      util\ClassLog::add(__METHOD__, $fileName . ' not created. File already exists', util\ClassLog::LOG_WARNNING);
+      util\ClassLog::add(__METHOD__, $fileName . ' not created. File already exists', util\ClassLog::LOG_WARNING);
     }
   }
 
@@ -78,7 +78,7 @@ class FileHandler {
         util\ClassLog::add(__METHOD__, $dir . ' created');
       }
     } else {
-      util\ClassLog::add(__METHOD__, $dir . ' not created. Directory already exists', util\ClassLog::LOG_WARNNING);
+      util\ClassLog::add(__METHOD__, $dir . ' not created. Directory already exists', util\ClassLog::LOG_WARNING);
     }
   }
   
