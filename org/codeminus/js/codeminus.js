@@ -12,6 +12,14 @@ $(document).ready(function() {
     $(this).css('z-index', 1);
     return newElement;
   });
+  
+  $('.absolute-center, .absolute-center-horizontal').css('margin-left', function(){
+    return - $(this).width()/2;
+  });
+  $('.absolute-center, .absolute-center-vertical').css('margin-top', function(){
+    return - $(this).height()/2;
+  });
+  
   /* ==========================================================================
    Source code styling
    ========================================================================== */
