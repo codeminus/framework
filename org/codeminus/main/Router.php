@@ -5,7 +5,7 @@ namespace org\codeminus\main;
 /**
  * Handles the URL query string
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.0
+ * @version 1.0.1
  */
 class Router {
 
@@ -60,7 +60,7 @@ class Router {
     }
 
     $this->setQueryStringVars($queryString);
-
+    
     //if there's a query string and it is not $_GET values
     if ($queryString != "" && substr($queryString, 0, 1) != '?') {
       #$queryString = rtrim($queryString, '/');            
@@ -72,11 +72,13 @@ class Router {
 
         //if the requested controller doesnt exist but the error controller exists
       } else if ($this->requireController(ERROR_CONTROLLER)) {
+        self::$CONTROLLER_NAME = ERROR_CONTROLLER;
         $this->setControllerInstance(ERROR_CONTROLLER);
 
         //if neither controller is found    
       } else {
-        throw new ExtendedException('<b>Fatal Error:</b> Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>');
+        
+        throw new ExtendedException('Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>', ExtendedException::E_ERROR);
       }
 
       //if no controller is requested try to load INDEX_CONTROLLER
@@ -87,7 +89,7 @@ class Router {
 
       //if the INDEX_CONTROLLER doesnt exists
     } else {
-      throw new ExtendedException('<b>Fatal error:</b> Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH);
+      throw new ExtendedException('Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH, ExtendedException::E_ERROR);
     }
   }
 
@@ -187,7 +189,6 @@ class Router {
   private function callControllerMethod() {
     //if there's a method to be called
     if (self::$CONTROLLER_METHOD_NAME != null) {
-
       //if the requested method exists within the given controller
       if (method_exists(self::$CONTROLLER_NAME, self::$CONTROLLER_METHOD_NAME)) {
         call_user_func_array(array($this->getControllerInstance(), self::$CONTROLLER_METHOD_NAME), self::$CONTROLLER_METHOD_ARGS);
