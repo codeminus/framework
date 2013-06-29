@@ -86,8 +86,13 @@ use org\codeminus\main as main;
           </p>
           <p class="warning">
             Note that no existing files will be replaced. If you wish to
-            recreate any specific file, delete it first.
+            reinstall any specific file, delete it first or check the box below:
           </p>
+          <p class="warning">
+            <input type="checkbox" name="reinstall" id="reinstall" value="1" />
+            <label for="reinstall">replace all existent files.</label>
+          </p>
+
           <input type="submit" name="cmd" value="set application configurations" 
                  class="btn-blue " />
         </form>
@@ -103,8 +108,10 @@ use org\codeminus\main as main;
               $i->setDevEnvironment($_POST['dev_environment']);
               $i->setDevDbInfo($_POST['dev_db_host'], $_POST['dev_db_user'], $_POST['dev_db_pass'], $_POST['dev_db_name']);
               $i->setDefaultTimeZone($_POST['default_timezone']);
+
+              (isset($_POST['reinstall'])) ? $reinstall = true : $reinstall = false;
               
-              if ($i->createApp()) {
+              if ($i->createApp($reinstall)) {
                 foreach (util\ClassLog::$logs as $log) {
                   switch ($log['type']) {
                     case 0:
@@ -130,8 +137,8 @@ use org\codeminus\main as main;
         </section>
 
         <a href="javascript:history.back()" class="btn">go back</a>
-  <?php if (isset($created)) { ?>
-        <a href="<?php echo $i->getFrameworkHttpPath() ?>" class="btn btn-blue">Test Installation</a>
+        <?php if (isset($created)) { ?>
+          <a href="<?php echo $i->getFrameworkHttpPath() ?>" class="btn btn-blue">Test Installation</a>
         <?php } ?>
       <?php } ?>
     </div>
