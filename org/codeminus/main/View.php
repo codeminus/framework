@@ -96,4 +96,36 @@ class View {
     }
   }
 
+  /**
+   * Returns informations about the page
+   * @return string
+   */
+  public static function about() {
+    ob_start();
+    ?>
+    <section class="container-bubble container-box">
+      <header>About this page</header>
+      <section class="text-align-left">
+        <p>Files that generated the contents of this view:</p>
+        <ul>
+          <?php
+          $incFiles = get_included_files();
+          foreach ($incFiles as $file) {
+            ?>
+            <li>
+              <?php echo $file ?>
+
+            </li>
+            <?php
+          }
+          ?>
+        </ul>
+      </section>
+    </section>
+    <?php
+    $html = ob_get_contents();
+    ob_end_clean();
+    return $html;
+  }
+
 }
