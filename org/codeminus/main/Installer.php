@@ -201,13 +201,13 @@ class Installer {
    * @return boolean TRUE if no problems occur during installation and FALSE
    * otherwise
    */
-  public function createApp() {
+  public function createApp($reinstall = false) {
     if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
       throw new main\ExtendedException('You need to set, at least, the development environment.', main\ExtendedException::E_WARNING);
     }
-    file\FileHandler::recursiveCopy('../app-skeleton', $this->getAppRoot());
+    file\FileHandler::recursiveCopy('../app-skeleton', $this->getAppRoot(), $reinstall);
     $initFilePath = $this->getAppRoot() . '/app/configs/init.php';
-    file\FileHandler::createFile($initFilePath, $this->getInitContent());
+    file\FileHandler::createFile($initFilePath, $this->getInitContent(), $reinstall);
     return true;
   }
 
