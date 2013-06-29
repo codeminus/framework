@@ -28,6 +28,14 @@ class Router {
   public static $CONTROLLER_NAME;
 
   /**
+   * The controller that was trigged.<br/>
+   * If Rounter::$CONTROLLER_NAME does not exist. This constant will contain
+   * the name of the class defined on ERROR_CONTROLLER framework constant
+   * @var type 
+   */
+  public static $CONTROLLER_TRIGGED;
+  
+  /**
    * Requested controller's method name
    * @var string
    */
@@ -72,7 +80,7 @@ class Router {
 
         //if the requested controller doesnt exist but the error controller exists
       } else if ($this->requireController(ERROR_CONTROLLER)) {
-        self::$CONTROLLER_NAME = ERROR_CONTROLLER;
+        //self::$CONTROLLER_NAME = ERROR_CONTROLLER;
         $this->setControllerInstance(ERROR_CONTROLLER);
 
         //if neither controller is found    
@@ -162,6 +170,7 @@ class Router {
    */
   private function setControllerInstance($ctrl) {
     $this->controllerInstance = new $ctrl;
+    self::$CONTROLLER_TRIGGED = $ctrl;
     $this->callControllerMethod();
   }
 
@@ -188,13 +197,13 @@ class Router {
    */
   private function callControllerMethod() {
     //if there's a method to be called
-    if (self::$CONTROLLER_METHOD_NAME != null) {
+    if (self::$CONTROLLER_METHOD_NAME != null && self::$CONTROLLER_NAME == self::$CONTROLLER_TRIGGED) {
       //if the requested method exists within the given controller
-      if (method_exists(self::$CONTROLLER_NAME, self::$CONTROLLER_METHOD_NAME)) {
+      if (method_exists(self::$CONTROLLER_TRIGGED, self::$CONTROLLER_METHOD_NAME)) {
         call_user_func_array(array($this->getControllerInstance(), self::$CONTROLLER_METHOD_NAME), self::$CONTROLLER_METHOD_ARGS);
         //redirect to controller's index method if the requested method doesnt exists
       } else {
-        header('Location: ' . APP_HTTP_PATH . '/' . self::$CONTROLLER_NAME);
+        header('Location: ' . APP_HTTP_PATH . '/' . self::$CONTROLLER_TRIGGED);
         exit;
       }
 
