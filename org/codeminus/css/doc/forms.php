@@ -173,7 +173,7 @@
   <fieldset class="shadow-small">
     <legend>.form-input-perline .form-input-padding-large</legend>
     <h4>Contact Form</h4>
-    <div class="float-left margined-right childs-align-top"
+    <div class="float-left margined-right childs-valign-top"
          id="height-referene">
       <span class="input-group prepend-mini">
         <label for="nameIn">Name</label>
