@@ -11,14 +11,15 @@ use org\codeminus\util as util;
  * @version 1.1
  */
 class FileHandler {
-  
+
   /**
    * Copies all files from a folder to another recursively
    * @param string $src source path to copy from
    * @param string $dst destination path to copy to
+   * @param boolean $replaceExistent if TRUE it will replace all existent files
    * @return void
    */
-  public static function recursiveCopy($src, $dst) {
+  public static function recursiveCopy($src, $dst, $replaceExistent = false) {
     $dir = opendir($src);
     if (!file_exists($dst)) {
       mkdir($dst);
@@ -31,8 +32,11 @@ class FileHandler {
         $sourceFilePath = $src . '/' . $file;
         $destinationFilePath = $dst . '/' . $file;
         if (is_dir($sourceFilePath)) {
-          self::recursiveCopy($sourceFilePath, $destinationFilePath);
+          self::recursiveCopy($sourceFilePath, $destinationFilePath, $replaceExistent);
         } else {
+          if (file_exists($destinationFilePath) && $replaceExistent) {
+            self::delete($destinationFilePath);
+          }
           if (!file_exists($destinationFilePath)) {
             copy($sourceFilePath, $destinationFilePath);
             util\ClassLog::add(__METHOD__, $destinationFilePath . ' created');
@@ -43,6 +47,28 @@ class FileHandler {
       }
     }
     closedir($dir);
+  }
+
+  /**
+   * Delete directory of file
+   * @param string $mixed path to delete
+   * @return boolean TRUE if path deleted with success and FALSE otherwise
+   */
+  public static function delete($mixed) {
+    $deleted = false;
+    if (is_dir($mixed)) {
+      if(rmdir($mixed)){
+        $deleted = true;
+      }
+    } else {
+      if(unlink($mixed)){
+        $deleted = true;
+      }
+    }
+    if($deleted){
+      util\ClassLog::add(__METHOD__, $mixed . ' deleted', util\ClassLog::LOG_ERROR);
+    }
+    return $deleted;
   }
 
   /**
@@ -81,7 +107,7 @@ class FileHandler {
       util\ClassLog::add(__METHOD__, $dir . ' not created. Directory already exists', util\ClassLog::LOG_WARNING);
     }
   }
-  
+
   /**
    * File extension
    * @param string $fileName Containing a filename
@@ -102,12 +128,12 @@ class FileHandler {
   public static function validateExtension($filename, $validExtensions) {
     $fileExtension = self::getFileExtension($filename);
     $validExtensions = explode(',', $validExtensions);
-    foreach ($validExtensions as $ext){
-      if($fileExtension == trim($ext)){
+    foreach ($validExtensions as $ext) {
+      if ($fileExtension == trim($ext)) {
         return true;
       }
     }
     return false;
   }
-  
+
 }
