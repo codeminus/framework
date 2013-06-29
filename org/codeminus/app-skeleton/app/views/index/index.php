@@ -1,9 +1,14 @@
+<?php
+
+use org\codeminus\main as main;
+?>
 <div class="container-header">
   <div class="container-centered">
     <img src="<?php echo CMF_ASSETS ?>/img/codeminus-php-framework-300x73.png" />
+    <span class="bold">v<?php echo main\Framework::VERSION; ?></span>
   </div>
 </div>
-<div class="container-centered childs-block">
+<div class="container-centered childs-block childs-margined-bottom">
   <h3>Welcome to your main page!</h3>
   <section class="container-bubble container-box margined-bottom">
     <header>Your application is ready for you to get started!</header>
@@ -26,26 +31,8 @@
       </p>
     </section>
   </section>
-  <section class="container-bubble container-box">
-    <header>About this page</header>
-    <section class="text-align-left">
-      <p>The files that generated the contents of this view are:</p>
-      <ul>
-        <?php
-        $incFiles = get_included_files();
-        foreach ($incFiles as $file) {
-          ?>
-          <li>
-            <span class="text-disabled">
-              <?php echo substr($file, 0, strlen(str_replace('/', '\\', APP_PATH))); ?>
-            </span>
-            <?php echo substr($file, strlen(str_replace('/', '\\', APP_PATH))); ?>
-
-          </li>
-          <?php
-        }
-        ?>
-      </ul>
-    </section>
-  </section>
+  <?php
+  echo main\View::about();
+  echo main\Framework::appConstantsView();
+  ?>
 </div>
