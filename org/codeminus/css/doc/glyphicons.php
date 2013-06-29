@@ -5,7 +5,7 @@
   <code>&lt;span class="glyphicon-glass"&gt;&lt;/span&gt;</code><br/>
   <span class="glyphicon-glass disabled"></span>
   <code>&lt;span class="glyphicon-glass disabled"&gt;&lt;/span&gt;</code>
-  
+
 </p>
 <p class="bubble text-shadow">
   These icons can be used both commercially and for personal use,
@@ -17,7 +17,7 @@
   <a href="http://glyphicons.com" target="blank">glyphicons.com</a> on
   every page using Glyphicons icons.
 </p>
-<div id="icons" class="multi-columns4 childs-margined-vertical" style="font-size: 10px;">
+<div id="icons" class="multi-columns4 childs-margined-vertical">
   <span class="glyphicon-glass"></span>
   <span class="glyphicon-leaf"></span>
   <span class="glyphicon-dog"></span>
@@ -420,8 +420,8 @@
   <span class="glyphicon-e-mail"></span> 
 </div>
 <script type="text/javascript">
-
-$('#icons span').after(function() {
-  return " ." + $(this).attr('class') + "<br/>";
-});
+  $('#icons span').wrap('<div >');
+  $('#icons > div > span').after(function() {
+    return " ." + $(this).attr('class') + "<br/>";
+  });
 </script>

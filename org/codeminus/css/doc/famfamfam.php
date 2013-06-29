@@ -17,7 +17,7 @@
   <a href="http://famfamfam.com" target="blank">famfamfam.com</a> on
   every page using famfamfam icons.
 </p>
-<div id="icons" class="multi-columns4 childs-margined-vertical" style="font-size: 10px;">
+<div id="icons" class="multi-columns4 childs-margined-vertical">
   <span class="fam-accept"></span>
   <span class="fam-add"></span>
   <span class="fam-anchor"></span>
@@ -817,7 +817,7 @@
   <span class="fam-shape-align-left"></span>
   <span class="fam-shape-align-middle"></span>
   <span class="fam-shape-align-right"></span>
-  <span class="fam-shape-align-top"></span>
+  <span class="fam-shape-valign-top"></span>
   <span class="fam-shape-flip-horizontal"></span>
   <span class="fam-shape-flip-vertical"></span>
   <span class="fam-shape-group"></span>
@@ -1020,7 +1020,8 @@
   <span class="fam-zoom-out"></span>
 </div>
 <script type="text/javascript">
-  $('#icons span').after(function() {
+  $('#icons span').wrap('<div >');
+  $('#icons > div > span').after(function() {
     return " ." + $(this).attr('class') + "<br/>";
   });
 </script>
