@@ -65,7 +65,7 @@ class ExtendedException extends \Exception {
 
     ob_start();
     ?>
-    <table class="table-border-rounded childs-align-top">
+    <table class="table-border-rounded childs-valign-top">
       <?php
       $trace = $this->getTrace();
       //print_r($trace);
