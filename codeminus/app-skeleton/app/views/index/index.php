@@ -31,6 +31,7 @@ use codeminus\main as main;
     </section>
   </section>
   <?php
+  echo main\View::about();
   echo main\Framework::appConstantsView();
   ?>
 </div>

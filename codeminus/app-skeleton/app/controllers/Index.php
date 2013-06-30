@@ -13,7 +13,7 @@ class Index extends main\Controller{
     }    
     
     public function index() {
-        $this->view->render('index/index', true, true);
+        $this->view->render('index/index');
     }
     
 }
