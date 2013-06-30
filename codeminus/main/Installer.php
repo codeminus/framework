@@ -45,7 +45,7 @@ class Installer {
    * @return string
    */
   public static function getFrameworkPath() {
-    return substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], '/org'));
+    return substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], '/codeminus'));
   }
 
   /**
@@ -373,9 +373,10 @@ function init(\$mode = 'dev'){
     define('CONTROLLER_PATH', APP_PATH . CONTROLLER_DIR);
     define('VIEW_PATH', APP_PATH . VIEW_DIR);
     
-    define('CMF_ASSETS', \$environment . '/codeminus/assets');
-    define('CMF_CSS_PATH', \$environment . '/codeminus/css');
-    define('CMF_JS_PATH', \$environment . '/codeminus/js');
+    define('CMF_PATH', \$environment . '/codeminus');
+    define('CMF_ASSETS_PATH', CMF_PATH . '/assets');
+    define('CMF_CSS_PATH', CMF_PATH . '/css');
+    define('CMF_JS_PATH', CMF_PATH . '/js');
     
     switch (ENVIRONMENT_MODE){
 
