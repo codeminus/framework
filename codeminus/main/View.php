@@ -75,10 +75,11 @@ class View {
    * @param string $view
    * @param boolean $autoIncludes if set to false it wont require the
    * DEFAULT_INCLUDE_HEADER and the DEFAULT_INCLUDE_FOOTER;
+   * @param boolean $showAbout if set to TRUE show a list of all included files
    * @return void
    * @throws ExtendedException
    */
-  public function render($view, $autoIncludes = true) {
+  public function render($view, $autoIncludes = true, $showAbout = false) {
     $filepath = VIEW_PATH . '/' . $view . '.php';
 
     if ($autoIncludes) {
@@ -94,16 +95,24 @@ class View {
     if ($autoIncludes) {
       self::includeFooter();
     }
+    
+    if ($showAbout) {
+      echo self::about();
+    }
+    
   }
 
   /**
-   * Returns informations about the page
+   * Returns informations about the files that generated the view. It wont show
+   * the files included after the call of this method. To show all included
+   * files, pass TRUE to $showAbout parameter on render() method
+   * this
    * @return string
    */
   public static function about() {
     ob_start();
     ?>
-    <section class="container-bubble container-box">
+    <section class="container-bubble container-box block">
       <header>About this page</header>
       <section class="text-align-left">
         <p>Files that generated the contents of this view:</p>
