@@ -5,7 +5,7 @@ namespace codeminus\db;
 use codeminus\main as main;
 
 /**
- * Description of TableClass
+ * TableClass 
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.1
  */
