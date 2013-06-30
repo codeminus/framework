@@ -116,52 +116,82 @@ class Connection extends \mysqli {
   private function setDatabase($database) {
     $this->database = $database;
   }
-  
+
   /**
-	 * (PHP 5)<br/>
-	 * Performs a query on the database
-	 * @link http://php.net/manual/en/mysqli.query.php
-	 * @param string $query <p>
-	 * The query string.
-	 * </p>
-	 * <p>
-	 * Data inside the query should be properly escaped.
-	 * </p>
-	 * @param int $resultmode [optional] <p>
-	 * Either the constant <b>MYSQLI_USE_RESULT</b> or
-	 * <b>MYSQLI_STORE_RESULT</b> depending on the desired
-	 * behavior. By default, <b>MYSQLI_STORE_RESULT</b> is used.
-	 * </p>
-	 * <p>
-	 * If you use <b>MYSQLI_USE_RESULT</b> all subsequent calls
-	 * will return error Commands out of sync unless you
-	 * call <b>mysqli_free_result</b>
-	 * </p>
-	 * <p>
-	 * With <b>MYSQLI_ASYNC</b> (available with mysqlnd), it is
-	 * possible to perform query asynchronously.
-	 * <b>mysqli_poll</b> is then used to get results from such
-	 * queries.
-	 * </p>
-	 * @return mixed <b>FALSE</b> on failure. For successful SELECT, SHOW, DESCRIBE or
-	 * EXPLAIN queries <b>mysqli_query</b> will return
-	 * a <b>mysqli_result</b> object. For other successful queries <b>mysqli_query</b> will
-	 * return <b>TRUE</b>.
+   * (PHP 5)<br/>
+   * Performs a query on the database
+   * @link http://php.net/manual/en/mysqli.query.php
+   * @param string $query <p>
+   * The query string.
+   * </p>
+   * <p>
+   * Data inside the query should be properly escaped.
+   * </p>
+   * @param int $resultmode [optional] <p>
+   * Either the constant <b>MYSQLI_USE_RESULT</b> or
+   * <b>MYSQLI_STORE_RESULT</b> depending on the desired
+   * behavior. By default, <b>MYSQLI_STORE_RESULT</b> is used.
+   * </p>
+   * <p>
+   * If you use <b>MYSQLI_USE_RESULT</b> all subsequent calls
+   * will return error Commands out of sync unless you
+   * call <b>mysqli_free_result</b>
+   * </p>
+   * <p>
+   * With <b>MYSQLI_ASYNC</b> (available with mysqlnd), it is
+   * possible to perform query asynchronously.
+   * <b>mysqli_poll</b> is then used to get results from such
+   * queries.
+   * </p>
+   * @return mixed <b>FALSE</b> on failure. For successful SELECT, SHOW, DESCRIBE or
+   * EXPLAIN queries <b>mysqli_query</b> will return
+   * a <b>mysqli_result</b> object. For other successful queries <b>mysqli_query</b> will
+   * return <b>TRUE</b>.
    * @throws ExtendedException A more detailed error message.
-	 */
+   */
   public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
     $db = $this->database;
-    if(empty($db)){
+    if (empty($db)) {
       throw new main\ExtendedException('No database selected', main\ExtendedException::E_ERROR);
     }
     $result = parent::query($query, $resultmode);
-    if(!$result){
+    if (!$result) {
       throw new main\ExtendedException(
-              $this->error . 
-              "<br/><b>SQL statement:</b>  <pre>" . $query . "</pre>",
-              main\ExtendedException::E_ERROR);
-    }else{
+      $this->error .
+      "<br/><b>SQL statement:</b>  <pre>" . $query . "</pre>", main\ExtendedException::E_ERROR);
+    } else {
       return $result;
     }
   }
+
+  /**
+   * Applies mysqli::real_escape_string() on all array positions recursivly 
+   * @param array $array the array to escape
+   * @return array
+   */
+  public function escape_array($array) {
+    foreach ($array as $key => $value) {
+      if(is_array($array[$key])){
+        $this->escape_array($array[$key]);
+      }else{
+        $array[$key] = $this->real_escape_string($value);
+      }
+    }
+    return $array;
+  }
+  
+  /**
+   * Applies mysqli::real_escape_string() on the variable.
+   * Works with string and arrays
+   * @param mixed $varToEscape the variable to escape.
+   * @return void
+   */
+  public function escapeVar(&$varToEscape) {
+    if (is_array($varToEscape)) {
+      $varToEscape = $this->escape_array($varToEscape);
+    } else {
+      $varToEscape = $this->real_escape_string($varToEscape);
+    }
+  }
+  
 }
