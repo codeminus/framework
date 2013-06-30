@@ -15,6 +15,14 @@ class Session {
    * @return Session
    */
   public function __construct() {
+    self::open();
+  }
+  
+  /**
+   * Starts a new session if there isnt one already
+   * @return void
+   */
+  public static function open(){
     if (!session_id()) {
       session_start();
     }
@@ -25,7 +33,7 @@ class Session {
    * @return mixed depending on how it was stored (ex.: array, Object).
    * FALSE if no user was defined
    */
-  public function getUser() {
+  public static function getUser() {
     if (isset($_SESSION['user'])) {
       return $_SESSION['user'];
     } else {
@@ -39,7 +47,7 @@ class Session {
    * of the user logged in
    * @return void
    */
-  public function setUser($user) {
+  public static function setUser($user) {
     $_SESSION['user'] = $user;
   }
 
@@ -49,7 +57,7 @@ class Session {
    * @return mixed depending on how it was stored (ex.: array, Object).
    * FALSE if no message was defined
    */
-  public function getMessage($onlyOnce = false) {
+  public static function getMessage($onlyOnce = false) {
     if (isset($_SESSION['message'])) {
       $msg = $_SESSION['message'];
       if ($onlyOnce) {
@@ -67,7 +75,7 @@ class Session {
    * of the message
    * @return void
    */
-  public function setMessage($message) {
+  public static function setMessage($message) {
     $_SESSION['message'] = $message;
   }
 
@@ -77,14 +85,14 @@ class Session {
    * authenticated user
    * @return void
    */
-  public function validate($redirectURL) {
+  public static function validate($redirectURL) {
     if (!isset($_SESSION['user'])) {
       header("Location: " . $redirectURL);
       exit;
     }
   }
 
-  public function logout() {
+  public static function logout() {
     if (isset($_SESSION['user'])) {
       unset($_SESSION['user']);
     }
@@ -95,7 +103,7 @@ class Session {
    * Unsets all $_SESSION values and destroies it
    * @return void
    */
-  public function close() {
+  public static function close() {
     session_unset();
     session_destroy();
   }
