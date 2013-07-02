@@ -3,9 +3,9 @@
 namespace codeminus\util;
 
 /**
- * Class logging
- * Log's class method's output messages in a more structured fashion.
- * It's main purpose is to simplify messages output 
+ * Class logging<br/>
+ * Log's class method's output messages in a more structured fashion.<br/>
+ * It's main purpose is to simplify messages output<br/>
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
  */
