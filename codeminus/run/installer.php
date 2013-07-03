@@ -21,7 +21,7 @@ use codeminus\main as main;
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../assets/img/codeminus-php-framework-300x73.png"
+        <img src="../assets/img/codeminus-php-framework-300x74.png"
              class="float-left"/>
         <div class="float-right bold">main\Installer v1.0</div>
       </header>
