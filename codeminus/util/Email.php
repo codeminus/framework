@@ -69,7 +69,7 @@ class Email {
   /**
    * E-mail
    * @param int $format[optional]
-   * @return object Email
+   * @return Email
    */
   public function __construct($format = self::TEXT_FORMAT) {
 
