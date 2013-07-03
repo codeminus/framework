@@ -260,11 +260,3 @@ class Directory {
   }
 
 }
-
-require '..\main\ExtendedException.php';
-new Directory();
-try {
-  print_r(Directory::delete('root'));
-} catch (\codeminus\main\ExtendedException $e) {
-  echo $e->getFormattedMessage();
-}
