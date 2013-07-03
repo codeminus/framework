@@ -26,6 +26,7 @@ class ImageHandler {
    * Image Handler
    * @param string $imageSource the image file path
    * @return ImageHandler
+   * @throws codeminus\main\ExtendedException
    */
   public function __construct($imageSource) {
     $this->setSource($imageSource);
