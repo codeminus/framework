@@ -11,6 +11,10 @@ use codeminus\util as util;
  */
 class File {
 
+  private function __construct() {
+    //prevents class instantiation
+  }
+  
   /**
    * Deletes a file or directory
    * Alias for codeminus\file\Directory::delete()

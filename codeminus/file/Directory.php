@@ -2,6 +2,7 @@
 
 namespace codeminus\file;
 
+use codeminus\main as main;
 use codeminus\util as util;
 
 /**
@@ -10,35 +11,40 @@ use codeminus\util as util;
  * @version 1.0
  */
 class Directory {
-  
+
   const MATCH_ANY = 0;
   const MATCH_BEGINNING = 1;
   const MATCH_END = 2;
   const MATCH_ALL = 3;
+
+  private function __construct() {
+    //prevents class instantiation
+  }
   
   /**
    * Creates a directory
-   * @param string $dir path and name
+   * @param string $directory path If a subdirectory is given and it does not
+   * exists it will be created as well
    * @param octal $mode[optional] the access level desired for the folder
    * @return boolean TRUE if the directory was created with success and FALSE
    * otherwise
    */
-  public static function create($dir, $mode = 0755) {
-    if (!file_exists($dir)) {
-      if (!mkdir($dir, $mode, true)) {
+  public static function create($directory, $mode = 0755) {
+    if (!file_exists($directory)) {
+      if (!mkdir($directory, $mode, true)) {
         return false;
       } else {
-        util\ClassLog::add(__METHOD__, $dir . ' created');
+        util\ClassLog::add(__METHOD__, $directory . ' created');
         return true;
       }
     } else {
-      util\ClassLog::add(__METHOD__, $dir . ' not created. Directory already exists', util\ClassLog::LOG_WARNING);
+      util\ClassLog::add(__METHOD__, $directory . ' not created. Directory already exists', util\ClassLog::LOG_WARNING);
       return false;
     }
   }
-  
+
   /**
-   * Verifies if the a given directory is empty
+   * Verifies if a given directory is empty
    * @param string $directory directory path
    * @return boolean TRUE is the directory is empty and FALSE otherwise
    */
@@ -53,13 +59,14 @@ class Directory {
     }
     return $isEmpty;
   }
-  
+
   /**
    * Deletes a file or directory
    * @param string $path path to the file or directory to be deleted
    * @param boolean $recursively if TRUE it will delete all subdirectories
    * @return boolean TRUE if the directory was deleted with success and FALSE
    * otherwise
+   * @throws codeminus\main\ExtendedException
    */
   public static function delete($path, $recursively = false) {
     if (is_dir($path)) {
@@ -88,12 +95,15 @@ class Directory {
         return false;
       }
     } else {
+      if(!file_exists($path)){
+        throw new main\ExtendedException('Unable to find ' . $path);
+      }
       unlink($path);
       util\ClassLog::add(__METHOD__, $path . ' deleted');
     }
     return true;
   }
-  
+
   /**
    * Searchs for files and directories within a given directory
    * @param string $what the expression to search for
@@ -167,13 +177,16 @@ class Directory {
     }
     return !empty($storage);
   }
-  
+
   /**
-   * Scans all files and subdirectories of a given directory
+   * Scans all files and folders within a given directory
    * @param string $directory path
+   * @param boolean $recursively If TRUE is given, it will scan all
+   * subdirectories as well
    * @return array an array containing numeric keys to store file paths and
-   * and associative keys to store directory paths. Example:<br/>
-   * print_r(Directory::recursiveScan('../css'));<br/>
+   * and if $recursively is set to TRUE, associative keys to store directory
+   * paths. Example:<br/>
+   * print_r(Directory::scan('../css', true));<br/>
    * [0] => base.css<br/>
    * ...<br/>
    * [6] => famfamfam.css<br/>
@@ -185,14 +198,18 @@ class Directory {
    *    [1] => glyphicons.png<br/>
    *  )<br/>
    * ...<br/>
+   * @throws codeminus\main\ExtendedException
    */
-  public static function recursiveScan($directory) {
+  public static function scan($directory, $recursively = false) {
+    if (!is_dir($directory)) {
+      throw new main\ExtendedException('Unable to find <b>' . $directory . '</b> directory');
+    }
     $tree = array();
     $dirHandler = dir($directory);
     while (($subdir = $dirHandler->read()) !== false) {
       if ($subdir != '.' && $subdir != '..') {
-        if (is_dir($directory . DIRECTORY_SEPARATOR . $subdir)) {
-          $tree[$subdir] = self::recursiveScan($directory . DIRECTORY_SEPARATOR . $subdir);
+        if (is_dir($directory . DIRECTORY_SEPARATOR . $subdir) && $recursively) {
+          $tree[$subdir] = self::scan($directory . DIRECTORY_SEPARATOR . $subdir, $recursively);
         } else {
           $tree[] = $subdir;
         }
@@ -200,7 +217,7 @@ class Directory {
     }
     return $tree;
   }
-  
+
   /**
    * Copies all files from a folder to another recursively
    * @param string $source source path to copy from
@@ -208,8 +225,12 @@ class Directory {
    * @param boolean $replaceExistent[optional] if TRUE it will replace all
    * existent files
    * @return void
+   * @throws codeminus\main\ExtendedException
    */
   public static function recursiveCopy($source, $destination, $replaceExistent = false) {
+    if (!is_dir($source)) {
+      throw new main\ExtendedException('Unable to find <b>' . $source . '</b> directory');
+    }
     $dirHandler = dir($source);
     if (!file_exists($destination)) {
       mkdir($destination);
@@ -237,5 +258,13 @@ class Directory {
       }
     }
   }
-  
+
+}
+
+require '..\main\ExtendedException.php';
+new Directory();
+try {
+  print_r(Directory::delete('root'));
+} catch (\codeminus\main\ExtendedException $e) {
+  echo $e->getFormattedMessage();
 }
