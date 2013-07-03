@@ -33,7 +33,7 @@ if (isset($_POST['cmd'])) {
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../assets/img/codeminus-php-framework-300x73.png" class="float-left"/>
+        <img src="../assets/img/codeminus-php-framework-300x74.png" class="float-left"/>
         <div class="float-right bold">TableClass v1.1</div>
       </header>
     </div>
