@@ -105,7 +105,7 @@ use codeminus\main as main;
           <p>
             <?php
             try {
-
+              util\ClassLog::turnOn();
               $i = new main\Installer();
               $i->setDevEnvironment($_POST['dev_environment']);
               $i->setDevDbInfo($_POST['dev_db_host'], $_POST['dev_db_user'], $_POST['dev_db_pass'], $_POST['dev_db_name']);
