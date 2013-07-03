@@ -20,14 +20,14 @@ class TableClass {
    * Generates a class definition for an existing database table.
    * The class will always inherit the abstract class \codeminus\db\Table.
    * Review all generated code as it only does basic assumptions
-   * @param \codeminus\db\Connection $dbConn an instance of a database
+   * @param Connection $dbConn an instance of a database
    * connection
    * @param string $tableName the database table you want to implement a class
    * from
    * @param string $namespace the class package
    * @return TableClass
    */
-  public function __construct(codeminus\db\Connection $dbConn, $tableName, $namespace = null) {
+  public function __construct(Connection $dbConn, $tableName, $namespace = null) {
     $this->tableColumns = self::getTableColumns($dbConn, $tableName);
     $this->setTableName($tableName);
     $this->setNamespace($namespace);
@@ -69,7 +69,7 @@ class TableClass {
 
   /**
    * 
-   * @param \codeminus\db\Connection $dbConn
+   * @param Connection $dbConn
    * @param string $tableName
    * @return array with the following structure:
    * $columns[0]['name'],
@@ -81,7 +81,7 @@ class TableClass {
    * $columns[0]['extra']
    * @throws codeminus\main\ExtendedException
    */
-  public static function getTableColumns(codeminus\db\Connection $dbConn, $tableName) {
+  public static function getTableColumns(Connection $dbConn, $tableName) {
     
     if(empty($tableName)){
       throw new main\ExtendedException('No table name was given', main\ExtendedException::E_ERROR);
