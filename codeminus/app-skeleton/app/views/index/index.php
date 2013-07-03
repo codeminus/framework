@@ -3,7 +3,7 @@ use codeminus\main as main;
 ?>
 <div class="container-header">
   <div class="container-centered">
-    <img src="<?php echo CMF_ASSETS_PATH ?>/img/codeminus-php-framework-300x73.png" />
+    <img src="<?php echo CMF_ASSETS_PATH ?>/img/codeminus-php-framework-300x74.png" />
     <span class="bold">v<?php echo main\Framework::VERSION; ?></span>
   </div>
 </div>
