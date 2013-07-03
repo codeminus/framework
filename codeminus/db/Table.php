@@ -121,7 +121,7 @@ abstract class Table {
   /**
    * Database table columns informations
    * @return void
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   private function setTableColumns() {
 
@@ -193,7 +193,7 @@ abstract class Table {
   /**
    * Table fields and values to INSERT
    * @return array
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final public function getInsertFields() {
 
@@ -238,7 +238,7 @@ abstract class Table {
   /**
    * Table fields and values to UPDATE
    * @return array
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final public function getUpdateFields() {
 
@@ -286,7 +286,7 @@ abstract class Table {
    * Required fields for a given database operation
    * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
    * @return array
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final public function getRequiredFields($operation) {
 
@@ -315,7 +315,7 @@ abstract class Table {
    * @param string $fields if there's more than one field, separate it 
    * with ,(comma)
    * @return void
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final protected function setRequiredFields($operation, $fields) {
 
@@ -354,7 +354,7 @@ abstract class Table {
    * Validate required fields
    * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
    * @return boolean
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final protected function validateRequiredFields($operation) {
 
@@ -524,7 +524,7 @@ abstract class Table {
 
   /**
    * Result of SQL statement
-   * @return mysqli_result
+   * @return \mysqli_result
    */
   final public function getSqlResult() {
     return $this->sqlResult;
@@ -532,7 +532,7 @@ abstract class Table {
 
   /**
    * Result of SQL statement
-   * @param mysqli_result $sqlResult
+   * @param \mysqli_result $sqlResult
    * @return void
    */
   final public function setSqlResult($sqlResult) {
@@ -542,7 +542,7 @@ abstract class Table {
   /**
    * Executes the SQL statement
    * @return boolean
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final protected function executeQuery() {
 
@@ -641,10 +641,9 @@ abstract class Table {
    * @param int $operation Table::UPDATE, Table::DELETE
    * @param string $whereClause[optional]
    * @return boolean
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   final protected function validateRestriction($operation, $whereClause = null) {
-
     switch ($operation) {
       case self::UPDATE:
         if ($this->getStrictUpdate() && trim($whereClause) == '') {
@@ -669,13 +668,11 @@ abstract class Table {
   /**
    * Current Date and time
    * @param boolean $timestamp[optional]
-   * @return datetime sql type format if $timestamp is set to false and int 
+   * @return string $timestamp is set to false and int 
    * otherwise
    */
   final protected function getCurrentDate($timestamp = false) {
-
     $currentDate = (time() - (date('I') * 3600));
-
     if ($timestamp) {
       return $currentDate;
     } else {

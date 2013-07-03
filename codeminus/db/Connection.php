@@ -23,7 +23,7 @@ class Connection extends \mysqli {
    * @param string $user[optional]
    * @param string $pass[optional]
    * @param string $database[optional]
-   * @return object Connection
+   * @return Connection
    */
   public function __construct($host = DB_HOST, $user = DB_USER, $password = DB_PASS, $database = DB_NAME) {
     $this->setHost($host);
@@ -52,7 +52,7 @@ class Connection extends \mysqli {
    * Singleton implementation
    * Use this method to avoid multiple unnecessary connections to the same 
    * database
-   * @return the last created instance of DBConnection
+   * @return Connection the last created instance
    */
   public static function getInstance() {
 
@@ -147,7 +147,7 @@ class Connection extends \mysqli {
    * EXPLAIN queries <b>mysqli_query</b> will return
    * a <b>mysqli_result</b> object. For other successful queries <b>mysqli_query</b> will
    * return <b>TRUE</b>.
-   * @throws ExtendedException A more detailed error message.
+   * @throws codeminus\main\ExtendedException
    */
   public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
     $db = $this->database;

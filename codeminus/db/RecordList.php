@@ -36,7 +36,7 @@ class RecordList {
    * per page will be set.
    * @return RecordList
    */
-  public function __construct(db\Connection $dbconn, $sqlStmt, $currentPage = 1, $recordsPerPage = DEFAULT_RPP) {
+  public function __construct(Connection $dbconn, $sqlStmt, $currentPage = 1, $recordsPerPage = DEFAULT_RPP) {
 
     $this->dbconn = $dbconn;
 
@@ -74,7 +74,7 @@ class RecordList {
    * SQL statement
    * @param string $sqlStatement without LIMIT declaration
    * @return void
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   private function setSqlStatement($sqlStatement) {
 
@@ -114,7 +114,7 @@ class RecordList {
 
   /**
    * Result of SQL statement
-   * @return mysqli_result
+   * @return \mysqli_result
    */
   public function getSqlResult() {
     return $this->sqlResult;
@@ -123,7 +123,7 @@ class RecordList {
   /**
    * Result of SQL statement
    * @return void
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   private function setSqlResult() {
 
@@ -145,7 +145,7 @@ class RecordList {
    * Performs a faster query to count the number of rows from the result and
    * calculates the total pages
    * @return void
-   * @throws ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
   private function setTotalRows() {
 

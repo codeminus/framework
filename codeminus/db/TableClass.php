@@ -27,7 +27,7 @@ class TableClass {
    * @param string $namespace the class package
    * @return TableClass
    */
-  public function __construct(Connection $dbConn, $tableName, $namespace = null) {
+  public function __construct(codeminus\db\Connection $dbConn, $tableName, $namespace = null) {
     $this->tableColumns = self::getTableColumns($dbConn, $tableName);
     $this->setTableName($tableName);
     $this->setNamespace($namespace);
@@ -79,9 +79,9 @@ class TableClass {
    * $columns[0]['key'],
    * $columns[0]['default'],
    * $columns[0]['extra']
-   * @throws main\ExtendedException
+   * @throws codeminus\main\ExtendedException
    */
-  public static function getTableColumns(Connection $dbConn, $tableName) {
+  public static function getTableColumns(codeminus\db\Connection $dbConn, $tableName) {
     
     if(empty($tableName)){
       throw new main\ExtendedException('No table name was given', main\ExtendedException::E_ERROR);

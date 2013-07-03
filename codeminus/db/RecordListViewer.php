@@ -24,11 +24,11 @@ class RecordListViewer {
 
   /**
    * Database record list viewer
-   * @param RecordList $recordList
+   * @param codeminus\db\RecordList $recordList
    * @param string $language used for viewer translation
    * @return RecordListViewer
    */
-  public function __construct(RecordList $recordList) {
+  public function __construct(codeminus\db\RecordList $recordList) {
     $this->setRecordList($recordList);
   }
 
@@ -42,7 +42,7 @@ class RecordListViewer {
 
   /**
    * Database record list
-   * @param RecordList $recordList
+   * @param codeminus\db\RecordList $recordList
    * @return void
    */
   private function setRecordList($recordList) {
