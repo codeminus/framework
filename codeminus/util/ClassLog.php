@@ -10,6 +10,7 @@ namespace codeminus\util;
  * @version 1.0
  */
 class ClassLog {
+  static $on = false;
   static $logs = array();
   
   const LOG_INFO = 0;
@@ -17,7 +18,24 @@ class ClassLog {
   const LOG_ERROR = 2;
   
   /**
-   * Adds a log entry to ClassLog::$logs static array.
+   * Turns class log on
+   * @return void
+   */
+  public static function turnOn(){
+    self::$on = true;
+  }
+  
+  /**
+   * Turns class log off
+   * @return void
+   */
+  public static function turnOff(){
+    self::$on = false;
+  }
+  
+  /**
+   * Adds a log entry to ClassLog::$logs static array.<br/>
+   * Remember to call ClassLog::turnOn() before adding logs
    * @param string $method  A string containing the class and method name. It
    * must obey this format: TheNamespace\ClassName::methodName.
    * It is highly recommended that you use __METHOD__ magic constant as it will
@@ -27,9 +45,13 @@ class ClassLog {
    * LOG_INFO - the default if none is given<br/>
    * LOG_WARNING<br/>
    * LOG_ERROR
-   * @return void
+   * @return boolean if the log of stored with success it will return TRUE. If
+   * not, it means that ClassLog is turned off.
    */
   public static function add($method, $message, $type = self::LOG_INFO){
+    if(!self::$on){
+      return false;
+    }
     $classInfo = explode('::', $method);
     $log['namespace'] = substr($classInfo[0], 0, strrpos($classInfo[0], '\\'));
     $log['class'] = $classInfo[0];
@@ -38,6 +60,7 @@ class ClassLog {
     $log['type'] = $type;
     $log['message'] = $message;
     array_push(self::$logs, $log);
+    return true;
   }
   
   /**
@@ -86,7 +109,7 @@ class ClassLog {
    * [index]['type'] the message type<br/>
    * [index]['message'] the message content
    */
-  public static function getAllClasses($type = null){
+  public static function getAll($type = null){
     if(!isset($type)){
       return self::$logs;
     }else{
