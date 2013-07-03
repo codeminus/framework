@@ -35,7 +35,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
   <body>
     <div class="container-header">
       <div class="container-centered">
-        <img src="../../assets/img/codeminus-front-end-framework-300x73.png" />
+        <img src="../../assets/img/codeminus-front-end-framework-300x74.png" />
       </div>
     </div>
     <div class="container-centered">
