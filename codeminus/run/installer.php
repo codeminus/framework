@@ -2,7 +2,8 @@
 require '../main/ExtendedException.php';
 require '../util/ClassLog.php';
 require '../main/Installer.php';
-require '../file/FileHandler.php';
+require '../file/Directory.php';
+require '../file/File.php';
 
 use codeminus\util as util;
 use codeminus\main as main;
