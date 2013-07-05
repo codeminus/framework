@@ -16,11 +16,12 @@ class Directory {
   const MATCH_BEGINNING = 1;
   const MATCH_END = 2;
   const MATCH_ALL = 3;
+  const MATCH_PCRE = 4;
 
   private function __construct() {
     //prevents class instantiation
   }
-  
+
   /**
    * Creates a directory
    * @param string $directory path If a subdirectory is given and it does not
@@ -95,7 +96,7 @@ class Directory {
         return false;
       }
     } else {
-      if(!file_exists($path)){
+      if (!file_exists($path)) {
         throw new main\ExtendedException('Unable to find ' . $path);
       }
       unlink($path);
@@ -106,7 +107,7 @@ class Directory {
 
   /**
    * Searchs for files and directories within a given directory
-   * @param string $what the expression to search for
+   * @param string $expression the expression to search for
    * @param string $where the directory to search in
    * @param array $storage the array that is going to store the result of the
    * search
@@ -115,17 +116,17 @@ class Directory {
    * or file. If MATCH_BEGINNING is given, it will match only the beginning. If
    * MATCH_END is given, it will match only the end. If MATCH_ALL is given, it
    * will match the whole name of the directory or file
-   * @param boolean $recursively[optional] if TRUE is given, will search on all
-   * subdirectories
+   * @param boolean $recursively[optional] if TRUE is given, it will search on
+   * all subdirectories
    * @param boolean $caseSensitive[optional] if TRUE is given, the search will
    * be case sensitive.
    * @param boolean $ignoreExtension[optional] if TRUE is given, the search will
    * consider only the file name and not its extension
    * @return boolean TRUE if any match is found
    */
-  public static function find($what, $where, &$storage, $matchMode = self::MATCH_ANY, $recursively = false, $caseSensitive = false, $ignoreExtension = false) {
+  public static function find($expression, $where, &$storage, $matchMode = self::MATCH_ANY, $recursively = false, $caseSensitive = false, $ignoreExtension = false) {
     if (!$caseSensitive) {
-      $what = strtolower($what);
+      $expression = strtolower($expression);
     }
     $dirHandler = dir($where);
     while (($file = $dirHandler->read()) !== false) {
@@ -142,27 +143,32 @@ class Directory {
         $found = false;
         switch ($matchMode) {
           case self::MATCH_ANY :
-            if (strpos($file, $what) > -1) {
+            if (strpos($file, $expression) > -1) {
               $found = true;
             }
             break;
-          case self::MATCH_BEGIN :
-            if (strpos($file, $what) === 0) {
+          case self::MATCH_BEGINNING :
+            if (strpos($file, $expression) === 0) {
               $found = true;
             }
             break;
           case self::MATCH_END :
-            $whatCharCount = strlen($what);
+            $expressionCharCount = strlen($expression);
             $fileCharCount = strlen($file);
-            $offset = $fileCharCount - $whatCharCount;
+            $offset = $fileCharCount - $expressionCharCount;
             if ($offset > -1) {
-              if (strpos($file, $what, $offset) > -1) {
+              if (strpos($file, $expression, $offset) > -1) {
                 $found = true;
               }
             }
             break;
           case self::MATCH_ALL :
-            if ($file === $what) {
+            if ($file === $expression) {
+              $found = true;
+            }
+            break;
+          case self::MATCH_PCRE :
+            if (preg_match($expression, $file)) {
               $found = true;
             }
             break;
@@ -171,7 +177,35 @@ class Directory {
           $storage[] = $filePath;
         }
         if (is_dir($filePath) && $recursively) {
-          self::find($what, $filePath, $storage, $matchMode, $recursively, $caseSensitive, $ignoreExtension);
+          self::find($expression, $filePath, $storage, $matchMode, $recursively, $caseSensitive, $ignoreExtension);
+        }
+      }
+    }
+    return !empty($storage);
+  }
+
+  /**
+   * Search for files whose contents matches the given expression
+   * @param string $expression the expression to search for. PCRE supported
+   * @param string $where the directory to search in
+   * @param array $storage the array that is going to store the result of the
+   * search
+   * @param boolean $recursively[optional] if TRUE is given, it will search on
+   * all subdirectories
+   * @return boolean TRUE if any match is found
+   */
+  public static function findWithinFile($expression, $where, &$storage, $recursively = false) {
+    $dirHandler = dir($where);
+    while (($file = $dirHandler->read()) !== false) {
+      if ($file != '.' && $file != '..') {
+        $filePath = $where . DIRECTORY_SEPARATOR . $file;
+        if (is_dir($filePath) && $recursively) {
+          self::findWithinFile($expression, $filePath, $storage, $recursively);
+        }elseif(is_file($filePath)){
+          $filePathContent = file_get_contents($filePath);
+          if(preg_match($expression, $filePathContent)){
+            $storage[] = $filePath;
+          }
         }
       }
     }
