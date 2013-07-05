@@ -15,6 +15,7 @@ class TableClass {
   private $tableColumns;
   private $namespace;
   private $code;
+  private $types;
 
   /**
    * Generates a class definition for an existing database table.
@@ -31,6 +32,57 @@ class TableClass {
     $this->tableColumns = self::getTableColumns($dbConn, $tableName);
     $this->setTableName($tableName);
     $this->setNamespace($namespace);
+    $this->setTypes();
+  }
+
+  private function setTypes() {
+    $this->types = array(
+        
+        //boolean types
+        'bool' => 'boolean',
+        'boolean' => 'boolean',
+        
+        //Numeric types
+        'serial' => 'int',
+        'bit' => 'int',
+        'tinyint' => 'int',
+        'smallint' => 'int',
+        'mediumint' => 'int',
+        'int' => 'int',
+        'integer' => 'int',
+        'bigint' => 'int',
+        'decimal' => 'float',
+        'dec' => 'float',
+        'numeric' => 'float',
+        'fixed' => 'float',
+        'float' => 'float',
+        'double' => 'float',
+        'real' => 'float',
+        
+        //Date and time types
+        'date' => 'string',
+        'datetime' => 'string',
+        'timestamp' => 'string',
+        'time' => 'string',
+        'year' => 'int',
+        
+        //String types
+        'char' => 'string',
+        'varchar' => 'string',
+        'binary' => 'string',
+        'varbinary' => 'string',
+        'tinyblob' => 'string',
+        'blob' => 'string',
+        'mediumblob' => 'string',
+        'longblob' => 'string',
+        'tinytext' => 'string',
+        'text' => 'string',
+        'mediumtext' => 'string',
+        'longtext' => 'string',
+        'enum' => 'string',
+        'set' => 'string',
+        
+    );
   }
 
   /**
@@ -82,11 +134,11 @@ class TableClass {
    * @throws codeminus\main\ExtendedException
    */
   public static function getTableColumns(Connection $dbConn, $tableName) {
-    
-    if(empty($tableName)){
+
+    if (empty($tableName)) {
       throw new main\ExtendedException('No table name was given', main\ExtendedException::E_ERROR);
     }
-    
+
     $result = $dbConn->query("DESCRIBE " . $tableName);
 
     if (!$result) {
@@ -150,7 +202,7 @@ class TableClass {
       $methodDeclaration .= '
     /**
      * ' . $className . ' ' . $columnPhrase . '
-     * @return ' . $column['type'] . '
+     * @return ' . $this->types[$column['type']] . '
      */
     public function ' . $getMethod . ' {
         return $this->' . $column['name'] . ';
@@ -158,7 +210,7 @@ class TableClass {
     
     /**
      * ' . $className . ' ' . $columnPhrase . '
-     * @param ' . $column['type'] . ' $' . $column['name'] . '
+     * @param ' . $this->types[$column['type']] . ' $' . $column['name'] . '
      * @return void
      */
     public function ' . $setMethod . ' {
