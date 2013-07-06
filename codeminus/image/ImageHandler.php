@@ -298,7 +298,7 @@ class ImageHandler {
     $widthFactor = (100 - ($maxWidth * 100 / $newWidth));
     $heightFactor = (100 - ($maxHeight * 100 / $newHeight));
 
-    if ($widthFactor > 0 && $widthFactor > $heightFactor) {
+    if ($widthFactor > 0 && $widthFactor >= $heightFactor) {
       $newWidth = floor(($newWidth - ($newWidth * ($widthFactor / 100))));
       $newHeight = floor(($newHeight - ($newHeight * ($widthFactor / 100))));
     } elseif ($heightFactor > 0 && $heightFactor > $widthFactor) {
