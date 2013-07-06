@@ -417,14 +417,12 @@ class Upload {
               //if the file size is within maximum allowed size
               if ($this->files[$varname][$i]['size'] <= $this->files[$varname][$i]['max_size']) {
                 $this->addValidFile($varname, $this->files[$varname][$i]);
-                //$this->validFiles[$varname][$countValid] = $this->files[$varname][$i];
                 $countValid++;
               } else {
                 //defining error
                 $this->files[$varname][$i]['error'] = -2;
                 $this->files[$varname][$i]['error_msg'] = $this->getErrorMessage(-2);
                 $this->addInvalidFile($varname, $this->files[$varname][$i]);
-                //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
                 $countInvalid++;
               }
             } else {
@@ -432,12 +430,10 @@ class Upload {
               $this->files[$varname][$i]['error'] = -1;
               $this->files[$varname][$i]['error_msg'] = $this->getErrorMessage(-1);
               $this->addInvalidFile($varname, $this->files[$varname][$i]);
-              //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
               $countInvalid++;
             }
           } else {
             $this->addInvalidFile($varname, $this->files[$varname][$i]);
-            //$this->invalidFiles[$varname][$countInvalid] = $this->files[$varname][$i];
             $countInvalid++;
           }
         }
@@ -468,13 +464,16 @@ class Upload {
 
   /**
    * Saves all files to its final destination
-   * @param string $destinationFolder[optional] if set, all files with be saved
+   * @param string $destinationFolder[optional] if set, all files will be saved
    * to $destinationFolder
    * @param boolean $replaceExistent[optional] if set, all files will be
    * replaced according to $replaceExistent
-   * @return boolean
+   * @return boolean if TRUE, all valid files were saved with sucess. If FALSE,
+   * one or more files weren't saved or no uploaded files passed the
+   * validation
    */
   public function save($destinationFolder = null, $createFolder = false, $replaceExistent = null) {
+    $saved = true;
     if ($destinationFolder) {
       $this->setDestinationFolder($destinationFolder, $createFolder);
     }
@@ -482,12 +481,20 @@ class Upload {
       $this->replaceExistent($replaceExistent);
     }
     $this->filterFiles();
-    foreach ($this->validFiles as $varname) {
-      $fileCount = count($varname);
-      for ($i = 0; $i < $fileCount; $i++) {
-        $this->moveUploadedFile($varname[$i]);
+    if($this->getValidFilesCount() > 0){
+      foreach ($this->validFiles as $varname) {
+        $fileCount = count($varname);
+        for ($i = 0; $i < $fileCount; $i++) {
+          $status = $this->moveUploadedFile($varname[$i]);
+          if($status === false){
+            $saved = $status;
+          }
+        }
       }
+    }else{
+      return false;
     }
+    return $saved;
   }
 
 }
