@@ -201,9 +201,9 @@ class Directory {
         $filePath = $where . DIRECTORY_SEPARATOR . $file;
         if (is_dir($filePath) && $recursively) {
           self::findWithinFile($expression, $filePath, $storage, $recursively);
-        }elseif(is_file($filePath)){
+        } elseif (is_file($filePath)) {
           $filePathContent = file_get_contents($filePath);
-          if(preg_match($expression, $filePathContent)){
+          if (preg_match($expression, $filePathContent)) {
             $storage[] = $filePath;
           }
         }
@@ -256,12 +256,12 @@ class Directory {
    * Copies all files from a folder to another recursively
    * @param string $source source path to copy from
    * @param string $destination destination path to copy to
-   * @param boolean $replaceExistent[optional] if TRUE it will replace all
+   * @param boolean $overwrite[optional] if TRUE it will overwrite all
    * existent files
    * @return void
    * @throws codeminus\main\ExtendedException
    */
-  public static function recursiveCopy($source, $destination, $replaceExistent = false) {
+  public static function recursiveCopy($source, $destination, $overwrite = false) {
     if (!is_dir($source)) {
       throw new main\ExtendedException('Unable to find <b>' . $source . '</b> directory');
     }
@@ -277,9 +277,9 @@ class Directory {
         $srcFilePath = $source . DIRECTORY_SEPARATOR . $file;
         $dstFilePath = $destination . DIRECTORY_SEPARATOR . $file;
         if (is_dir($srcFilePath)) {
-          self::recursiveCopy($srcFilePath, $dstFilePath, $replaceExistent);
+          self::recursiveCopy($srcFilePath, $dstFilePath, $overwrite);
         } else {
-          if (file_exists($dstFilePath) && $replaceExistent) {
+          if (file_exists($dstFilePath) && $overwrite) {
             self::delete($dstFilePath);
           }
           if (!file_exists($dstFilePath)) {
