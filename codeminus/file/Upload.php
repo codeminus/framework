@@ -351,6 +351,9 @@ class Upload {
     if ($createFolder) {
       Directory::create($folder);
     }
+    if(!preg_match('/\\$|\/$/', $folder)){
+      $folder .= DIRECTORY_SEPARATOR;
+    }
     if ($varname !== null) {
       $fileCount = count($this->files[$varname]);
       for ($i = 0; $i < $fileCount; $i++) {
