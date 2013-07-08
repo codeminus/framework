@@ -64,7 +64,7 @@ class Directory {
   /**
    * Deletes a file or directory
    * @param string $path path to the file or directory to be deleted
-   * @param boolean $recursively if TRUE it will delete all subdirectories
+   * @param boolean $recursively[optional] if TRUE it will delete all subdirectories
    * @return boolean TRUE if the directory was deleted with success and FALSE
    * otherwise
    * @throws codeminus\main\ExtendedException
@@ -215,7 +215,7 @@ class Directory {
   /**
    * Scans all files and folders within a given directory
    * @param string $directory path
-   * @param boolean $recursively If TRUE is given, it will scan all
+   * @param boolean $recursively[optional] If TRUE is given, it will scan all
    * subdirectories as well
    * @return array an array containing numeric keys to store file paths and
    * and if $recursively is set to TRUE, associative keys to store directory
