@@ -37,11 +37,9 @@ class TableClass {
 
   private function setTypes() {
     $this->types = array(
-        
         //boolean types
         'bool' => 'boolean',
         'boolean' => 'boolean',
-        
         //Numeric types
         'serial' => 'int',
         'bit' => 'int',
@@ -58,14 +56,12 @@ class TableClass {
         'float' => 'float',
         'double' => 'float',
         'real' => 'float',
-        
         //Date and time types
         'date' => 'string',
         'datetime' => 'string',
         'timestamp' => 'string',
         'time' => 'string',
         'year' => 'int',
-        
         //String types
         'char' => 'string',
         'varchar' => 'string',
@@ -81,7 +77,6 @@ class TableClass {
         'longtext' => 'string',
         'enum' => 'string',
         'set' => 'string',
-        
     );
   }
 

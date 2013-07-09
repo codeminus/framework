@@ -171,15 +171,15 @@ class Connection extends \mysqli {
    */
   public function escape_array($array) {
     foreach ($array as $key => $value) {
-      if(is_array($array[$key])){
+      if (is_array($array[$key])) {
         $this->escape_array($array[$key]);
-      }else{
+      } else {
         $array[$key] = $this->real_escape_string($value);
       }
     }
     return $array;
   }
-  
+
   /**
    * Applies mysqli::real_escape_string() on the variable.
    * Works with string and arrays
@@ -193,5 +193,5 @@ class Connection extends \mysqli {
       $varToEscape = $this->real_escape_string($varToEscape);
     }
   }
-  
+
 }
