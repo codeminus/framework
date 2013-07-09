@@ -45,7 +45,7 @@ class DamageControl {
   /**
    * Verifies if a given value has whitespaces
    * @param type $value
-   * @return boolean true if whitespace(space, tab, etc.) is found and false
+   * @return boolean TRUE if whitespace(space, tab, etc.) is found and FALSE
    * otherwise
    */
   public static function hasWhitespace($value) {
@@ -57,7 +57,7 @@ class DamageControl {
   }
 
   /**
-   * Removes all whitespaces from the given value
+   * Removes all whitespaces from a given value
    * For only whitespace before, after or both, refer to ltrim, rtrim or trim
    * on php.net
    * @param string $value
@@ -72,37 +72,31 @@ class DamageControl {
    * For each type of character in the password it adds +1 to the strengh.
    * If the result at the end is 1, the password is very weak, if it is 4,
    * the password is strong
-   * @param string $password
-   * @return int
+   * @param string $password the value to be weighted
+   * @return int the password strength
    */
   public static function getPasswordStrength($password) {
-
     $strengh = 0;
-
     if (preg_match('/[a-z]/', $password)) {
       $strengh += 1;
     }
-
     if (preg_match('/[A-Z]/', $password)) {
       $strengh += 1;
     }
-
     if (preg_match('/[0-9]/', $password)) {
       $strengh += 1;
     }
-
     if (preg_match('/\W/', $password)) {
       $strengh += 1;
     }
-
     return $strengh;
   }
 
   /**
    * Validates a password strength
-   * @param string $password
-   * @param int $strength
-   * @return boolean
+   * @param string $password the value to be validated
+   * @param int $strength[optional] the minimum valid strength
+   * @return boolean TRUE if valid and FALSE otherwise
    */
   public static function validatePasswordStrength($password, $strength = self::PASSWORD_AVERAGE) {
     if (self::getPasswordStrength($password) >= $strength) {
@@ -117,8 +111,7 @@ class DamageControl {
    * @param mixed $unsecuredValue
    * @return string/array depending on the given parameter
    */
-  public static function sanitizeText($unsecuredValue) {
-
+  public static function sanitizeVar($unsecuredValue) {
     if (is_array($unsecuredValue)) {
       foreach ($unsecuredValue as $key => $value) {
         $securedArray[$key] = addslashes(htmlspecialchars($value));
@@ -165,19 +158,16 @@ class DamageControl {
 
     //Checking if the given value is a number and if it is of correct type
     if (is_numeric($value) && (gettype($value) == $type)) {
-
       //Validating number direction
       switch ($direction) {
         case self::POSITIVE_DIRECTION:
           if ($value >= 0)
             return true;
           break;
-
         case self::NEGATIVE_DIRECTION:
           if ($value <= 0)
             return true;
           break;
-
         case self::ANY_DIRECTION:
           return true;
           break;
@@ -196,9 +186,9 @@ class DamageControl {
    * Use # for optional number
    * Use a for required letter
    * Use b for optional letter
-   * @param mixed $value
-   * @param string $format
-   * @return boolean
+   * @param mixed $value the value to be validated
+   * @param string $format the valid format
+   * @return boolean TRUE if the value format is valid and FALSE otherwise
    */
   public static function validateFormat($value, $format) {
 
@@ -215,8 +205,6 @@ class DamageControl {
 
     $regExp = "/$regExp/";
 
-    //echo $regExp.'<br/>';
-
     if (preg_match($regExp, $value)) {
       return true;
     } else {
@@ -225,17 +213,31 @@ class DamageControl {
   }
 
   /**
+   * Verifies if the characters in the given value match the list of valid
+   * characters
+   * @param type $value
+   * @param type $charList
+   * @return boolean
+   */
+  public static function validateChars($value, $charList) {
+    $charList = preg_quote($charList);
+    if (preg_match('/[^' . $charList . ']/', $value)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /**
    * Remove invalid e-mail characters and validates it
-   * @todo search on internet for invalid e-mail characters
    * @param string $email
-   * @return string if the sanitized e-mail is valid and false if not
+   * @return mixed Returns string if the sanitized e-mail is valid and false
+   * othewise
    */
   public static function filterEmail($email) {
     $email = strtolower($email);
-
     #$sanitized = preg_replace('/[^0-9a-z\.@_-]/','',$email);
     $sanitized = filter_var($email, FILTER_SANITIZE_EMAIL);
-
     if (filter_var($sanitized, FILTER_VALIDATE_EMAIL)) {
       return $sanitized;
     } else {
@@ -246,13 +248,12 @@ class DamageControl {
   /**
    * Removes invalid domain characters
    * @param string $domain
+   * @return string
    */
   public static function sanitizeDomain($domain) {
-
     $domain = strtolower($domain);
     $domain = preg_replace('/\.{2,}/', '.', $domain);
     $domain = preg_replace('/^-|-$|\s|[^a-z0-9\.-]/i', '', $domain);
-
     return $domain;
   }
 
@@ -260,22 +261,20 @@ class DamageControl {
    * Removes invalid domain characters and adds the prefix http://
    * or leaves https:// if it's already set
    * @param string $url
+   * @return string
    */
   public static function sanitizeURL($url) {
-
     $url = strtolower($url);
-
     $prefix = 'http://';
-
     if (strpos($url, 'https://') > -1) {
       $prefix = 'https://';
     }
-
     $domain = str_replace('http://', '', $url);
     $domain = str_replace('https://', '', $domain);
     $domain = self::sanitizeDomain($domain);
-
     return $prefix . $domain;
   }
-
+  
 }
+
+var_dump(DamageControl::validateChars('oosn', 'wils{on'));
