@@ -17,12 +17,12 @@ class Session {
   public function __construct() {
     self::open();
   }
-  
+
   /**
    * Starts a new session if there isnt one already
    * @return void
    */
-  public static function open(){
+  public static function open() {
     if (!session_id()) {
       session_start();
     }

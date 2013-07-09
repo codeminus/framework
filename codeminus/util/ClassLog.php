@@ -10,29 +10,30 @@ namespace codeminus\util;
  * @version 1.0
  */
 class ClassLog {
+
   static $on = false;
   static $logs = array();
-  
+
   const LOG_INFO = 0;
   const LOG_WARNING = 1;
   const LOG_ERROR = 2;
-  
+
   /**
    * Turns class log on
    * @return void
    */
-  public static function turnOn(){
+  public static function turnOn() {
     self::$on = true;
   }
-  
+
   /**
    * Turns class log off
    * @return void
    */
-  public static function turnOff(){
+  public static function turnOff() {
     self::$on = false;
   }
-  
+
   /**
    * Adds a log entry to ClassLog::$logs static array.<br/>
    * Remember to call ClassLog::turnOn() before adding logs
@@ -48,8 +49,8 @@ class ClassLog {
    * @return boolean if the log of stored with success it will return TRUE. If
    * not, it means that ClassLog is turned off.
    */
-  public static function add($method, $message, $type = self::LOG_INFO){
-    if(!self::$on){
+  public static function add($method, $message, $type = self::LOG_INFO) {
+    if (!self::$on) {
       return false;
     }
     $classInfo = explode('::', $method);
@@ -62,7 +63,7 @@ class ClassLog {
     array_push(self::$logs, $log);
     return true;
   }
-  
+
   /**
    * An associative array containing all logs from a given class
    * @param string $className the full name of a classe.<br/>
@@ -77,26 +78,26 @@ class ClassLog {
    * [index]['type'] the message type<br/>
    * [index]['message'] the message content
    */
-  public static function get($className, $type = null){
-    if(!isset($type)){
+  public static function get($className, $type = null) {
+    if (!isset($type)) {
       $specClassArray = array();
-      foreach (self::$logs as $log){
-        if($log['class'] == $className){
+      foreach (self::$logs as $log) {
+        if ($log['class'] == $className) {
           array_push($specClassArray, $log);
         }
       }
       return $specClassArray;
-    }else{
+    } else {
       $specTypeArray = array();
-      foreach (self::$logs as $log){
-        if($log['class'] == $className && $log['type'] == $type){
+      foreach (self::$logs as $log) {
+        if ($log['class'] == $className && $log['type'] == $type) {
           array_push($specTypeArray, $log);
         }
       }
       return $specTypeArray;
     }
   }
-  
+
   /**
    * An associative array containing all logs within ClassLog::$logs
    * @param int $type[Optional] A log type constant. If none is given, all
@@ -109,17 +110,18 @@ class ClassLog {
    * [index]['type'] the message type<br/>
    * [index]['message'] the message content
    */
-  public static function getAll($type = null){
-    if(!isset($type)){
+  public static function getAll($type = null) {
+    if (!isset($type)) {
       return self::$logs;
-    }else{
+    } else {
       $specTypeArray = array();
-      foreach (self::$logs as $log){
-        if($log['type'] == $type){
+      foreach (self::$logs as $log) {
+        if ($log['type'] == $type) {
           array_push($specTypeArray, $log);
         }
       }
       return $specTypeArray;
     }
   }
+
 }

@@ -20,7 +20,7 @@ abstract class Dictionary {
   public function __construct($language) {
     $this->setLanguage($language);
   }
-  
+
   /**
    * Dictionary language
    * @return mixed
@@ -54,7 +54,7 @@ abstract class Dictionary {
   protected function setExpressions($expressions) {
     $this->expressions = $expressions;
   }
-  
+
   /**
    * Dictionary expression
    * @param mixed $key
@@ -73,4 +73,5 @@ abstract class Dictionary {
   public function addExpression($key, $expression) {
     $this->expressions[$this->language][$key] = $expression;
   }
+
 }
