@@ -41,7 +41,7 @@ class ExtendedException extends \Exception {
 
     ob_start();
     ?>
-    <div class="container-box rounded container-alert margined-bottom 
+    <div class="container-box rounded container-alert margined-bottom block
       <?php echo $class ?>">
       <section>
         <?php echo $prefix . $this->getMessage() ?> in
