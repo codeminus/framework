@@ -147,7 +147,7 @@ use codeminus\main as main;
     <script src="../js/jquery.js"></script>
     <script src="../js/codeminus.js"></script>
     <script>
-      $('html').animate({ scrollTop : $('#testApp').offset().top});
+      $('html').animate({scrollTop: $('#testApp').offset().top});
     </script>
   </body>
 </html>
