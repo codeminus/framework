@@ -95,11 +95,10 @@ class View {
     if ($autoIncludes) {
       self::includeFooter();
     }
-    
+
     if ($showAbout) {
       echo self::about();
     }
-    
   }
 
   /**

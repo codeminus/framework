@@ -34,7 +34,7 @@ class Router {
    * @var type 
    */
   public static $CONTROLLER_TRIGGED;
-  
+
   /**
    * Requested controller's method name
    * @var string
@@ -68,7 +68,7 @@ class Router {
     }
 
     $this->setQueryStringVars($queryString);
-    
+
     //if there's a query string and it is not $_GET values
     if ($queryString != "" && substr($queryString, 0, 1) != '?') {
       #$queryString = rtrim($queryString, '/');            
@@ -85,7 +85,7 @@ class Router {
 
         //if neither controller is found    
       } else {
-        
+
         throw new ExtendedException('Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>', ExtendedException::E_ERROR);
       }
 

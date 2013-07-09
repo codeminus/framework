@@ -10,7 +10,7 @@ namespace codeminus\main;
 final class Framework {
 
   const VERSION = '0.9';
-  
+
   /**
    * Returns the user defined constants as an associative array
    * @return array
@@ -33,10 +33,10 @@ final class Framework {
           <?php
           foreach (self::appConstants() as $const => $value) {
             ?>
-          <tr>
-            <td class="width-min info"><?php echo $const?></td>
-            <td><?php echo $value?></td>
-          </tr>
+            <tr>
+              <td class="width-min info"><?php echo $const ?></td>
+              <td><?php echo $value ?></td>
+            </tr>
             <?php
           }
           ?>
@@ -48,6 +48,6 @@ final class Framework {
     ob_end_clean();
     return $html;
   }
-  
+
 }
 ?>

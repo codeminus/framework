@@ -19,7 +19,7 @@ class Installer {
   private $proDbInfo = array();
   private $defaultTimeZone;
   private $defaultViewTitle;
-  
+
   /**
    * Framework Installer
    * @return Installer
@@ -30,14 +30,13 @@ class Installer {
     } else {
       $this->setAppRoot(substr($_SERVER['SCRIPT_FILENAME'], 0, strpos($_SERVER['SCRIPT_FILENAME'], '/codeminus')));
     }
-    
+
     $this->setDefaultTimeZone(date_default_timezone_get());
-    
+
     $this->proDbInfo['host'] = null;
     $this->proDbInfo['user'] = null;
     $this->proDbInfo['pass'] = null;
     $this->proDbInfo['name'] = null;
-    
   }
 
   /**
@@ -55,7 +54,7 @@ class Installer {
   public function getFrameworkHttpPath() {
     return 'http://' . $_SERVER['HTTP_HOST'] . $this->getFrameworkPath();
   }
-  
+
   /**
    * Path for the application's installation
    * @return string
@@ -178,7 +177,7 @@ class Installer {
   public function setDefaultTimeZone($defaultTimeZone) {
     $this->defaultTimeZone = $defaultTimeZone;
   }
-  
+
   /**
    * Application's default view title
    * @return string
@@ -195,14 +194,14 @@ class Installer {
   public function setDefaultViewTitle($defaultViewTitle) {
     $this->defaultViewTitle = $defaultViewTitle;
   }
-    
+
   /**
    * Create application's default files and folders
    * @return boolean TRUE if no problems occur during installation and FALSE
    * otherwise
    */
   public function createApp($reinstall = false) {
-    if(!isset($this->devEnvironment) || !isset($this->devDbInfo)){
+    if (!isset($this->devEnvironment) || !isset($this->devDbInfo)) {
       throw new main\ExtendedException('You need to set, at least, the development environment.', main\ExtendedException::E_WARNING);
     }
     file\Directory::recursiveCopy('../app-skeleton', $this->getAppRoot(), $reinstall);
