@@ -7,7 +7,7 @@ use \codeminus\db as db;
 use \codeminus\main as main;
 
 if (isset($_POST['cmd'])) {
-
+    
   $db_host = $_POST['db_host'];
   $db_user = $_POST['db_user'];
   $db_pass = $_POST['db_pass'];
@@ -82,6 +82,7 @@ if (isset($_POST['cmd'])) {
               <?php
               if (isset($_POST['cmd'])) {
                 $dbconn = new db\Connection($_POST['db_host'], $_POST['db_user'], $_POST['db_pass'], $_POST['db_name']);
+                $dbconn->escape_var($_POST);
                 $namespace = trim($_POST['class_namespace']);
                 ($namespace != null) ? $namespace = 'app\models\\' . $namespace : $namespace = 'app\models';
                 try {
