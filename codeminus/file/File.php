@@ -14,7 +14,7 @@ class File {
   private function __construct() {
     //prevents class instantiation
   }
-  
+
   /**
    * Deletes a file or directory
    * Alias for codeminus\file\Directory::delete()
@@ -23,7 +23,7 @@ class File {
    * @param boolean $recursively
    * @return boolean
    */
-  public static function delete($path, $recursively = false){
+  public static function delete($path, $recursively = false) {
     return Directory::delete($path, $recursively);
   }
 

@@ -91,14 +91,14 @@ class Upload {
    * Number of uploaded files
    * @return int
    */
-  public function getFilesCount(){
+  public function getFilesCount() {
     $count = 0;
-    foreach ($this->files as $varname){
+    foreach ($this->files as $varname) {
       $count += count($varname);
     }
     return $count;
   }
-  
+
   /**
    * Reorganizes $_FILES array to this pattern: $files['varname'][index]['info']
    * @return void
@@ -163,9 +163,9 @@ class Upload {
    * can be saved
    */
   public function getValidFiles($varname = null) {
-    if(isset($varname)){
+    if (isset($varname)) {
       return $this->validFiles[$varname];
-    }else{
+    } else {
       return $this->validFiles;
     }
   }
@@ -174,14 +174,14 @@ class Upload {
    * Numbers of valid uploaded files
    * @return int
    */
-  public function getValidFilesCount(){
+  public function getValidFilesCount() {
     $count = 0;
-    foreach ($this->validFiles as $varname){
+    foreach ($this->validFiles as $varname) {
       $count += count($varname);
     }
     return $count;
   }
-  
+
   /**
    * Adds a valid file
    * @param string $varname the HTML form input name that contains the files
@@ -189,7 +189,7 @@ class Upload {
    * @return void
    */
   private function addValidFile($varname, $validFile) {
-    if(!is_array(@$this->validFiles[$varname])){
+    if (!is_array(@$this->validFiles[$varname])) {
       $this->validFiles[$varname] = array();
     }
     array_push($this->validFiles[$varname], $validFile);
@@ -203,9 +203,9 @@ class Upload {
    * can NOT be saved
    */
   public function getInvalidFiles($varname = null) {
-    if(isset($varname)){
+    if (isset($varname)) {
       return $this->invalidFiles[$varname];
-    }else{
+    } else {
       return $this->invalidFiles;
     }
   }
@@ -214,14 +214,14 @@ class Upload {
    * Number of invalid uploaded files
    * @return int
    */
-  public function getInvalidFilesCount(){
+  public function getInvalidFilesCount() {
     $count = 0;
-    foreach ($this->invalidFiles as $varname){
+    foreach ($this->invalidFiles as $varname) {
       $count += count($varname);
     }
     return $count;
   }
-  
+
   /**
    * Add an invalid file
    * @param string $varname the HTML form input name that contains the files
@@ -229,7 +229,7 @@ class Upload {
    * @return void
    */
   private function addInvalidFile($varname, $invalidFile) {
-    if(!is_array(@$this->invalidFiles[$varname])){
+    if (!is_array(@$this->invalidFiles[$varname])) {
       $this->invalidFiles[$varname] = array();
     }
     array_push($this->invalidFiles[$varname], $invalidFile);
@@ -351,7 +351,7 @@ class Upload {
     if ($createFolder) {
       Directory::create($folder);
     }
-    if(!preg_match('/\\$|\/$/', $folder)){
+    if (!preg_match('/\\$|\/$/', $folder)) {
       $folder .= DIRECTORY_SEPARATOR;
     }
     if ($varname !== null) {
@@ -484,17 +484,17 @@ class Upload {
       $this->replaceExistent($replaceExistent);
     }
     $this->filterFiles();
-    if($this->getValidFilesCount() > 0){
+    if ($this->getValidFilesCount() > 0) {
       foreach ($this->validFiles as $varname) {
         $fileCount = count($varname);
         for ($i = 0; $i < $fileCount; $i++) {
           $status = $this->moveUploadedFile($varname[$i]);
-          if($status === false){
+          if ($status === false) {
             $saved = $status;
           }
         }
       }
-    }else{
+    } else {
       return false;
     }
     return $saved;

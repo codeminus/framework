@@ -85,7 +85,7 @@ class Compression {
    * @throws main\ExtendedException
    */
   public static function extractZip($zipFile, $destination = null) {
-    if(!isset($destination)){
+    if (!isset($destination)) {
       $destination = dirname($zipFile);
     }
     if (is_dir($destination)) {
