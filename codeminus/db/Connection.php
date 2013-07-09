@@ -186,7 +186,7 @@ class Connection extends \mysqli {
    * @param mixed $varToEscape the variable to escape.
    * @return void
    */
-  public function escapeVar(&$varToEscape) {
+  public function escape_var(&$varToEscape) {
     if (is_array($varToEscape)) {
       $varToEscape = $this->escape_array($varToEscape);
     } else {
