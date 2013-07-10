@@ -145,7 +145,7 @@ class ImageHandler {
    * Image HTML
    * @param string $baseDirectory [optional] if $replaceDirectory is not given
    * it will be prepended to the original image source path
-   * @param boolean $replaceDirectory [optional] if true is given, the original
+   * @param bool $replaceDirectory [optional] if true is given, the original
    * image source path will be replaced by $baseDirectory
    * @return string
    * @example
@@ -247,7 +247,7 @@ class ImageHandler {
    * constants
    * @param string $fileSource[optional] if not given the original image source
    * path will be used and the previous image will be replaced
-   * @return boolean
+   * @return bool
    */
   public function save($qualityConstant = self::QUALITY_HIGH, $fileSource = null) {
     if ($qualityConstant == null) {
