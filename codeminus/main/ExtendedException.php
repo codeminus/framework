@@ -57,7 +57,7 @@ class ExtendedException extends \Exception {
 
   /**
    * Formatted stack trace
-   * @param boolean $lastTrace if TRUE is given, it will only return the last
+   * @param bool $lastTrace if TRUE is given, it will only return the last
    * trace
    * @return string a formatted exception stack trace
    */

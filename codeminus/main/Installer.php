@@ -197,7 +197,7 @@ class Installer {
 
   /**
    * Create application's default files and folders
-   * @return boolean TRUE if no problems occur during installation and FALSE
+   * @return bool TRUE if no problems occur during installation and FALSE
    * otherwise
    */
   public function createApp($reinstall = false) {

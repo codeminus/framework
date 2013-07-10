@@ -73,9 +73,9 @@ class View {
   /**
    * Renders the view
    * @param string $view
-   * @param boolean $autoIncludes if set to false it wont require the
+   * @param bool $autoIncludes if set to false it wont require the
    * DEFAULT_INCLUDE_HEADER and the DEFAULT_INCLUDE_FOOTER;
-   * @param boolean $showAbout if set to TRUE show a list of all included files
+   * @param bool $showAbout if set to TRUE show a list of all included files
    * @return void
    * @throws ExtendedException
    */
