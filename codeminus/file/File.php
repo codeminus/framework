@@ -20,8 +20,8 @@ class File {
    * Alias for codeminus\file\Directory::delete()
    * @see codeminus\file\Directory::delete() for more information
    * @param string $path
-   * @param boolean $recursively
-   * @return boolean
+   * @param bool $recursively
+   * @return bool
    */
   public static function delete($path, $recursively = false) {
     return Directory::delete($path, $recursively);
@@ -32,9 +32,9 @@ class File {
    * @param string $filePath the file path
    * @param string $fileContent Content to be put inside the file
    * method
-   * @param boolean $replaceExistent[optional] if TRUE it will replace all
+   * @param bool $replaceExistent[optional] if TRUE it will replace all
    * existent files
-   * @return boolean TRUE if the file was created with success and FALSE 
+   * @return bool TRUE if the file was created with success and FALSE 
    * otherwise
    */
   public static function create($filePath, $fileContent, $replaceExistent = false) {
@@ -69,7 +69,7 @@ class File {
    * @param string $fileName the file name
    * @param string $validExtensions List of extensions separated by ,(comma).
    * <br/>Example: "gif, jpg, png"
-   * @return boolean TRUE if the extension is valid and FALSE otherwise.
+   * @return bool TRUE if the extension is valid and FALSE otherwise.
    */
   public static function validateExtension($fileName, $validExtensions) {
     $fileExtension = self::getExtension($fileName);

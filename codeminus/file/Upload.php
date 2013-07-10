@@ -293,7 +293,7 @@ class Upload {
 
   /**
    * Defines whether to replace the existent file or not 
-   * @param boolean $replace[optional] If set to FALSE, it will NOT replace the
+   * @param bool $replace[optional] If set to FALSE, it will NOT replace the
    * existent file
    * @param string $varname[optional] the HTML form input name that contains the
    * files. If NULL is given, all files will be replaced according to $replace
@@ -341,7 +341,7 @@ class Upload {
   /**
    * Defines the file destination folder
    * @param string $folder the folder that will receive the file
-   * @param boolean $createFolder[optional] if set to TRUE and the folder
+   * @param bool $createFolder[optional] if set to TRUE and the folder
    * doesn't exist it will be created
    * @param string $varname[optional] the HTML form input name that contains the
    * files. If NULL is given, all files will be saved to $folder 
@@ -451,7 +451,7 @@ class Upload {
    * $file['tmp_name']<br/>
    * $file['dest_folder']<br/>
    * $file['replace']<br/>
-   * @return boolean returns TRUE if the file was saved with success and FALSE
+   * @return bool returns TRUE if the file was saved with success and FALSE
    * otherwise
    */
   public function moveUploadedFile($file) {
@@ -469,9 +469,9 @@ class Upload {
    * Saves all files to its final destination
    * @param string $destinationFolder[optional] if set, all files will be saved
    * to $destinationFolder
-   * @param boolean $replaceExistent[optional] if set, all files will be
+   * @param bool $replaceExistent[optional] if set, all files will be
    * replaced according to $replaceExistent
-   * @return boolean if TRUE, all valid files were saved with sucess. If FALSE,
+   * @return bool if TRUE, all valid files were saved with sucess. If FALSE,
    * one or more files weren't saved or no uploaded files passed the
    * validation
    */

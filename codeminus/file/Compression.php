@@ -48,7 +48,7 @@ class Compression {
    * @param string $destinationFile[optional] the path to the zip file. If null
    * is given, it will create the zip file with the same name as $path and store
    * it into its parent directory
-   * @param boolean $overwrite[optional] If TRUE, it will overwrite the existent zip file
+   * @param bool $overwrite[optional] If TRUE, it will overwrite the existent zip file
    * @return mixed Returns a string with the status message on success or false
    * on failure
    * @throws main\ExtendedException
@@ -84,7 +84,7 @@ class Compression {
    * @param string $zipFile the zip file to be extracted
    * @param string $destination[optional] Where to extract the zip file. If null
    * is given, it will be stored on the same directory
-   * @return boolean TRUE if the extraction was successful and FALSE otherwise
+   * @return bool TRUE if the extraction was successful and FALSE otherwise
    * @throws main\ExtendedException
    */
   public static function extractZip($zipFile, $destination = null) {

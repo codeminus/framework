@@ -27,7 +27,7 @@ class Directory {
    * @param string $directory path If a subdirectory is given and it does not
    * exists it will be created as well
    * @param octal $mode[optional] the access level desired for the folder
-   * @return boolean TRUE if the directory was created with success and FALSE
+   * @return bool TRUE if the directory was created with success and FALSE
    * otherwise
    */
   public static function create($directory, $mode = 0755) {
@@ -47,7 +47,7 @@ class Directory {
   /**
    * Verifies if a given directory is empty
    * @param string $directory directory path
-   * @return boolean TRUE is the directory is empty and FALSE otherwise
+   * @return bool TRUE is the directory is empty and FALSE otherwise
    */
   public static function isEmpty($directory) {
     $isEmpty = true;
@@ -64,8 +64,8 @@ class Directory {
   /**
    * Deletes a file or directory
    * @param string $path path to the file or directory to be deleted
-   * @param boolean $recursively[optional] if TRUE it will delete all subdirectories
-   * @return boolean TRUE if the directory was deleted with success and FALSE
+   * @param bool $recursively[optional] if TRUE it will delete all subdirectories
+   * @return bool TRUE if the directory was deleted with success and FALSE
    * otherwise
    * @throws codeminus\main\ExtendedException
    */
@@ -111,18 +111,18 @@ class Directory {
    * @param string $where the directory to search in
    * @param array $storage the array that is going to store the result of the
    * search
-   * @param boolean $recursively[optional] if TRUE is given, it will search on
+   * @param bool $recursively[optional] if TRUE is given, it will search on
    * all subdirectories
    * @param int $matchMode[optional] One of the Directory class match constants.
    * If MATCH_ANY is given, it will match any part of the name of the directory
    * or file. If MATCH_BEGINNING is given, it will match only the beginning. If
    * MATCH_END is given, it will match only the end. If MATCH_ALL is given, it
    * will match the whole name of the directory or file
-   * @param boolean $caseSensitive[optional] if TRUE is given, the search will
+   * @param bool $caseSensitive[optional] if TRUE is given, the search will
    * be case sensitive.
-   * @param boolean $ignoreExtension[optional] if TRUE is given, the search will
+   * @param bool $ignoreExtension[optional] if TRUE is given, the search will
    * consider only the file name and not its extension
-   * @return boolean TRUE if any match is found
+   * @return bool TRUE if any match is found
    */
   public static function find($expression, $where, &$storage, $recursively = false, $matchMode = self::MATCH_ANY, $caseSensitive = false, $ignoreExtension = false) {
     if (!$caseSensitive) {
@@ -190,11 +190,11 @@ class Directory {
    * @param string $where the directory to search in
    * @param array $storage the array that is going to store the result of the
    * search
-   * @param boolean $recursively[optional] if TRUE is given, it will search on
+   * @param bool $recursively[optional] if TRUE is given, it will search on
    * all subdirectories
-   * @param boolean $matchMode[optional] Either Directory::MATCH_ANY or
+   * @param bool $matchMode[optional] Either Directory::MATCH_ANY or
    * Directory::MATCH_PCRE constant
-   * @return boolean TRUE if any match is found
+   * @return bool TRUE if any match is found
    */
   public static function findWithinFile($expression, $where, &$storage, $recursively = false, $matchMode = self::MATCH_ANY) {
     $dirHandler = dir($where);
@@ -223,7 +223,7 @@ class Directory {
   /**
    * Scans all files and folders within a given directory
    * @param string $directory path
-   * @param boolean $recursively[optional] If TRUE is given, it will scan all
+   * @param bool $recursively[optional] If TRUE is given, it will scan all
    * subdirectories as well
    * @return array an array containing numeric keys to store file paths and
    * and if $recursively is set to TRUE, associative keys to store directory
@@ -264,7 +264,7 @@ class Directory {
    * Copies all files from a folder to another recursively
    * @param string $source source path to copy from
    * @param string $destination destination path to copy to
-   * @param boolean $overwrite[optional] if TRUE it will overwrite all
+   * @param bool $overwrite[optional] if TRUE it will overwrite all
    * existent files
    * @return void
    * @throws codeminus\main\ExtendedException
