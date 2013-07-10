@@ -44,8 +44,10 @@ class Compression {
 
   /**
    * Creates a zip file
-   * @param string $path The file of directory to add to the zip file
-   * @param string $destinationFile[optional] the path to the zip file
+   * @param string $path The file or directory to add to the zip file
+   * @param string $destinationFile[optional] the path to the zip file. If null
+   * is given, it will create the zip file with the same name as $path and store
+   * it into its parent directory
    * @param boolean $overwrite[optional] If TRUE, it will overwrite the existent zip file
    * @return mixed Returns a string with the status message on success or false
    * on failure
@@ -80,7 +82,8 @@ class Compression {
   /**
    * Extract a zip file to a given destination
    * @param string $zipFile the zip file to be extracted
-   * @param string $destination[optional] Where to extract the zip file
+   * @param string $destination[optional] Where to extract the zip file. If null
+   * is given, it will be stored on the same directory
    * @return boolean TRUE if the extraction was successful and FALSE otherwise
    * @throws main\ExtendedException
    */
