@@ -2,12 +2,10 @@
 
 namespace codeminus\db;
 
-use codeminus\main as main;
-
 /**
  * TableClass 
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.1
+ * @version 1.2
  */
 class TableClass {
 
@@ -29,7 +27,7 @@ class TableClass {
    * @return TableClass
    */
   public function __construct(Connection $dbConn, $tableName, $namespace = null) {
-    $this->tableColumns = self::getTableColumns($dbConn, $tableName);
+    $this->tableColumns = Utility::getTableColumns($tableName, $dbConn);
     $this->setTableName($tableName);
     $this->setNamespace($namespace);
     $this->setTypes();
@@ -112,59 +110,6 @@ class TableClass {
    */
   public function setNamespace($namespace) {
     $this->namespace = $namespace;
-  }
-
-  /**
-   * 
-   * @param Connection $dbConn
-   * @param string $tableName
-   * @return array with the following structure:
-   * $columns[0]['name'],
-   * $columns[0]['type'],
-   * $columns[0]['size'],
-   * $columns[0]['null'],
-   * $columns[0]['key'],
-   * $columns[0]['default'],
-   * $columns[0]['extra']
-   * @throws codeminus\main\ExtendedException
-   */
-  public static function getTableColumns(Connection $dbConn, $tableName) {
-
-    if (empty($tableName)) {
-      throw new main\ExtendedException('No table name was given', main\ExtendedException::E_ERROR);
-    }
-
-    $result = $dbConn->query("DESCRIBE " . $tableName);
-
-    if (!$result) {
-      throw new main\ExtendedException($dbConn->error, main\ExtendedException::E_ERROR);
-    }
-
-    $tableColumnsArray = array();
-
-    while ($row = $result->fetch_assoc()) {
-
-      $typeArray = explode(' ', $row['Type']);
-
-      $typeAndSize = explode('(', $typeArray[0]);
-      $type = $typeAndSize[0];
-
-      (count($typeAndSize) > 1) ? $size = str_replace(')', '', $typeAndSize[1]) : $size = null;
-
-      ($row['Null'] == 'YES') ? $null = true : $null = false;
-
-      $tableColumn['name'] = $row['Field'];
-      $tableColumn['type'] = trim($type);
-      $tableColumn['size'] = $size;
-      $tableColumn['null'] = $null;
-      $tableColumn['key'] = $row['Key'];
-      $tableColumn['default'] = $row['Default'];
-      $tableColumn['extra'] = $row['Extra'];
-
-      array_push($tableColumnsArray, $tableColumn);
-    }
-
-    return $tableColumnsArray;
   }
 
   /**
@@ -264,7 +209,7 @@ class TableClass {
     $cf = '
 ' . $namespace . '
 
-use \codeminus\db as db;
+use codeminus\db as db;
 
 /**
  * Description of ' . $className . '
@@ -292,24 +237,8 @@ class ' . $className . ' extends db\Table {
     return $this->code;
   }
 
-  public function setCode($code) {
+  private function setCode($code) {
     $this->code = $code;
   }
 
-  /*
-    public function save($filepath, $overwriteExistent = false) {
-
-    $className = ucfirst($this->getTableName());
-
-    $filepath = $filePath . '/' . $className . '.php';
-    //if the file doesnt exists or $overwriteExistent == true
-    if (!file_exists($filepath) || $overwriteExistent) {
-    //if file created if with success
-    if (file_put_contents($filePath, $this->getCode())) {
-    echo '<p class="info">' . $filePath . ' file created. </p>';
-    }
-    } else {
-    echo '<p class="warning">' . $filePath . ' file NOT created. File already exists </p>';
-    }
-    } */
 }
