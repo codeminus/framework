@@ -2,6 +2,7 @@
 require '../main/ExtendedException.php';
 require '../db/Connection.php';
 require '../db/TableClass.php';
+require '../db/Utility.php';
 
 use \codeminus\db as db;
 use \codeminus\main as main;
