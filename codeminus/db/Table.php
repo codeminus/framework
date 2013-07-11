@@ -127,13 +127,7 @@ abstract class Table {
    * @return mixed Depend on the type of the information requested. 
    */
   public function getTableColumnInfo($column, $info = null) {
-    if (!isset($info)) {
-      return Utility::getTableColumns($this->getTableName(),
-              true, $this->getDbConn(), $column);
-    } else {
-      return Utility::getTableColumns($this->getTableName(),
-              true, $this->getDbConn(), $column)[$info];
-    }
+    return Utility::getTableColumnInfo($this->getTableName(), $column, $info);
   }
 
   /**
