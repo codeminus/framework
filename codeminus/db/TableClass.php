@@ -13,7 +13,7 @@ class TableClass {
   private $tableColumns;
   private $namespace;
   private $code;
-  private $types;
+  private $dataTypes;
 
   /**
    * Generates a class definition for an existing database table.
@@ -30,54 +30,9 @@ class TableClass {
     $this->tableColumns = Utility::getTableColumns($tableName, $dbConn);
     $this->setTableName($tableName);
     $this->setNamespace($namespace);
-    $this->setTypes();
+    $this->dataTypes = Utility::getMysqlFieldTypes();
   }
-
-  private function setTypes() {
-    $this->types = array(
-        //boolean types
-        'bool' => 'boolean',
-        'boolean' => 'boolean',
-        //Numeric types
-        'serial' => 'int',
-        'bit' => 'int',
-        'tinyint' => 'int',
-        'smallint' => 'int',
-        'mediumint' => 'int',
-        'int' => 'int',
-        'integer' => 'int',
-        'bigint' => 'int',
-        'decimal' => 'float',
-        'dec' => 'float',
-        'numeric' => 'float',
-        'fixed' => 'float',
-        'float' => 'float',
-        'double' => 'float',
-        'real' => 'float',
-        //Date and time types
-        'date' => 'string',
-        'datetime' => 'string',
-        'timestamp' => 'string',
-        'time' => 'string',
-        'year' => 'int',
-        //String types
-        'char' => 'string',
-        'varchar' => 'string',
-        'binary' => 'string',
-        'varbinary' => 'string',
-        'tinyblob' => 'string',
-        'blob' => 'string',
-        'mediumblob' => 'string',
-        'longblob' => 'string',
-        'tinytext' => 'string',
-        'text' => 'string',
-        'mediumtext' => 'string',
-        'longtext' => 'string',
-        'enum' => 'string',
-        'set' => 'string',
-    );
-  }
-
+    
   /**
    * Database table name
    * @return string
@@ -142,7 +97,7 @@ class TableClass {
       $methodDeclaration .= '
     /**
      * ' . $className . ' ' . $columnPhrase . '
-     * @return ' . $this->types[$column['type']] . '
+     * @return ' . $this->dataTypes[$column['type']] . '
      */
     public function ' . $getMethod . ' {
         return $this->' . $column['name'] . ';
@@ -150,7 +105,7 @@ class TableClass {
     
     /**
      * ' . $className . ' ' . $columnPhrase . '
-     * @param ' . $this->types[$column['type']] . ' $' . $column['name'] . '
+     * @param ' . $this->dataTypes[$column['type']] . ' $' . $column['name'] . '
      * @return void
      */
     public function ' . $setMethod . ' {
