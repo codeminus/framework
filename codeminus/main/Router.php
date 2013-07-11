@@ -61,8 +61,8 @@ class Router {
    * @throws ExtendedException
    */
   public function __construct() {
-    if (APP_ENVIRONMENT_PATH != '') {
-      $queryString = str_replace(APP_ENVIRONMENT_PATH . '/', '', $_SERVER['REQUEST_URI']);
+    if (APP_ENV_PATH != '') {
+      $queryString = str_replace(APP_ENV_PATH . '/', '', $_SERVER['REQUEST_URI']);
     } else {
       $queryString = trim($_SERVER['REQUEST_URI'], '/');
     }
