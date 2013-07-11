@@ -9,7 +9,7 @@ use codeminus\main as main;
   <div class="container-box rounded container-alert error block">
     <section>
       <p class="text-xxlarge">Invalid page request</p>
-      <?php if (ENVIRONMENT_MODE == 'dev') { ?>
+      <?php if (ENV_MODE == 'dev') { ?>
         <p>
           <b><?php echo ucfirst(main\Router::$CONTROLLER_NAME) ?></b> controller not found in 
           <b><?php echo CONTROLLER_PATH ?></b>
