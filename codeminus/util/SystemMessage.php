@@ -94,7 +94,7 @@ abstract class SystemMessage {
 
   /**
    * Called system message
-   * @param boolean $showAdditionalInfo
+   * @param bool $showAdditionalInfo
    * @return string
    */
   public function getMessage($showAdditionalInfo = true) {
