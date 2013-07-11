@@ -46,7 +46,7 @@ class ClassLog {
    * LOG_INFO - the default if none is given<br/>
    * LOG_WARNING<br/>
    * LOG_ERROR
-   * @return boolean if the log of stored with success it will return TRUE. If
+   * @return bool if the log of stored with success it will return TRUE. If
    * not, it means that ClassLog is turned off.
    */
   public static function add($method, $message, $type = self::LOG_INFO) {
