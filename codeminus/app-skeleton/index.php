@@ -1,2 +1,2 @@
 <?php
-require_once ('app/configs/init.php');
+require_once ('app/config/init.php');
