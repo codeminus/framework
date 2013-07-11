@@ -242,14 +242,14 @@ const PRO_ENVIRONMENT = '{$this->getProEnvironment()}';
  * It is recommended that you don't change this location
  * @var string path relative to application root directory
  */
-const CONTROLLER_DIR = '/app/controllers';
+const CONTROLLER_DIR = '/app/controller';
 
 /**
  * Views directory
  * It is recommended that you don't change this location
  * @var string path relative to application root directory
  */
-const VIEW_DIR = '/app/views';
+const VIEW_DIR = '/app/view';
 
 /**
  * Default page title
