@@ -205,13 +205,13 @@ class Installer {
       throw new main\ExtendedException('You need to set, at least, the development environment.', main\ExtendedException::E_WARNING);
     }
     file\Directory::recursiveCopy('../app-skeleton', $this->getAppRoot(), $reinstall);
-    $initFilePath = $this->getAppRoot() . '/app/configs/init.php';
+    $initFilePath = $this->getAppRoot() . '/app/config/init.php';
     file\File::create($initFilePath, $this->getInitContent(), $reinstall);
     return true;
   }
 
   /**
-   * Generates the content to app/configs/init.php. Application's main
+   * Generates the content to app/config/init.php. Application's main
    * configuration file
    * @return string
    */
