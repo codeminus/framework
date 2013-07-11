@@ -83,7 +83,7 @@ class Email {
   /**
    * Sanitize and validate e-mail
    * @param string $email
-   * @return string or boolean Returns the e-mail if it is valid or false if it is not.
+   * @return string or bool Returns the e-mail if it is valid or false if it is not.
    * @example filterEmail("some exam/ple@ example. c o m") returns someexample@example.com
    */
   protected function filterEmail($email) {
@@ -176,7 +176,7 @@ class Email {
 
   /**
    * E-mail from address and name
-   * @param boolean $formatted
+   * @param bool $formatted
    * @return string if $formatted  is set to true and array if not
    */
   public function getFrom($formatted = true) {
@@ -191,7 +191,7 @@ class Email {
   /**
    * To, Cc or Bcc e-mail addresses
    * @param string $emailType Email::TO, Email::CC, Email::BCC
-   * @param boolean $formatted[optional]
+   * @param bool $formatted[optional]
    * @return string if $formatted  is set to true and array if not
    */
   public function getEmail($emailType, $formatted = true) {
@@ -227,7 +227,7 @@ class Email {
    * @param string $emailType Email::TO, Email::CC, Email::BCC
    * @param string $email address
    * @param string $name[optional] owner
-   * @param boolean $replaceAll[optional] if set to true, it replaces all previous added emails
+   * @param bool $replaceAll[optional] if set to true, it replaces all previous added emails
    * @return void
    */
   public function addEmail($emailType, $email, $name = null, $replaceAll = false) {
@@ -338,7 +338,7 @@ class Email {
 
   /**
    * Send e-mail
-   * @return boolean 
+   * @return bool 
    */
   public function send() {
     return mail($this->getEmail(Email::TO), $this->getSubject(), $this->getMessage(), $this->getHeader());
