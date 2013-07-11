@@ -34,14 +34,6 @@ abstract class Table {
   const INACTIVE = 0;
   const ACTIVE = 1;
 
-  //Database table column informations
-  const COLUMN_TYPE = 'type';
-  const COLUMN_SIZE = 'size';
-  const COLUMN_NULL = 'null';
-  const COLUMN_KEY = 'key';
-  const COLUMN_DEFAULT = 'default';
-  const COLUMN_EXTRA = 'extra';
-
   //Database operations
   const INSERT = 0;
   const UPDATE = 1;
@@ -109,7 +101,7 @@ abstract class Table {
 
   /**
    * Database table columns
-   * @param boolean $completeInfo[optional] if TRUE, it will return a
+   * @param bool $completeInfo[optional] if TRUE, it will return a
    * multi-dimentional array like the following:
    * $columns[0]['name']<br/>
    * $columns[0]['type']<br/>
@@ -129,7 +121,9 @@ abstract class Table {
    * Database table column information
    * @param string $column The column name
    * @param string $info The information to be returned. If it is not given an
-   * array with all informations about the $column will be returned
+   * array with all informations about the $column will be returned. Refer to
+   * \codeminus\db\Utility class for a list of constants prefixed with
+   * COLUMN_ to be used as the info
    * @return mixed Depend on the type of the information requested. 
    */
   public function getTableColumnInfo($column, $info = null) {
@@ -170,7 +164,7 @@ abstract class Table {
    * Adds a table field and its value to be used in the INSERT statement
    * @param string $field database table field name
    * @param string $value database table field value
-   * @param boolean $quoted[optional] adds single quote to $value if set to true
+   * @param bool $quoted[optional] adds single quote to $value if set to true
    * @example addInsertField('field', 'value') will add "field='value'" to the
    * INSERT statement.
    * @return void
@@ -212,7 +206,7 @@ abstract class Table {
    * Adds a table field and its value to be used in the UPDATE statement
    * @param string $field database table field name
    * @param string $value database table field value
-   * @param boolean $quoted[optional] adds single quote to $value if set to true
+   * @param bool $quoted[optional] adds single quote to $value if set to true
    * @return void
    * @example addUpdateField('field', 'value') will add "field='value'" to the
    * UPDATE statement.
@@ -290,7 +284,7 @@ abstract class Table {
   /**
    * Validate required fields
    * @param int $operation Table::INSERT, Table::UPDATE, Table::DELETE
-   * @return boolean
+   * @return bool
    * @throws codeminus\main\ExtendedException
    */
   protected function validateRequiredFields($operation) {
@@ -349,7 +343,7 @@ abstract class Table {
 
   /**
    * Create SQL INSERT statement
-   * @return boolean
+   * @return bool
    */
   public function createInsertStatement() {
     try {
@@ -391,7 +385,7 @@ abstract class Table {
   /**
    * Create SQL UPDATE statement
    * @param string $whereClause[optional] required if $strictUpdate is set true
-   * @return boolean
+   * @return bool
    */
   public function createUpdateStatement($whereClause = null) {
     try {
@@ -452,7 +446,7 @@ abstract class Table {
 
   /**
    * Executes the SQL statement
-   * @return boolean
+   * @return bool
    * @throws codeminus\main\ExtendedException
    */
   protected function executeQuery() {
@@ -513,7 +507,7 @@ abstract class Table {
 
   /**
    * Strict update operations
-   * @return boolean
+   * @return bool
    */
   public function getStrictUpdate() {
     return $this->strictUpdate;
@@ -521,7 +515,7 @@ abstract class Table {
 
   /**
    * Strict update operations
-   * @param boolean $strictUpdate
+   * @param bool $strictUpdate
    * @return void
    */
   public function setStrictUpdate($strictUpdate) {
@@ -530,7 +524,7 @@ abstract class Table {
 
   /**
    * Strict delete operations
-   * @return boolean
+   * @return bool
    */
   public function getStrictDelete() {
     return $this->strictDelete;
@@ -538,7 +532,7 @@ abstract class Table {
 
   /**
    * Strict delete operations
-   * @param boolean $strictDelete
+   * @param bool $strictDelete
    * @return void
    */
   public function setStrictDelete($strictDelete) {
@@ -549,7 +543,7 @@ abstract class Table {
    * Validates restrictions for a given operation
    * @param int $operation Table::UPDATE, Table::DELETE
    * @param string $whereClause[optional]
-   * @return boolean
+   * @return bool
    * @throws codeminus\main\ExtendedException
    */
   protected function validateRestriction($operation, $whereClause = null) {
@@ -576,7 +570,7 @@ abstract class Table {
 
   /**
    * Current Date and time
-   * @param boolean $timestamp[optional]
+   * @param bool $timestamp[optional]
    * @return string $timestamp is set to false and int 
    * otherwise
    */
@@ -596,7 +590,7 @@ abstract class Table {
    * Default: *(all)
    * @param string $whereClause[optional] Use this parameter for additional 
    * clauses like WHERE, AND, ORDER BY, LIMIT, ETC...
-   * @return boolean
+   * @return bool
    */
   public function select($fields = '*', $whereClause = null) {
     try {
@@ -645,7 +639,7 @@ abstract class Table {
    * measure. 
    * To change it, use setStrictDelete(false) where false deactivates and true
    * activates it.
-   * @return boolean
+   * @return bool
    */
   public function delete($whereClause = null) {
     try {
@@ -664,7 +658,7 @@ abstract class Table {
 
   /**
    * INSERT operation
-   * @return boolean
+   * @return bool
    */
   abstract public function insert();
 
@@ -676,7 +670,7 @@ abstract class Table {
    * measure. 
    * To change it, use setStrictUpdate(false) where false deactivates  and true
    * activates it.
-   * @return boolean
+   * @return bool
    */
   abstract public function update($whereClause = null);
 
@@ -686,7 +680,7 @@ abstract class Table {
    * The class properties that represent a table column MUST be able to
    * be accessed by Table (its super class). Define them with, at least,
    * PROTECTED access level
-   * @return boolean true if there's a next row and false if there isn't
+   * @return bool true if there's a next row and false if there isn't
    */
   public function nextRow() {
     //checks if it hasn't reach the end of the resultset
