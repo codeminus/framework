@@ -54,10 +54,9 @@ class Router {
    * $QUERY_STRING_VARS would store ?myvar=123&myOtherVar=456
    */
   public static $QUERY_STRING_VARS = '?';
-
+  
   /**
-   * Handles the URL query string
-   * @return Router
+   * Initializes the application router
    * @throws ExtendedException
    */
   public function __construct() {
