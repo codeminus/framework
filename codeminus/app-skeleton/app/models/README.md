@@ -1,1 +1,0 @@
-Your application models go on this folder

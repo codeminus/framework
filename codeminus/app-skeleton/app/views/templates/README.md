@@ -1,1 +1,0 @@
-Your application templates go on this folder
