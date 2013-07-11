@@ -13,8 +13,8 @@ use codeminus\main as main;
     <header>Your application is ready for you to get started!</header>
     <section class="text-align-left">
       <p>
-        Remember to review your environment configurations inside
-        <b>/app/config/init.php</b>.
+        Remember to review your environment main configurations inside
+        <b>/app/config/main.php</b>.
       </p>
       <p>
         Go to 
