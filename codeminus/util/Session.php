@@ -53,7 +53,7 @@ class Session {
 
   /**
    * Session message
-   * @param boolean $onlyOnce
+   * @param bool $onlyOnce
    * @return mixed depending on how it was stored (ex.: array, Object).
    * FALSE if no message was defined
    */
