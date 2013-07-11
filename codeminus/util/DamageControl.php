@@ -45,7 +45,7 @@ class DamageControl {
   /**
    * Verifies if a given value has whitespaces
    * @param type $value
-   * @return boolean TRUE if whitespace(space, tab, etc.) is found and FALSE
+   * @return bool TRUE if whitespace(space, tab, etc.) is found and FALSE
    * otherwise
    */
   public static function hasWhitespace($value) {
@@ -96,7 +96,7 @@ class DamageControl {
    * Validates a password strength
    * @param string $password the value to be validated
    * @param int $strength[optional] the minimum valid strength
-   * @return boolean TRUE if valid and FALSE otherwise
+   * @return bool TRUE if valid and FALSE otherwise
    */
   public static function validatePasswordStrength($password, $strength = self::PASSWORD_AVERAGE) {
     if (self::getPasswordStrength($password) >= $strength) {
@@ -152,7 +152,7 @@ class DamageControl {
    * @param mixed $value
    * @param int $type[optional]
    * @param int $direction[optional] as in positive or negative
-   * @return boolean
+   * @return bool
    */
   public static function validateNumber($value, $type = self::DOUBLE_TYPE, $direction = self::ANY_DIRECTION) {
 
@@ -188,7 +188,7 @@ class DamageControl {
    * Use b for optional letter
    * @param mixed $value the value to be validated
    * @param string $format the valid format
-   * @return boolean TRUE if the value format is valid and FALSE otherwise
+   * @return bool TRUE if the value format is valid and FALSE otherwise
    */
   public static function validateFormat($value, $format) {
 
@@ -217,7 +217,7 @@ class DamageControl {
    * characters
    * @param type $value
    * @param type $charList
-   * @return boolean
+   * @return bool
    */
   public static function validateChars($value, $charList) {
     $charList = preg_quote($charList);
