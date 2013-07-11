@@ -86,7 +86,7 @@ class TableClass {
 
     foreach ($this->tableColumns as $column) {
       $attrDeclaration .= '
-    protected $' . $column['name'] . ';';
+  protected $' . $column['name'] . ';';
 
       $getMethod = 'get' . ucfirst($column['name']) . '()';
       $setMethod = 'set' . ucfirst($column['name']) . '($' . $column['name'] . ')';
@@ -95,52 +95,52 @@ class TableClass {
 
       //getters and setters
       $methodDeclaration .= '
-    /**
-     * ' . $className . ' ' . $columnPhrase . '
-     * @return ' . $this->dataTypes[$column['type']] . '
-     */
-    public function ' . $getMethod . ' {
-        return $this->' . $column['name'] . ';
-    }
-    
-    /**
-     * ' . $className . ' ' . $columnPhrase . '
-     * @param ' . $this->dataTypes[$column['type']] . ' $' . $column['name'] . '
-     * @return void
-     */
-    public function ' . $setMethod . ' {
-        $this->' . $column['name'] . ' = $' . $column['name'] . ';
-    }
+  /**
+   * ' . $className . ' ' . $columnPhrase . '
+   * @return ' . $this->dataTypes[$column['type']] . '
+   */
+  public function ' . $getMethod . ' {
+    return $this->' . $column['name'] . ';
+  }
+
+  /**
+   * ' . $className . ' ' . $columnPhrase . '
+   * @param ' . $this->dataTypes[$column['type']] . ' $' . $column['name'] . '
+   * @return void
+   */
+  public function ' . $setMethod . ' {
+    $this->' . $column['name'] . ' = $' . $column['name'] . ';
+  }
 ';
     }
 
     //insert method
     $methodDeclaration .= '
-    public function insert() {
+  public function insert() {
 ';
 
     foreach ($this->tableColumns as $column) {
 
       if ($column['extra'] == "") {
-        $methodDeclaration .='        $this->addInsertField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
+        $methodDeclaration .='    $this->addInsertField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
       }
     }
     $methodDeclaration .='
-        $this->createInsertStatement();
-        return $this->executeQuery();
-    }';
+    $this->createInsertStatement();
+    return $this->executeQuery();
+  }';
 
     //update method
     $methodDeclaration .= '
 
-    public function update($whereClause = null) {
+  public function update($whereClause = null) {
 ';
 
     foreach ($this->tableColumns as $column) {
 
       if ($column['extra'] == "") {
-        $methodDeclaration .='        $this->addUpdateField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
+        $methodDeclaration .='    $this->addUpdateField(\'' . $column['name'] . '\', $this->get' . ucfirst($column['name']) . '());
 ';
       }
     }
@@ -149,16 +149,18 @@ class TableClass {
     foreach ($this->tableColumns as $column) {
       if ($column['key'] == "PRI") {
         $methodDeclaration .='
-        ($whereClause == null) ? $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '() : null;';
+    if($whereClause == null){
+      $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '();
+    }';
         break;
       }
     }
 
     $methodDeclaration .='
 
-        $this->createUpdateStatement($whereClause);
-        return $this->executeQuery();
-    }';
+    $this->createUpdateStatement($whereClause);
+    return $this->executeQuery();
+  }';
 
     //classFile
     $cf = '
@@ -173,13 +175,13 @@ use codeminus\db as db;
 class ' . $className . ' extends db\Table { 
 ' . $attrDeclaration . '  
 
-    /**
-     * 
-     * @return ' . $className . '
-     */
-    public function __construct() {
-        parent::__construct(\'' . $this->getTableName() . '\');
-    }   
+  /**
+   * 
+   * @return ' . $className . '
+   */
+  public function __construct() {
+    parent::__construct(\'' . $this->getTableName() . '\');
+  }   
 ' . $methodDeclaration . '
 
 }
@@ -196,4 +198,8 @@ class ' . $className . ' extends db\Table {
     $this->code = $code;
   }
 
+  public function save($destination){
+    
+  }
+  
 }
