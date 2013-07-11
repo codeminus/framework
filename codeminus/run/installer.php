@@ -1,12 +1,12 @@
 <?php
-require '../main/ExtendedException.php';
-require '../util/ClassLog.php';
-require '../main/Installer.php';
-require '../file/Directory.php';
-require '../file/File.php';
+require '../main/Autoloader.php';
 
 use codeminus\util as util;
 use codeminus\main as main;
+
+main\Autoloader::init();
+
+echo $_SERVER['SCRIPT_NAME'];
 
 (isset($_POST['cmd'])) ? $title = 'output' : $title = '';
 ?>
@@ -32,7 +32,7 @@ use codeminus\main as main;
         <form name="configForm" class="form-input-perline"
               action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
           <input type="hidden" name="dev_environment" 
-                 value="<?php echo main\Installer::getFrameworkPath() ?>" />
+                 value="<?php echo main\Installer::getFrameworkRootPath() ?>" />
           <section class="container-box rounded block margined-bottom">
             <header>
               General environment settings
@@ -59,7 +59,7 @@ use codeminus\main as main;
             <section>
               <label for="dev_environment">Environment directory:</label>
               <input type="text" disabled 
-                     value="<?php echo main\Installer::getFrameworkPath() ?>"
+                     value="<?php echo main\Installer::getFrameworkRootPath() ?>"
                      id="dev_environment" class="medium" />
               <small>
                 The development environment directory is on the same level of 
@@ -140,7 +140,7 @@ use codeminus\main as main;
 
         <a href="javascript:history.back()" class="btn">go back</a>
         <?php if (isset($created)) { ?>
-          <a href="<?php echo $i->getFrameworkHttpPath() ?>" id="testApp" class="btn btn-blue">Test Installation</a>
+          <a href="<?php echo $i->getFrameworkrRootHttpPath() ?>" id="testApp" class="btn btn-blue">Test Installation</a>
         <?php } ?>
       <?php } ?>
     </div>
