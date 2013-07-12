@@ -49,20 +49,16 @@ class Connection extends \mysqli {
   }
 
   /**
-   * Singleton implementation
-   * Use this method to avoid multiple unnecessary connections to the same 
+   * The last instance of Connection
+   * Use this method to avoid multiple unnecessary connections to the same
    * database
-   * @return Connection the last created instance
+   * @return Connection Returns the last instance of Connection or creates one
+   * with there's none
    */
   public static function getInstance() {
-
-    self::$INSTANCE;
-
     if (!isset(self::$INSTANCE)) {
-      $class = __CLASS__;
-      self::$INSTANCE = new $class;
+      self::$INSTANCE = new self();
     }
-
     return self::$INSTANCE;
   }
 
