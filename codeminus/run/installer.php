@@ -6,8 +6,6 @@ use codeminus\main as main;
 
 main\Autoloader::init();
 
-echo $_SERVER['SCRIPT_NAME'];
-
 (isset($_POST['cmd'])) ? $title = 'output' : $title = '';
 ?>
 <!DOCTYPE html>
@@ -21,9 +19,8 @@ echo $_SERVER['SCRIPT_NAME'];
   <body>
     <div class="container-header">
       <header class="container-centered">
-        <img src="../assets/img/codeminus-php-framework-300x74.png"
-             class="float-left"/>
-        <div class="float-right bold">main\Installer v1.0</div>
+        <img src="../assets/img/codeminus-php-framework-300x74.png"/>
+        <span class="bold">v<?php echo main\Framework::VERSION; ?></span>
       </header>
     </div>
     <div class="container-centered">
@@ -31,8 +28,7 @@ echo $_SERVER['SCRIPT_NAME'];
         <section><h4>Application initial configuration</h4></section>
         <form name="configForm" class="form-input-perline"
               action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-          <input type="hidden" name="dev_environment" 
-                 value="<?php echo main\Installer::getFrameworkRootPath() ?>" />
+
           <section class="container-box rounded block margined-bottom">
             <header>
               General environment settings
@@ -57,17 +53,18 @@ echo $_SERVER['SCRIPT_NAME'];
               Development environment
             </header>
             <section>
+              <input type="hidden" name="dev_environment" 
+                     value="<?php echo main\Installer::getFrameworkRootPath() ?>" />
               <label for="dev_environment">Environment directory:</label>
               <input type="text" disabled 
                      value="<?php echo main\Installer::getFrameworkRootPath() ?>"
                      id="dev_environment" class="medium" />
               <small>
-                The development environment directory is on the same level of 
-                the framework package.                            
+                The development environment directory is the Codeminus
+                Framework root directory
               </small>
-            </section>
-            <section>
-              <h6>Database settings</h6>
+              <p class="info text-large">Database settings</p>
+              <div class="divider"></div>
               <label for="dev_db_host">Database host:</label>
               <input type="text" name="dev_db_host" value="localhost" 
                      id="dev_db_host" class="medium" />
