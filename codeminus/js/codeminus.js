@@ -12,14 +12,14 @@ $(document).ready(function() {
     $(this).css('z-index', 1);
     return newElement;
   });
-  
-  $('.absolute-center, .absolute-center-horizontal').css('margin-left', function(){
-    return - $(this).width()/2;
+
+  $('.absolute-center, .absolute-center-horizontal').css('margin-left', function() {
+    return -$(this).width() / 2;
   });
-  $('.absolute-center, .absolute-center-vertical').css('margin-top', function(){
-    return - $(this).height()/2;
+  $('.absolute-center, .absolute-center-vertical').css('margin-top', function() {
+    return -$(this).height() / 2;
   });
-  
+
   /* ==========================================================================
    Source code styling
    ========================================================================== */
@@ -209,16 +209,21 @@ $(document).ready(function() {
    data-width-from handler
    ========================================================================== */
   $('[data-width-from]').css('width', function() {
-    var hPadding = parseInt($(this).css('padding-left')) + parseInt($(this).css('padding-right'));
-    return ($('#' + $(this).attr('data-width-from')).width() - hPadding);
+    var extraWidth = parseInt($(this).css('padding-left'))
+            + parseInt($(this).css('padding-right'))
+            + parseInt($(this).css('border-right-width'))
+            + parseInt($(this).css('border-left-width'));
+    return ($('#' + $(this).attr('data-width-from')).outerWidth() - extraWidth);
   });
   /* ==========================================================================
    data-height-from handler
    ========================================================================== */
   $('[data-height-from]').css('height', function() {
-    //var vPadding = parseInt($(this).css('padding-top')) + parseInt($(this).css('padding-bottom'));
-    //return $('#' + $(this).attr('data-height-from')).height() - vPadding;
-    return $('#' + $(this).attr('data-height-from')).height();
+    var extraHeight = parseInt($(this).css('padding-top'))
+            + parseInt($(this).css('padding-bottom'))
+            + parseInt($(this).css('border-top-width'))
+            + parseInt($(this).css('border-bottom-width'));
+    return $('#' + $(this).attr('data-height-from')).outerHeight() - extraHeight;
   });
   /* ==========================================================================
    data-toggle handler
