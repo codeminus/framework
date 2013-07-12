@@ -209,7 +209,7 @@ class Utility {
     if (!($dbConn instanceof Connection)) {
       $dbConn = Connection::getInstance();
     }
-    $sql = 'SHOW TABLE STATUS FROM ' . $dbConn->getDatabase() . " LIKE $tableName";
+    $sql = "SHOW TABLE STATUS FROM " . $dbConn->getDatabase() . " LIKE '$tableName'";
     $result = $dbConn->query($sql);
     if (isset($info)) {
       return $result->fetch_assoc()[$info];
