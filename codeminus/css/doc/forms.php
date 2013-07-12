@@ -173,8 +173,7 @@
   <fieldset class="shadow-small">
     <legend>.form-input-perline .form-input-padding-large</legend>
     <h4>Contact Form</h4>
-    <div class="float-left margined-right childs-valign-top"
-         id="height-referene">
+    <div class="childs-valign-top">
       <span class="input-group prepend-mini">
         <label for="nameIn">Name</label>
         <input type="text" id="nameIn" />
@@ -188,11 +187,9 @@
         <input type="text" id="subject" />
       </span>
     </div>
-    <textarea id="msg3" rows="4" data-height-from="height-referene"
-                data-width-from="width-reference">data-width-from</textarea>
     <span class="textarea-group" >
       <label for="msg3">Message</label>
-      
+      <textarea id="msg3" rows="4" data-width-from="width-reference">data-width-from</textarea>
     </span>
 
     <input type="button" value="Send" class="btn-blue"/>
