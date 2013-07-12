@@ -6,21 +6,19 @@ use codeminus\main as main;
 use codeminus\util as util;
 
 /**
- * Directory
+ * Directory utility class
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
  */
 class Directory {
 
+  use \codeminus\traits\Singleton;
+  
   const MATCH_ANY = 0;
   const MATCH_BEGINNING = 1;
   const MATCH_END = 2;
   const MATCH_ALL = 3;
   const MATCH_PCRE = 4;
-
-  private function __construct() {
-    //prevents class instantiation
-  }
 
   /**
    * Creates a directory
