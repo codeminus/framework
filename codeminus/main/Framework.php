@@ -9,14 +9,21 @@ namespace codeminus\main;
  */
 final class Framework {
 
+  use \codeminus\traits\Singleton;
+  
   const VERSION = '0.9';
 
   /**
    * Returns the user defined constants as an associative array
-   * @return array
+   * @return mixed An array with there's any user defined constants or FALSE
+   * otherwise
    */
   public static function appConstants() {
-    return get_defined_constants(true)['user'];
+    if(isset(get_defined_constants(true)['user'])){
+      return get_defined_constants(true)['user'];
+    }else{
+      return false;
+    }
   }
 
   /**
@@ -50,4 +57,3 @@ final class Framework {
   }
 
 }
-?>
