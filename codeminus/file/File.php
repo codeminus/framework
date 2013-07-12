@@ -5,15 +5,13 @@ namespace codeminus\file;
 use codeminus\util as util;
 
 /**
- * File
+ * File utility class
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.2
  */
 class File {
 
-  private function __construct() {
-    //prevents class instantiation
-  }
+  use \codeminus\traits\Singleton;
 
   /**
    * Deletes a file or directory
