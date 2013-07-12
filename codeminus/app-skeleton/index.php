@@ -1,2 +1,3 @@
 <?php
-require_once ('app/config/init.php');
+require 'codeminus/main/Application.php';
+codeminus\main\Application::init();
