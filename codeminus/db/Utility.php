@@ -11,6 +11,8 @@ use codeminus\main as main;
  */
 class Utility {
   
+  use \codeminus\traits\Singleton;
+  
   /**
    * The name of the table.
    */
