@@ -1,4 +1,10 @@
 #version 1.1
+
+<Files *.ini> 
+    Order deny,allow
+    Deny from all
+</Files>
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
