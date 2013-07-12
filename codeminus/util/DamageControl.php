@@ -9,6 +9,8 @@ namespace codeminus\util;
  */
 class DamageControl {
 
+  use \codeminus\traits\Singleton;
+  
   const LOGIN_MINIMUM_SIZE = 6;
   const PASSWORD_MINIMUM_SIZE = 6;
 
