@@ -11,11 +11,9 @@ use codeminus\main as main;
  */
 class Compression {
 
+  use \codeminus\traits\Singleton;
+  
   private static $parentPath;
-
-  private function __construct() {
-    //prevent instantiation
-  }
 
   /**
    * Populates a zip file recursively
