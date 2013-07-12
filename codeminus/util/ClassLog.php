@@ -11,6 +11,8 @@ namespace codeminus\util;
  */
 class ClassLog {
 
+  use \codeminus\traits\Singleton;
+  
   static $on = false;
   static $logs = array();
 
