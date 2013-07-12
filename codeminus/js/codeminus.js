@@ -216,8 +216,9 @@ $(document).ready(function() {
    data-height-from handler
    ========================================================================== */
   $('[data-height-from]').css('height', function() {
-    var vPadding = parseInt($(this).css('padding-top')) + parseInt($(this).css('padding-bottom'));
-    return $('#' + $(this).attr('data-height-from')).height() - vPadding;
+    //var vPadding = parseInt($(this).css('padding-top')) + parseInt($(this).css('padding-bottom'));
+    //return $('#' + $(this).attr('data-height-from')).height() - vPadding;
+    return $('#' + $(this).attr('data-height-from')).height();
   });
   /* ==========================================================================
    data-toggle handler
