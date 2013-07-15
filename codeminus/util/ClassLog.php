@@ -24,7 +24,7 @@ class ClassLog {
    * Turns class log on
    * @return void
    */
-  public static function turnOn() {
+  public static function on() {
     self::$on = true;
   }
 
@@ -32,13 +32,13 @@ class ClassLog {
    * Turns class log off
    * @return void
    */
-  public static function turnOff() {
+  public static function off() {
     self::$on = false;
   }
 
   /**
    * Adds a log entry to ClassLog::$logs static array.<br/>
-   * Remember to call ClassLog::turnOn() before adding logs
+   * Remember to call ClassLog::on() before adding logs
    * @param string $method  A string containing the class and method name. It
    * must obey this format: TheNamespace\ClassName::methodName.
    * It is highly recommended that you use __METHOD__ magic constant as it will
