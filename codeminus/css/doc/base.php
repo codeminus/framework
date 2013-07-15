@@ -22,7 +22,7 @@
         <p>Paragraph</p>
         <p class="text-align-center">.text-align-center</p>
         <p class="text-align-right">.text-align-right</p>
-        <p class="bold">.bold</p>
+        <p class="text-bold">.text-bold</p>
         <p class="underlined">.underlined</p>
       </section>
     </div>
@@ -33,7 +33,7 @@
       <section>
         Multi-line code with <code>&lt;pre&gt;</code> :
         <pre class="code code-highlight code-line-numbered">
-&lt;p class="bold"&gt;.bold&lt;/p&gt;
+&lt;p class="text-bold"&gt;.text-bold&lt;/p&gt;
 &lt;p class="underlined"&gt;.underlined&lt;/p&gt;
         </pre>
         In-line code with <code>&lt;code&gt;</code>
