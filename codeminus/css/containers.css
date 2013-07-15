@@ -30,11 +30,29 @@
 /* ==========================================================================
    Container alert
    ========================================================================== */
-.container-alert > div,
-.container-alert > header,
-.container-alert > section,
-.container-alert > footer{
-  border: solid 1px #d8d8d8;
+.container-alert.success > div,
+.container-alert.success > header,
+.container-alert.success > section,
+.container-alert.success > footer{
+  border: solid 1px #c6d9b6 !important;
+}
+.container-alert.warning > div,
+.container-alert.warning > header,
+.container-alert.warning > section,
+.container-alert.warning > footer{
+  border: solid 1px #ebdec5 !important;
+}
+.container-alert.info > div,
+.container-alert.info > header,
+.container-alert.info > section,
+.container-alert.info > footer{
+  border: solid 1px #acd8e1 !important;
+}
+.container-alert.error > div,
+.container-alert.error > header,
+.container-alert.error > section,
+.container-alert.error > footer{
+  border: solid 1px #dec3c7 !important;
 }
 .container-alert.rounded > div,
 .container-alert.rounded > header,
@@ -45,14 +63,26 @@
 .container-alert.success > *{
   background-color: #dff0d8;
 }
+.container-alert.success .divider{
+  border-color: #c6d9b6;
+}
 .container-alert.warning > *{
   background-color: #fcf8e3;
+}
+.container-alert.warning .divider{
+  border-color: #ebdec5;
 }
 .container-alert.info > *{
   background-color: #d9edf7;
 }
+.container-alert.info .divider{
+  border-color: #acd8e1;
+}
 .container-alert.error > *{
   background-color: #f2dede;
+}
+.container-alert.error .divider{
+  border-color: #dec3c7;
 }
 /* ==========================================================================
    Container box
