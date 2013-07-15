@@ -222,27 +222,27 @@ img.disabled{
    Margins
    ========================================================================== */
 .margined, .childs-margined > *{
-  margin: 5px !important;
+  margin: 10px !important;
 }
 .margined-top, .childs-margined-top > *{
-  margin-top: 5px !important;
+  margin-top: 10px !important;
 }
 .margined-bottom, .childs-margined-bottom > *{
-  margin-bottom: 5px !important;
+  margin-bottom: 10px !important;
 }
 .margined-left, .childs-margined-left > *{
-  margin-left: 5px !important;
+  margin-left: 10px !important;
 }
 .margined-right, .childs-margined-right > *{
-  margin-right: 5px !important;
+  margin-right: 10px !important;
 }
 .margined-vertical, .childs-margined-vertical > *{
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 .margined-horizontal, .childs-margined-horizontal > *{
-  margin-left: 5px !important;
-  margin-right: 5px !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
 }
 /* ==========================================================================
    Widths
