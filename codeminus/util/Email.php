@@ -72,12 +72,7 @@ class Email {
    * @return Email
    */
   public function __construct($format = self::TEXT_FORMAT) {
-
     $this->setFormat($format);
-
-    #$this->setFrom();
-    #ini_set("SMTP","smtp.example.com" ); 
-    #ini_set('sendmail_from', 'user@example.com');
   }
 
   /**
@@ -87,10 +82,8 @@ class Email {
    * @example filterEmail("some exam/ple@ example. c o m") returns someexample@example.com
    */
   protected function filterEmail($email) {
-
     //Clears out whitespaces and invalid characters.
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
     //Validates e-mail
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
       return $email;
