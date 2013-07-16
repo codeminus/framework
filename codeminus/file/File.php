@@ -32,11 +32,11 @@ class File {
    * method
    * @param bool $replaceExistent[optional] if TRUE it will replace all
    * existent files
-   * @return bool TRUE if the file was created with success and FALSE 
+   * @return bool TRUE if the file was created with success or FALSE 
    * otherwise
    */
   public static function create($filePath, $fileContent, $replaceExistent = false) {
-    if ($replaceExistent) {
+    if ($replaceExistent && file_exists($filePath)) {
       Directory::delete($filePath);
     }
     if (!file_exists($filePath)) {
@@ -67,7 +67,7 @@ class File {
    * @param string $fileName the file name
    * @param string $validExtensions List of extensions separated by ,(comma).
    * <br/>Example: "gif, jpg, png"
-   * @return bool TRUE if the extension is valid and FALSE otherwise.
+   * @return bool TRUE if the extension is valid or FALSE otherwise.
    */
   public static function validateExtension($fileName, $validExtensions) {
     $fileExtension = self::getExtension($fileName);
