@@ -451,7 +451,7 @@ class Upload {
    * $file['tmp_name']<br/>
    * $file['dest_folder']<br/>
    * $file['replace']<br/>
-   * @return bool returns TRUE if the file was saved with success and FALSE
+   * @return bool TRUE if the file was saved with success or FALSE
    * otherwise
    */
   public function moveUploadedFile($file) {
