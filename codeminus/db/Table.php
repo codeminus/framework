@@ -674,7 +674,7 @@ abstract class Table {
    * The class properties that represent a table column MUST be able to
    * be accessed by Table (its super class). Define them with, at least,
    * PROTECTED access level
-   * @return bool true if there's a next row and false if there isn't
+   * @return bool TRUE if there's a next row or FALSE if there isn't
    */
   public function nextRow() {
     //checks if it hasn't reach the end of the resultset
