@@ -14,6 +14,8 @@ Autoloader::init();
  */
 class Application {
 
+  use \codeminus\traits\Singleton;
+  
   const DEV_MODE = 0;
   const PRO_MODE = 1;
 
