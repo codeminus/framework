@@ -109,6 +109,10 @@ class View {
    * @return string
    */
   public static function about() {
+    if (ENV_MODE == Application::PRO_MODE) {
+      throw new ExtendedException("For security reasons, you can't invoke "
+      . __METHOD__ . ' on production environment');
+    }
     ob_start();
     ?>
     <section class="container-bubble container-box block">
