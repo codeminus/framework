@@ -139,30 +139,41 @@ function timeZoneOptions() {
             <?php
             try {
               util\ClassLog::on();
-              $i = new main\Installer($_POST['dev_env_path']);
-
-              $i->addConfig('dev_env', 'path', $_POST['dev_env_path']);
-              $i->addConfig('dev_env', 'timezone', $_POST['dev_env_timezone']);
-              $i->addConfig('dev_env', 'db_host', $_POST['dev_env_db_host']);
-              $i->addConfig('dev_env', 'db_user', $_POST['dev_env_db_user']);
-              $i->addConfig('dev_env', 'db_pass', $_POST['dev_env_db_pass']);
-              $i->addConfig('dev_env', 'db_name', $_POST['dev_env_db_name']);
-
-              $i->addConfig('pro_env', 'path', $_POST['pro_env_path']);
-              $i->addConfig('pro_env', 'timezone', $_POST['pro_env_timezone']);
-              $i->addConfig('pro_env', 'db_host', $_POST['pro_env_db_host']);
-              $i->addConfig('pro_env', 'db_user', $_POST['pro_env_db_user']);
-              $i->addConfig('pro_env', 'db_pass', $_POST['pro_env_db_pass']);
-              $i->addConfig('pro_env', 'db_name', $_POST['pro_env_db_name']);
-
-              $i->addConfig('view', 'dir', '/app/view');
-              $i->addConfig('view', 'default_title', '');
-              $i->addConfig('view', 'default_header', '/shared/header.php');
-              $i->addConfig('view', 'default_footer', '/shared/footer.php');
-
-              $i->addConfig('controller', 'dir', '/app/controller');
-              $i->addConfig('controller', 'index', 'Index');
-              $i->addConfig('controller', 'error', 'Error');
+              
+              $ini = new codeminus\file\Ini();
+              
+              $ini->setKeyPrefix('dev_env_');
+              $ini->setDefaultSection('dev_env');
+              $ini->set('path', $_POST['dev_env_path']);
+              $ini->set('timezone', $_POST['dev_env_timezone']);
+              $ini->set('db_host', $_POST['dev_env_db_host']);
+              $ini->set('db_user', $_POST['dev_env_db_user']);
+              $ini->set('db_pass', $_POST['dev_env_db_pass']);
+              $ini->set('db_name', $_POST['dev_env_db_name']);
+              
+              $ini->setKeyPrefix('pro_env_');
+              $ini->setDefaultSection('pro_env');
+              $ini->set('path', $_POST['pro_env_path']);
+              $ini->set('timezone', $_POST['pro_env_timezone']);
+              $ini->set('db_host', $_POST['pro_env_db_host']);
+              $ini->set('db_user', $_POST['pro_env_db_user']);
+              $ini->set('db_pass', $_POST['pro_env_db_pass']);
+              $ini->set('db_name', $_POST['pro_env_db_name']);
+              
+              $ini->setKeyPrefix('view_');
+              $ini->setDefaultSection('view');
+              $ini->set('dir', '/app/view');
+              $ini->set('default_title', '');
+              $ini->set('default_header', '/shared/header.php');
+              $ini->set('default_footer', '/shared/footer.php');
+              
+              $ini->setKeyPrefix('controller_');
+              $ini->setDefaultSection('controller');
+              $ini->set('dir', '/app/controller');
+              $ini->set('index', 'Index');
+              $ini->set('error', 'Error');
+              
+              $i = new main\Installer($_POST['dev_env_path'], $ini);
 
               (isset($_POST['reinstall'])) ? $reinstall = true : $reinstall = false;
 
