@@ -13,7 +13,7 @@ use codeminus\util as util;
 class Directory {
 
   use \codeminus\traits\Singleton;
-  
+
   const MATCH_ANY = 0;
   const MATCH_BEGINNING = 1;
   const MATCH_END = 2;
@@ -25,7 +25,7 @@ class Directory {
    * @param string $directory path If a subdirectory is given and it does not
    * exists it will be created as well
    * @param octal $mode[optional] the access level desired for the folder
-   * @return bool TRUE if the directory was created with success and FALSE
+   * @return bool TRUE if the directory was created with success or FALSE
    * otherwise
    */
   public static function create($directory, $mode = 0755) {
@@ -45,7 +45,7 @@ class Directory {
   /**
    * Verifies if a given directory is empty
    * @param string $directory directory path
-   * @return bool TRUE is the directory is empty and FALSE otherwise
+   * @return bool TRUE is the directory is empty or FALSE otherwise
    */
   public static function isEmpty($directory) {
     $isEmpty = true;
@@ -63,7 +63,7 @@ class Directory {
    * Deletes a file or directory
    * @param string $path path to the file or directory to be deleted
    * @param bool $recursively[optional] if TRUE it will delete all subdirectories
-   * @return bool TRUE if the directory was deleted with success and FALSE
+   * @return bool TRUE if the directory was deleted with success or FALSE
    * otherwise
    * @throws codeminus\main\ExtendedException
    */
@@ -207,7 +207,7 @@ class Directory {
             if (preg_match($expression, $filePathContent)) {
               $storage[] = $filePath;
             }
-          }else{
+          } else {
             if (strpos($filePathContent, $expression) > -1) {
               $storage[] = $filePath;
             }
@@ -296,6 +296,22 @@ class Directory {
           }
         }
       }
+    }
+  }
+
+  /**
+   * Normalizes a directory path by replacing backslashes and forward slashes
+   * according to system defaults
+   * @param string $path the path to be normalized
+   * @param bool $httpStyle if TRUE, it will always replace backslash with
+   * forward slash
+   * @return string the normalized path
+   */
+  public static function normalize($path, $httpStyle = true) {
+    if ($httpStyle) {
+      return preg_replace('/\/|\\\/', '/', $path);
+    } else {
+      return preg_replace('/\/|\\\/', DIRECTORY_SEPARATOR, $path);
     }
   }
 
