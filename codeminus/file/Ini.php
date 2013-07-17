@@ -13,12 +13,14 @@ class Ini {
 
   private $path;
   private $iniArray;
+  private $defaultSection;
   private $keyPrefix;
   
   /**
    * Handles ini configuration files
-   * @param string $path The path to the ini file
-   * @param bool $processSections  if TRUE it will handle the file as a
+   * @param string $path[optional] The path to the ini file. If null is given
+   * it will create a new one
+   * @param bool $processSections[optional]  if TRUE it will handle the file as a
    * multidimensional array, organizing directives into sections
    * @return Ini
    */
@@ -89,7 +91,26 @@ class Ini {
   }
   
   /**
-   * A key prefix to work as a shortcut
+   * The section to be used by default when null is given for $section parameter
+   * on get() and set() methods
+   * @return string
+   */
+  public function getDefaultSection() {
+    return $this->defaultSection;
+  }
+
+  /**
+   * The section to be used by default when null is given for $section parameter
+   * on get() and set() methods
+   * @param string $defaultSection
+   * return void
+   */
+  public function setDefaultSection($defaultSection) {
+    $this->defaultSection = $defaultSection;
+  }
+    
+  /**
+   * The value that is always prepended to a key before setting or getting it
    * @return string
    */
   public function getKeyPrefix() {
@@ -97,9 +118,8 @@ class Ini {
   }
 
   /**
-   * A key prefix to work as a shortcut
-   * @param string $keyPrefix The string to be prepended to every key request 
-   * using get()
+   * The value that is always prepended to a key before setting or getting it
+   * @param string $keyPrefix The string to be prepended to every key request
    */
   public function setKeyPrefix($keyPrefix) {
     $this->keyPrefix = $keyPrefix;
@@ -109,11 +129,14 @@ class Ini {
   /**
    * Ini directives
    * @param string $key The directive key
-   * @param string $section If $section is given, it will search for the $key
+   * @param string $section[optional] If $section is given, it will search for the $key
    * inside it
    * @return string Returns the value for the requested $key
    */
   public function get($key, $section = null) {
+    if(!isset($section)){
+      $section = $this->getDefaultSection();
+    }
     if (isset($section)) {
       if(isset($this->iniArray[$section][$this->getKeyPrefix() . $key])){
         return $this->iniArray[$section][$this->getKeyPrefix() . $key];
@@ -130,29 +153,39 @@ class Ini {
    * Ini directives
    * @param string $key The directive key
    * @param string $value The directive value
-   * @param string $section The directive section
+   * @param string $section[optional] The directive section
    * @return void
    */
   public function set($key, $value, $section = null) {
-    $this->iniArray[$section][$key] = $value;
+    if(!isset($section)){
+      $section = $this->getDefaultSection();
+    }
+    if(isset($section)){
+      $this->iniArray[$section][$this->getKeyPrefix() . $key] = $value;
+    }else{
+      $this->iniArray[$this->getKeyPrefix() . $key] = $value;
+    }
+    
   }
 
   /**
    * Saves the ini file
-   * @param string $path The file path
+   * @param string $path[optional] The file path. If null if given it will try
+   * to replace original file
+   * @param bool $replace[optional] if TRUE, it will replace the existent file
    * @return bool TRUE if the ini file was created with success or FALSE
    * otherwise
    * @throws main\ExtendedException
    */
-  public function save($path = null) {
+  public function save($path = null, $replace = true) {
     if (!isset($path)) {
       if (isset($this->path)) {
-        return File::create($this->path, $this->getString(), true);
+        return File::create($this->path, $this->getString(), $replace);
       } else {
         throw new main\ExtendedException('no file set', main\ExtendedException::E_ERROR);
       }
     } else {
-      return File::create($path, $this->getString(), true);
+      return File::create($path, $this->getString(), $replace);
     }
   }
 
