@@ -82,7 +82,7 @@ class Compression {
    * @param string $zipFile the zip file to be extracted
    * @param string $destination[optional] Where to extract the zip file. If null
    * is given, it will be stored on the same directory
-   * @return bool TRUE if the extraction was successful and FALSE otherwise
+   * @return bool TRUE if the extraction was successful or FALSE otherwise
    * @throws main\ExtendedException
    */
   public static function extractZip($zipFile, $destination = null) {
