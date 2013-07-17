@@ -10,7 +10,7 @@ namespace codeminus\main;
 final class Framework {
 
   use \codeminus\traits\Singleton;
-  
+
   const VERSION = '0.9';
 
   /**
@@ -19,9 +19,9 @@ final class Framework {
    * otherwise
    */
   public static function appConstants() {
-    if(isset(get_defined_constants(true)['user'])){
+    if (isset(get_defined_constants(true)['user'])) {
       return get_defined_constants(true)['user'];
-    }else{
+    } else {
       return false;
     }
   }
@@ -31,6 +31,10 @@ final class Framework {
    * @return string
    */
   public static function appConstantsView() {
+    if (ENV_MODE == Application::PRO_MODE) {
+      throw new ExtendedException("For security reasons, you can't invoke "
+      . __METHOD__ . ' on production environment');
+    }
     ob_start();
     ?>
     <section class="container-bubble container-box block">
