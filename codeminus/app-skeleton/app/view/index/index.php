@@ -14,7 +14,7 @@ use codeminus\main as main;
     <section class="text-align-left">
       <p>
         Remember to review your environment main configurations inside
-        <b>/app/config/main.php</b>.
+        <b>/app/config/main.ini</b>.
       </p>
       <p>
         Go to 
