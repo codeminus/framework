@@ -119,7 +119,7 @@
 <h5 class="underline">A personalized css file</h5>
 <p>
   Lets say you only want to use form element styling and the famfamfam sprite
-  from our library. Your <strong>personalized.css</strong> file would look like
+  from our library. Your <strong>assets/css/personalized.css</strong> file would look like
   this:
 </p>
 <pre class="code code-line-numbered code-highlight">
