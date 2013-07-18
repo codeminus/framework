@@ -30,16 +30,21 @@ class File {
    * @param string $filePath the file path
    * @param string $fileContent Content to be put inside the file
    * method
-   * @param bool $replaceExistent[optional] if TRUE it will replace all
+   * @param bool $replaceExistent[optional] if TRUE, it will replace all
    * existent files
+   * @param bool $createPath[optional] if TRUE is given it will create the
+   * directory of the file path if it does not exists.
    * @return bool TRUE if the file was created with success or FALSE 
    * otherwise
    */
-  public static function create($filePath, $fileContent, $replaceExistent = false) {
+  public static function create($filePath, $fileContent, $replaceExistent = false, $createPath = false) {
     if ($replaceExistent && file_exists($filePath)) {
       Directory::delete($filePath);
     }
     if (!file_exists($filePath)) {
+      if(!is_dir(dirname($filePath)) && $createPath){
+        Directory::create(dirname($filePath));
+      }
       if (!file_put_contents($filePath, $fileContent)) {
         return false;
       } else {
