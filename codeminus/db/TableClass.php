@@ -149,8 +149,8 @@ class TableClass {
     foreach ($this->tableColumns as $column) {
       if ($column['key'] == "PRI") {
         $methodDeclaration .='
-    if($whereClause == null){
-      $whereClause = \'where ' . $column['name'] . '=\' . $this->get' . ucfirst($column['name']) . '();
+    if ($whereClause == null) {
+      $whereClause = \'where ' . $column['name'] . ' = \' . $this->get' . ucfirst($column['name']) . '();
     }';
         break;
       }
