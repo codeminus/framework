@@ -19,14 +19,6 @@ class Application {
   const DEV_MODE = 0;
   const PRO_MODE = 1;
 
-  private function __construct() {
-    //prevent class instance
-  }
-
-  private function __clone() {
-    //prvent class instance clone
-  }
-
   /**
    * Initializes the application environment constants<br/>
    * Initializes the application router<br/>
@@ -94,6 +86,12 @@ class Application {
     define('CMF_CSS_PATH', CMF_PATH . '/css');
     define('CMF_JS_PATH', CMF_PATH . '/js');
 
+    if(ENV_MODE == self::PRO_MODE){
+      file\File::create(APP_PATH.'/codeminus/run/.htaccess', 'deny from all');
+    }else{
+      file\File::delete(APP_PATH.'/codeminus/run/.htaccess');
+    }
+    
     //Initializing path router
     try {
       new Router();
