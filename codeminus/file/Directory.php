@@ -93,10 +93,7 @@ class Directory {
         util\ClassLog::add(__METHOD__, $path . ' not deleted. The directory is not empty', util\ClassLog::LOG_ERROR);
         return false;
       }
-    } else {
-      if (!file_exists($path)) {
-        throw new main\ExtendedException('Unable to find ' . $path);
-      }
+    } elseif (file_exists($path)) {
       unlink($path);
       util\ClassLog::add(__METHOD__, $path . ' deleted');
     }
