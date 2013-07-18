@@ -47,7 +47,7 @@ class DamageControl {
   /**
    * Verifies if a given value has whitespaces
    * @param type $value
-   * @return bool TRUE if whitespace(space, tab, etc.) is found and FALSE
+   * @return bool TRUE if whitespace(space, tab, etc.) is found or FALSE
    * otherwise
    */
   public static function hasWhitespace($value) {
@@ -98,7 +98,7 @@ class DamageControl {
    * Validates a password strength
    * @param string $password the value to be validated
    * @param int $strength[optional] the minimum valid strength
-   * @return bool TRUE if valid and FALSE otherwise
+   * @return bool TRUE if valid or FALSE otherwise
    */
   public static function validatePasswordStrength($password, $strength = self::PASSWORD_AVERAGE) {
     if (self::getPasswordStrength($password) >= $strength) {
@@ -190,7 +190,7 @@ class DamageControl {
    * Use b for optional letter
    * @param mixed $value the value to be validated
    * @param string $format the valid format
-   * @return bool TRUE if the value format is valid and FALSE otherwise
+   * @return bool TRUE if the value format is valid or FALSE otherwise
    */
   public static function validateFormat($value, $format) {
 
@@ -233,7 +233,7 @@ class DamageControl {
   /**
    * Remove invalid e-mail characters and validates it
    * @param string $email
-   * @return mixed Returns string if the sanitized e-mail is valid and false
+   * @return mixed Returns string if the sanitized e-mail is valid or FALSE
    * othewise
    */
   public static function filterEmail($email) {
