@@ -1,4 +1,78 @@
 $(document).ready(function() {
+
+  /* ==========================================================================
+   Codemius plugins
+   ========================================================================== */
+  (function($) {
+
+    /* ========================================================================
+     Source code format
+     ======================================================================== */
+    $.fn.codify = function(codeHighlight) {
+
+      this.addClass('code');
+
+      this.html(function() {
+        var code = $(this).html().trim();
+        var lines = code.split('\n');
+        var codeWrapped = '';
+        for (i = 0; i < lines.length; i++) {
+          if (lines[i] === "") {
+            lines[i] = '&nbsp;';
+          }
+          codeWrapped += '<div class="code-line">' + lines[i] + '</div>';
+        }
+        return codeWrapped;
+      });
+
+      //code high-lighting
+      if (codeHighlight) {
+        var isMultiLineComment = false;
+        this.addClass('code-highlight');
+        this.children('.code-line').html(function() {
+          //string between quotes
+          var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
+          var code = $(this).html().replace(stringHL,
+                  "<span class=\"code-highlight-string\">$1$2$1</span>");
+
+          //string beginning with /*
+          var beginComment = /(\/\*.*)/g;
+          //string ending with */
+          var endComment = /(.*\*\/)/g;
+          //string between /* */
+          var commentSingleLine = /(\/\*.*\*\/)/g;
+
+          if (code.match(commentSingleLine)) {
+            code = code.replace(commentSingleLine,
+                    "<span class=\"code-highlight-comment\">$1</span>");
+          } else if (code.match(beginComment)) {
+            code = code.replace(beginComment,
+                    "<span class=\"code-highlight-comment\">$1</span>");
+            isMultiLineComment = true;
+          } else if (isMultiLineComment) {
+            if (code.match(endComment)) {
+              code = code.replace(endComment,
+                      "<span class=\"code-highlight-comment\">$1</span>");
+              isMultiLineComment = false;
+            } else {
+              code = "<span class=\"code-highlight-comment\">" + code + "</span>";
+            }
+          }
+          return code;
+        });
+      }
+
+      //code line numbering
+      this.addClass('code-line-numbered');
+      this.wrapInner('<ol>');
+      this.find('.code-line').wrap('<li>');
+
+    };
+  }(jQuery));
+
+  $('.code').codify(true);
+
+
   /* ==========================================================================
    CSS dynamic utilities
    ========================================================================== */
@@ -19,59 +93,6 @@ $(document).ready(function() {
   $('.absolute-center, .absolute-center-vertical').css('margin-top', function() {
     return -$(this).height() / 2;
   });
-
-  /* ==========================================================================
-   Source code styling
-   ========================================================================== */
-  $('.code').html(function() {
-    var code = $(this).html().trim();
-    var lines = code.split('\n');
-    var codeWrapped = '';
-    for (i = 0; i < lines.length; i++) {
-      if (lines[i] === "") {
-        lines[i] = '&nbsp;';
-      }
-      codeWrapped += '<div class="code-line">' + lines[i] + '</div>';
-    }
-    return codeWrapped;
-  });
-
-  var isMultiLineComment = false;
-  //code high-lighting
-  $('.code-highlight .code-line').html(function() {
-    //string between quotes
-    var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
-    var code = $(this).html().replace(stringHL,
-            "<span class=\"code-highlight-string\">$1$2$1</span>");
-
-    //string beginning with /*
-    var beginComment = /(\/\*.*)/g;
-    //string ending with */
-    var endComment = /(.*\*\/)/g;
-    //string between /* */
-    var commentSingleLine = /(\/\*.*\*\/)/g;
-
-    if (code.match(commentSingleLine)) {
-      code = code.replace(commentSingleLine,
-              "<span class=\"code-highlight-comment\">$1</span>");
-    } else if (code.match(beginComment)) {
-      code = code.replace(beginComment,
-              "<span class=\"code-highlight-comment\">$1</span>");
-      isMultiLineComment = true;
-    } else if (isMultiLineComment) {
-      if (code.match(endComment)) {
-        code = code.replace(endComment,
-                "<span class=\"code-highlight-comment\">$1</span>");
-        isMultiLineComment = false;
-      } else {
-        code = "<span class=\"code-highlight-comment\">" + code + "</span>";
-      }
-    }
-    return code;
-  });
-  //code line numbering
-  $('.code-line-numbered').wrapInner('<ol>');
-  $('.code-line-numbered > ol > .code-line').wrap('<li>');
 
   /* ==========================================================================
    disabled navigator item behavior
