@@ -9,3 +9,7 @@ nbproject/
 /.htaccess
 /org/codeminus/css/lab/
 /org/codeminus/file/test.php
+/test/
+/codeminus/css/lab/
+/codeminus/doc/
+/codeminus/db/Util.php
