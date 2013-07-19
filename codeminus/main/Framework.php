@@ -29,6 +29,7 @@ final class Framework {
   /**
    * Returns the user defined constants formatted with HTML
    * @return string
+   * @throws ExtendedException
    */
   public static function appConstantsView() {
     if (ENV_MODE == Application::PRO_MODE) {
