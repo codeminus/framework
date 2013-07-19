@@ -107,6 +107,7 @@ class View {
    * files, pass TRUE to $showAbout parameter on render() method
    * this
    * @return string
+   * @throws ExtendedException
    */
   public static function about() {
     if (ENV_MODE == Application::PRO_MODE) {
