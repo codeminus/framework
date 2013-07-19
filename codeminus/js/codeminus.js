@@ -30,10 +30,28 @@ $(document).ready(function() {
         var isMultiLineComment = false;
         this.addClass('code-highlight');
         this.children('.code-line').html(function() {
+          var code;
+
           //string between quotes
           var stringHL = /("|')((?:[^"\\]|\\.)*)("|')/gi;
-          var code = $(this).html().replace(stringHL,
+          code = $(this).html().replace(stringHL,
                   "<span class=\"code-highlight-string\">$1$2$1</span>");
+
+          var keywords = [
+            "namespace", "use", "as", "class", "extends",
+            "public", "protected", "private",
+            "function", "return",
+            "if", "else", "elseif", "for", "foreach", "while", "do", "switch", "case",
+            "null", "true", "false"
+          ];
+
+          var beginMatch = "\\s|^";
+          var endMatch = "?=\\s|\\(|\\{|$";
+          var keywordsRegExp = new RegExp(
+                  "(" + beginMatch +
+                  ")(" + keywords.join("|") +
+                  ")(" + endMatch + ")", "gi");
+          code = code.replace(keywordsRegExp, "$1<span style=\"color: #3a87ad\">$2</span>");
 
           //string beginning with /*
           var beginComment = /(\/\*.*)/g;
