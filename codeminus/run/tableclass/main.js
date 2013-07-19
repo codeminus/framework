@@ -5,8 +5,7 @@ $('#classForm').submit(function() {
     url: "action.php",
     data: formData,
     beforeSend: function() {
-      $('#submitBtn').attr('disabled', 'disabled');
-      $('#submitBtn').val('generating code...');
+      $('#submitBtn').attr('disabled', 'disabled').val('generating code...');
       $('#codeTools').hide('slow');
       $('#codeContainer').html('');
     },
@@ -26,13 +25,16 @@ $('#classForm').submit(function() {
           $('#saveForm input[name=replaceBtn]')
                   .removeAttr('disabled')
                   .removeClass('active');
+          
+          $('#saveForm input[name=saveBtnLabel]').val('save to ' + data.saveLabel);
           $('#saveForm input[name=saveBtn]')
                   .val('save to ' + data.saveLabel)
                   .show()
-                  .removeAttr('disabled');
+                  .removeAttr('disabled')
+                  .removeClass('btn-danger')
+                  .addClass('btn-success');
         }else{
-          $('#saveForm').removeClass('inline');
-          $('#saveForm').hide();
+          $('#saveForm').removeClass('inline').hide();
         }
         $('#codeTools').show('slow');
         $('#codeContainer').html(data.formattedCode);
@@ -63,10 +65,14 @@ $('#saveForm').submit(function() {
     },
     success: function(data) {
       if (data) {
-
         $('#saveForm input[name=saveBtn]').val('saved');
       } else {
-        $('#saveForm input[name=saveBtn]').val('file already exists');
+        $('#saveForm input[name=saveBtn]')
+                .val('file already exists')
+                .removeAttr('disabled')
+                .removeClass('btn-success')
+                .addClass('btn-danger');
+        $('#saveForm input[name=replaceBtn]').removeAttr('disabled');
       }
     },
     error: function() {
@@ -81,4 +87,11 @@ $('#selectClass').click(function() {
     range.selectNode(document.getElementById('classCode'));
     window.getSelection().addRange(range);
   }
+});
+
+$('#saveForm input[name=replaceBtn]').click(function(){
+  $('#saveForm input[name=saveBtn]')
+          .removeClass('btn-danger')
+          .addClass('btn-success')
+          .val($('#saveForm input[name=saveBtnLabel]').val());
 });

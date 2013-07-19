@@ -66,6 +66,7 @@ main\Autoloader::init();
             <span class="input-group">
               <input type="button" name="replaceBtn" class="btn-danger"
                      data-toggle="button" value="replace file" />
+              <input type="hidden" name="saveBtnLabel" />
               <input type="submit" name="saveBtn" class="btn-success" />
             </span>
           </form>
