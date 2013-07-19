@@ -45,8 +45,8 @@ $(document).ready(function() {
             "null", "true", "false"
           ];
 
-          var beginMatch = "\\s|^";
-          var endMatch = "?=\\s|\\(|\\{|$";
+          var beginMatch = "\\s|^|\\(|\\)|\\{|\\}";
+          var endMatch = "?=\\s|\\(|\\)|\\{|\\}|$";
           var keywordsRegExp = new RegExp(
                   "(" + beginMatch +
                   ")(" + keywords.join("|") +
