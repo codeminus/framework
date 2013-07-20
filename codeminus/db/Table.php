@@ -8,7 +8,7 @@ use codeminus\main as main;
  * Database Table abstract model
  * Extend this class on all classes that represent a table on a database
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.2
+ * @version 1.3
  */
 abstract class Table {
 
@@ -28,6 +28,7 @@ abstract class Table {
   private $strictUpdate = true;
   private $strictDelete = true;
   private $recordList = null;
+  private $joinedTables;
 
   //Common properties
 
@@ -578,6 +579,43 @@ abstract class Table {
   }
 
   /**
+   * Joins a table with this table on a select statement<br/>
+   * This method should be called before the select() method
+   * @param \codeminus\db\Table $table the table class to be joined with
+   * @param string $on the conditional expression to be used with ON condition
+   * @return void
+   */
+  public function join(Table $table, $on) {
+    $this->joinedTables[get_class($table)]['obj'] = $table;
+    $this->joinedTables[get_class($table)]['on'] = $on;
+  }
+
+  /**
+   * The joined class instance
+   * @param string $className The name of the class to get the instance from 
+   * @return \codeminus\db\Table
+   */
+  public function getJoined($className) {
+    return $this->joinedTables[$className]['obj'];
+  }
+
+  /**
+   * Returns the join statement with all joined class tables
+   * @return string|null with no table was joined it will return null
+   */
+  private function getJoinStatement() {
+    if (!empty($this->joinedTables)) {
+      $stmt = " JOIN ";
+      foreach ($this->joinedTables as $table) {
+        $stmt .= $table['obj']->getTableName() . " ON " . $table['on'];
+      }
+      return $stmt;
+    } else {
+      return null;
+    }
+  }
+
+  /**
    * SELECT operation
    * @param string $fields[optional] Especify the fields that will be selected.
    * Use ,(comma) to distinguish them
@@ -588,11 +626,65 @@ abstract class Table {
    */
   public function select($fields = '*', $whereClause = null) {
     try {
-      $this->setSqlStatement("SELECT " . $fields . " FROM " . $this->getTableName() . " " . $whereClause);
+      $this->setSqlStatement(
+        "SELECT " . $fields . " FROM " . $this->getTableName()
+        . $this->getJoinStatement()
+        . " " . $whereClause);
       return $this->executeQuery();
     } catch (main\ExtendedException $e) {
       echo $e->getFormattedMessage();
       exit;
+    }
+  }
+
+  /**
+   * Populates class and joined class properties with results from the current
+   * result row and moves resultset pointer to next row.
+   * The class properties that represent a table column MUST be able to
+   * be accessed by Table (its super class). Define them with, at least,
+   * PROTECTED access level
+   * @return bool TRUE if there's a next row or FALSE if there isn't
+   */
+  public function nextRow() {
+    //checks if it hasn't reach the end of the resultset
+    if ($this->getCurrentRow() < $this->getNumRows()) {
+      $this->sqlResult->data_seek($this->getCurrentRow());
+      //fetch the results
+      $row = $this->sqlResult->fetch_row();
+      //fetch info about the result fields
+      $fieldsInfo = $this->sqlResult->fetch_fields();
+      $orgRow = array();
+      $countFields = count($fieldsInfo);
+      //organizes the result into a multidimentional associative array
+      for ($i = 0; $i < $countFields; $i++) {
+        $orgRow[$fieldsInfo[$i]->table][$fieldsInfo[$i]->name] = $row[$i];
+      }
+
+      foreach ($orgRow as $table => $fields) {
+        //if result fields are from this class table
+        if ($table == $this->getTableName()) {
+          foreach ($fields as $property => $value) {
+            $this->$property = $value;
+          }
+        //if not, search into joined tables for the corresponding class table
+        } else {
+          foreach ($this->joinedTables as $class) {
+            if ($class['obj']->getTableName() == $table) {
+              foreach ($fields as $property => $value) {
+                $class['obj']->$property = $value;
+              }
+              break;
+            }
+          }
+        }
+      }
+
+      //moves pointer to next result row
+      $this->incrementRow();
+      return true;
+    } else {
+      //End of resultset reached
+      return false;
     }
   }
 
@@ -667,36 +759,4 @@ abstract class Table {
    * @return bool
    */
   abstract public function update($whereClause = null);
-
-  /**
-   * Populates class properties with results from the current result row and
-   * moves resultset pointer to next row.
-   * The class properties that represent a table column MUST be able to
-   * be accessed by Table (its super class). Define them with, at least,
-   * PROTECTED access level
-   * @return bool TRUE if there's a next row or FALSE if there isn't
-   */
-  public function nextRow() {
-    //checks if it hasn't reach the end of the resultset
-    if ($this->getCurrentRow() < $this->getNumRows()) {
-      $this->sqlResult->data_seek($this->getCurrentRow());
-      $row = $this->sqlResult->fetch_assoc();
-      foreach ($this->getTableColumns(false) as $tableColumn) {
-        //checks if the current table column exits as a class property 
-        if (isset($row[$tableColumn])) {
-          //populates class properties with correspondent table columnn values
-          $this->$tableColumn = $row[$tableColumn];
-        } else {
-          $this->$tableColumn = null;
-        }
-      }
-      //moves pointer to next result row
-      $this->incrementRow();
-      return true;
-    } else {
-      //End of resultset reached
-      return false;
-    }
-  }
-
 }
