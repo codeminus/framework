@@ -565,12 +565,13 @@ abstract class Table {
 
   /**
    * Current Date and time
-   * @param bool $timestamp[optional]
-   * @return string $timestamp is set to false and int 
-   * otherwise
+   * @param bool $timestamp[optional] If TRUE, returns the date as Unix
+   * timestamp. If FALSE, returns as a string
+   * false, return as int
+   * @return string|int 
    */
   protected function getCurrentDate($timestamp = false) {
-    $currentDate = (time() - (date('I') * 3600));
+    $currentDate = time();
     if ($timestamp) {
       return $currentDate;
     } else {
