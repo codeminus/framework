@@ -46,7 +46,7 @@ class Application {
         break;
       default :
         throw new ExtendedException('Invalid environment mode. Please specify a valid one.'
-        , ExtendedException::E_ERROR);
+        , E_ERROR);
     }
 
     define('APP_PATH', $ini->get("path"));
@@ -54,7 +54,7 @@ class Application {
     
     if (!is_dir(APP_PATH)) {
       throw new ExtendedException('Invalid environment directory.' . APP_PATH
-      . ' does not exist.', ExtendedException::E_ERROR);
+      . ' does not exist.', E_ERROR);
     }
 
     define('ENV_MODE', $mode);

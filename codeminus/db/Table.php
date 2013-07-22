@@ -138,7 +138,7 @@ abstract class Table {
    */
   public function getInsertFields() {
     if (count($this->insertFields) == 0) {
-      throw new main\ExtendedException(self::ERR_NOFIELDS, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException(self::ERR_NOFIELDS, E_ERROR);
     } else {
       return $this->insertFields;
     }
@@ -180,7 +180,7 @@ abstract class Table {
    */
   public function getUpdateFields() {
     if (count($this->updateFields) == 0) {
-      throw new main\ExtendedException(self::ERR_NOFIELDS, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException(self::ERR_NOFIELDS, E_ERROR);
     } else {
       return $this->updateFields;
     }
@@ -234,7 +234,7 @@ abstract class Table {
         return $this->requiredDeleteFields;
         break;
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, E_ERROR);
         break;
     }
   }
@@ -271,7 +271,7 @@ abstract class Table {
         $this->requiredDeleteFields = $fieldArray;
         break;
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, E_ERROR);
         break;
     }
   }
@@ -287,7 +287,7 @@ abstract class Table {
       case self::INSERT:
         foreach ($this->requiredInsertFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', E_ERROR);
             return false;
           }
         }
@@ -295,7 +295,7 @@ abstract class Table {
       case self::UPDATE:
         foreach ($this->requiredUpdateFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', E_ERROR);
             return false;
           }
         }
@@ -303,13 +303,13 @@ abstract class Table {
       case self::DELETE:
         foreach ($this->requiredDeleteFields as $field) {
           if (!isset($this->$field)) {
-            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', main\ExtendedException::E_ERROR);
+            throw new main\ExtendedException(self::ERR_NULLFIELD . ': (' . $field . ')', E_ERROR);
             return false;
           }
         }
         break;
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, E_ERROR);
         break;
     }
   }
@@ -446,7 +446,7 @@ abstract class Table {
    */
   protected function executeQuery() {
     if (!isset($this->sqlStatement)) {
-      throw new main\ExtendedException(self::ERR_NOSQLSTMT, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException(self::ERR_NOSQLSTMT, E_ERROR);
     }
     $result = $this->dbConn->query($this->getSqlStatement());
     if ($result) {
@@ -454,7 +454,7 @@ abstract class Table {
       $this->setNumRows($this->dbConn->affected_rows);
       return true;
     } else {
-      throw new main\ExtendedException($this->dbConn->error, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException($this->dbConn->error, E_ERROR);
       return false;
     }
   }
@@ -545,20 +545,20 @@ abstract class Table {
     switch ($operation) {
       case self::UPDATE:
         if ($this->getStrictUpdate() && trim($whereClause) == '') {
-          throw new main\ExtendedException(self::ERR_STRICTOP, main\ExtendedException::E_ERROR);
+          throw new main\ExtendedException(self::ERR_STRICTOP, E_ERROR);
         } else {
           return true;
         }
         break;
       case self::DELETE:
         if ($this->getStrictDelete() && trim($whereClause) == '') {
-          throw new main\ExtendedException(self::ERR_STRICTOP, main\ExtendedException::E_ERROR);
+          throw new main\ExtendedException(self::ERR_STRICTOP, E_ERROR);
         } else {
           return true;
         }
         break;
       default:
-        throw new main\ExtendedException(self::ERR_INVALIDOP, main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException(self::ERR_INVALIDOP, E_ERROR);
         break;
     }
   }

@@ -148,13 +148,13 @@ class Connection extends \mysqli {
   public function query($query, $resultmode = MYSQLI_STORE_RESULT) {
     $db = $this->database;
     if (empty($db)) {
-      throw new main\ExtendedException('No database selected', main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException('No database selected', E_ERROR);
     }
     $result = parent::query($query, $resultmode);
     if (!$result) {
       throw new main\ExtendedException(
       $this->error .
-      "<br/><b>SQL statement:</b>  <pre>" . $query . "</pre>", main\ExtendedException::E_ERROR);
+      "<br/><b>SQL statement:</b>  <pre>" . $query . "</pre>", E_ERROR);
     } else {
       return $result;
     }

@@ -32,7 +32,7 @@ class ImageHandler {
     $this->setSource($imageSource);
     $this->setImageInfo(getimagesize($imageSource));
     if (!$this->getImageInfo()) {
-      throw new main\ExtendedException('Unable to handle ' . $imageSource, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException('Unable to handle ' . $imageSource, E_ERROR);
       return false;
     }
     switch ($this->getType()) {

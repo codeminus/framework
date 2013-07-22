@@ -85,7 +85,7 @@ class Router {
         //if neither controller is found    
       } else {
 
-        throw new ExtendedException('Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>', ExtendedException::E_ERROR);
+        throw new ExtendedException('Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>', E_ERROR);
       }
 
       //if no controller is requested try to load INDEX_CONTROLLER
@@ -96,7 +96,7 @@ class Router {
 
       //if the INDEX_CONTROLLER doesnt exists
     } else {
-      throw new ExtendedException('Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH, ExtendedException::E_ERROR);
+      throw new ExtendedException('Default controller ' . INDEX_CONTROLLER . ' not found in ' . CONTROLLER_PATH, E_ERROR);
     }
   }
 

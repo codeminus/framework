@@ -30,7 +30,7 @@ class Ini {
         $this->setPath($path);
         $this->setArray(parse_ini_file($path, $processSections));
       }else{
-        throw new main\ExtendedException("$path is not a valid file", main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException("$path is not a valid file", E_ERROR);
       }
     } else {
       $this->setArray(array());
@@ -141,7 +141,7 @@ class Ini {
       if(isset($this->iniArray[$section][$this->getKeyPrefix() . $key])){
         return $this->iniArray[$section][$this->getKeyPrefix() . $key];
       }else{
-        throw new main\ExtendedException("[$section][{$this->getKeyPrefix()} . $key] does not exists on ini file", main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException("[$section][{$this->getKeyPrefix()} . $key] does not exists on ini file", E_ERROR);
       }
       
     } else {
@@ -182,7 +182,7 @@ class Ini {
       if (isset($this->path)) {
         return File::create($this->path, $this->getString(), $replace);
       } else {
-        throw new main\ExtendedException('no file set', main\ExtendedException::E_ERROR);
+        throw new main\ExtendedException('no file set', E_ERROR);
       }
     } else {
       return File::create($path, $this->getString(), $replace);

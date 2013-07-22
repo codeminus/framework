@@ -9,9 +9,6 @@ namespace codeminus\main;
  */
 class ExtendedException extends \Exception {
 
-  const E_WARNING = 1;
-  const E_ERROR = 2;
-
   /**
    * Extended Exception
    * @param string $message
@@ -29,7 +26,7 @@ class ExtendedException extends \Exception {
    */
   public function getFormattedMessage() {
     switch ($this->getCode()) {
-      case self::E_ERROR:
+      case E_ERROR:
         $class = 'error';
         $prefix = '<b>Error:</b> ';
         break;

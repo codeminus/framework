@@ -24,7 +24,7 @@ trait MagicClass {
         $property = lcfirst($property);
         if (!property_exists($this, $property)) {
           throw new main\ExtendedException("$property is not a " . __CLASS__
-          . " property", main\ExtendedException::E_ERROR);
+          . " property", E_ERROR);
         }
       }
       return $this->$property;
@@ -34,7 +34,7 @@ trait MagicClass {
         $property = lcfirst($property);
         if (!property_exists($this, $property)) {
           throw new main\ExtendedException("$property is not a " . __CLASS__
-          . " property", main\ExtendedException::E_ERROR);
+          . " property", E_ERROR);
         }
       }
       $this->$property = $args[0];

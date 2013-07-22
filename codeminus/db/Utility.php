@@ -244,11 +244,11 @@ class Utility {
       $dbConn = Connection::getInstance();
     }
     if (empty($tableName)) {
-      throw new main\ExtendedException('No table name was given', main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException('No table name was given', E_ERROR);
     }
     $result = $dbConn->query("DESCRIBE " . $tableName . " " . $tableColumnName);
     if (!$result) {
-      throw new main\ExtendedException($dbConn->error, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException($dbConn->error, E_ERROR);
     }
     $tableColumnsArray = array();
     while ($row = $result->fetch_assoc()) {

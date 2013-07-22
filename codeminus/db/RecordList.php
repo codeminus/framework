@@ -82,7 +82,7 @@ class RecordList {
     $tmpSql = explode('"', $tmpSql);
 
     if (stripos($tmpSql[count($tmpSql) - 1], "LIMIT") > -1) {
-      throw new main\ExtendedException(self::ERR_LIMITCLAUSE, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException(self::ERR_LIMITCLAUSE, E_ERROR);
     } else {
       $this->sqlStatement = $sqlStatement;
     }
@@ -129,7 +129,7 @@ class RecordList {
 
     $this->sqlResult = $this->dbconn->query($this->getSqlStatement() . $this->getSqlLimit());
     if (!$this->sqlResult) {
-      throw new main\ExtendedException($this->dbconn->error, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException($this->dbconn->error, E_ERROR);
     }
   }
 
@@ -152,7 +152,7 @@ class RecordList {
     $result = $this->dbconn->query(self::getCountStatement($this->getSqlStatement()));
 
     if (!$result) {
-      throw new main\ExtendedException($this->dbconn->error, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException($this->dbconn->error, E_ERROR);
     } else {
 
       $totalRows = $result->fetch_array();
@@ -198,7 +198,7 @@ class RecordList {
     if ($recordsPerPage > 0) {
       $this->recordsPerPage = round($recordsPerPage);
     } else {
-      throw new main\ExtendedException(self::ERR_RPP, main\ExtendedException::E_ERROR);
+      throw new main\ExtendedException(self::ERR_RPP, E_ERROR);
     }
   }
 
