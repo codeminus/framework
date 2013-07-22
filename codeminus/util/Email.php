@@ -2,94 +2,35 @@
 
 namespace codeminus\util;
 
+use codeminus\main as main;
+
 /**
  * E-mail sender
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 0.9.1b
+ * @version 1.0
  */
 class Email {
 
-  /**
-   * Specifies additional headers, like From, Cc, and Bcc.
-   * The additional headers should be separated with a CRLF (\r\n)
-   * @var string 
-   */
   private $header;
-
-  /**
-   * Sender's name and e-mail address
-   * @var array 
-   */
   private $from = array();
-
-  /**
-   * Carbon-copy
-   * @var array cc name and e-mail addresses
-   */
   private $cc = array();
-
-  /**
-   * Blind carbon-copy
-   * @var array bcc name and e-mail addresses
-   */
   private $bcc = array();
-
-  /**
-   * Specifies the receiver / receivers of the email
-   * @var array main receivers name and e-mail addresses
-   */
   private $to = array();
-
-  /**
-   * Specifies the subject of the email
-   * @var string 
-   */
-  private $subject;
-
-  /**
-   * Defines the message to be sent. Each line should be separated with a LF (\n).
-   * Lines should not exceed 70 characters
-   * @var string 
-   */
-  private $message;
-
-  /**
-   * E-mail message format TEXT or HTML
-   * @var int 
-   */
   private $format;
-
-  const TEXT_FORMAT = 0;
-  const HTML_FORMAT = 1;
-  const SENDER = "from";
-  const CC = "cc";
-  const BCC = "bcc";
-  const TO = "to";
+  private $boundary;
+  private $subject;
+  private $textMessage;
+  private $htmlMessage;
+  private $attachments = array();
 
   /**
    * E-mail
    * @param int $format[optional]
    * @return Email
    */
-  public function __construct($format = self::TEXT_FORMAT) {
-    $this->setFormat($format);
-  }
-
-  /**
-   * Sanitize and validate e-mail
-   * @param string $email
-   * @return string or bool Returns the e-mail if it is valid or false if it is not.
-   * @example filterEmail("some exam/ple@ example. c o m") returns someexample@example.com
-   */
-  protected function filterEmail($email) {
-    //Clears out whitespaces and invalid characters.
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    //Validates e-mail
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      return $email;
-    } else {
-      return false;
-    }
+  public function __construct() {
+    //$this->setFormat($format);
+    $this->boundary = md5(uniqid(time()));
   }
 
   /**
@@ -97,9 +38,6 @@ class Email {
    * @param string $email
    * @param string $name
    * @return string
-   * @example formatEmail("someexample@example.com", "Some Example") returns Some Example <someexample@example.com> or only
-   * someexample@example.com if name is not set.
-   * 
    */
   protected function formatEmail($email, $name) {
     if (isset($name)) {
@@ -115,26 +53,24 @@ class Email {
    */
   public function getHeader() {
     if (!isset($this->header)) {
-
+      $header = "";
       $cc = "";
       $bcc = "";
 
       if (count($this->cc) > 0) {
-        $cc = "Cc: " . $this->getEmail(self::CC) . "\r\n";
+        $cc = "Cc: " . $this->getCc() . "\r\n";
       }
 
       if (count($this->bcc) > 0) {
-        $bcc = "BCc: " . $this->getEmail(self::BCC) . "\r\n";
+        $bcc = "BCc: " . $this->getBcc() . "\r\n";
       }
 
-      $header = $this->getContentType();
-
       $header .= "From: " . $this->getFrom() . "\r\n" .
-              "Reply-To: " . $this->getFrom() . "\r\n" .
-              $cc .
-              $bcc .
-              "X-Mailer: PHP/" . phpversion();
-
+        "Reply-To: " . $this->getFrom() . "\r\n" .
+        $cc .
+        $bcc;
+      $header .= $this->getContentType();
+      $header .= "X-Mailer: PHP/" . phpversion() . "\r\n";
       return $header;
     } else {
       return $this->header;
@@ -151,99 +87,169 @@ class Email {
   }
 
   /**
-   * E-mail from address and name
-   * @param string $email
-   * @param string $name[optional]
+   * E-mail format
+   * @return int 
+   */
+  public function getFormat() {
+    return $this->format;
+  }
+
+  /**
+   * E-mail format
+   * @param int $format
+   * @return void
+   */
+  protected function setFormat($format) {
+    $this->format = $format;
+  }
+
+  /**
+   * E-mail content type
+   * @return string 
+   */
+  protected function getContentType() {
+    $header = "MIME-Version: 1.0" . "\r\n";
+    if (!empty($this->attachments)) {
+      $header .= "Content-type: multipart/mixed; boundary=\"{$this->boundary}\"\r\n";
+    }
+    return $header;
+  }
+
+  /**
+   * E-mail sender
+   * @param string $email Sender's e-mail address
+   * @param string $name[optional] Sender's name
    * @return void
    */
   public function setFrom($email, $name = null) {
-
-    if ($this->filterEmail($email)) {
-      $this->from["email"] = $this->filterEmail($email);
-    } else {
-      throw new Exception("Invalid e-mail address: " . $email);
-    }
-
+    $this->from["email"] = $email;
     $this->from["name"] = $name;
   }
 
   /**
-   * E-mail from address and name
-   * @param bool $formatted
-   * @return string if $formatted  is set to true and array if not
+   * E-mail sender
+   * @param bool $formatted[optional] If TRUE, it will return a string like:
+   * Some Name <somename@example.com>
+   * @return string|array If $formatted is FALSE, it will return an associative
+   * array containing 'email' and 'name'
    */
   public function getFrom($formatted = true) {
-
     if ($formatted) {
-      return $this->formatEmail($this->from["email"], $this->from["name"]);
+      return $this->formatEmail($this->from['email'], $this->from['name']);
     } else {
       return $this->from;
     }
   }
 
   /**
-   * To, Cc or Bcc e-mail addresses
-   * @param string $emailType Email::TO, Email::CC, Email::BCC
-   * @param bool $formatted[optional]
-   * @return string if $formatted  is set to true and array if not
+   * Carbon copy addresses
+   * @param bool $formatted[optional] If TRUE, it will return a string
+   * containing all e-mails separeted by ,(comma) like:
+   * Some Name <somename@example.com>, Some Other Name <someothername@example.com>
+   * @return string|array
    */
-  public function getEmail($emailType, $formatted = true) {
-
-    if ($emailType == Email::TO || $emailType == Email::CC || $emailType == Email::BCC) {
-
-      if ($formatted) {
-
-        $addresses = $this->$emailType;
-
-        $formattedEmails = "";
-
-        for ($i = 0; $i < count($this->$emailType); $i++) {
-
-          $formattedEmails .= $this->formatEmail($addresses[$i]["email"], $addresses[$i]["name"]);
-
-          if ($i < (count($addresses) - 1)) {
-            $formattedEmails .= ", ";
-          }
-        }
-
-        return $formattedEmails;
-      } else {
-        return $this->$emailType;
+  public function getCc($formatted = true) {
+    if ($formatted) {
+      $formattedEmails = array();
+      foreach ($this->cc as $account) {
+        $formattedEmails[] = $this->formatEmail($account['email'], $account['name']);
       }
+      return implode(', ', $formattedEmails);
     } else {
-      throw new Exception("Invalid e-mail type: " . $emailType);
+      return $this->cc;
     }
   }
 
   /**
-   * To, Cc or Bcc e-mail addresses
-   * @param string $emailType Email::TO, Email::CC, Email::BCC
-   * @param string $email address
-   * @param string $name[optional] owner
-   * @param bool $replaceAll[optional] if set to true, it replaces all previous added emails
+   * Carbon copy address
+   * @param string $email The e-mail address
+   * @param string $name The e-mail's holder
+   * @param bool $replace[optional] If TRUE it will delete all previous e-mail
+   * addresses
    * @return void
    */
-  public function addEmail($emailType, $email, $name = null, $replaceAll = false) {
-
-    if ($emailType == Email::TO || $emailType == Email::CC || $emailType == Email::BCC) {
-
-      if ($this->filterEmail($email)) {
-        if ($replaceAll) {
-          $this->to = array();
-        }
-
-        $emailArray = array(
-            "name" => $name,
-            "email" => $this->filterEmail($email)
-        );
-
-        array_push($this->$emailType, $emailArray);
-      } else {
-        throw new Exception("Invalid e-mail address: " . $email);
-      }
-    } else {
-      throw new Exception("Invalid e-mail type: " . $emailType);
+  public function addCc($email, $name, $replace = false) {
+    if ($replace) {
+      $this->cc = array();
     }
+    $this->cc[] = array(
+      "email" => $email,
+      "name" => $name
+    );
+  }
+
+  /**
+   * Blind carbon copy addresses
+   * @param bool $formatted[optional] If TRUE, it will return a string
+   * containing all e-mails separeted by ,(comma) like:
+   * Some Name <somename@example.com>, Some Other Name <someothername@example.com>
+   * @return string|array
+   */
+  public function getBcc($formatted = true) {
+    if ($formatted) {
+      $formattedEmails = array();
+      foreach ($this->bcc as $account) {
+        $formattedEmails[] = $this->formatEmail($account['email'], $account['name']);
+      }
+      return implode(', ', $formattedEmails);
+    } else {
+      return $this->bcc;
+    }
+  }
+
+  /**
+   * Blind carbon copy address
+   * @param string $email The e-mail address
+   * @param string $name The e-mail's holder
+   * @param bool $replace[optional] If TRUE it will delete all previous e-mail
+   * addresses
+   * @return void
+   */
+  public function addBcc($email, $name, $replace = false) {
+    if ($replace) {
+      $this->bcc = array();
+    }
+    $this->bcc[] = array(
+      "email" => $email,
+      "name" => $name
+    );
+  }
+
+  /**
+   * Recipient addresses
+   * @param bool $formatted[optional] If TRUE, it will return a string
+   * containing all e-mails separeted by ,(comma) like:
+   * Some Name <somename@example.com>, Some Other Name <someothername@example.com>
+   * @return string|array
+   */
+  public function getTo($formatted = true) {
+    if ($formatted) {
+      $formattedEmails = array();
+      foreach ($this->to as $account) {
+        $formattedEmails[] = $this->formatEmail($account['email'], $account['name']);
+      }
+      return implode(', ', $formattedEmails);
+    } else {
+      return $this->to;
+    }
+  }
+
+  /**
+   * Recipient address
+   * @param string $email The e-mail address
+   * @param string $name The e-mail's holder
+   * @param bool $replace[optional] If TRUE it will delete all previous e-mail
+   * addresses
+   * @return void
+   */
+  public function addTo($email, $name, $replace = false) {
+    if ($replace) {
+      $this->to = array();
+    }
+    $this->to[] = array(
+      "email" => $email,
+      "name" => $name
+    );
   }
 
   /**
@@ -264,77 +270,145 @@ class Email {
   }
 
   /**
-   * E-mail message
-   * @return string 
+   * The message in text format only
+   * @param bool $formatted[optional] If TRUE, it will format the message by
+   * adding headers and line size limitation to it
+   * @return string
    */
-  public function getMessage() {
-
-    if ($this->format == self::TEXT_FORMAT) {
-      return wordwrap($this->message, 70);
+  public function getTextMessage($formatted = true) {
+    if ($formatted) {
+      if (isset($this->htmlMessage)) {
+        $alt = "alt-";
+      } else {
+        $alt = '';
+      }
+      $msg = '';
+      $msg .= "--{$alt}{$this->boundary}\r\n";
+      $msg .= "Content-Type: text/plain; charset=\"iso-8859-1\"\r\n";
+      $msg .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+      $msg .= wordwrap($this->textMessage, 70) . "\r\n\r\n";
+      return $msg;
     } else {
-      return $this->message;
+      return $this->textMessage;
     }
   }
 
   /**
-   * E-mail message
-   * @param string $message 
+   * The message in text format only
+   * @param string $textMessage The text message
    * @return void
    */
-  public function setMessage($message) {
-    $this->message = $message;
+  public function setTextMessage($textMessage) {
+    $this->textMessage = $textMessage;
   }
 
   /**
-   * E-mail format
-   * @return int 
+   * The message in HTML format
+   * @param bool $formatted If TRUE, it will format the message by adding
+   * headers to it
+   * @return string
    */
-  public function getFormat() {
-    return $this->format;
+  public function getHtmlMessage($formatted = true) {
+    if ($formatted) {
+      if (isset($this->textMessage)) {
+        $alt = "alt-";
+      } else {
+        $alt = '';
+      }
+      $msg = '';
+      $msg .= "--{$alt}{$this->boundary}\r\n";
+      $msg .= "Content-Type: text/html; charset=\"iso-8859-1\"\r\n";
+      $msg .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+      $msg .= "{$this->htmlMessage}\r\n\r\n";
+      return $msg;
+    } else {
+      return $this->htmlMessage;
+    }
   }
 
   /**
-   * E-mail format
-   * @param int $format
+   * The message in HTML format
+   * @param string $htmlMessage The HTML message
    * @return void
    */
-  protected function setFormat($format) {
-
-    if ($format == self::TEXT_FORMAT || $format == self::HTML_FORMAT) {
-      $this->format = $format;
-    } else {
-      $this->format = self::TEXT_FORMAT;
-    }
+  public function setHtmlMessage($htmlMessage) {
+    $this->htmlMessage = $htmlMessage;
   }
 
   /**
-   * E-mail content type
-   * @return string 
+   * The e-mail attached files
+   * @param bool $formatted If TRUE, it will format all attachments by adding
+   * headers to them and putting all into a single string
+   * @return string|array
    */
-  protected function getContentType() {
-
-    switch ($this->format) {
-      case self::TEXT_FORMAT:
-
-        $header = "Content-type: text/plain\r\n";
-        return $header;
-        break;
-
-      case self::HTML_FORMAT:
-
-        $header = "MIME-Version: 1.0" . "\r\n";
-        $header .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-        return $header;
-        break;
+  public function getAttachments($formatted = true) {
+    if ($formatted) {
+      $attach = "";
+      foreach ($this->attachments as $attachment) {
+        $attach .= "--{$this->boundary}\r\n";
+        $attach .= "Content-Type: application/octet-stream; name=\"{$attachment['filename']}\"\r\n";
+        $attach .= "Content-Transfer-Encoding: base64\r\n";
+        $attach .= "Content-Disposition: attachment; filename=\"{$attachment['filename']}\"\r\n\r\n";
+        $attach .= "{$attachment['content']}\r\n\r\n";
+        $attach .= "--{$this->boundary}\r\n";
+      }
+      return $attach;
+    } else {
+      return $this->attachments;
     }
   }
 
   /**
-   * Send e-mail
-   * @return bool 
+   * Attach a file to the e-mail
+   * @param string $filePath The path to the file
+   * @param bool $replace If TRUE, it will delete all previous attachments
+   * @throws main\ExtendedException If the file is not found
+   */
+  public function addAttachment($filePath, $replace = false) {
+    if (file_exists($filePath)) {
+      if ($replace) {
+        $this->attachments = array();
+      }
+      $this->attachments[] = array(
+        'filename' => basename($filePath),
+        'content' => chunk_split(base64_encode(file_get_contents($filePath)))
+      );
+    } else {
+      throw new main\ExtendedException("{$filePath} not found", E_ERROR);
+    }
+  }
+
+  /**
+   * The complete message body containing the text message, the html message
+   * and all the attachments along with their headers
+   * @return string
+   */
+  public function getBody() {
+    $body = '';
+    if (isset($this->textMessage) && isset($this->htmlMessage)) {
+      $body .= "--{$this->boundary}\r\n";
+      $body .= "Content-type: multipart/alternative; boundary=\"alt-{$this->boundary}\"\r\n";
+    }
+    if (isset($this->textMessage)) {
+      $body .= $this->getTextMessage();
+    }
+    if (isset($this->htmlMessage)) {
+      $body .= $this->getHtmlMessage();
+    }
+    if (!empty($this->attachments)) {
+      $body .= $this->getAttachments();
+    }
+
+    return $body;
+  }
+
+  /**
+   * Send the e-mail
+   * @return bool TRUE if the php mail function was executed with success or 
+   * FALSE otherwise.
    */
   public function send() {
-    return mail($this->getEmail(Email::TO), $this->getSubject(), $this->getMessage(), $this->getHeader());
+    return mail($this->getTo(), $this->getSubject(), $this->getBody(), $this->getHeader());
   }
 
 }
