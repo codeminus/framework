@@ -410,14 +410,3 @@ class Email {
   }
 
 }
-
-$e = new Email();
-$e->setFrom('wilson@codeminus.org', 'Wilson Santos');
-$e->addTo('cathaldallan@gmail.com', 'Cathal Dallan');
-$e->setSubject('test mail');
-$e->setTextMessage('test message');
-$e->setHtmlMessage('<h1>HTML message</h1>');
-$e->addAttachment('session.pdf');
-//echo $e->getHeader();
-//echo $e->getBody();
-$e->send();
