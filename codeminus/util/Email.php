@@ -7,7 +7,7 @@ use codeminus\main as main;
 /**
  * E-mail sender
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.0
+ * @version 1.0.1
  */
 class Email {
 
@@ -109,9 +109,7 @@ class Email {
    */
   protected function getContentType() {
     $header = "MIME-Version: 1.0" . "\r\n";
-    if (!empty($this->attachments)) {
-      $header .= "Content-type: multipart/mixed; boundary=\"{$this->boundary}\"\r\n";
-    }
+    $header .= "Content-type: multipart/mixed; boundary=\"{$this->boundary}\"\r\n";
     return $header;
   }
 
@@ -412,3 +410,14 @@ class Email {
   }
 
 }
+
+$e = new Email();
+$e->setFrom('wilson@codeminus.org', 'Wilson Santos');
+$e->addTo('cathaldallan@gmail.com', 'Cathal Dallan');
+$e->setSubject('test mail');
+$e->setTextMessage('test message');
+$e->setHtmlMessage('<h1>HTML message</h1>');
+$e->addAttachment('session.pdf');
+//echo $e->getHeader();
+//echo $e->getBody();
+$e->send();
