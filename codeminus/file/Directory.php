@@ -259,12 +259,13 @@ class Directory {
    * Copies all files from a folder to another recursively
    * @param string $source source path to copy from
    * @param string $destination destination path to copy to
-   * @param bool $overwrite[optional] if TRUE it will overwrite all
-   * existent files
+   * @param bool $overwrite[optional] if TRUE it will overwrite all existent
+   * files
+   * @param bool $recursively[optional] if TRUE it will also copy the subfolders
    * @return void
    * @throws codeminus\main\ExtendedException
    */
-  public static function recursiveCopy($source, $destination, $overwrite = false) {
+  public static function copy($source, $destination, $overwrite = false, $recursively = true) {
     if (!is_dir($source)) {
       throw new main\ExtendedException('Unable to find <b>' . $source . '</b> directory');
     }
@@ -280,7 +281,9 @@ class Directory {
         $srcFilePath = $source . DIRECTORY_SEPARATOR . $file;
         $dstFilePath = $destination . DIRECTORY_SEPARATOR . $file;
         if (is_dir($srcFilePath)) {
-          self::recursiveCopy($srcFilePath, $dstFilePath, $overwrite);
+          if ($recursively) {
+            self::copy($srcFilePath, $dstFilePath, $overwrite);
+          }
         } else {
           if (file_exists($dstFilePath) && $overwrite) {
             self::delete($dstFilePath);
