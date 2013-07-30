@@ -34,7 +34,7 @@ main\Autoloader::init();
               <input type="text" name="db_user" value="root" id="db_user" /><br/>
               <label for="db_pass">Password</label>
               <input type="text" name="db_pass" id="db_pass" /><br/>
-              <label for="db_name">Database</label>
+              <label for="db_name">Schema</label>
               <input type="text" name="db_name" id="db_name" /><br/>
               <label for="db_table">Table name</label>
               <input type="text" name="db_table" id="db_table" />
