@@ -75,7 +75,7 @@ function timeZoneOptions() {
                 <label for="dev_env_db_pass">password:</label>
                 <input type="text" name="dev_env_db_pass" value="" 
                        id="dev_env_db_pass" class="medium" />
-                <label for="dev_env_db_name">name:</label>
+                <label for="dev_env_db_name">schema:</label>
                 <input type="text" name="dev_env_db_name" value="" 
                        id="dev_env_db_name" class="medium" />
               </section>
