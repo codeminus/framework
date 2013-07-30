@@ -36,7 +36,7 @@ select{
 input[type="radio"], input[type="checkbox"]{
   border: none;
   position: relative;
-  top: 2px;
+  top: 1px;
   vertical-align: baseline;
 }
 input[type="text"],
