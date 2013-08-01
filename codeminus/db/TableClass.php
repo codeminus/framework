@@ -172,7 +172,7 @@ use codeminus\db as db;
  * Description of ' . $className . '
  * @author 
  */
-class ' . $className . ' extends db\Table { 
+class ' . $className . ' extends db\TableModel { 
 ' . $attrDeclaration . '  
 
   /**

@@ -43,7 +43,7 @@ class Installer {
    * otherwise
    */
   public function createApp($reinstall = false) {
-    file\Directory::recursiveCopy('../app-skeleton', $this->installPath, $reinstall);
+    file\Directory::copy('../app-skeleton', $this->installPath, $reinstall);
     $iniFilePath = $this->installPath . '/app/config/main.ini';
     $this->ini->save($iniFilePath, $reinstall);
     return true;
