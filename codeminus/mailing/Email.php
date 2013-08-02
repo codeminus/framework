@@ -425,18 +425,25 @@ class Email {
   /**
    * Send the e-mail
    * @return bool TRUE if the php mail function was executed with success or 
-   * FALSE otherwise.
+   * FALSE otherwise. If using SMTP to send e-mail, this method will return
+   * TRUE if the response code from the server is equal to 250 after sending
+   * .(end of message) request.
    */
   public function send() {
     if (isset($this->smtp)) {
-      $this->smtp->writeln("MAIL FROM: <{$this->getFrom(false)['email']}>");
+      $from = $this->getFrom(false);
+      $fromMail = $from['email'];
+      $this->smtp->writeln("MAIL FROM: <{$fromMail}>");
       foreach ($this->to as $recipient) {
         $this->smtp->writeln("RCPT TO: <{$recipient['email']}>");
       }
       $this->smtp->writeln('DATA');
-      $this->smtp->writeln('Subject: ' . $this->getSubject() . "\r\n" . 'To: '. $this->getTo() . "\r\n" . $this->getHeader() . "\r\n\r\n" . $this->getBody() . "\r\n");
+      $this->smtp->writeln('Subject: ' . $this->getSubject() . "\r\n" . 'To: ' . $this->getTo() . "\r\n" . $this->getHeader() . "\r\n\r\n" . $this->getBody() . "\r\n");
       $this->smtp->writeln('.');
+      $logs = $this->smtp->getLogs();
+      $lastMessage = $logs[count($this->smtp->getLogs()) - 1]['response'];
       $this->smtp->close();
+      return substr($lastMessage, 0, 3) == 250;
     } else {
       return mail($this->getTo(), $this->getSubject(), $this->getBody(), $this->getHeader());
     }
