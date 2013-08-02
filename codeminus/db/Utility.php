@@ -211,10 +211,11 @@ class Utility {
     }
     $sql = "SHOW TABLE STATUS FROM " . $dbConn->getDatabase() . " LIKE '$tableName'";
     $result = $dbConn->query($sql);
+    $fetch = $result->fetch_assoc();
     if (isset($info)) {
-      return $result->fetch_assoc()[$info];
+      return $fetch[$info];
     } else {
-      return $result->fetch_assoc();
+      return $fetch;
     }
   }
 
@@ -302,10 +303,11 @@ class Utility {
    * @return mixed String if $info is given and array otherwise
    */
   public static function getTableColumnInfo($tableName, $tableColumn, $info = null, Connection $dbConn = null) {
+    $tableColumns = self::getTableColumns($tableName, true, $dbConn, $tableColumn);
     if (!isset($info)) {
-      return self::getTableColumns($tableName, true, $dbConn, $tableColumn);
+      return $tableColumns;
     } else {
-      return self::getTableColumns($tableName, true, $dbConn, $tableColumn)[$info];
+      return $tableColumns[$info];
     }
   }
 
