@@ -19,8 +19,9 @@ final class Framework {
    * otherwise
    */
   public static function appConstants() {
-    if (isset(get_defined_constants(true)['user'])) {
-      return get_defined_constants(true)['user'];
+    $definedConstants = get_defined_constants(true);
+    if (isset($definedConstants['user'])) {
+      return $definedConstants['user'];
     } else {
       return false;
     }
