@@ -594,7 +594,7 @@ abstract class TableModel {
   /**
    * The joined class instance
    * @param string $className The name of the class to get the instance from 
-   * @return \codeminus\db\Table
+   * @return \codeminus\db\TableModel
    */
   public function getJoined($className) {
     return $this->joinedTables[$className]['obj'];
