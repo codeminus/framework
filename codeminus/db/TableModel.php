@@ -34,12 +34,10 @@ abstract class TableModel {
 
   const INACTIVE = 0;
   const ACTIVE = 1;
-
   //Database operations
   const INSERT = 0;
   const UPDATE = 1;
   const DELETE = 2;
-
   //Error messages    
   const ERR_NOSQLSTMT = 'SQL statement not defined';
   const ERR_INVALIDSQL = 'Invalid SQL statement';
@@ -102,7 +100,7 @@ abstract class TableModel {
 
   /**
    * Database table columns
-   * @param bool $completeInfo[optional] if TRUE, it will return a
+   * @param bool $completeInfo [optional] if TRUE, it will return a
    * multi-dimentional array like the following:
    * $columns[0]['name']<br/>
    * $columns[0]['type']<br/>
@@ -159,7 +157,7 @@ abstract class TableModel {
    * Adds a table field and its value to be used in the INSERT statement
    * @param string $field database table field name
    * @param string $value database table field value
-   * @param bool $quoted[optional] adds single quote to $value if set to true
+   * @param bool $quoted [optional] adds single quote to $value if set to true
    * @example addInsertField('field', 'value') will add "field='value'" to the
    * INSERT statement.
    * @return void
@@ -201,7 +199,7 @@ abstract class TableModel {
    * Adds a table field and its value to be used in the UPDATE statement
    * @param string $field database table field name
    * @param string $value database table field value
-   * @param bool $quoted[optional] adds single quote to $value if set to true
+   * @param bool $quoted [optional] adds single quote to $value if set to true
    * @return void
    * @example addUpdateField('field', 'value') will add "field='value'" to the
    * UPDATE statement.
@@ -248,26 +246,18 @@ abstract class TableModel {
    * @throws codeminus\main\ExtendedException
    */
   protected function setRequiredFields($operation, $fields) {
+    $fieldArray = array();
+    foreach (explode(',', $fields) as $field) {
+      array_push($fieldArray, trim($field));
+    }
     switch ($operation) {
       case self::INSERT:
-        $fieldArray = array();
-        foreach (explode(',', $fields) as $field) {
-          array_push($fieldArray, trim($field));
-        }
         $this->requiredInsertFields = $fieldArray;
         break;
       case self::UPDATE:
-        $fieldArray = array();
-        foreach (explode(',', $fields) as $field) {
-          array_push($fieldArray, trim($field));
-        }
         $this->requiredUpdateFields = $fieldArray;
         break;
       case self::DELETE:
-        $fieldArray = array();
-        foreach (explode(',', $fields) as $field) {
-          array_push($fieldArray, trim($field));
-        }
         $this->requiredDeleteFields = $fieldArray;
         break;
       default:
@@ -325,7 +315,7 @@ abstract class TableModel {
   /**
    * SQL statement
    * @param string $sqlStatement
-   * @param int $operation[optional] e.g.: self::INSERT, self::UPDATE,
+   * @param int $operation [optional] e.g.: self::INSERT, self::UPDATE,
    * self::DELETE
    * @return void
    */
@@ -379,7 +369,7 @@ abstract class TableModel {
 
   /**
    * Create SQL UPDATE statement
-   * @param string $whereClause[optional] required if $strictUpdate is set true
+   * @param string $whereClause [optional] required if $strictUpdate is set true
    * @return bool
    */
   public function createUpdateStatement($whereClause = null) {
@@ -537,7 +527,7 @@ abstract class TableModel {
   /**
    * Validates restrictions for a given operation
    * @param int $operation Table::UPDATE, Table::DELETE
-   * @param string $whereClause[optional]
+   * @param string $whereClause [optional]
    * @return bool
    * @throws codeminus\main\ExtendedException
    */
@@ -565,9 +555,8 @@ abstract class TableModel {
 
   /**
    * Current Date and time
-   * @param bool $timestamp[optional] If TRUE, returns the date as Unix
-   * timestamp. If FALSE, returns as a string
-   * false, return as int
+   * @param bool $timestamp [optional] If TRUE, returns the date as Unix
+   * timestamp. If FALSE, returns it as a string
    * @return string|int 
    */
   protected function getCurrentDate($timestamp = false) {
@@ -628,9 +617,9 @@ abstract class TableModel {
   public function select($fields = '*', $whereClause = null) {
     try {
       $this->setSqlStatement(
-        "SELECT " . $fields . " FROM " . $this->getTableName()
-        . $this->getJoinStatement()
-        . " " . $whereClause);
+              "SELECT " . $fields . " FROM " . $this->getTableName()
+              . $this->getJoinStatement()
+              . " " . $whereClause);
       return $this->executeQuery();
     } catch (main\ExtendedException $e) {
       echo $e->getFormattedMessage();
@@ -667,7 +656,7 @@ abstract class TableModel {
           foreach ($fields as $property => $value) {
             $this->$property = $value;
           }
-        //if not, search into joined tables for the corresponding class table
+          //if not, search into joined tables for the corresponding class table
         } else {
           foreach ($this->joinedTables as $class) {
             if ($class['obj']->getTableName() == $table) {
