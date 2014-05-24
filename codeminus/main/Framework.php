@@ -15,7 +15,7 @@ final class Framework {
 
   /**
    * Returns the user defined constants as an associative array
-   * @return mixed An array with there's any user defined constants or FALSE
+   * @return mixed An array if there's any user defined constants or FALSE
    * otherwise
    */
   public static function appConstants() {
