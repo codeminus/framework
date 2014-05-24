@@ -19,10 +19,10 @@ class Connection extends \mysqli {
   /**
    * Opens connection with a database server
    * Default values will be used when an optional parameter isn't set.
-   * @param string $host[optional]
-   * @param string $user[optional]
-   * @param string $pass[optional]
-   * @param string $database[optional]
+   * @param string $host [optional]
+   * @param string $user [optional]
+   * @param string $password [optional]
+   * @param string $database [optional]
    * @return Connection
    */
   public function __construct($host = DB_HOST, $user = DB_USER, $password = DB_PASS, $database = DB_NAME) {
