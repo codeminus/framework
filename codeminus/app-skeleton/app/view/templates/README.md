@@ -1,1 +1,1 @@
-Your application templates go on this folder
+Your application templates goes on this folder

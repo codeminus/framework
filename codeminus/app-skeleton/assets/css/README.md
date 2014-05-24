@@ -1,1 +1,1 @@
-Your application style sheets go on this folder
+Your application style sheets goes on this folder

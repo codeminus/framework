@@ -1,1 +1,1 @@
-Your application models go on this folder
+Your application models goes on this folder

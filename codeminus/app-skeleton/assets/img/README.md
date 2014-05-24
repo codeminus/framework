@@ -1,1 +1,1 @@
-Your application images go on this folder
+Your application images goes on this folder

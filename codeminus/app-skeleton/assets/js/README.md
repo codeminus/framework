@@ -1,1 +1,1 @@
-Your application javascript go on this folder
+Your application javascript goes on this folder
