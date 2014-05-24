@@ -84,7 +84,6 @@ class Router {
 
         //if neither controller is found    
       } else {
-
         throw new ExtendedException('Neither <b>' . self::$CONTROLLER_NAME . '</b> or <b>' . ERROR_CONTROLLER . '</b> were found in <b>' . CONTROLLER_PATH . '</b>', E_ERROR);
       }
 
