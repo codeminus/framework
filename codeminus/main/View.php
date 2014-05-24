@@ -35,7 +35,7 @@ class View {
   public static function getTitle() {
     if (self::$TITLE) {
       return self::$TITLE;
-      //if none is set it creates on based on controller name and controller
+      //if none is set it creates one based on controller name and controller
       //called method name
     } else {
       return Router::$CONTROLLER_NAME . ' :: ' . Router::$CONTROLLER_METHOD_NAME;
@@ -74,7 +74,7 @@ class View {
    * Renders the view
    * @param string $view
    * @param bool $autoIncludes if set to false it wont require the
-   * DEFAULT_INCLUDE_HEADER and the DEFAULT_INCLUDE_FOOTER;
+   * VIEW_DEFAULT_HEADER and the VIEW_DEFAULT_FOOTER;
    * @param bool $showAbout if set to TRUE show a list of all included files
    * @return void
    * @throws ExtendedException
@@ -105,7 +105,6 @@ class View {
    * Returns informations about the files that generated the view. It wont show
    * the files included after the call of this method. To show all included
    * files, pass TRUE to $showAbout parameter on render() method
-   * this
    * @return string
    * @throws ExtendedException
    */
