@@ -92,6 +92,10 @@ class Session {
     }
   }
 
+  /**
+   * Unsets only $_SESSION['user'] var
+   * @return void
+   */
   public static function logout() {
     if (isset($_SESSION['user'])) {
       unset($_SESSION['user']);
@@ -104,8 +108,10 @@ class Session {
    * @return void
    */
   public static function close() {
-    session_unset();
-    session_destroy();
+    if (session_id()) {
+      session_unset();
+      session_destroy();
+    }
   }
 
 }
