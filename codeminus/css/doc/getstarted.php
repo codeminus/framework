@@ -71,7 +71,7 @@
   </tr>
   <tr>
     <td>layouts.css</td>
-    <td>A grid system with 15 columns for a 920px wide container.</td>
+    <td>A grid system with 10 columns for a 920px wide container.</td>
   </tr>
   <tr>
     <td>navs.css</td>

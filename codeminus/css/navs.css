@@ -308,12 +308,10 @@
   background-color: white;
 }
 .nav-pager.small > li > a{
-  font-size: 80%;
   padding: 4px 8px;
 }
 .nav-pager.tiny > li > a{
-  font-size: 60%;
-  padding: 4px 6px;
+  padding: 4px 4px;
 }
 /* ==========================================================================
    Dropdown
