@@ -6,17 +6,11 @@ namespace codeminus\util;
  * Application session
  *
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.0
+ * @version 1.1
  */
 class Session {
 
-  /**
-   * Starts a new session if there isnt one already
-   * @return Session
-   */
-  public function __construct() {
-    self::open();
-  }
+  use \codeminus\traits\Singleton;
 
   /**
    * Starts a new session if there isnt one already
@@ -61,7 +55,7 @@ class Session {
     if (isset($_SESSION['message'])) {
       $msg = $_SESSION['message'];
       if ($onlyOnce) {
-        $this->setMessage(null);
+        self::setMessage(null);
       }
       return $msg;
     } else {
