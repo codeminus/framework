@@ -7,7 +7,7 @@ namespace codeminus\util;
  * @author Wilson Santos <wilson@codeminus.org>
  * @version 1.0
  */
-abstract class SystemMessage {
+class SystemMessage {
 
   private $code;
   private $messages;
