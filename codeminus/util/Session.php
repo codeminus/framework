@@ -6,9 +6,11 @@ namespace codeminus\util;
  * Application session
  *
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.1
+ * @version 1.2
  */
 class Session {
+
+  private static $key;
 
   use \codeminus\traits\Singleton;
 
@@ -23,13 +25,31 @@ class Session {
   }
 
   /**
+   * A key to be prepended to session variables' names to increase security
+   * @return string
+   */
+  public static function getKey() {
+    return self::$key;
+  }
+
+  /**
+   * A key to be prepended to session variables' names to increase security
+   * @param type $key
+   * @return void
+   */
+  public static function setKey($key) {
+    self::$key = $key;
+  }
+
+  /**
    * Session user
    * @return mixed depending on how it was stored (ex.: array, Object).
    * FALSE if no user was defined
    */
   public static function getUser() {
-    if (isset($_SESSION['user'])) {
-      return $_SESSION['user'];
+    self::open();
+    if (isset($_SESSION[self::getKey() . 'user'])) {
+      return $_SESSION[self::getKey() . 'user'];
     } else {
       return false;
     }
@@ -42,7 +62,8 @@ class Session {
    * @return void
    */
   public static function setUser($user) {
-    $_SESSION['user'] = $user;
+    self::open();
+    $_SESSION[self::getKey() . 'user'] = $user;
   }
 
   /**
@@ -52,8 +73,9 @@ class Session {
    * FALSE if no message was defined
    */
   public static function getMessage($onlyOnce = false) {
-    if (isset($_SESSION['message'])) {
-      $msg = $_SESSION['message'];
+    self::open();
+    if (isset($_SESSION[self::getKey() . 'message'])) {
+      $msg = $_SESSION[self::getKey() . 'message'];
       if ($onlyOnce) {
         self::setMessage(null);
       }
@@ -70,7 +92,8 @@ class Session {
    * @return void
    */
   public static function setMessage($message) {
-    $_SESSION['message'] = $message;
+    self::open();
+    $_SESSION[self::getKey() . 'message'] = $message;
   }
 
   /**
@@ -80,7 +103,8 @@ class Session {
    * @return void
    */
   public static function validate($redirectURL) {
-    if (!isset($_SESSION['user'])) {
+    self::open();
+    if (!isset($_SESSION[self::getKey() . 'user'])) {
       header("Location: " . $redirectURL);
       exit;
     }
@@ -91,8 +115,9 @@ class Session {
    * @return void
    */
   public static function logout() {
-    if (isset($_SESSION['user'])) {
-      unset($_SESSION['user']);
+    self::open();
+    if (isset($_SESSION[self::getKey() . 'user'])) {
+      unset($_SESSION[self::getKey() . 'user']);
     }
   }
 
@@ -102,10 +127,9 @@ class Session {
    * @return void
    */
   public static function close() {
-    if (session_id()) {
-      session_unset();
-      session_destroy();
-    }
+    self::open();
+    session_unset();
+    session_destroy();
   }
 
 }
