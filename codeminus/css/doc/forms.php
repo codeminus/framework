@@ -169,6 +169,14 @@
     <label for="c">I like chinese food!</label><br/>
   </fieldset>
 </form>
+<form class="form-input-padding-large form-input-perline">
+  <fieldset>
+    <legend>Date input</legend>
+    <input type="text" name="someDate" id="someDate" data-calendar placeholder="dd/mm/yyyy" />
+    <!--<span class="tooltip" data-tooltip-for="someDate">Dica de input</span>-->
+    <input type="date" name="dt" />
+  </fieldset>
+</form>
 <form class="form-input-perline form-input-padding-large" >
   <fieldset class="shadow-small">
     <legend>.form-input-perline .form-input-padding-large</legend>
@@ -191,15 +199,6 @@
       <label for="msg3">Message</label>
       <textarea id="msg3" rows="4" data-width-from="width-reference">data-width-from</textarea>
     </span>
-
     <input type="button" value="Send" class="btn-blue"/>
-  </fieldset>
-</form>
-<form class="form-input-padding-large form-input-perline">
-  <fieldset>
-    <legend>Date input</legend>
-    <input type="text" name="someDate" id="someDate" data-calendar placeholder="dd/mm/yyyy" />
-    <!--<span class="tooltip" data-tooltip-for="someDate">Dica de input</span>-->
-    <input type="date" name="dt" />
   </fieldset>
 </form>
