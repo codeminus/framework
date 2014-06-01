@@ -195,3 +195,11 @@
     <input type="button" value="Send" class="btn-blue"/>
   </fieldset>
 </form>
+<form class="form-input-padding-large form-input-perline">
+  <fieldset>
+    <legend>Date input</legend>
+    <input type="text" name="someDate" id="someDate" data-calendar placeholder="dd/mm/yyyy" />
+    <!--<span class="tooltip" data-tooltip-for="someDate">Dica de input</span>-->
+    <input type="date" name="dt" />
+  </fieldset>
+</form>
