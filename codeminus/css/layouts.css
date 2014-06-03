@@ -21,64 +21,76 @@
 [class^="span"], [class*=" span"]{
   float:left;
 }
-.span10{
+.span12{
   width: 920px;
 }
+.span11{
+  width: 842.5px;
+}
+.span10{
+  width: 765px;
+}
 .span9{
-  width: 827px;
+  width: 687.5px;
 }
 .span8{
-  width: 744px;
+  width: 610px;
 }
-.span7{
-  width: 641px;
+.span7, .childs-span7 > *{
+  width: 532.5px;
 }
-.span6{
-  width: 548px;
-}
-.span5, .childs-span5 > *{
+.span6, .childs-span6 > *{
   width: 455px;
 }
+.span5, .childs-span5 > *{
+  width: 377.5px;
+}
 .span4, .childs-span4 > *{
-  width: 362px;
+  width: 300px;
 }
 .span3, .childs-span3 > *{
-  width: 269px;
+  width: 222.5px;
 }
 .span2, .childs-span2 > *{
-  width: 176px;
+  width: 145px;
 }
 .span1, .childs-span1 > *{
-  width: 83px;
+  width: 67.5px;
 }
 
-.offset10{
+.offset12{
   margin-left: 920px;
 }
+.offset11{
+  margin-left: 842.5px;
+}
+.offset10{
+  margin-left: 765px;
+}
 .offset9{
-  margin-left: 827px;
+  margin-left: 687.5px;
 }
 .offset8{
-  margin-left: 744px;
+  margin-left: 610px;
 }
 .offset7{
-  margin-left: 641px;
+  margin-left: 532.5px;
 }
 .offset6{
-  margin-left: 548px;
-}
-.offset5{
   margin-left: 455px;
 }
+.offset5{
+  margin-left: 377.5px;
+}
 .offset4{
-  margin-left: 362px;
+  margin-left: 300px;
 }
 .offset3{
-  margin-left: 269px;
+  margin-left: 222.5px;
 }
 .offset2{
-  margin-left: 176px;
+  margin-left: 145px;
 }
 .offset1{
-  margin-left: 83px;
+  margin-left: 67.5px;
 }
