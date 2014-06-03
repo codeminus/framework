@@ -278,5 +278,3 @@ class DamageControl {
   }
   
 }
-
-var_dump(DamageControl::validateChars('oosn', 'wils{on'));
