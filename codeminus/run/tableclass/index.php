@@ -25,7 +25,7 @@ main\Autoloader::init();
       <form id="classForm">
         <input type="hidden" name="generateCode" />
         <div class="row">
-          <section class="container-box rounded span5">
+          <section class="container-box rounded span6">
             <header>Database connection parameters</header>
             <section class="text-align-right" id="dbParams">
               <label for="db_host">Host</label>
@@ -40,7 +40,7 @@ main\Autoloader::init();
               <input type="text" name="db_table" id="db_table" />
             </section>
           </section>
-          <section class="container-box rounded span5">
+          <section class="container-box rounded span6">
             <header>Class properties</header>
             <section data-height-from="dbParams">
               <label for="class_namespace">Namespace</label><br/>

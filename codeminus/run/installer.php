@@ -47,7 +47,7 @@ function timeZoneOptions() {
 
             <!-- DEV ENV -->
 
-            <section class="container-box container-alert info rounded span5">
+            <section class="container-box container-alert info rounded span6">
               <section>
                 <h5 class="text-normal">Development environment</h5>
                 <div class="divider"></div>
@@ -83,7 +83,7 @@ function timeZoneOptions() {
 
             <!-- PRO ENV -->
 
-            <section class="container-box container-alert success rounded span5">
+            <section class="container-box container-alert success rounded span6">
               <section>
                 <h5 class="text-normal">Production environment</h5>
                 <div class="divider"></div>
