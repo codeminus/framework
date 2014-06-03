@@ -18,6 +18,6 @@ use codeminus\main as main;
     </section>
   </div>
   <p>
-    Go to <a href="<?php echo APP_HTTP_PATH ?>">main page</a>.
+      Go to <a href="<?php echo main\Controller::linkTo('index') ?>">main page</a>.
   </p>
 </div>
