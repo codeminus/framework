@@ -343,7 +343,7 @@ button > .caret{
    ========================================================================== */
 .breadcrumb {
     padding: 8px 15px;
-    margin: 0px 0px 20px;
+    margin: 0px;
     list-style: none;
     background-color: #f4f4f4;
     border-radius: 3px;
