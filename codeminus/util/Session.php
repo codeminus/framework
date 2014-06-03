@@ -103,7 +103,12 @@ class Session {
    */
   public static function get($var){
     self::open();
-    return $_SESSION[$var];
+    if(isset($_SESSION[$var])){
+      return $_SESSION[$var];
+    }else{
+      return null;
+    }
+    
   }
 
   /**
