@@ -172,8 +172,10 @@
 <form class="form-input-padding-large form-input-perline">
   <fieldset>
     <legend>Date input</legend>
-    <input type="text" name="someDate" id="someDate" data-calendar placeholder="dd/mm/yyyy" />
-    <!--<span class="tooltip" data-tooltip-for="someDate">Dica de input</span>-->
+
+
+    <input type="text" name="someDate" id="someDate" data-calendar data-calendar-format="yyyy.mm.dd" placeholder="dd/mm/yyyy" />
+    <span class="tooltip" data-tooltip-for="someDate">Dica de input</span>
     <input type="date" name="dt" />
   </fieldset>
 </form>

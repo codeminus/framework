@@ -29,6 +29,7 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
     <meta name="description" content="Codeminus: Less code, fast development, more Results. PHP MVC Framework and Front-End Framework."></meta>
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.ico">
     <link rel="stylesheet" href="../codeminus.css" />
+    <link rel="stylesheet" href="../calendar.css" />
     <link rel="stylesheet" href="../famfamfam.css" />
     <script src="../../js/jquery.js"></script>
   </head>
@@ -75,9 +76,10 @@ if (isset($_GET['c']) && array_key_exists($_GET['c'], $contents)) {
     </div>
     <div class="container-centered">
       <div class="container-lower-foot">
-        <div class="float-right">&copy; 2013 Codeminus. All rights reserved</div>
+        <div class="float-right">&copy; 2014 Codeminus. All rights reserved</div>
       </div>
     </div>
     <script type="text/javascript" src="../../js/codeminus.js"></script>
+    <script type="text/javascript" src="../../js/calendar.js"></script>
   </body>
 </html>

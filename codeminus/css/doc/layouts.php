@@ -1,6 +1,6 @@
 <div class="row">
   <div class="span3">.span3</div>
-  <div class="span6">.span10</div>
+  <div class="span8">.span8</div>
   <div class="span1">.span1</div>
 </div>
 <div class="row">
@@ -11,7 +11,7 @@
       <li><a href="#">Menu Item</a></li>
     </ul>
   </div>
-  <div class="span6">
+  <div class="span8">
     <div class="container-box block">
       <header>Header</header>
       <section>Content</section>
