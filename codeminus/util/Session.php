@@ -123,6 +123,16 @@ class Session {
   }
 
   /**
+   * Removes a variable from the session
+   * @param mixed $var
+   * @return void
+   */
+  public static function remove($var){
+    self::open();
+    unset($_SESSION[$var]);
+  }
+  
+  /**
    * Validates a session checking if there's a authenticated user on the session
    * @param string $redirectURL to redirect the page to if there's no 
    * authenticated user
