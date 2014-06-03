@@ -42,12 +42,14 @@ input[type="radio"], input[type="checkbox"]{
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
 textarea{
   -webkit-appearance: none;
 }
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
 textarea,
 select{
   width: 180px;
@@ -56,6 +58,7 @@ select{
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="date"]:focus,
 textarea:focus,
 select:focus{
   background-color: #ffffee;
@@ -67,6 +70,7 @@ select:focus{
   transition: border linear 0.3s, box-shadow ease-in-out 0.3s;
 }
 input:disabled,
+button:disabled,
 textarea:disabled{
   background-color: #fafafa !important;
   color: #bbb !important;
