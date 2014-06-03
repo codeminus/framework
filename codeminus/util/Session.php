@@ -97,6 +97,27 @@ class Session {
   }
 
   /**
+   * Session variable
+   * @param string $var
+   * @return mixed
+   */
+  public static function get($var){
+    self::open();
+    return $_SESSION[$var];
+  }
+
+  /**
+   * Session variable
+   * @param string $var
+   * @param mixed $value
+   * @return void
+   */
+  public static function set($var, $value){
+    self::open();
+    $_SESSION[$var] = $value;
+  }
+
+  /**
    * Validates a session checking if there's a authenticated user on the session
    * @param string $redirectURL to redirect the page to if there's no 
    * authenticated user
