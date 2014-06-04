@@ -66,6 +66,7 @@ $(document).ready(function() {
     e.preventDefault();
     e.stopPropagation();
   });
+  
 });
 
 var months = new Array(
