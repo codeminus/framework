@@ -17,3 +17,80 @@
   position: absolute;
   top: 50%;
 }
+/* ==========================================================================
+   Basic triangle
+   ========================================================================== */
+.triangle{
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* ==========================================================================
+   Popover container **alpha
+   ========================================================================== */
+.tooltip{
+  background-color: #444;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 4px;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+}
+
+.tooltip .triangle{
+  border: solid 8px transparent;
+  border-top: solid 8px #444;
+}
+
+/* ==========================================================================
+   Popover container **alpha
+   ========================================================================== */
+.popover{
+  position: absolute;
+  border: solid 1px #d8d8d8;
+  border-radius: 4px;
+  display: none;
+  z-index: 1000;
+}
+.popover > header{
+  background-color: #f3f3f3;
+  padding: 10px 13px;
+  border-bottom: solid 1px #d8d8d8;
+}
+.popover > header:first-child{
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.popover > section,
+.popover > div{
+  background-color: #fff;
+  padding: 10px 13px;
+}
+.popover > section:last-of-type,
+.popover > div:last-of-type{
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;  
+}
+.popover > section:first-child,
+.popover > div:first-child{
+  border-radius: 4px;
+}
+.popover .triangle{
+  border: solid 12px transparent;
+}
+.popover-top .triangle{
+  border-top: solid 10px #d8d8d8;
+}
+.popover-right .triangle{
+  border-right: solid 10px #d8d8d8;
+}
+.popover-bottom .triangle{
+  border-bottom: solid 10px #d8d8d8;
+}
+.popover-left .triangle{
+  border-left: solid 10px #d8d8d8;
+}
