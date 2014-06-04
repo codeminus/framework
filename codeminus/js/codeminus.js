@@ -5,6 +5,147 @@ $(document).ready(function() {
    ========================================================================== */
   (function($) {
 
+    /* ==========================================================================
+     Tooltip
+     ========================================================================== */
+
+    $.fn.tooltip = function() {
+      var tooltip = this;
+      var input = $('#' + $(this).attr('data-tooltip-for'));
+      tooltip.addClass('tooltip');
+
+      input.focus(function() {
+        tooltip.fadeIn();
+      });
+
+      input.focusout(function() {
+        tooltip.fadeOut();
+      });
+
+      var triangle = document.createElement('span');
+      $(triangle).addClass('triangle');
+      this.append(triangle);
+
+      //position tooltip
+      x = input.offset().left;
+      y = input.offset().top - $(this).outerHeight() - $(triangle).height();
+      $(this).css('left', x);
+      $(this).css('top', y - 2);
+
+      //positioning triangle
+      x = $(this).offset().left;
+      y = $(this).offset().top + $(this).outerHeight();
+      $(triangle).css('left', x + 4);
+      $(triangle).css('top', y - 1);
+      
+    };
+
+    $('[data-tooltip-for]').append(function() {
+      
+
+    });
+
+    $('[data-tooltip-for]').each(function() {
+      $(this).tooltip();
+    });
+
+    /* ========================================================================
+     Popover
+     ======================================================================== */
+    $.fn.popover = function() {
+
+      var pop = this;
+      this.addClass('popover');
+      this.addClass('shadow-medium');
+
+      var elem = $('#' + this.attr('data-popover-for'));
+      elem.click(function() {
+        pop.toggle();
+      });
+
+      var triangle = document.createElement('span');
+      $(triangle).addClass('triangle');
+      this.append(triangle);
+
+      var whiteTriangle = document.createElement('span');
+      $(whiteTriangle).addClass('triangle');
+      this.append(whiteTriangle);
+
+      if (this.hasClass('popover-top')) {
+        //position
+        x = elem.offset().left + (elem.width() / 2) - (this.width() / 2);
+        y = elem.offset().top - this.outerHeight() - $(triangle).outerHeight() / 2 + 2;
+        $(this).css('left', x);
+        $(this).css('top', y);
+
+        //positioning triangle
+        x = this.offset().left + (this.width() / 2) - ($(triangle).outerWidth() / 2);
+        y = this.offset().top + this.outerHeight();
+        $(triangle).css('left', x);
+        $(triangle).css('top', y - 1);
+
+        $(whiteTriangle).css('border-top-color', '#fff');
+        $(whiteTriangle).css('left', x);
+        $(whiteTriangle).css('top', y - 2);
+
+      } else if (this.hasClass('popover-right')) {
+        //position
+        x = elem.offset().left + elem.width() + $(triangle).outerWidth() / 2 + 2;
+        y = elem.offset().top - ((this.outerHeight() - $(triangle).outerHeight()) / 2);
+        $(this).css('left', x);
+        $(this).css('top', y);
+
+        //positioning triangle
+        x = this.offset().left - $(triangle).outerWidth();
+        y = this.offset().top + (this.outerHeight() - $(triangle).outerHeight()) / 2;
+        $(triangle).css('left', x - 1);
+        $(triangle).css('top', y);
+
+        $(whiteTriangle).css('border-right-color', '#fff');
+        $(whiteTriangle).css('left', x);
+        $(whiteTriangle).css('top', y);
+
+      } else if (this.hasClass('popover-bottom')) {
+        //position
+        x = elem.offset().left + (elem.width() / 2) - (this.width() / 2);
+        y = elem.offset().top + elem.height() + $(triangle).outerHeight() / 2;
+        $(this).css('left', x);
+        $(this).css('top', y);
+
+        //positioning triangle
+        x = this.offset().left + (this.width() / 2) - ($(triangle).outerWidth() / 2);
+        y = this.offset().top - $(triangle).outerHeight();
+        $(triangle).css('left', x);
+        $(triangle).css('top', y - 1);
+
+        $(whiteTriangle).css('border-bottom-color', '#fff');
+        $(whiteTriangle).css('left', x);
+        $(whiteTriangle).css('top', y);
+
+      } else if (this.hasClass('popover-left')) {
+        //position
+        x = elem.offset().left - this.width() - $(triangle).outerWidth() / 2 - 2;
+        y = elem.offset().top - ((this.outerHeight() - $(triangle).outerHeight()) / 2);
+        $(this).css('left', x);
+        $(this).css('top', y);
+
+        //positioning triangle
+        x = this.offset().left + this.width();
+        y = this.offset().top + (this.outerHeight() - $(triangle).outerHeight()) / 2;
+        $(triangle).css('left', x + 1);
+        $(triangle).css('top', y);
+
+        $(whiteTriangle).css('border-left-color', '#fff');
+        $(whiteTriangle).css('left', x);
+        $(whiteTriangle).css('top', y);
+      }
+
+    };
+
+    $('[data-popover-for]').each(function() {
+      $(this).popover();
+    });
+
     /* ========================================================================
      Source code format
      ======================================================================== */
@@ -86,10 +227,10 @@ $(document).ready(function() {
       this.find('.code-line').wrap('<li>');
 
     };
+    
+    $('.code').codify(true);
+    
   }(jQuery));
-
-  $('.code').codify(true);
-
 
   /* ==========================================================================
    CSS dynamic utilities
@@ -310,5 +451,6 @@ $(document).ready(function() {
     }
     $(this).toggleClass(className);
   });
+
 
 });
