@@ -3,6 +3,7 @@
     <legend>Text fields & label</legend>
     <label for="name">Input Text</label><br/>
     <input type="text" id="name" placeholder="input text required" required />
+    <span data-tooltip-for="name">Dica de input</span>
     <input type="password" value="123456" disabled />
     <input type="email" id="name" placeholder="input email" /><br/>
     <input type="text" placeholder=".width-tiny" class="width-tiny" /><br/>
@@ -172,10 +173,9 @@
 <form class="form-input-padding-large form-input-perline">
   <fieldset>
     <legend>Date input</legend>
-
-
-    <input type="text" name="someDate" id="someDate" data-calendar data-calendar-format="yyyy.mm.dd" placeholder="dd/mm/yyyy" />
-    <span class="tooltip" data-tooltip-for="someDate">Dica de input</span>
+    <input type="text" name="someDate" id="someDate" data-calendar 
+           data-calendar-format="yyyy.mm.dd" placeholder="dd/mm/yyyy" />
+    <span data-tooltip-for="someDate">Dica de input</span>
     <input type="date" name="dt" />
   </fieldset>
 </form>
