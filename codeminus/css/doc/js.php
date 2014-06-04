@@ -1,22 +1,25 @@
 <div style="min-height: 400px; padding-top: 10px">
-  <div class="popover top">
-    <header class="popover-title">popover top</header>
+  <a href="#" class="margined" id="poptop">popover top</a>
+  <div class="popover-top" data-popover-for="poptop">
+    <header>popover top</header>
     <section class="popover-content">Content</section>
-    <span class="arrow">&blacktriangledown;</span>
   </div>
-  <div class="popover right" style="left: 220px">
-    <header class="popover-title">popover right</header>
+  
+  <a href="#" class="margined" id="popright">popover right</a>
+  <div class="popover-right" data-popover-for="popright">
+    <header>popover right</header>
     <section class="popover-content">Content</section>
-    <span class="arrow">&blacktriangleleft;</span>
   </div>
-  <div class="popover bottom" style="left: 430px">
-    <header class="popover-title">popover bottom</header>
+  
+  <a href="#" class="margined" id="popbottom">popover bottom</a>
+  <div class="popover-bottom" data-popover-for="popbottom">
+    <header>popover bottom</header>
     <section class="popover-content">Content</section>
-    <span class="arrow">&blacktriangle;</span>
   </div>
-  <div class="popover left" style="left: 630px">
-    <header class="popover-title">popover left</header>
+  
+  <a href="#" class="margined" id="popleft">popover left</a>
+  <div class="popover-left" data-popover-for="popleft">
+    <header>popover left</header>
     <section class="popover-content">Content</section>
-    <span class="arrow">&blacktriangleright;</span>
   </div>
 </div>
