@@ -17,9 +17,8 @@ class SystemMessage {
    * No system message defined
    * @var int
    */
-
-  const NONE = -1;
-
+  const NONE = 'none';
+  
   //Message types
   const SUCCESS_MESSAGE = 0;
   const ERROR_MESSAGE = 1;
