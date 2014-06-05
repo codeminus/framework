@@ -103,7 +103,7 @@
   </ul>
   <br/>
   <section class="container-box container-bubble">
-    <section>
+    <section class="clearfix">
       <ul class="nav nav-vtabs tab-triggers span2">
         <li class="header">.nav-vtabs</li>
         <li><a data-tab-target="tab1" class="active">Menu Item</a></li>
@@ -111,7 +111,7 @@
         <li><a data-tab-target="tab3">Menu Item</a></li>
       </ul>
       <div class="span4 margined-left">
-        <section class="tab active" id="tab1">
+        <section class="tab active" id="tab1">123
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Phasellus quis lectus metus, at posuere neque.
           Sed pharetra nibh eget orci convallis at posuere leo convallis.
