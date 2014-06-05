@@ -28,20 +28,20 @@ $(document).ready(function() {
 
       //position tooltip
       x = input.offset().left;
-      y = input.offset().top - $(this).outerHeight() - $(triangle).height();
-      $(this).css('left', x);
-      $(this).css('top', y - 2);
+      y = input.offset().top - tooltip.height() - $(triangle).outerHeight() / 2;
+      tooltip.css('left', x);
+      tooltip.css('top', y - 2);
 
       //positioning triangle
-      x = $(this).offset().left;
-      y = $(this).offset().top + $(this).outerHeight();
+      x = tooltip.offset().left;
+      y = tooltip.offset().top + tooltip.outerHeight();
       $(triangle).css('left', x + 4);
       $(triangle).css('top', y - 1);
-      
+
     };
 
     $('[data-tooltip-for]').append(function() {
-      
+
 
     });
 
@@ -227,15 +227,15 @@ $(document).ready(function() {
       this.find('.code-line').wrap('<li>');
 
     };
-    
+
     $('.code').codify(true);
-    
+
   }(jQuery));
 
   /* ==========================================================================
    CSS dynamic utilities
    ========================================================================== */
-  $('.float-left, .float-right, [class^="span"], [class*=" span"]').parent().addClass('clearfix');
+  //$('.float-left, .float-right, [class^="span"], [class*=" span"]').parent().addClass('clearfix');
 
   $('.fixed').after(function() {
     var newElement = document.createElement('div');
