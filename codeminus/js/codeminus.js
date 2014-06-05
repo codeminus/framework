@@ -40,11 +40,6 @@ $(document).ready(function() {
 
     };
 
-    $('[data-tooltip-for]').append(function() {
-
-
-    });
-
     $('[data-tooltip-for]').each(function() {
       $(this).tooltip();
     });
