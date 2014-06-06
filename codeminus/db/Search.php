@@ -7,7 +7,5 @@ namespace codeminus\db;
  * @version 0.1
  */
 class Search {
-  public static function clearKey($key){
-    return preg_replace('/[\/\'"#]|--/', '', $key);
-  }
+  
 }
