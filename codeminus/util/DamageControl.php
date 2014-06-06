@@ -277,4 +277,13 @@ class DamageControl {
     return $prefix . $domain;
   }
   
+  /**
+   * Clears a variable to prevent sql injection
+   * @param mixed $key
+   * @return mixed
+   */
+  public static function clearKeyForSql($key){
+    return preg_replace('/[\/\'"#]|--/', '', $key);
+  }
+  
 }
