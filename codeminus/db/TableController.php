@@ -18,7 +18,7 @@ interface TableController {
   //Actions
   public function insertAction();
 
-  public function updateAction($id);
+  public function updateAction();
 
   public function deleteAction($id);
 }
