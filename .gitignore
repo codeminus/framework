@@ -5,5 +5,6 @@ nbproject/
 /codeminus/run/scaffold/
 /codeminus/app-skeleton/app/run/
 /codeminus/db/ExtendedTableModel.php
+/codeminus/db/Search.php
 /codeminus/traits/StaticClass.php
 /codeminus/run/deploy/
