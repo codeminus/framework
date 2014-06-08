@@ -82,16 +82,16 @@ table tfoot{
 /* ==========================================================================
    table colors
    ========================================================================== */
-tr.success, th.success, td.success{
+table.success{
   background-color: #dff0d8;
 }
-tr.warning, th.warning, td.warning{
+table.warning{
   background-color: #fcf8e3;
 }
-tr.info, th.info, td.info{
+table.info{
   background-color: #d9edf7;
 }
-tr.error, th.error, td.error{
+table.error{
   background-color: #f2dede;
 }
 /* ==========================================================================
