@@ -446,6 +446,15 @@ $(document).ready(function() {
     }
     $(this).toggleClass(className);
   });
+  /* ==========================================================================
+   data-selected-by-value
+   ========================================================================== */
+  $('[data-selected-by-value] option').each(function(){
+    var selectedValue = $(this).parent().attr('data-selected-by-value');
+    if($(this).attr('value') == selectedValue){
+      $(this).attr('selected','true');
+    }
+  });
 
 
 });
