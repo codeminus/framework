@@ -114,15 +114,16 @@ class DamageControl {
    * @return string/array depending on the given parameter
    */
   public static function sanitizeVar($unsecuredValue) {
+    $securedVar = '';
     if (is_array($unsecuredValue)) {
       foreach ($unsecuredValue as $key => $value) {
-        $securedArray[$key] = addslashes(htmlspecialchars($value));
+        $securedVar[$key] = addslashes(htmlspecialchars($value));
       }
     } else {
-      $securedArray = addslashes(htmlspecialchars($unsecuredValue));
+      $securedVar = addslashes(htmlspecialchars($unsecuredValue));
     }
 
-    return $securedArray;
+    return $securedVar;
   }
 
   /**
