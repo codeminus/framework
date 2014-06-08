@@ -147,11 +147,11 @@
       <option value="Opera">
       <option value="Safari">
     </datalist>
-    <select>
-      <option >Option 01</option>
-      <option>Option 02</option>
-      <option>Option 03</option>
-      <option>Option 04</option>
+    <select data-selected-by-value="opt03">
+      <option value="opt01">Option 01</option>
+      <option value="opt02">Option 02</option>
+      <option value="opt03">Option 03</option>
+      <option value="opt04">Option 04</option>
     </select>
   </fieldset>
   <fieldset class="shadow-small">
