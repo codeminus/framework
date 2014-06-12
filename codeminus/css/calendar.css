@@ -2,15 +2,16 @@
 /* ==========================================================================
    Calendar classes
    ========================================================================== */
-#calendar{
+.calendar{
   position: absolute;
   z-index: 1000;
   font-size: 10px;
 }
 
-#calendar input{
-  width: 40px;
+.calendar input{
+  width: 30px;
 }
+
 
 .table-calendar th,
 .table-calendar td{

@@ -2,12 +2,12 @@
  date calendar
  ========================================================================== */
 $(window).resize(function() {
-  $('#calendar').remove();
+  $('.calendar').remove();
 });
 $(document).ready(function() {
 
   $('html').click(function() {
-    $('#calendar').remove();
+    $('.calendar').remove();
   });
 
   $('[data-calendar]').attr('id', function() {
@@ -15,12 +15,11 @@ $(document).ready(function() {
   });
 
   $('[data-calendar]').focus(function() {
-    if (!$(this).next().is('#calendar')) {
+    if (!$(this).next().is('.calendar')) {
 
       var dt = new Date();
       var calendar = document.createElement('div');
-      calendar.setAttribute('id', 'calendar');
-      calendar.setAttribute('class', 'container-box shadow-medium');
+      calendar.setAttribute('class', 'calendar container-box shadow-medium');
       $(this).after(calendar);
       if ($(this).attr('data-calendar-format') == null) {
         $(this).attr('data-calendar-format', 'dd/mm/yyyy');
@@ -49,9 +48,9 @@ $(document).ready(function() {
       //positioning calendar
       x = $(this).offset().left;
       y = $(this).offset().top + $(this).outerHeight() + 4;
-      $('#calendar').css('left', x);
-      $('#calendar').css('top', y);
-      $('#calendar').click(function(e) {
+      $('.calendar').css('left', x);
+      $('.calendar').css('top', y);
+      $('.calendar').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
       });
@@ -222,8 +221,8 @@ function mountCalendar(inputId, month, year) {
           '\',\'\')" value="C" />' +
           '<input type="button" onclick="setInputDate(\'' + inputId +
           '\',\'' + todayString + '\')" value="&bull;" />' +
-          '<input type="button" onclick="$(\'#calendar\').remove()" value="&times;" />' +
+          '<input type="button" onclick="$(\'.calendar\').remove()" value="&times;" />' +
           '</span>' +
           '</section>';
-  $('#calendar').html(calendarContent);
+  $('.calendar').html(calendarContent);
 }
