@@ -11,7 +11,7 @@ use codeminus\util as util;
  */
 class File {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
 
   /**
    * Deletes a file or directory
@@ -30,9 +30,9 @@ class File {
    * @param string $filePath the file path
    * @param string $fileContent Content to be put inside the file
    * method
-   * @param bool $replaceExistent[optional] if TRUE, it will replace all
+   * @param bool $replaceExistent [optional] if TRUE, it will replace all
    * existent files
-   * @param bool $createPath[optional] if TRUE is given it will create the
+   * @param bool $createPath [optional] if TRUE is given it will create the
    * directory of the file path if it does not exists.
    * @return bool TRUE if the file was created with success or FALSE 
    * otherwise
