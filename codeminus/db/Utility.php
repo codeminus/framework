@@ -11,7 +11,7 @@ use codeminus\main as main;
  */
 class Utility {
   
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
   
   /**
    * The name of the table.
@@ -151,7 +151,7 @@ class Utility {
 
   /**
    * Tables within the connected database
-   * @param bool $completeInfo[optional] if TRUE, it will return a
+   * @param bool $completeInfo [optional] if TRUE, it will return a
    * multi-dimentional array with the following structure:<br/>
    * $tables[index]['Name']<br/>
    * $tables[index]['Engine']<br/>
@@ -197,10 +197,10 @@ class Utility {
   /**
    * Table information
    * @param string $tableName The name of the table
-   * @param string $info[optional] one of the \codeminus\db\Utility constants
+   * @param string $info [optional] one of the \codeminus\db\Utility constants
    * for table information. If null is given, it will return an array containing
    * all the informations about the table
-   * @param \codeminus\db\Connection $dbConn[optional] A database connection.
+   * @param \codeminus\db\Connection $dbConn [optional] A database connection.
    * If null is given, it will attempt to get a Connection instance
    * automatically
    * @return mixed String if $info is given and array otherwise
@@ -222,7 +222,7 @@ class Utility {
   /**
    * Returns the columns of a given table
    * @param string $tableName the name of the table
-   * @param bool $completeInfo[optional] if TRUE, it will return a
+   * @param bool $completeInfo [optional] if TRUE, it will return a
    * multi-dimentional array with the following structure:
    * $columns[0]['name']<br/>
    * $columns[0]['type']<br/>
@@ -232,9 +232,9 @@ class Utility {
    * $columns[0]['default']<br/>
    * $columns[0]['extra']<br/>
    * If FALSE it will return an array containing only the columns names
-   * @param Connection $dbConn[optional] a database connection. If null is
+   * @param Connection $dbConn [optional] a database connection. If null is
    * given, it will attempt to get a Connection instance automatically
-   * @param string $tableField[optional] If a table field is given it will
+   * @param string $tableField [optional] If a table field is given it will
    * return informations for only this field.
    * @return array An array with the following structure:<br/>
    * 
@@ -294,10 +294,10 @@ class Utility {
    * The informations of a given table column
    * @param string $tableName The database table name
    * @param string $tableColumn The database table column name
-   * @param string $info[optional] one of the \codeminus\db\Utility constants
+   * @param string $info [optional] one of the \codeminus\db\Utility constants
    * for table column information. If null is given, it will return an array
    * containing all the informations about the table column
-   * @param \codeminus\db\Connection $dbConn[optional] A database connection.
+   * @param \codeminus\db\Connection $dbConn [optional] A database connection.
    * If null is given, it will attempt to get a Connection instance
    * automatically
    * @return mixed String if $info is given and array otherwise
@@ -313,7 +313,7 @@ class Utility {
 
   /**
    * Mysql field types
-   * @param bool $equivalentPhpTypes[optional] if TRUE, it will return an
+   * @param bool $equivalentPhpTypes [optional] if TRUE, it will return an
    * associative array where the keys will correspond to the mysql data type and
    * the values will correspond to the php equivalent types
    * @return array An array with all mysql field types up to MySQL 5.1 
