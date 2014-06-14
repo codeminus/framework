@@ -2,13 +2,12 @@
 
 namespace codeminus\main;
 
-use codeminus\main as main;
 use codeminus\file as file;
 
 /**
  * Framework Installer
  * @author Wilson Santos <wilson@codeminus.org>
- * @version 1.3
+ * @version 1.4
  */
 class Installer {
 
@@ -24,29 +23,21 @@ class Installer {
     $this->ini = $ini;
   }
 
-  public static function getFrameworkRoot() {
-    return file\Directory::normalize(realpath('../../'));
-  }
-
-  /**
-   * Application HTTP path
-   * @return string
-   */
-  public static function getFrameworkHttpRoot() {
-    $script = $_SERVER['SCRIPT_NAME'];
-    return 'http://' . $_SERVER['HTTP_HOST'] . substr($script, 0, strpos($script, '/codeminus'));
-  }
-
   /**
    * Create application's default files and folders
    * @return bool TRUE if no problems occur during installation or FALSE
    * otherwise
    */
-  public function createApp($reinstall = false) {
-    file\Directory::copy('../app-skeleton', $this->installPath, $reinstall);
-    $iniFilePath = $this->installPath . '/app/config/main.ini';
-    $this->ini->save($iniFilePath, $reinstall);
+  public function createApp($replace = false, $replaceConfig = false) {
+    file\Directory::copy(Application::getRoot() . '/codeminus/app-skeleton',
+            $this->installPath, $replace);
+    $this->createConfigFile($replaceConfig);
     return true;
+  }
+
+  public function createConfigFile($replace = false) {
+    $iniFilePath = $this->installPath . '/app/config/main.ini';
+    $this->ini->save($iniFilePath, $replace);
   }
 
 }
