@@ -9,10 +9,10 @@ namespace codeminus\main;
  */
 final class Framework {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
 
-  const VERSION = '0.9';
-
+  const VERSION = '0.9.1';
+  
   /**
    * Returns the user defined constants as an associative array
    * @return mixed An array if there's any user defined constants or FALSE
