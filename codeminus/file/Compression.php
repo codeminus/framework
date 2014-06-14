@@ -11,7 +11,7 @@ use codeminus\main as main;
  */
 class Compression {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
   
   private static $parentPath;
 
