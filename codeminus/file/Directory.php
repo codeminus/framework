@@ -12,7 +12,7 @@ use codeminus\util as util;
  */
 class Directory {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
 
   const MATCH_ANY = 0;
   const MATCH_BEGINNING = 1;
@@ -24,7 +24,7 @@ class Directory {
    * Creates a directory
    * @param string $directory path If a subdirectory is given and it does not
    * exists it will be created as well
-   * @param octal $mode[optional] the access level desired for the folder
+   * @param octal $mode [optional] the access level desired for the folder
    * @return bool TRUE if the directory was created with success or FALSE
    * otherwise
    */
@@ -62,7 +62,7 @@ class Directory {
   /**
    * Deletes a file or directory
    * @param string $path path to the file or directory to be deleted
-   * @param bool $recursively[optional] if TRUE it will delete all subdirectories
+   * @param bool $recursively [optional] if TRUE it will delete all subdirectories
    * @return bool TRUE if the directory was deleted with success or FALSE
    * otherwise
    * @throws codeminus\main\ExtendedException
@@ -106,16 +106,16 @@ class Directory {
    * @param string $where the directory to search in
    * @param array $storage the array that is going to store the result of the
    * search
-   * @param bool $recursively[optional] if TRUE is given, it will search on
+   * @param bool $recursively [optional] if TRUE is given, it will search on
    * all subdirectories
-   * @param int $matchMode[optional] One of the Directory class match constants.
+   * @param int $matchMode [optional] One of the Directory class match constants.
    * If MATCH_ANY is given, it will match any part of the name of the directory
    * or file. If MATCH_BEGINNING is given, it will match only the beginning. If
    * MATCH_END is given, it will match only the end. If MATCH_ALL is given, it
    * will match the whole name of the directory or file
-   * @param bool $caseSensitive[optional] if TRUE is given, the search will
+   * @param bool $caseSensitive [optional] if TRUE is given, the search will
    * be case sensitive.
-   * @param bool $ignoreExtension[optional] if TRUE is given, the search will
+   * @param bool $ignoreExtension [optional] if TRUE is given, the search will
    * consider only the file name and not its extension
    * @return bool TRUE if any match is found
    */
@@ -185,9 +185,9 @@ class Directory {
    * @param string $where the directory to search in
    * @param array $storage the array that is going to store the result of the
    * search
-   * @param bool $recursively[optional] if TRUE is given, it will search on
+   * @param bool $recursively [optional] if TRUE is given, it will search on
    * all subdirectories
-   * @param bool $matchMode[optional] Either Directory::MATCH_ANY or
+   * @param bool $matchMode [optional] Either Directory::MATCH_ANY or
    * Directory::MATCH_PCRE constant
    * @return bool TRUE if any match is found
    */
@@ -218,7 +218,7 @@ class Directory {
   /**
    * Scans all files and folders within a given directory
    * @param string $directory path
-   * @param bool $recursively[optional] If TRUE is given, it will scan all
+   * @param bool $recursively [optional] If TRUE is given, it will scan all
    * subdirectories as well
    * @return array an array containing numeric keys to store file paths and
    * and if $recursively is set to TRUE, associative keys to store directory
@@ -259,9 +259,9 @@ class Directory {
    * Copies all files from a folder to another recursively
    * @param string $source source path to copy from
    * @param string $destination destination path to copy to
-   * @param bool $overwrite[optional] if TRUE it will overwrite all existent
+   * @param bool $overwrite [optional] if TRUE it will overwrite all existent
    * files
-   * @param bool $recursively[optional] if TRUE it will also copy the subfolders
+   * @param bool $recursively [optional] if TRUE it will also copy the subfolders
    * @return void
    * @throws codeminus\main\ExtendedException
    */
