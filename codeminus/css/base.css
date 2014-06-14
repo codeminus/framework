@@ -194,16 +194,16 @@ img.disabled{
 /* ==========================================================================
    Messages
    ========================================================================== */
-.success{
+.success, .text-sucess{
   color: #468847 !important;
 }
-.warning{
+.warning, .text-warning{
   color: #c09853 !important;
 }
-.info{
+.info, .text-info{
   color: #3a87ad !important;
 }
-.error{
+.error, .text-error{
   color: #b94a48 !important;
 }
 .close{
