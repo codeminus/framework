@@ -12,7 +12,7 @@ class Session {
 
   private static $key;
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
 
   /**
    * Starts a new session if there isnt one already

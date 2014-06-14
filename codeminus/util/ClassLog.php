@@ -11,7 +11,7 @@ namespace codeminus\util;
  */
 class ClassLog {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
   
   static $on = false;
   static $logs = array();
@@ -44,7 +44,7 @@ class ClassLog {
    * It is highly recommended that you use __METHOD__ magic constant as it will
    * return a method's full name like: TheNamespace\ClassName::methodName
    * @param string $message The message to be logged
-   * @param int $type[optional] A log type constant.<br/>
+   * @param int $type [optional] A log type constant.<br/>
    * LOG_INFO - the default if none is given<br/>
    * LOG_WARNING<br/>
    * LOG_ERROR
@@ -70,7 +70,7 @@ class ClassLog {
    * An associative array containing all logs from a given class
    * @param string $className the full name of a classe.<br/>
    * Example: TheNamespace\ClassName
-   * @param int $type[optional] A log type constant. If none is given, all
+   * @param int $type [optional] A log type constant. If none is given, all
    * messages from the given class will be returned
    * @return array Follow the structure below:<br/>
    * [index]['namespace'] the class namespace<br/>
@@ -102,7 +102,7 @@ class ClassLog {
 
   /**
    * An associative array containing all logs within ClassLog::$logs
-   * @param int $type[Optional] A log type constant. If none is given, all
+   * @param int $type [Optional] A log type constant. If none is given, all
    * messages will be returned
    * @return array Follow the structure below:<br/>
    * [index]['namespace'] the class namespace<br/>

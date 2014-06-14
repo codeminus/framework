@@ -9,7 +9,7 @@ namespace codeminus\util;
  */
 class DamageControl {
 
-  use \codeminus\traits\Singleton;
+  //use \codeminus\traits\Singleton;
   
   const LOGIN_MINIMUM_SIZE = 6;
   const PASSWORD_MINIMUM_SIZE = 6;
@@ -97,7 +97,7 @@ class DamageControl {
   /**
    * Validates a password strength
    * @param string $password the value to be validated
-   * @param int $strength[optional] the minimum valid strength
+   * @param int $strength [optional] the minimum valid strength
    * @return bool TRUE if valid or FALSE otherwise
    */
   public static function validatePasswordStrength($password, $strength = self::PASSWORD_AVERAGE) {
@@ -153,8 +153,8 @@ class DamageControl {
    * Verifies if a given value is a number and if it is within specified type
    * and direction
    * @param mixed $value
-   * @param int $type[optional]
-   * @param int $direction[optional] as in positive or negative
+   * @param int $type [optional]
+   * @param int $direction [optional] as in positive or negative
    * @return bool
    */
   public static function validateNumber($value, $type = self::DOUBLE_TYPE, $direction = self::ANY_DIRECTION) {
