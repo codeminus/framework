@@ -260,15 +260,28 @@
 .nav-simple > li > a, .nav-simple > li.header{
   padding: 0;
 }
+.nav-simple > li > .active{
+  box-shadow: none;
+  border: none;
+}
+.nav-simple > li > .active:hover{
+  text-decoration: none;
+}
+.nav-simple > li.dropdown > a:hover{
+  text-decoration: none;
+}
+.nav-simple > li.dropdown .drop-menu{
+  margin-top: 4px;
+}
 .nav-simple > li > a:hover{
   background-color: transparent;
   text-decoration: underline;
 }
-.nav-simple.inline li{
+.nav-simple.inline > li{
   display: inline-block;
   margin: 0 10px;
 }
-.nav-simple.inline li:first-child{
+.nav-simple.inline > li:first-child{
   margin-left: 0;
 }
 /* ==========================================================================
