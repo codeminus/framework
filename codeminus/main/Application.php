@@ -52,7 +52,7 @@ class Application {
     define('APP_PATH', $ini->get("path"));
     define('APP_HTTP_PATH', $ini->get("http_path"));
     define('APP_ENV_PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', APP_PATH));
-    
+
     Autoloader::includePath(APP_PATH);
 
     if (!is_dir(APP_PATH)) {
@@ -91,7 +91,7 @@ class Application {
     } else {
       file\File::delete(APP_PATH . '/codeminus/run/.htaccess');
     }
-    
+
     //Initializing path router
     try {
       new Router();
@@ -107,26 +107,24 @@ class Application {
    * @return string
    */
   public static function getRoot() {
-    return file\Directory::normalize(substr(__DIR__, 0,
-                            strpos(__DIR__, DIRECTORY_SEPARATOR . 'codeminus')));
+    return file\Directory::normalize(substr(__DIR__, 0, strpos(__DIR__, DIRECTORY_SEPARATOR . 'codeminus')));
   }
-  
+
   /**
    * Returns the application http root, considering that the framework will
    * always be on app_root/codeminus folder 
    * @return string
    */
   public static function getHttpRoot() {
-    return 'http://'.$_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0,
-                    strpos($_SERVER['REQUEST_URI'], '/codeminus'));
+    return 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '/codeminus'));
   }
 
   /**
    * Returns the path to the application's ini configuration file
    * @return string
    */
-  public static function getConfigPath(){
+  public static function getConfigPath() {
     return file\Directory::normalize(self::getRoot()) . '/app/config/main.ini';
   }
-  
+
 }
